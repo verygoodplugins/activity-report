@@ -1,5 +1,8 @@
 name: Daily Activity Report
 
+permissions:
+  contents: write
+
 on:
   schedule:
     - cron: '0 9 * * *'  # Daily at 9 AM UTC
