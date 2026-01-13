@@ -3,1214 +3,522 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dev Pulse | Activity Dashboard</title>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <title>Activity Report</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --bg: #FAFAF8;
-      --surface: #FFFFFF;
-      --surface-elevated: #F5F5F3;
-      --border: #E8E6E3;
-      --text: #3A3A3A;
-      --text-secondary: #6B6B6B;
-      --accent: #B4A5C7;
-      --accent-light: rgba(180, 165, 199, 0.15);
-      --green: #94B49F;
-      --green-light: rgba(148, 180, 159, 0.2);
-      --red: #E8A598;
-      --red-light: rgba(232, 165, 152, 0.2);
-      --purple: #B4A5C7;
-      --amber: #E8C49A;
-      --cyan: #A8D8D4;
-      --pink: #E8B4C4;
-      --sage: #94B49F;
-      --lavender: #B4A5C7;
-      --coral: #E8A598;
-      --mint: #A8D8D4;
-      --shadow-sm: 0 1px 3px rgba(0,0,0,0.04);
-      --shadow-md: 0 4px 12px rgba(0,0,0,0.06);
-      --shadow-lg: 0 8px 24px rgba(0,0,0,0.08);
-    }
-
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    
-    html { scroll-behavior: smooth; }
-    
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      line-height: 1.6;
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
-
-    .noise {
-      display: none;
-    }
-
-    .container {
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 2rem;
-      position: relative;
-    }
-
-    /* Hero Section */
-    .hero {
-      position: relative;
-      padding: 3rem 0;
-      margin-bottom: 3rem;
-    }
-
-    .hero-content {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 3rem;
-      flex-wrap: wrap;
-    }
-
-    .hero-left h1 {
-      font-family: 'Fraunces', Georgia, serif;
-      font-size: 3.5rem;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      color: var(--text);
-      margin-bottom: 0.5rem;
-    }
-
-    .hero-tagline {
-      font-size: 1.1rem;
-      color: var(--text-secondary);
-      font-weight: 400;
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-    }
-
-    .live-dot {
-      width: 8px;
-      height: 8px;
-      background: var(--green);
-      border-radius: 50%;
-      animation: pulse 2s ease-in-out infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.6; transform: scale(1.1); }
-    }
-
-    .hero-stats {
-      display: flex;
-      gap: 1.5rem;
-    }
-
-    .stat-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 1rem;
-      padding: 1.5rem 2rem;
-      text-align: center;
-      min-width: 120px;
-      position: relative;
-      overflow: hidden;
-      transition: all 0.3s ease;
-      box-shadow: var(--shadow-sm);
-    }
-
-    .stat-card:hover {
-      transform: translateY(-4px);
-      border-color: var(--accent);
-      box-shadow: var(--shadow-lg);
-    }
-
-    .stat-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 3px;
-    }
-
-    .stat-card.repos::before { background: var(--sage); }
-    .stat-card.commits::before { background: var(--lavender); }
-    .stat-card.added::before { background: var(--green); }
-    .stat-card.deleted::before { background: var(--red); }
-    .stat-card.prs::before { background: var(--mint); }
-
-    /* Time Toggle */
-    .time-toggle {
-      display: flex;
-      gap: 0.5rem;
-      margin-top: 1rem;
-    }
-
-    .toggle-btn {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 2rem;
-      padding: 0.5rem 1rem;
-      font-size: 0.8rem;
-      font-weight: 500;
-      color: var(--text-secondary);
-      cursor: pointer;
-      transition: all 0.2s ease;
-      font-family: 'Inter', sans-serif;
-    }
-
-    .toggle-btn:hover {
-      border-color: var(--accent);
-      color: var(--text);
-    }
-
-    .toggle-btn.active {
-      background: var(--accent);
-      border-color: var(--accent);
-      color: white;
-    }
-
-    .stat-value {
-      font-size: 2.5rem;
-      font-weight: 700;
-      font-family: 'JetBrains Mono', monospace;
-      line-height: 1;
-      margin-bottom: 0.25rem;
-    }
-
-    .stat-card.added .stat-value { color: var(--green); }
-    .stat-card.deleted .stat-value { color: var(--red); }
-
-    .stat-label {
-      font-size: 0.75rem;
-      color: var(--text-secondary);
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      font-weight: 500;
-    }
-
-    /* Weekly Rhythm */
-    .section {
-      margin-bottom: 3rem;
-    }
-
-    .section-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 1.5rem;
-    }
-
-    .section-title {
-      font-family: 'Fraunces', Georgia, serif;
-      font-size: 1.5rem;
-      font-weight: 600;
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      color: var(--text);
-    }
-
-    .section-title-icon {
-      width: 32px;
-      height: 32px;
-      background: var(--accent-light);
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1rem;
-    }
-
-    .weekly-grid {
-      display: grid;
-      grid-template-columns: repeat(7, 1fr);
-      gap: 1rem;
-    }
-
-    .day-column {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 1rem;
-      padding: 1.25rem;
-      transition: all 0.3s ease;
-      position: relative;
-      overflow: hidden;
-      box-shadow: var(--shadow-sm);
-    }
-
-    .day-column:hover {
-      border-color: var(--accent);
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-md);
-    }
-
-    .day-column.today {
-      border-color: var(--accent);
-      background: linear-gradient(180deg, var(--accent-light) 0%, var(--surface) 100%);
-    }
-
-    .day-column.today::before {
-      content: 'TODAY';
-      position: absolute;
-      top: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      background: var(--lavender);
-      color: white;
-      font-size: 0.6rem;
-      font-weight: 700;
-      padding: 0.2rem 0.6rem;
-      border-radius: 0 0 0.5rem 0.5rem;
-      letter-spacing: 0.05em;
-    }
-
-    .day-name {
-      font-size: 0.7rem;
-      color: var(--text-secondary);
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      margin-bottom: 0.25rem;
-    }
-
-    .day-date {
-      font-size: 1.5rem;
-      font-weight: 700;
-      font-family: 'JetBrains Mono', monospace;
-      margin-bottom: 1rem;
-    }
-
-    .day-bars {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-      min-height: 80px;
-    }
-
-    .activity-bar {
-      height: 8px;
-      border-radius: 4px;
-      position: relative;
-      overflow: hidden;
-      background: var(--border);
-    }
-
-    .activity-fill {
-      height: 100%;
-      border-radius: 4px;
-      transition: width 1s ease-out;
-    }
-
-    .day-stats {
-      display: flex;
-      gap: 0.75rem;
-      margin-top: 1rem;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.7rem;
-    }
-
-    .day-stat {
-      display: flex;
-      align-items: center;
-      gap: 0.25rem;
-    }
-
-    .day-stat.added { color: var(--green); }
-    .day-stat.deleted { color: var(--red); }
-
-    /* Categories */
-    .categories-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-      gap: 1.5rem;
-    }
-
-    .category-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 1rem;
-      padding: 1.5rem;
-      transition: all 0.3s ease;
-      box-shadow: var(--shadow-sm);
-    }
-
-    .category-card:hover {
-      border-color: var(--accent);
-      box-shadow: var(--shadow-md);
-    }
-
-    .category-header {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      margin-bottom: 1.25rem;
-      padding-bottom: 1rem;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .category-icon {
-      width: 40px;
-      height: 40px;
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.25rem;
-    }
-
-    .category-icon.wp-fusion { background: rgba(180, 165, 199, 0.3); }
-    .category-icon.mcp-servers { background: rgba(232, 196, 154, 0.3); }
-    .category-icon.personal { background: rgba(148, 180, 159, 0.3); }
-    .category-icon.other { background: rgba(200, 200, 200, 0.3); }
-
-    .category-name {
-      font-size: 1rem;
-      font-weight: 600;
-    }
-
-    .category-count {
-      margin-left: auto;
-      background: var(--surface-elevated);
-      padding: 0.25rem 0.75rem;
-      border-radius: 2rem;
-      font-size: 0.75rem;
-      font-family: 'JetBrains Mono', monospace;
-      color: var(--text-secondary);
-    }
-
-    .repo-list {
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-    }
-
-    .repo-item {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      padding: 0.75rem 1rem;
-      background: var(--surface-elevated);
-      border-radius: 0.75rem;
-      text-decoration: none;
-      color: inherit;
-      transition: all 0.2s ease;
-    }
-
-    .repo-item:hover {
-      background: var(--border);
-      transform: translateX(4px);
-    }
-
-    .repo-dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      flex-shrink: 0;
-    }
-
-    .repo-name {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.85rem;
-      font-weight: 500;
-      flex: 1;
-    }
-
-    .repo-stats {
-      display: flex;
-      gap: 0.75rem;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.75rem;
-    }
-
-    .repo-commits {
-      background: var(--accent-light);
-      color: #7A6B8A;
-      padding: 0.2rem 0.5rem;
-      border-radius: 0.25rem;
-      font-weight: 600;
-    }
-
-    .repo-added { color: var(--green); }
-    .repo-deleted { color: var(--red); }
-
-    /* Pull Requests */
-    .pr-grid {
-      display: grid;
-      gap: 1rem;
-    }
-
-    .pr-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 1rem;
-      padding: 1.25rem 1.5rem;
-      display: grid;
-      grid-template-columns: auto 1fr auto;
-      gap: 1.25rem;
-      align-items: center;
-      transition: all 0.3s ease;
-      box-shadow: var(--shadow-sm);
-    }
-
-    .pr-card:hover {
-      border-color: var(--accent);
-      transform: translateX(4px);
-      box-shadow: var(--shadow-md);
-    }
-
-    .pr-status {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.25rem;
-    }
-
-    .pr-status.open {
-      background: var(--green-light);
-    }
-
-    .pr-status.merged {
-      background: var(--accent-light);
-    }
-
-    .pr-status.closed {
-      background: var(--red-light);
-    }
-
-    .pr-title-text {
-      font-weight: 600;
-      font-size: 1rem;
-      margin-bottom: 0.5rem;
-      color: var(--text);
-      text-decoration: none;
-      display: block;
-    }
-
-    .pr-title-text:hover {
-      color: var(--accent);
-    }
-
-    .pr-meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-      font-size: 0.8rem;
-      color: var(--text-secondary);
-      align-items: center;
-    }
-
-    .pr-repo {
-      font-family: 'JetBrains Mono', monospace;
-      font-weight: 500;
-    }
-
-    .pr-branch {
-      background: var(--surface-elevated);
-      padding: 0.2rem 0.5rem;
-      border-radius: 0.25rem;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.7rem;
-    }
-
-    .pr-stat-box {
-      text-align: right;
-      font-family: 'JetBrains Mono', monospace;
-    }
-
-    .pr-stat-box .added {
-      color: var(--green);
-      font-size: 1rem;
-      font-weight: 600;
-    }
-
-    .pr-stat-box .deleted {
-      color: var(--red);
-      font-size: 1rem;
-      font-weight: 600;
-    }
-
-    .pr-stat-box .files {
-      color: var(--text-secondary);
-      font-size: 0.75rem;
-    }
-
-    /* Commit Timeline */
-    .timeline {
-      position: relative;
-    }
-
-    .timeline::before {
-      content: '';
-      position: absolute;
-      left: 160px;
-      top: 0;
-      bottom: 0;
-      width: 2px;
-      background: linear-gradient(180deg, var(--lavender) 0%, var(--mint) 50%, var(--border) 100%);
-    }
-
-    .timeline-day {
-      margin-bottom: 2rem;
-    }
-
-    .timeline-day-header {
-      font-size: 0.8rem;
-      font-weight: 600;
-      color: var(--text-secondary);
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      margin-bottom: 1rem;
-      padding-left: 180px;
-    }
-
-    .commit-item {
-      display: grid;
-      grid-template-columns: 150px 1fr;
-      gap: 2rem;
-      margin-bottom: 1rem;
-      position: relative;
-    }
-
-    .commit-time {
-      text-align: right;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.8rem;
-      color: var(--text-secondary);
-      padding-top: 1rem;
-    }
-
-    .commit-content {
-      position: relative;
-      padding-left: 2rem;
-    }
-
-    .commit-dot {
-      position: absolute;
-      left: -7px;
-      top: 1rem;
-      width: 14px;
-      height: 14px;
-      border-radius: 50%;
-      border: 3px solid;
-      background: var(--bg);
-      z-index: 1;
-    }
-
-    .commit-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 0.75rem;
-      padding: 1rem 1.25rem;
-      transition: all 0.3s ease;
-      cursor: pointer;
-      box-shadow: var(--shadow-sm);
-    }
-
-    .commit-card:hover {
-      border-color: var(--accent);
-      transform: translateX(8px);
-      box-shadow: var(--shadow-md);
-    }
-
-    .commit-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 0.5rem;
-    }
-
-    .commit-repo {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.7rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      padding: 0.2rem 0.5rem;
-      border-radius: 0.25rem;
-      background: var(--surface-elevated);
-    }
-
-    .commit-stats {
-      display: flex;
-      gap: 0.5rem;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.75rem;
-    }
-
-    .commit-stats .added { color: var(--green); }
-    .commit-stats .deleted { color: var(--red); }
-
-    .commit-message {
-      font-weight: 500;
-      line-height: 1.5;
-    }
-
-    .commit-message a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    .commit-message a:hover {
-      color: var(--accent);
-    }
-
-    .commit-hash {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.7rem;
-      color: #7A6B8A;
-      background: var(--accent-light);
-      padding: 0.15rem 0.4rem;
-      border-radius: 0.25rem;
-      margin-left: 0.5rem;
-      text-decoration: none;
-    }
-
-    .commit-hash:hover {
-      background: var(--accent);
-      color: white;
-    }
-
-    .commit-files {
-      margin-top: 0.75rem;
-      padding-top: 0.75rem;
-      border-top: 1px dashed var(--border);
-      font-size: 0.75rem;
-      color: var(--text-secondary);
-      display: none;
-    }
-
-    .commit-card.expanded .commit-files {
-      display: block;
-    }
-
-    .file-item {
-      display: flex;
-      justify-content: space-between;
-      padding: 0.25rem 0;
-      font-family: 'JetBrains Mono', monospace;
-    }
-
-    /* Footer */
-    .footer {
-      text-align: center;
-      padding: 3rem 0;
-      color: var(--text-secondary);
-      font-size: 0.85rem;
-    }
-
-    .footer a {
-      color: var(--accent);
-      text-decoration: none;
+    :root { --bg:#F8FAFC;--surface:#FFF;--border:#E2E8F0;--text:#0F172A;--muted:#64748B;--green:#166534;--red:#991B1B;--blue:#3B82F6; }
+    * { margin:0;padding:0;box-sizing:border-box; }
+    body { background:var(--bg);color:var(--text);font-family:'Inter',system-ui,sans-serif;line-height:1.5;padding:2rem; }
+    a { color:inherit; }
+    a:hover { color:var(--blue); }
+    .container { max-width:1200px;margin:0 auto; }
+
+    /* Header */
+    .header { display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:3rem;flex-wrap:wrap;gap:2rem; }
+    h1 { font-size:2.5rem;font-weight:700;letter-spacing:-0.02em; }
+    .subtitle { color:var(--muted);margin-top:0.25rem; }
+    .stats-row { display:flex;gap:1.5rem; }
+    .stat { background:var(--surface);border:1px solid var(--border);padding:1.25rem 1.5rem;border-radius:0.75rem;text-align:center;min-width:100px; }
+    .stat-val { font-size:1.75rem;font-weight:700;font-family:'JetBrains Mono',monospace; }
+    .stat-label { font-size:0.8rem;color:var(--muted);font-weight:500; }
+
+    /* Repos */
+    .repos { display:flex;flex-wrap:wrap;gap:0.5rem;margin-bottom:2rem;padding:1rem;background:var(--surface);border-radius:0.75rem;border:1px solid var(--border); }
+    .repo-chip { font-size:0.8rem;font-family:'JetBrains Mono',monospace;padding:0.25rem 0.75rem;border-radius:2rem;background:var(--bg);border:1px solid var(--border);display:flex;align-items:center;gap:0.5rem;transition:transform 0.1s; }
+    .repo-chip:hover { transform:translateY(-1px); }
+    .repo-dot { width:8px;height:8px;border-radius:50%; }
+
+    /* PRs Section */
+    .section-title { font-size:1.25rem;font-weight:600;margin:2rem 0 1rem;display:flex;align-items:center;gap:0.5rem; }
+    .prs { display:grid;gap:1rem;margin-bottom:3rem; }
+    .pr-card { background:var(--surface);border:1px solid var(--border);border-radius:0.75rem;padding:1.25rem;display:grid;grid-template-columns:auto 1fr auto;gap:1rem;align-items:start; }
+    .pr-state { width:12px;height:12px;border-radius:50%;margin-top:0.3rem; }
+    .pr-state.open { background:#22C55E;box-shadow:0 0 8px rgba(34,197,94,0.4); }
+    .pr-state.merged { background:#8B5CF6;box-shadow:0 0 8px rgba(139,92,246,0.4); }
+    .pr-state.closed { background:#EF4444; }
+    .pr-title { font-weight:600;margin-bottom:0.25rem; }
+    .pr-meta { font-size:0.8rem;color:var(--muted);display:flex;flex-wrap:wrap;gap:0.75rem;align-items:center; }
+    .pr-meta code { background:var(--bg);padding:0.1rem 0.4rem;border-radius:4px;font-size:0.75rem; }
+    .pr-stats { text-align:right;font-family:'JetBrains Mono',monospace;font-size:0.8rem; }
+    .pr-stats .added { color:var(--green); }
+    .pr-stats .deleted { color:var(--red); }
+
+    /* Timeline */
+    .timeline { display:grid;grid-template-columns:90px 1fr;gap:0 2rem;width:100%; }
+    .day-header { grid-column:1/-1;font-weight:600;color:var(--muted);font-size:0.85rem;text-transform:uppercase;letter-spacing:0.05em;margin:2rem 0 1rem;padding-bottom:0.5rem;border-bottom:1px dashed var(--border); }
+    .time { text-align:right;font-family:'JetBrains Mono',monospace;font-size:0.8rem;color:var(--muted);padding-top:1rem; }
+    .event { position:relative;padding-left:1.5rem;border-left:2px solid var(--border);padding-bottom:1rem; }
+    .event-dot { position:absolute;left:-7px;top:1rem;width:12px;height:12px;border-radius:50%;background:var(--surface);border:3px solid currentColor; }
+    .event-card { background:var(--surface);border:1px solid var(--border);border-radius:0.5rem;padding:0.75rem 1rem;transition:all 0.15s; }
+    .event-card:hover { transform:translateX(4px);box-shadow:0 2px 8px rgba(0,0,0,0.05); }
+    .event-header { display:flex;justify-content:space-between;align-items:center;margin-bottom:0.5rem;gap:1rem; }
+    .event-repo { font-family:'JetBrains Mono',monospace;font-size:0.7rem;font-weight:600;text-transform:uppercase;letter-spacing:0.03em;white-space:nowrap; }
+    .event-stats { font-family:'JetBrains Mono',monospace;font-size:0.7rem;display:flex;gap:0.5rem;white-space:nowrap; }
+    .event-msg { font-weight:500;line-height:1.5; }
+    .event-msg a { text-decoration:none; }
+    .event-msg a:hover { text-decoration:underline; }
+    .event-hash { font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:var(--blue);background:rgba(59,130,246,0.1);padding:0.1rem 0.3rem;border-radius:3px;margin-left:0.5rem; }
+    .event-summary { margin-top:0.5rem;font-size:0.75rem;color:var(--muted);font-family:'JetBrains Mono',monospace;font-style:italic; }
+    .event-files { margin-top:0.75rem;padding-top:0.75rem;border-top:1px dashed var(--border);font-size:0.75rem;color:var(--muted);font-family:'JetBrains Mono',monospace;display:none; }
+    .event-card:hover .event-summary { display:none; }
+    .event-card:hover .event-files { display:block; }
+    .file-line { display:flex;justify-content:space-between;align-items:center;margin-bottom:0.25rem;padding:0.25rem 0.5rem;background:var(--bg);border-radius:0.25rem; }
+    .file-line:hover { background:var(--surface-hover); }
+    .file-name { color:var(--text);flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:0.75rem; }
+    .file-stats { display:flex;gap:0.75rem;margin-left:1rem;flex-shrink:0; }
+    .file-stats .added { color:var(--green);font-weight:600; }
+    .file-stats .deleted { color:var(--red);font-weight:600; }
+
+    /* On touch devices (no hover), show full file list */
+    @media (hover: none) {
+      .event-summary { display:none; }
+      .event-files { display:block; }
     }
 
     /* Responsive */
-    @media (max-width: 1024px) {
-      .weekly-grid {
-        grid-template-columns: repeat(4, 1fr);
-      }
-      .timeline::before {
-        left: 80px;
-      }
-      .commit-item {
-        grid-template-columns: 70px 1fr;
-        gap: 1.5rem;
-      }
-      .timeline-day-header {
-        padding-left: 100px;
-      }
-    }
-
     @media (max-width: 768px) {
-      .container { padding: 1rem; }
-      .hero-left h1 { font-size: 2.5rem; }
-      .hero-stats { flex-wrap: wrap; }
-      .weekly-grid { grid-template-columns: repeat(2, 1fr); }
-      .categories-grid { grid-template-columns: 1fr; }
-      .timeline::before { display: none; }
-      .commit-item { grid-template-columns: 1fr; gap: 0.5rem; }
-      .commit-time { text-align: left; padding-top: 0; }
-      .commit-content { padding-left: 0; }
-      .commit-dot { display: none; }
-      .timeline-day-header { padding-left: 0; }
-      .pr-card { grid-template-columns: auto 1fr; gap: 1rem; }
-      .pr-stat-box { display: none; }
+      body { padding:1rem; }
+      .header { flex-direction:column;gap:1rem; }
+      h1 { font-size:1.75rem; }
+      .stats-row { flex-wrap:wrap;gap:0.75rem; }
+      .stat { min-width:70px;padding:0.75rem 1rem; }
+      .stat-val { font-size:1.25rem; }
+      .repos { padding:0.75rem; }
+      .repo-chip { font-size:0.7rem;padding:0.2rem 0.5rem; }
+      .pr-card { grid-template-columns:auto 1fr;gap:0.75rem; }
+      .pr-stats { grid-column:2;text-align:left;margin-top:0.5rem; }
+      .pr-meta { gap:0.5rem; }
+      .timeline { grid-template-columns:60px 1fr;gap:0 1rem; }
+      .time { font-size:0.7rem; }
+      .event { padding-left:1rem; }
+      .event-header { flex-direction:column;align-items:flex-start;gap:0.25rem; }
+      .event-msg { font-size:0.9rem; }
+    }
+    @media (max-width: 480px) {
+      body { padding:0.75rem; }
+      h1 { font-size:1.5rem; }
+      .stats-row { width:100%;justify-content:space-between; }
+      .stat { flex:1;min-width:0;padding:0.5rem; }
+      .stat-val { font-size:1rem; }
+      .stat-label { font-size:0.65rem; }
+      .timeline { grid-template-columns:50px 1fr;gap:0 0.5rem; }
+      .event-card { padding:0.5rem 0.75rem; }
+      .event-repo { font-size:0.6rem; }
+      .event-stats { font-size:0.6rem; }
+      .event-hash { font-size:0.6rem; }
     }
   </style>
 </head>
 <body>
-  <div class="noise"></div>
-  
-  <div class="container">
-    <!-- Hero Section -->
-    <header class="hero">
-      <div class="hero-content">
-        <div class="hero-left">
-          <h1>Dev Pulse</h1>
-          <div class="hero-tagline">
-            <span class="live-dot"></span>
-            <span id="period-label">Last 48 hours of engineering velocity</span>
-          </div>
-          <div class="time-toggle">
-            <button class="toggle-btn active" data-period="48h">48h</button>
-            <button class="toggle-btn" data-period="week">Week</button>
-            <button class="toggle-btn" data-period="month">Month</button>
-          </div>
-        </div>
-        <div class="hero-stats">
-          <div class="stat-card repos">
-            <div class="stat-value" id="repos-count">0</div>
-            <div class="stat-label">Repos Active</div>
-          </div>
-          <div class="stat-card commits">
-            <div class="stat-value" id="commits-count">0</div>
-            <div class="stat-label">Commits</div>
-          </div>
-          <div class="stat-card added">
-            <div class="stat-value" id="added-count">+0</div>
-            <div class="stat-label">Lines Added</div>
-          </div>
-          <div class="stat-card deleted">
-            <div class="stat-value" id="deleted-count">-0</div>
-            <div class="stat-label">Lines Removed</div>
-          </div>
-          <div class="stat-card prs">
-            <div class="stat-value" id="prs-count">0</div>
-            <div class="stat-label">Pull Requests</div>
-          </div>
-        </div>
-      </div>
-    </header>
-
-    <!-- Weekly Rhythm -->
-    <section class="section">
-      <div class="section-header">
-        <h2 class="section-title">
-          <span class="section-title-icon">📊</span>
-          Weekly Rhythm
-        </h2>
-      </div>
-      <div class="weekly-grid" id="weekly-grid">
-        <!-- Filled by JS -->
-      </div>
-    </section>
-
-    <!-- Project Categories -->
-    <section class="section">
-      <div class="section-header">
-        <h2 class="section-title">
-          <span class="section-title-icon">📦</span>
-          Project Breakdown
-        </h2>
-      </div>
-      <div class="categories-grid" id="categories-grid">
-        <!-- Filled by JS -->
-      </div>
-    </section>
-
-    <!-- Pull Requests -->
-    <section class="section">
-      <div class="section-header">
-        <h2 class="section-title">
-          <span class="section-title-icon">🔀</span>
-          Pull Requests
-        </h2>
-      </div>
-      <div class="pr-grid" id="pr-grid">
-        <!-- Filled by JS -->
-      </div>
-    </section>
-
-    <!-- Commit Timeline -->
-    <section class="section">
-      <div class="section-header">
-        <h2 class="section-title">
-          <span class="section-title-icon">⚡</span>
-          Commit Timeline
-        </h2>
-      </div>
-      <div class="timeline" id="timeline">
-        <!-- Filled by JS -->
-      </div>
-    </section>
-
-    <footer class="footer">
-      <p>Auto-generated daily by <a href="https://github.com/verygoodplugins/autohub" target="_blank">AutoHub</a></p>
-    </footer>
+<div class="container">
+  <div class="header">
+    <div>
+      <h1>Activity Report</h1>
+      <div class="subtitle">Last 7 days • 0 commits • 20 PRs</div>
+    </div>
+    <div class="stats-row">
+      <div class="stat"><div class="stat-val">0</div><div class="stat-label">Commits</div></div>
+      <div class="stat"><div class="stat-val added">+0.0k</div><div class="stat-label">Lines</div></div>
+      <div class="stat"><div class="stat-val deleted">-0.0k</div><div class="stat-label">Lines</div></div>
+      <div class="stat"><div class="stat-val">20</div><div class="stat-label">PRs</div></div>
+    </div>
   </div>
 
-  <script>
-    // Load and render activity data
-    let rawData = null;
-    let currentPeriod = '48h';
+  <div class="repos">
+    
+  </div>
 
-    const PERIOD_CONFIG = {
-      '48h': { hours: 48, label: 'Last 48 hours of engineering velocity' },
-      'week': { hours: 168, label: 'This week\'s engineering velocity' },
-      'month': { hours: 720, label: 'This month\'s engineering velocity' }
-    };
-
-    const CATEGORY_CONFIG = {
-      'WP Fusion': {
-        icon: '🔮',
-        class: 'wp-fusion',
-        repos: ['autohub', 'wp-fusion']
-      },
-      'MCP Servers': {
-        icon: '🔌',
-        class: 'mcp-servers',
-        repos: ['mcp-freescout', 'mcp-automem', 'mcp-ecosystem', 'robinhood-mcp', 'automem']
-      },
-      'Personal & Labs': {
-        icon: '🧪',
-        class: 'personal',
-        repos: ['sunset-voyages', 'activity-report', 'haven', 'uncensored-voice-server']
-      }
-    };
-
-    const REPO_COLORS = {
-      'autohub': '#B4A5C7',
-      'mcp-freescout': '#E8C49A',
-      'mcp-automem': '#E8A598',
-      'sunset-voyages': '#94B49F',
-      'activity-report': '#A8D8D4',
-      'automem': '#A8C5E8',
-      'uncensored-voice-server': '#A8D8C8',
-      'haven': '#98D4D8',
-      'mcp-ecosystem': '#E8B4C4',
-      'robinhood-mcp': '#A8A5D4'
-    };
-
-    function formatNumber(num) {
-      if (num >= 1000) {
-        return (num / 1000).toFixed(1) + 'k';
-      }
-      return num.toString();
-    }
-
-    function animateCounter(element, target, prefix = '', duration = 1500) {
-      const start = 0;
-      const startTime = performance.now();
-      
-      function update(currentTime) {
-        const elapsed = currentTime - startTime;
-        const progress = Math.min(elapsed / duration, 1);
-        const eased = 1 - Math.pow(1 - progress, 3);
-        const current = Math.floor(start + (target - start) * eased);
-        element.textContent = prefix + formatNumber(current);
-        
-        if (progress < 1) {
-          requestAnimationFrame(update);
-        }
-      }
-      
-      requestAnimationFrame(update);
-    }
-
-    function filterByPeriod(commits, period) {
-      const now = new Date();
-      const hoursAgo = PERIOD_CONFIG[period].hours;
-      const cutoff = new Date(now.getTime() - hoursAgo * 60 * 60 * 1000);
-      return commits.filter(c => new Date(c.date) >= cutoff);
-    }
-
-    async function loadData() {
-      try {
-        const response = await fetch('activity-data.json');
-        rawData = await response.json();
-        renderDashboard(currentPeriod);
-        setupToggleButtons();
-      } catch (error) {
-        console.error('Failed to load activity data:', error);
-      }
-    }
-
-    function setupToggleButtons() {
-      document.querySelectorAll('.toggle-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-          document.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
-          btn.classList.add('active');
-          currentPeriod = btn.dataset.period;
-          document.getElementById('period-label').textContent = PERIOD_CONFIG[currentPeriod].label;
-          renderDashboard(currentPeriod);
-        });
-      });
-    }
-
-    function renderDashboard(period) {
-      const allCommits = rawData.commits || [];
-      const allPrs = rawData.prs || [];
-      
-      const commits = filterByPeriod(allCommits, period);
-      const prs = allPrs;
-      
-      let totalAdded = 0;
-      let totalDeleted = 0;
-      const activeRepos = new Set();
-      
-      commits.forEach(c => {
-        if (c.stats) {
-          totalAdded += c.stats.added || 0;
-          totalDeleted += c.stats.deleted || 0;
-        }
-        activeRepos.add(c.repo);
-      });
-
-      // Animate counters
-      animateCounter(document.getElementById('repos-count'), activeRepos.size);
-      animateCounter(document.getElementById('commits-count'), commits.length);
-      animateCounter(document.getElementById('added-count'), totalAdded, '+');
-      animateCounter(document.getElementById('deleted-count'), totalDeleted, '-');
-      animateCounter(document.getElementById('prs-count'), prs.length);
-
-      // Render sections
-      renderWeeklyRhythm(commits);
-      renderCategories(commits);
-      renderPullRequests(prs);
-      renderTimeline(commits);
-    }
-
-    function renderWeeklyRhythm(commits) {
-      const container = document.getElementById('weekly-grid');
-      const days = [];
-      const today = new Date();
-      
-      // Get last 7 days
-      for (let i = 6; i >= 0; i--) {
-        const date = new Date(today);
-        date.setDate(date.getDate() - i);
-        days.push(date);
-      }
-
-      // Group commits by day
-      const commitsByDay = {};
-      commits.forEach(c => {
-        const date = new Date(c.date);
-        const key = date.toDateString();
-        if (!commitsByDay[key]) {
-          commitsByDay[key] = { commits: 0, added: 0, deleted: 0, repos: {} };
-        }
-        commitsByDay[key].commits++;
-        commitsByDay[key].added += c.stats?.added || 0;
-        commitsByDay[key].deleted += c.stats?.deleted || 0;
-        
-        const repo = c.repo;
-        if (!commitsByDay[key].repos[repo]) {
-          commitsByDay[key].repos[repo] = 0;
-        }
-        commitsByDay[key].repos[repo]++;
-      });
-
-      // Find max for scaling
-      const maxAdded = Math.max(...Object.values(commitsByDay).map(d => d.added), 1);
-
-      container.innerHTML = days.map(date => {
-        const key = date.toDateString();
-        const dayData = commitsByDay[key] || { commits: 0, added: 0, deleted: 0, repos: {} };
-        const isToday = date.toDateString() === today.toDateString();
-        const dayNames = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
-        
-        // Create repo bars
-        const repoEntries = Object.entries(dayData.repos);
-        const bars = repoEntries.slice(0, 4).map(([repo, count]) => {
-          const color = REPO_COLORS[repo] || '#B8C4D0';
-          const width = Math.max((count / Math.max(...Object.values(dayData.repos))) * 100, 10);
-          return `<div class="activity-bar">
-            <div class="activity-fill" style="background: ${color}; width: ${width}%;"></div>
-          </div>`;
-        }).join('');
-
-        return `
-          <div class="day-column ${isToday ? 'today' : ''}">
-            <div class="day-name">${dayNames[date.getDay()]}</div>
-            <div class="day-date">${date.getDate()}</div>
-            <div class="day-bars">${bars || '<div style="color: var(--text-secondary); font-size: 0.75rem; opacity: 0.5;">No activity</div>'}</div>
-            <div class="day-stats">
-              <span class="day-stat added">+${formatNumber(dayData.added)}</span>
-              <span class="day-stat deleted">-${formatNumber(dayData.deleted)}</span>
-            </div>
+  
+  <div class="section-title">Pull Requests</div>
+  <div class="prs">
+    
+      <div class="pr-card">
+        <div class="pr-state merged"></div>
+        <div>
+          <a href="https://github.com/233XvX233/Silksong-Steam-multiplayer-mod-data/pull/5120" target="_blank" class="pr-title">Auto-append feedback to comments.txt</a>
+          <div class="pr-meta">
+            <span>Silksong-Steam-multiplayer-mod-data</span>
+            <code>auto/comments → main</code>
+            <span>1 commits</span>
+            
+            
           </div>
-        `;
-      }).join('');
-    }
-
-    function renderCategories(commits) {
-      const container = document.getElementById('categories-grid');
-      
-      // Group commits by repo
-      const repoStats = {};
-      commits.forEach(c => {
-        const repo = c.repo;
-        if (!repoStats[repo]) {
-          repoStats[repo] = { 
-            commits: 0, 
-            added: 0, 
-            deleted: 0,
-            url: c.remoteUrl
-          };
-        }
-        repoStats[repo].commits++;
-        repoStats[repo].added += c.stats?.added || 0;
-        repoStats[repo].deleted += c.stats?.deleted || 0;
-      });
-
-      // Categorize repos
-      const categorized = {};
-      
-      Object.entries(CATEGORY_CONFIG).forEach(([category, config]) => {
-        categorized[category] = {
-          ...config,
-          repos: []
-        };
-      });
-      
-      categorized['Other'] = {
-        icon: '📁',
-        class: 'other',
-        repos: []
-      };
-
-      Object.entries(repoStats).forEach(([repo, stats]) => {
-        let found = false;
-        for (const [category, config] of Object.entries(CATEGORY_CONFIG)) {
-          if (config.repos.includes(repo)) {
-            categorized[category].repos.push({ name: repo, ...stats });
-            found = true;
-            break;
-          }
-        }
-        if (!found) {
-          categorized['Other'].repos.push({ name: repo, ...stats });
-        }
-      });
-
-      container.innerHTML = Object.entries(categorized)
-        .filter(([_, cat]) => cat.repos.length > 0)
-        .map(([name, cat]) => {
-          const totalCommits = cat.repos.reduce((sum, r) => sum + r.commits, 0);
-          const repoItems = cat.repos
-            .sort((a, b) => b.commits - a.commits)
-            .map(repo => `
-              <a href="${repo.url}" target="_blank" class="repo-item">
-                <span class="repo-dot" style="background: ${REPO_COLORS[repo.name] || '#6366f1'}"></span>
-                <span class="repo-name">${repo.name}</span>
-                <div class="repo-stats">
-                  <span class="repo-commits">${repo.commits}c</span>
-                  <span class="repo-added">+${formatNumber(repo.added)}</span>
-                  <span class="repo-deleted">-${formatNumber(repo.deleted)}</span>
-                </div>
-              </a>
-            `).join('');
-
-          return `
-            <div class="category-card">
-              <div class="category-header">
-                <span class="category-icon ${cat.class}">${cat.icon}</span>
-                <span class="category-name">${name}</span>
-                <span class="category-count">${totalCommits} commits</span>
-              </div>
-              <div class="repo-list">${repoItems}</div>
-            </div>
-          `;
-        }).join('');
-    }
-
-    function renderPullRequests(prs) {
-      const container = document.getElementById('pr-grid');
-      
-      container.innerHTML = prs.slice(0, 10).map(pr => {
-        const state = pr.state === 'MERGED' ? 'merged' : (pr.state === 'CLOSED' ? 'closed' : 'open');
-        const stateIcon = state === 'merged' ? '🔀' : (state === 'open' ? '🟢' : '🔴');
-        const isMergeable = pr.mergeable === 'MERGEABLE';
-        
-        return `
-          <div class="pr-card">
-            <div class="pr-status ${state}">${stateIcon}</div>
-            <div class="pr-info">
-              <a href="${pr.url}" target="_blank" class="pr-title-text">${pr.title}</a>
-              <div class="pr-meta">
-                <span class="pr-repo">${pr.repo}</span>
-                <span class="pr-branch">${pr.headBranch} → ${pr.baseBranch}</span>
-                <span>${pr.commits} commits</span>
-                ${isMergeable ? '<span style="color: var(--green)">✓ Mergeable</span>' : ''}
-              </div>
-            </div>
-            <div class="pr-stat-box">
-              <div class="added">+${formatNumber(pr.stats?.added || 0)}</div>
-              <div class="deleted">-${formatNumber(pr.stats?.deleted || 0)}</div>
-              <div class="files">${pr.stats?.files || 0} files</div>
-            </div>
+        </div>
+        <div class="pr-stats">
+          <div class="added">+5</div>
+          <div class="deleted">-0</div>
+          <div style="color:var(--muted)">1 files</div>
+        </div>
+      </div>
+    
+      <div class="pr-card">
+        <div class="pr-state open"></div>
+        <div>
+          <a href="https://github.com/Clauskraft/WidgeTDC/pull/620" target="_blank" class="pr-title">🤖 ROMA Auto-Fixes</a>
+          <div class="pr-meta">
+            <span>WidgeTDC</span>
+            <code>roma/auto-fix-20260113-151318 → main</code>
+            <span>1 commits</span>
+            <span style="color:var(--green)">Mergeable</span>
+            
           </div>
-        `;
-      }).join('');
-    }
-
-    function renderTimeline(commits) {
-      const container = document.getElementById('timeline');
-      
-      // Group by day
-      const byDay = {};
-      commits.forEach(c => {
-        const date = new Date(c.date);
-        const key = date.toLocaleDateString('en-US', { weekday: 'long', month: 'short', day: 'numeric' });
-        if (!byDay[key]) byDay[key] = [];
-        byDay[key].push(c);
-      });
-
-      container.innerHTML = Object.entries(byDay).map(([day, dayCommits]) => {
-        const commitItems = dayCommits.slice(0, 15).map(c => {
-          const time = new Date(c.date).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
-          const color = REPO_COLORS[c.repo] || '#6366f1';
-          
-          const files = (c.files || [])
-            .filter(f => f.added > 0 || f.deleted > 0)
-            .slice(0, 5)
-            .map(f => `
-              <div class="file-item">
-                <span>${f.file}</span>
-                <span><span class="added">+${f.added}</span> <span class="deleted">-${f.deleted}</span></span>
-              </div>
-            `).join('');
-
-          return `
-            <div class="commit-item">
-              <div class="commit-time">${time}</div>
-              <div class="commit-content">
-                <div class="commit-dot" style="border-color: ${color}"></div>
-                <div class="commit-card" onclick="this.classList.toggle('expanded')">
-                  <div class="commit-header">
-                    <span class="commit-repo" style="color: ${color}">${c.repo}</span>
-                    <div class="commit-stats">
-                      <span class="added">+${c.stats?.added || 0}</span>
-                      <span class="deleted">-${c.stats?.deleted || 0}</span>
-                    </div>
-                  </div>
-                  <div class="commit-message">
-                    <a href="https://github.com/${c.owner}/${c.repo}/commit/${c.hash}" target="_blank">${c.headline}</a>
-                    <a href="https://github.com/${c.owner}/${c.repo}/commit/${c.hash}" target="_blank" class="commit-hash">${c.shortHash}</a>
-                  </div>
-                  ${files ? `<div class="commit-files">${files}</div>` : ''}
-                </div>
-              </div>
-            </div>
-          `;
-        }).join('');
-
-        return `
-          <div class="timeline-day">
-            <div class="timeline-day-header">${day}</div>
-            ${commitItems}
+        </div>
+        <div class="pr-stats">
+          <div class="added">+57</div>
+          <div class="deleted">-57</div>
+          <div style="color:var(--muted)">2 files</div>
+        </div>
+      </div>
+    
+      <div class="pr-card">
+        <div class="pr-state merged"></div>
+        <div>
+          <a href="https://github.com/Castro-Media/TopStoryReview.com/pull/4536" target="_blank" class="pr-title">Automated data update</a>
+          <div class="pr-meta">
+            <span>TopStoryReview.com</span>
+            <code>data-refresh → main</code>
+            <span>1 commits</span>
+            
+            
           </div>
-        `;
-      }).join('');
-    }
+        </div>
+        <div class="pr-stats">
+          <div class="added">+11,540</div>
+          <div class="deleted">-20</div>
+          <div style="color:var(--muted)">4 files</div>
+        </div>
+      </div>
+    
+      <div class="pr-card">
+        <div class="pr-state open"></div>
+        <div>
+          <a href="https://github.com/EasyPost/easy-ui/pull/1867" target="_blank" class="pr-title">Version Packages (alpha)</a>
+          <div class="pr-meta">
+            <span>easy-ui</span>
+            <code>changeset-release/main → main</code>
+            <span>1 commits</span>
+            <span style="color:var(--green)">Mergeable</span>
+            
+          </div>
+        </div>
+        <div class="pr-stats">
+          <div class="added">+9</div>
+          <div class="deleted">-2</div>
+          <div style="color:var(--muted)">3 files</div>
+        </div>
+      </div>
+    
+      <div class="pr-card">
+        <div class="pr-state open"></div>
+        <div>
+          <a href="https://github.com/elastic/fleet-server/pull/6196" target="_blank" class="pr-title">[updatecli] update elastic stack version for testing 9.1.10-9c8eaba4-SNAPSHOT</a>
+          <div class="pr-meta">
+            <span>fleet-server</span>
+            <code>updatecli_9.1_bump-elastic-stack-snapshot-9.1 → 9.1</code>
+            <span>1 commits</span>
+            <span style="color:var(--green)">Mergeable</span>
+            
+          </div>
+        </div>
+        <div class="pr-stats">
+          <div class="added">+1</div>
+          <div class="deleted">-1</div>
+          <div style="color:var(--muted)">1 files</div>
+        </div>
+      </div>
+    
+      <div class="pr-card">
+        <div class="pr-state open"></div>
+        <div>
+          <a href="https://github.com/elastic/fleet-server/pull/6195" target="_blank" class="pr-title">[updatecli] update elastic stack version for testing 9.4.0-86a0a691-SNAPSHOT</a>
+          <div class="pr-meta">
+            <span>fleet-server</span>
+            <code>updatecli_main_bump-elastic-stack-snapshot-main → main</code>
+            <span>1 commits</span>
+            <span style="color:var(--green)">Mergeable</span>
+            
+          </div>
+        </div>
+        <div class="pr-stats">
+          <div class="added">+1</div>
+          <div class="deleted">-1</div>
+          <div style="color:var(--muted)">1 files</div>
+        </div>
+      </div>
+    
+      <div class="pr-card">
+        <div class="pr-state open"></div>
+        <div>
+          <a href="https://github.com/elastic/fleet-server/pull/6194" target="_blank" class="pr-title">[updatecli] update elastic stack version for testing 9.2.4-3213542d-SNAPSHOT</a>
+          <div class="pr-meta">
+            <span>fleet-server</span>
+            <code>updatecli_9.2_bump-elastic-stack-snapshot-9.2 → 9.2</code>
+            <span>1 commits</span>
+            <span style="color:var(--green)">Mergeable</span>
+            
+          </div>
+        </div>
+        <div class="pr-stats">
+          <div class="added">+1</div>
+          <div class="deleted">-1</div>
+          <div style="color:var(--muted)">1 files</div>
+        </div>
+      </div>
+    
+      <div class="pr-card">
+        <div class="pr-state open"></div>
+        <div>
+          <a href="https://github.com/elastic/fleet-server/pull/6193" target="_blank" class="pr-title">[updatecli] update elastic stack version for testing 9.3.0-963d9293-SNAPSHOT</a>
+          <div class="pr-meta">
+            <span>fleet-server</span>
+            <code>updatecli_9.3_bump-elastic-stack-snapshot-9.3 → 9.3</code>
+            <span>1 commits</span>
+            <span style="color:var(--green)">Mergeable</span>
+            
+          </div>
+        </div>
+        <div class="pr-stats">
+          <div class="added">+1</div>
+          <div class="deleted">-1</div>
+          <div style="color:var(--muted)">1 files</div>
+        </div>
+      </div>
+    
+      <div class="pr-card">
+        <div class="pr-state open"></div>
+        <div>
+          <a href="https://github.com/0010capacity/oxinot/pull/63" target="_blank" class="pr-title">chore: auto-generate changeset</a>
+          <div class="pr-meta">
+            <span>oxinot</span>
+            <code>changeset/quiet-tigers-run → main</code>
+            <span>1 commits</span>
+            <span style="color:var(--green)">Mergeable</span>
+            
+          </div>
+        </div>
+        <div class="pr-stats">
+          <div class="added">+21</div>
+          <div class="deleted">-0</div>
+          <div style="color:var(--muted)">1 files</div>
+        </div>
+      </div>
+    
+      <div class="pr-card">
+        <div class="pr-state merged"></div>
+        <div>
+          <a href="https://github.com/Ponrajk22/ReferMakkale/pull/1695" target="_blank" class="pr-title">🔄 Auto-sync: Update business data from Google Sheets</a>
+          <div class="pr-meta">
+            <span>ReferMakkale</span>
+            <code>data-sync-2131 → main</code>
+            <span>1 commits</span>
+            
+            
+          </div>
+        </div>
+        <div class="pr-stats">
+          <div class="added">+6</div>
+          <div class="deleted">-6</div>
+          <div style="color:var(--muted)">6 files</div>
+        </div>
+      </div>
+    
+      <div class="pr-card">
+        <div class="pr-state open"></div>
+        <div>
+          <a href="https://github.com/nocodb/nocodb/pull/12834" target="_blank" class="pr-title">chore: post-release sync</a>
+          <div class="pr-meta">
+            <span>nocodb</span>
+            <code>nc/9a6f74c0 → develop</code>
+            <span>6 commits</span>
+            <span style="color:var(--green)">Mergeable</span>
+            
+          </div>
+        </div>
+        <div class="pr-stats">
+          <div class="added">+9</div>
+          <div class="deleted">-9</div>
+          <div style="color:var(--muted)">4 files</div>
+        </div>
+      </div>
+    
+      <div class="pr-card">
+        <div class="pr-state open"></div>
+        <div>
+          <a href="https://github.com/Clauskraft/WidgeTDC/pull/618" target="_blank" class="pr-title">🤖 Autonomous Cleanup</a>
+          <div class="pr-meta">
+            <span>WidgeTDC</span>
+            <code>roma/auto-cleanup-20260113-151102 → main</code>
+            <span>1 commits</span>
+            <span style="color:var(--green)">Mergeable</span>
+            
+          </div>
+        </div>
+        <div class="pr-stats">
+          <div class="added">+2,065</div>
+          <div class="deleted">-2,401</div>
+          <div style="color:var(--muted)">2 files</div>
+        </div>
+      </div>
+    
+      <div class="pr-card">
+        <div class="pr-state open"></div>
+        <div>
+          <a href="https://github.com/Kronos-Integration/svelte-components/pull/3107" target="_blank" class="pr-title">Regenerate package lock</a>
+          <div class="pr-meta">
+            <span>svelte-components</span>
+            <code>package-lock → master</code>
+            <span>2 commits</span>
+            <span style="color:var(--green)">Mergeable</span>
+            
+          </div>
+        </div>
+        <div class="pr-stats">
+          <div class="added">+95</div>
+          <div class="deleted">-82</div>
+          <div style="color:var(--muted)">2 files</div>
+        </div>
+      </div>
+    
+      <div class="pr-card">
+        <div class="pr-state merged"></div>
+        <div>
+          <a href="https://github.com/werf/wormatter/pull/5" target="_blank" class="pr-title">chore(main): release 1.1.1</a>
+          <div class="pr-meta">
+            <span>wormatter</span>
+            <code>release-please--branches--main → main</code>
+            <span>1 commits</span>
+            
+            
+          </div>
+        </div>
+        <div class="pr-stats">
+          <div class="added">+7</div>
+          <div class="deleted">-0</div>
+          <div style="color:var(--muted)">1 files</div>
+        </div>
+      </div>
+    
+      <div class="pr-card">
+        <div class="pr-state merged"></div>
+        <div>
+          <a href="https://github.com/nocodb/nocodb/pull/12833" target="_blank" class="pr-title">Release 0.301.0</a>
+          <div class="pr-meta">
+            <span>nocodb</span>
+            <code>release/0.301.0 → master</code>
+            <span>1 commits</span>
+            
+            
+          </div>
+        </div>
+        <div class="pr-stats">
+          <div class="added">+61</div>
+          <div class="deleted">-15</div>
+          <div style="color:var(--muted)">5 files</div>
+        </div>
+      </div>
+    
+      <div class="pr-card">
+        <div class="pr-state open"></div>
+        <div>
+          <a href="https://github.com/bitdriftlabs/capture-es/pull/199" target="_blank" class="pr-title">chore: release react-native 0.11.0</a>
+          <div class="pr-meta">
+            <span>capture-es</span>
+            <code>release-rn-0.11.0 → main</code>
+            <span>1 commits</span>
+            <span style="color:var(--green)">Mergeable</span>
+            <span>1 reviews</span>
+          </div>
+        </div>
+        <div class="pr-stats">
+          <div class="added">+11</div>
+          <div class="deleted">-3</div>
+          <div style="color:var(--muted)">2 files</div>
+        </div>
+      </div>
+    
+      <div class="pr-card">
+        <div class="pr-state merged"></div>
+        <div>
+          <a href="https://github.com/postalsys/Mutiauk/pull/8" target="_blank" class="pr-title">chore(master): release mutiauk 0.2.9</a>
+          <div class="pr-meta">
+            <span>Mutiauk</span>
+            <code>release-please--branches--master--components--mutiauk → master</code>
+            <span>1 commits</span>
+            
+            
+          </div>
+        </div>
+        <div class="pr-stats">
+          <div class="added">+8</div>
+          <div class="deleted">-1</div>
+          <div style="color:var(--muted)">2 files</div>
+        </div>
+      </div>
+    
+      <div class="pr-card">
+        <div class="pr-state open"></div>
+        <div>
+          <a href="https://github.com/devflowinc/vapi-docs/pull/12007" target="_blank" class="pr-title">Update OpenAPI Specification</a>
+          <div class="pr-meta">
+            <span>vapi-docs</span>
+            <code>update-openapi-spec-20260113150824 → main</code>
+            <span>1 commits</span>
+            <span style="color:var(--green)">Mergeable</span>
+            
+          </div>
+        </div>
+        <div class="pr-stats">
+          <div class="added">+47,292</div>
+          <div class="deleted">-23,340</div>
+          <div style="color:var(--muted)">1 files</div>
+        </div>
+      </div>
+    
+      <div class="pr-card">
+        <div class="pr-state merged"></div>
+        <div>
+          <a href="https://github.com/gravwell/wiki/pull/1772" target="_blank" class="pr-title">chore: Merge next-patch into next-minor</a>
+          <div class="pr-meta">
+            <span>wiki</span>
+            <code>merge/next-patch_to_next-minor → next-minor</code>
+            <span>3 commits</span>
+            
+            <span>1 reviews</span>
+          </div>
+        </div>
+        <div class="pr-stats">
+          <div class="added">+2</div>
+          <div class="deleted">-2</div>
+          <div style="color:var(--muted)">1 files</div>
+        </div>
+      </div>
+    
+      <div class="pr-card">
+        <div class="pr-state open"></div>
+        <div>
+          <a href="https://github.com/telometto/nix-config/pull/5043" target="_blank" class="pr-title">🧹 chore(flake.lock): update</a>
+          <div class="pr-meta">
+            <span>nix-config</span>
+            <code>update_flake_lock_action → main</code>
+            <span>1 commits</span>
+            <span style="color:var(--green)">Mergeable</span>
+            
+          </div>
+        </div>
+        <div class="pr-stats">
+          <div class="added">+12</div>
+          <div class="deleted">-12</div>
+          <div style="color:var(--muted)">1 files</div>
+        </div>
+      </div>
+    
+  </div>
+  
 
-    // Initialize
-    document.addEventListener('DOMContentLoaded', loadData);
-  </script>
+  <div class="section-title">Commit Timeline</div>
+  <div class="timeline">
+    
+  </div>
+</div>
 </body>
 </html>
