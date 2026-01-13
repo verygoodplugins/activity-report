@@ -1,87 +1,21 @@
 {
-  "generatedAt": "2026-01-13T15:13:45.614Z",
-  "periodStart": "2026-01-06T15:13:45.612Z",
+  "generatedAt": "2026-01-13T15:53:38.433Z",
+  "periodStart": "2026-01-06T15:53:38.433Z",
   "commits": [],
   "prs": [
     {
       "type": "pr",
-      "number": 5120,
-      "title": "Auto-append feedback to comments.txt",
-      "url": "https://github.com/233XvX233/Silksong-Steam-multiplayer-mod-data/pull/5120",
-      "state": "MERGED",
-      "date": "2026-01-13T15:13:21Z",
-      "repo": "Silksong-Steam-multiplayer-mod-data",
-      "repoFull": "233XvX233/Silksong-Steam-multiplayer-mod-data",
-      "stats": {
-        "added": 5,
-        "deleted": 0,
-        "files": 1
-      },
-      "baseBranch": "main",
-      "headBranch": "auto/comments",
-      "mergeable": "UNKNOWN",
-      "commits": 1,
-      "reviews": [],
-      "labels": []
-    },
-    {
-      "type": "pr",
-      "number": 620,
-      "title": "🤖 ROMA Auto-Fixes",
-      "url": "https://github.com/Clauskraft/WidgeTDC/pull/620",
+      "number": 156,
+      "title": "Version Packages",
+      "url": "https://github.com/superwall/expo-superwall/pull/156",
       "state": "OPEN",
-      "date": "2026-01-13T15:13:20Z",
-      "repo": "WidgeTDC",
-      "repoFull": "Clauskraft/WidgeTDC",
-      "stats": {
-        "added": 57,
-        "deleted": 57,
-        "files": 2
-      },
-      "baseBranch": "main",
-      "headBranch": "roma/auto-fix-20260113-151318",
-      "mergeable": "MERGEABLE",
-      "commits": 1,
-      "reviews": [],
-      "labels": [
-        "ROMA",
-        "auto-fix"
-      ]
-    },
-    {
-      "type": "pr",
-      "number": 4536,
-      "title": "Automated data update",
-      "url": "https://github.com/Castro-Media/TopStoryReview.com/pull/4536",
-      "state": "MERGED",
-      "date": "2026-01-13T15:12:56Z",
-      "repo": "TopStoryReview.com",
-      "repoFull": "Castro-Media/TopStoryReview.com",
-      "stats": {
-        "added": 11540,
-        "deleted": 20,
-        "files": 4
-      },
-      "baseBranch": "main",
-      "headBranch": "data-refresh",
-      "mergeable": "UNKNOWN",
-      "commits": 1,
-      "reviews": [],
-      "labels": []
-    },
-    {
-      "type": "pr",
-      "number": 1867,
-      "title": "Version Packages (alpha)",
-      "url": "https://github.com/EasyPost/easy-ui/pull/1867",
-      "state": "OPEN",
-      "date": "2026-01-13T15:12:52Z",
-      "repo": "easy-ui",
-      "repoFull": "EasyPost/easy-ui",
+      "date": "2026-01-13T15:53:31Z",
+      "repo": "expo-superwall",
+      "repoFull": "superwall/expo-superwall",
       "stats": {
         "added": 9,
-        "deleted": 2,
-        "files": 3
+        "deleted": 16,
+        "files": 5
       },
       "baseBranch": "main",
       "headBranch": "changeset-release/main",
@@ -92,120 +26,66 @@
     },
     {
       "type": "pr",
-      "number": 6196,
-      "title": "[updatecli] update elastic stack version for testing 9.1.10-9c8eaba4-SNAPSHOT",
-      "url": "https://github.com/elastic/fleet-server/pull/6196",
+      "number": 110100,
+      "title": "Update chains metadata 202601131553",
+      "url": "https://github.com/aelmanaa/cl-docs/pull/110100",
       "state": "OPEN",
-      "date": "2026-01-13T15:12:49Z",
-      "repo": "fleet-server",
-      "repoFull": "elastic/fleet-server",
+      "date": "2026-01-13T15:53:23Z",
+      "repo": "cl-docs",
+      "repoFull": "aelmanaa/cl-docs",
       "stats": {
-        "added": 1,
-        "deleted": 1,
-        "files": 1
-      },
-      "baseBranch": "9.1",
-      "headBranch": "updatecli_9.1_bump-elastic-stack-snapshot-9.1",
-      "mergeable": "MERGEABLE",
-      "commits": 1,
-      "reviews": [],
-      "labels": [
-        "automation",
-        "dependency",
-        "backport-skip"
-      ]
-    },
-    {
-      "type": "pr",
-      "number": 6195,
-      "title": "[updatecli] update elastic stack version for testing 9.4.0-86a0a691-SNAPSHOT",
-      "url": "https://github.com/elastic/fleet-server/pull/6195",
-      "state": "OPEN",
-      "date": "2026-01-13T15:12:47Z",
-      "repo": "fleet-server",
-      "repoFull": "elastic/fleet-server",
-      "stats": {
-        "added": 1,
-        "deleted": 1,
+        "added": 251,
+        "deleted": 94,
         "files": 1
       },
       "baseBranch": "main",
-      "headBranch": "updatecli_main_bump-elastic-stack-snapshot-main",
+      "headBranch": "chains_metadata/pr-202601131553",
       "mergeable": "MERGEABLE",
       "commits": 1,
       "reviews": [],
       "labels": [
-        "automation",
-        "dependency",
-        "backport-skip"
+        "enhancement"
       ]
     },
     {
       "type": "pr",
-      "number": 6194,
-      "title": "[updatecli] update elastic stack version for testing 9.2.4-3213542d-SNAPSHOT",
-      "url": "https://github.com/elastic/fleet-server/pull/6194",
+      "number": 7,
+      "title": "chore(master): release 4.2.0",
+      "url": "https://github.com/digitsu/yze-coriolis-overhaul/pull/7",
       "state": "OPEN",
-      "date": "2026-01-13T15:12:46Z",
-      "repo": "fleet-server",
-      "repoFull": "elastic/fleet-server",
+      "date": "2026-01-13T15:52:55Z",
+      "repo": "yze-coriolis-overhaul",
+      "repoFull": "digitsu/yze-coriolis-overhaul",
       "stats": {
-        "added": 1,
-        "deleted": 1,
-        "files": 1
-      },
-      "baseBranch": "9.2",
-      "headBranch": "updatecli_9.2_bump-elastic-stack-snapshot-9.2",
-      "mergeable": "MERGEABLE",
-      "commits": 1,
-      "reviews": [],
-      "labels": [
-        "automation",
-        "dependency",
-        "backport-skip"
-      ]
-    },
-    {
-      "type": "pr",
-      "number": 6193,
-      "title": "[updatecli] update elastic stack version for testing 9.3.0-963d9293-SNAPSHOT",
-      "url": "https://github.com/elastic/fleet-server/pull/6193",
-      "state": "OPEN",
-      "date": "2026-01-13T15:12:45Z",
-      "repo": "fleet-server",
-      "repoFull": "elastic/fleet-server",
-      "stats": {
-        "added": 1,
-        "deleted": 1,
-        "files": 1
-      },
-      "baseBranch": "9.3",
-      "headBranch": "updatecli_9.3_bump-elastic-stack-snapshot-9.3",
-      "mergeable": "MERGEABLE",
-      "commits": 1,
-      "reviews": [],
-      "labels": [
-        "automation",
-        "dependency",
-        "backport-skip"
-      ]
-    },
-    {
-      "type": "pr",
-      "number": 63,
-      "title": "chore: auto-generate changeset",
-      "url": "https://github.com/0010capacity/oxinot/pull/63",
-      "state": "OPEN",
-      "date": "2026-01-13T15:12:33Z",
-      "repo": "oxinot",
-      "repoFull": "0010capacity/oxinot",
-      "stats": {
-        "added": 21,
+        "added": 12,
         "deleted": 0,
         "files": 1
       },
-      "baseBranch": "main",
-      "headBranch": "changeset/quiet-tigers-run",
+      "baseBranch": "master",
+      "headBranch": "release-please--branches--master",
+      "mergeable": "UNKNOWN",
+      "commits": 1,
+      "reviews": [],
+      "labels": [
+        "autorelease: pending"
+      ]
+    },
+    {
+      "type": "pr",
+      "number": 944,
+      "title": "Pulling refs/heads/dev into k8s-staging",
+      "url": "https://github.com/danesjenovdan/center-rog/pull/944",
+      "state": "OPEN",
+      "date": "2026-01-13T15:52:21Z",
+      "repo": "center-rog",
+      "repoFull": "danesjenovdan/center-rog",
+      "stats": {
+        "added": 7,
+        "deleted": 1,
+        "files": 1
+      },
+      "baseBranch": "k8s-staging",
+      "headBranch": "dev",
       "mergeable": "MERGEABLE",
       "commits": 1,
       "reviews": [],
@@ -213,107 +93,216 @@
     },
     {
       "type": "pr",
-      "number": 1695,
-      "title": "🔄 Auto-sync: Update business data from Google Sheets",
-      "url": "https://github.com/Ponrajk22/ReferMakkale/pull/1695",
-      "state": "MERGED",
-      "date": "2026-01-13T15:12:16Z",
-      "repo": "ReferMakkale",
-      "repoFull": "Ponrajk22/ReferMakkale",
+      "number": 145,
+      "title": "Autotune: rules.json update",
+      "url": "https://github.com/boat-satan/racecard-crawl-api/pull/145",
+      "state": "OPEN",
+      "date": "2026-01-13T15:50:59Z",
+      "repo": "racecard-crawl-api",
+      "repoFull": "boat-satan/racecard-crawl-api",
       "stats": {
         "added": 6,
-        "deleted": 6,
-        "files": 6
+        "deleted": 0,
+        "files": 1
       },
       "baseBranch": "main",
-      "headBranch": "data-sync-2131",
+      "headBranch": "autotune/rules-20963129997",
+      "mergeable": "MERGEABLE",
+      "commits": 1,
+      "reviews": [],
+      "labels": []
+    },
+    {
+      "type": "pr",
+      "number": 51,
+      "title": "New Crowdin translations",
+      "url": "https://github.com/raspberrypilearning/generic-scratch3-add-music-extension/pull/51",
+      "state": "OPEN",
+      "date": "2026-01-13T15:50:52Z",
+      "repo": "generic-scratch3-add-music-extension",
+      "repoFull": "raspberrypilearning/generic-scratch3-add-music-extension",
+      "stats": {
+        "added": 531,
+        "deleted": 89,
+        "files": 186
+      },
+      "baseBranch": "master",
+      "headBranch": "l10n_crowdin_translations",
+      "mergeable": "MERGEABLE",
+      "commits": 1,
+      "reviews": [],
+      "labels": []
+    },
+    {
+      "type": "pr",
+      "number": 4351,
+      "title": "Auto Compress Images",
+      "url": "https://github.com/HTTPArchive/almanac.httparchive.org/pull/4351",
+      "state": "MERGED",
+      "date": "2026-01-13T15:50:14Z",
+      "repo": "almanac.httparchive.org",
+      "repoFull": "HTTPArchive/almanac.httparchive.org",
+      "stats": {
+        "added": 0,
+        "deleted": 0,
+        "files": 13
+      },
+      "baseBranch": "main",
+      "headBranch": "create-pull-request/patch-1768319413",
+      "mergeable": "UNKNOWN",
+      "commits": 1,
+      "reviews": [],
+      "labels": [
+        "performance"
+      ]
+    },
+    {
+      "type": "pr",
+      "number": 8030,
+      "title": "fix(l10n): update mmex.pot",
+      "url": "https://github.com/moneymanagerex/moneymanagerex/pull/8030",
+      "state": "OPEN",
+      "date": "2026-01-13T15:49:55Z",
+      "repo": "moneymanagerex",
+      "repoFull": "moneymanagerex/moneymanagerex",
+      "stats": {
+        "added": 39,
+        "deleted": 39,
+        "files": 1
+      },
+      "baseBranch": "master",
+      "headBranch": "l10n",
+      "mergeable": "MERGEABLE",
+      "commits": 1,
+      "reviews": [],
+      "labels": []
+    },
+    {
+      "type": "pr",
+      "number": 9539,
+      "title": "chore: sync content to repository - ruby",
+      "url": "https://github.com/kamranahmedse/developer-roadmap/pull/9539",
+      "state": "MERGED",
+      "date": "2026-01-13T15:49:46Z",
+      "repo": "developer-roadmap",
+      "repoFull": "kamranahmedse/developer-roadmap",
+      "stats": {
+        "added": 216,
+        "deleted": 38,
+        "files": 34
+      },
+      "baseBranch": "master",
+      "headBranch": "chore/sync-content-to-repo-ruby",
+      "mergeable": "UNKNOWN",
+      "commits": 1,
+      "reviews": [],
+      "labels": [
+        "automated pr"
+      ]
+    },
+    {
+      "type": "pr",
+      "number": 224,
+      "title": "Update OpenSSF data",
+      "url": "https://github.com/cass-community/cass-community.github.io/pull/224",
+      "state": "OPEN",
+      "date": "2026-01-13T15:49:38Z",
+      "repo": "cass-community.github.io",
+      "repoFull": "cass-community/cass-community.github.io",
+      "stats": {
+        "added": 0,
+        "deleted": 8,
+        "files": 8
+      },
+      "baseBranch": "main",
+      "headBranch": "bernhold-openssf-data-update-1768319377",
+      "mergeable": "UNKNOWN",
+      "commits": 1,
+      "reviews": [],
+      "labels": [
+        "Section: software catalog",
+        "data update"
+      ]
+    },
+    {
+      "type": "pr",
+      "number": 1180,
+      "title": "Update conversion rates - USD to BDT",
+      "url": "https://github.com/ediamin/ifastgb-conversion-rate-monitor/pull/1180",
+      "state": "MERGED",
+      "date": "2026-01-13T15:49:16Z",
+      "repo": "ifastgb-conversion-rate-monitor",
+      "repoFull": "ediamin/ifastgb-conversion-rate-monitor",
+      "stats": {
+        "added": 1,
+        "deleted": 0,
+        "files": 1
+      },
+      "baseBranch": "main",
+      "headBranch": "update-conversion-rates-1244",
       "mergeable": "UNKNOWN",
       "commits": 1,
       "reviews": [],
       "labels": [
         "automated",
-        "data-sync"
+        "conversion-rates"
       ]
     },
     {
       "type": "pr",
-      "number": 12834,
-      "title": "chore: post-release sync",
-      "url": "https://github.com/nocodb/nocodb/pull/12834",
+      "number": 304,
+      "title": "Update podcast feed archive",
+      "url": "https://github.com/critrolesync/critrolesync.github.io/pull/304",
       "state": "OPEN",
-      "date": "2026-01-13T15:11:58Z",
-      "repo": "nocodb",
-      "repoFull": "nocodb/nocodb",
+      "date": "2026-01-13T15:48:28Z",
+      "repo": "critrolesync.github.io",
+      "repoFull": "critrolesync/critrolesync.github.io",
       "stats": {
-        "added": 9,
-        "deleted": 9,
-        "files": 4
+        "added": 31806,
+        "deleted": 0,
+        "files": 6
       },
-      "baseBranch": "develop",
-      "headBranch": "nc/9a6f74c0",
+      "baseBranch": "master",
+      "headBranch": "update-feed-archive",
       "mergeable": "MERGEABLE",
-      "commits": 6,
+      "commits": 1,
+      "reviews": [],
+      "labels": [
+        "feed archive update"
+      ]
+    },
+    {
+      "type": "pr",
+      "number": 68,
+      "title": "Fork Sync: Update from parent repository",
+      "url": "https://github.com/SamidyFR/FMHY/pull/68",
+      "state": "MERGED",
+      "date": "2026-01-13T15:48:00Z",
+      "repo": "FMHY",
+      "repoFull": "SamidyFR/FMHY",
+      "stats": {
+        "added": 2,
+        "deleted": 2,
+        "files": 2
+      },
+      "baseBranch": "main",
+      "headBranch": "main",
+      "mergeable": "UNKNOWN",
+      "commits": 2,
       "reviews": [],
       "labels": []
     },
     {
       "type": "pr",
-      "number": 618,
-      "title": "🤖 Autonomous Cleanup",
-      "url": "https://github.com/Clauskraft/WidgeTDC/pull/618",
-      "state": "OPEN",
-      "date": "2026-01-13T15:11:05Z",
-      "repo": "WidgeTDC",
-      "repoFull": "Clauskraft/WidgeTDC",
-      "stats": {
-        "added": 2065,
-        "deleted": 2401,
-        "files": 2
-      },
-      "baseBranch": "main",
-      "headBranch": "roma/auto-cleanup-20260113-151102",
-      "mergeable": "MERGEABLE",
-      "commits": 1,
-      "reviews": [],
-      "labels": [
-        "ROMA",
-        "auto-fix"
-      ]
-    },
-    {
-      "type": "pr",
-      "number": 3107,
-      "title": "Regenerate package lock",
-      "url": "https://github.com/Kronos-Integration/svelte-components/pull/3107",
-      "state": "OPEN",
-      "date": "2026-01-13T15:11:00Z",
-      "repo": "svelte-components",
-      "repoFull": "Kronos-Integration/svelte-components",
-      "stats": {
-        "added": 95,
-        "deleted": 82,
-        "files": 2
-      },
-      "baseBranch": "master",
-      "headBranch": "package-lock",
-      "mergeable": "MERGEABLE",
-      "commits": 2,
-      "reviews": [],
-      "labels": [
-        "npm"
-      ]
-    },
-    {
-      "type": "pr",
-      "number": 5,
-      "title": "chore(main): release 1.1.1",
-      "url": "https://github.com/werf/wormatter/pull/5",
+      "number": 46,
+      "title": "chore(main): release 2.0.0",
+      "url": "https://github.com/CloudNationHQ/terraform-azure-nw/pull/46",
       "state": "MERGED",
-      "date": "2026-01-13T15:10:38Z",
-      "repo": "wormatter",
-      "repoFull": "werf/wormatter",
+      "date": "2026-01-13T15:47:49Z",
+      "repo": "terraform-azure-nw",
+      "repoFull": "CloudNationHQ/terraform-azure-nw",
       "stats": {
-        "added": 7,
+        "added": 13,
         "deleted": 0,
         "files": 1
       },
@@ -328,93 +317,66 @@
     },
     {
       "type": "pr",
-      "number": 12833,
-      "title": "Release 0.301.0",
-      "url": "https://github.com/nocodb/nocodb/pull/12833",
-      "state": "MERGED",
-      "date": "2026-01-13T15:09:50Z",
-      "repo": "nocodb",
-      "repoFull": "nocodb/nocodb",
-      "stats": {
-        "added": 61,
-        "deleted": 15,
-        "files": 5
-      },
-      "baseBranch": "master",
-      "headBranch": "release/0.301.0",
-      "mergeable": "UNKNOWN",
-      "commits": 1,
-      "reviews": [],
-      "labels": [
-        "Bot: Automerge"
-      ]
-    },
-    {
-      "type": "pr",
-      "number": 199,
-      "title": "chore: release react-native 0.11.0",
-      "url": "https://github.com/bitdriftlabs/capture-es/pull/199",
+      "number": 334,
+      "title": "Container bump report",
+      "url": "https://github.com/abeglu/anvchecker/pull/334",
       "state": "OPEN",
-      "date": "2026-01-13T15:09:49Z",
-      "repo": "capture-es",
-      "repoFull": "bitdriftlabs/capture-es",
+      "date": "2026-01-13T15:47:28Z",
+      "repo": "anvchecker",
+      "repoFull": "abeglu/anvchecker",
       "stats": {
-        "added": 11,
-        "deleted": 3,
-        "files": 2
-      },
-      "baseBranch": "main",
-      "headBranch": "release-rn-0.11.0",
-      "mergeable": "MERGEABLE",
-      "commits": 1,
-      "reviews": [
-        {
-          "author": "FranAguilera",
-          "state": "APPROVED",
-          "submittedAt": "2026-01-13T15:10:39Z"
-        }
-      ],
-      "labels": []
-    },
-    {
-      "type": "pr",
-      "number": 8,
-      "title": "chore(master): release mutiauk 0.2.9",
-      "url": "https://github.com/postalsys/Mutiauk/pull/8",
-      "state": "MERGED",
-      "date": "2026-01-13T15:09:44Z",
-      "repo": "Mutiauk",
-      "repoFull": "postalsys/Mutiauk",
-      "stats": {
-        "added": 8,
+        "added": 1,
         "deleted": 1,
-        "files": 2
-      },
-      "baseBranch": "master",
-      "headBranch": "release-please--branches--master--components--mutiauk",
-      "mergeable": "UNKNOWN",
-      "commits": 1,
-      "reviews": [],
-      "labels": [
-        "autorelease: tagged"
-      ]
-    },
-    {
-      "type": "pr",
-      "number": 12007,
-      "title": "Update OpenAPI Specification",
-      "url": "https://github.com/devflowinc/vapi-docs/pull/12007",
-      "state": "OPEN",
-      "date": "2026-01-13T15:08:26Z",
-      "repo": "vapi-docs",
-      "repoFull": "devflowinc/vapi-docs",
-      "stats": {
-        "added": 47292,
-        "deleted": 23340,
         "files": 1
       },
       "baseBranch": "main",
-      "headBranch": "update-openapi-spec-20260113150824",
+      "headBranch": "container_new_version",
+      "mergeable": "MERGEABLE",
+      "commits": 1,
+      "reviews": [],
+      "labels": [
+        "report",
+        "automated pr",
+        "container"
+      ]
+    },
+    {
+      "type": "pr",
+      "number": 243,
+      "title": "ISPyB ORM schema update v4.11.0",
+      "url": "https://github.com/DiamondLightSource/ispyb-api/pull/243",
+      "state": "MERGED",
+      "date": "2026-01-13T15:46:36Z",
+      "repo": "ispyb-api",
+      "repoFull": "DiamondLightSource/ispyb-api",
+      "stats": {
+        "added": 162,
+        "deleted": 2,
+        "files": 1
+      },
+      "baseBranch": "bump-schema",
+      "headBranch": "orm-update",
+      "mergeable": "CONFLICTING",
+      "commits": 1,
+      "reviews": [],
+      "labels": []
+    },
+    {
+      "type": "pr",
+      "number": 553,
+      "title": "Version Packages",
+      "url": "https://github.com/pagopa/io-messages/pull/553",
+      "state": "OPEN",
+      "date": "2026-01-13T15:45:13Z",
+      "repo": "io-messages",
+      "repoFull": "pagopa/io-messages",
+      "stats": {
+        "added": 8,
+        "deleted": 7,
+        "files": 4
+      },
+      "baseBranch": "main",
+      "headBranch": "changeset-release/main",
       "mergeable": "MERGEABLE",
       "commits": 1,
       "reviews": [],
@@ -422,52 +384,73 @@
     },
     {
       "type": "pr",
-      "number": 1772,
-      "title": "chore: Merge next-patch into next-minor",
-      "url": "https://github.com/gravwell/wiki/pull/1772",
+      "number": 116,
+      "title": "Checksum and version update v0.189.0",
+      "url": "https://github.com/doordeck/doordeck-headless-sdk-spm/pull/116",
       "state": "MERGED",
-      "date": "2026-01-13T15:07:17Z",
-      "repo": "wiki",
-      "repoFull": "gravwell/wiki",
+      "date": "2026-01-13T15:44:54Z",
+      "repo": "doordeck-headless-sdk-spm",
+      "repoFull": "doordeck/doordeck-headless-sdk-spm",
       "stats": {
         "added": 2,
         "deleted": 2,
         "files": 1
       },
-      "baseBranch": "next-minor",
-      "headBranch": "merge/next-patch_to_next-minor",
+      "baseBranch": "main",
+      "headBranch": "checksum-update-v0.189.0",
       "mergeable": "UNKNOWN",
-      "commits": 3,
+      "commits": 1,
       "reviews": [
         {
-          "author": "ashnwade",
+          "author": "BernatCarbo",
           "state": "APPROVED",
-          "submittedAt": "2026-01-13T15:13:31Z"
+          "submittedAt": "2026-01-13T15:49:33Z"
         }
       ],
       "labels": []
     },
     {
       "type": "pr",
-      "number": 5043,
-      "title": "🧹 chore(flake.lock): update",
-      "url": "https://github.com/telometto/nix-config/pull/5043",
+      "number": 398,
+      "title": "Automated recipe re-run",
+      "url": "https://github.com/howsoai/howso-engine-recipes/pull/398",
       "state": "OPEN",
-      "date": "2026-01-13T15:07:08Z",
-      "repo": "nix-config",
-      "repoFull": "telometto/nix-config",
+      "date": "2026-01-13T15:44:52Z",
+      "repo": "howso-engine-recipes",
+      "repoFull": "howsoai/howso-engine-recipes",
       "stats": {
-        "added": 12,
-        "deleted": 12,
+        "added": 7202,
+        "deleted": 6200,
+        "files": 21
+      },
+      "baseBranch": "main",
+      "headBranch": "rerun-recipes-2026-01-13T15h31m38s",
+      "mergeable": "MERGEABLE",
+      "commits": 2,
+      "reviews": [],
+      "labels": []
+    },
+    {
+      "type": "pr",
+      "number": 12010,
+      "title": "Add LPMessagingSDK",
+      "url": "https://github.com/SwiftPackageIndex/PackageList/pull/12010",
+      "state": "OPEN",
+      "date": "2026-01-13T15:44:27Z",
+      "repo": "PackageList",
+      "repoFull": "SwiftPackageIndex/PackageList",
+      "stats": {
+        "added": 1,
+        "deleted": 0,
         "files": 1
       },
       "baseBranch": "main",
-      "headBranch": "update_flake_lock_action",
+      "headBranch": "spi-auto-12009",
       "mergeable": "MERGEABLE",
       "commits": 1,
       "reviews": [],
       "labels": [
-        "auto-merge"
+        "cla-signed"
       ]
     }
   ],
