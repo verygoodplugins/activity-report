@@ -318,12 +318,45 @@ async function fetchData({
     console.log("   Fetching PRs...");
     try {
       const dateFilter = sinceDate.toISOString().split("T")[0];
-      const search = safeExec(
-        `gh search prs --author="${ghAuthor}" --created=">=${dateFilter}" --limit 20 --json number,repository,url`,
-        { encoding: "utf-8" }
-      );
-      if (!search) throw new Error("gh not available or not authenticated");
-      const prList = JSON.parse(search);
+      const reposWithGitHubRemote = Object.values(data.repos)
+        .filter((r) => r?.owner && r?.repoSlug)
+        .sort((a, b) => (b.commits || 0) - (a.commits || 0));
+
+      const maxReposToQuery = 12;
+      const perRepoLimit = 5;
+      let prList = [];
+
+      if (reposWithGitHubRemote.length > 0) {
+        const candidateRepos = reposWithGitHubRemote.slice(0, maxReposToQuery);
+        const seen = new Set();
+
+        for (const repo of candidateRepos) {
+          const repoFull = `${repo.owner}/${repo.repoSlug}`;
+          const search = safeExec(
+            `gh search prs --author="${ghAuthor}" --created=">=${dateFilter}" --repo="${repoFull}" --limit ${perRepoLimit} --json number,repository,url,createdAt`,
+            { encoding: "utf-8" }
+          );
+          if (!search) continue;
+          for (const pr of JSON.parse(search)) {
+            const key = pr?.url || `${pr?.repository?.nameWithOwner}#${pr?.number}`;
+            if (!key || seen.has(key)) continue;
+            seen.add(key);
+            prList.push(pr);
+          }
+        }
+
+        prList.sort(
+          (a, b) => new Date(b.createdAt || 0) - new Date(a.createdAt || 0)
+        );
+        prList = prList.slice(0, 20);
+      } else {
+        const search = safeExec(
+          `gh search prs --author="${ghAuthor}" --created=">=${dateFilter}" --limit 20 --json number,repository,url,createdAt`,
+          { encoding: "utf-8" }
+        );
+        if (!search) throw new Error("gh not available or not authenticated");
+        prList = JSON.parse(search);
+      }
 
       for (const pr of prList) {
         try {

@@ -21,8 +21,6 @@ jobs:
 
       - name: Generate report
         run: node generate-rich-report.mjs
-        env:
-          GH_TOKEN: ${{ github.token }}
 
       - name: Commit if changed
         run: |
