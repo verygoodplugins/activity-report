@@ -1,465 +1,80 @@
 {
-  "generatedAt": "2026-01-13T15:53:38.433Z",
-  "periodStart": "2026-01-06T15:53:38.433Z",
-  "commits": [],
-  "prs": [
+  "generatedAt": "2026-01-13T16:08:19.328Z",
+  "periodStart": "2026-01-06T16:08:19.328Z",
+  "commits": [
     {
-      "type": "pr",
-      "number": 156,
-      "title": "Version Packages",
-      "url": "https://github.com/superwall/expo-superwall/pull/156",
-      "state": "OPEN",
-      "date": "2026-01-13T15:53:31Z",
-      "repo": "expo-superwall",
-      "repoFull": "superwall/expo-superwall",
+      "type": "commit",
+      "hash": "89f44674c3bc5bdf36400cbdafc89e86f85cfa90",
+      "shortHash": "89f4467",
+      "date": "2026-01-13T16:53:57+01:00",
+      "headline": "chore: daily activity update",
+      "repo": "activity-report",
+      "owner": "verygoodplugins",
+      "repoSlug": "activity-report",
+      "remoteUrl": "https://github.com/verygoodplugins/activity-report",
       "stats": {
-        "added": 9,
-        "deleted": 16,
-        "files": 5
-      },
-      "baseBranch": "main",
-      "headBranch": "changeset-release/main",
-      "mergeable": "MERGEABLE",
-      "commits": 1,
-      "reviews": [],
-      "labels": []
-    },
-    {
-      "type": "pr",
-      "number": 110100,
-      "title": "Update chains metadata 202601131553",
-      "url": "https://github.com/aelmanaa/cl-docs/pull/110100",
-      "state": "OPEN",
-      "date": "2026-01-13T15:53:23Z",
-      "repo": "cl-docs",
-      "repoFull": "aelmanaa/cl-docs",
-      "stats": {
-        "added": 251,
-        "deleted": 94,
-        "files": 1
-      },
-      "baseBranch": "main",
-      "headBranch": "chains_metadata/pr-202601131553",
-      "mergeable": "MERGEABLE",
-      "commits": 1,
-      "reviews": [],
-      "labels": [
-        "enhancement"
-      ]
-    },
-    {
-      "type": "pr",
-      "number": 7,
-      "title": "chore(master): release 4.2.0",
-      "url": "https://github.com/digitsu/yze-coriolis-overhaul/pull/7",
-      "state": "OPEN",
-      "date": "2026-01-13T15:52:55Z",
-      "repo": "yze-coriolis-overhaul",
-      "repoFull": "digitsu/yze-coriolis-overhaul",
-      "stats": {
-        "added": 12,
-        "deleted": 0,
-        "files": 1
-      },
-      "baseBranch": "master",
-      "headBranch": "release-please--branches--master",
-      "mergeable": "UNKNOWN",
-      "commits": 1,
-      "reviews": [],
-      "labels": [
-        "autorelease: pending"
-      ]
-    },
-    {
-      "type": "pr",
-      "number": 944,
-      "title": "Pulling refs/heads/dev into k8s-staging",
-      "url": "https://github.com/danesjenovdan/center-rog/pull/944",
-      "state": "OPEN",
-      "date": "2026-01-13T15:52:21Z",
-      "repo": "center-rog",
-      "repoFull": "danesjenovdan/center-rog",
-      "stats": {
-        "added": 7,
-        "deleted": 1,
-        "files": 1
-      },
-      "baseBranch": "k8s-staging",
-      "headBranch": "dev",
-      "mergeable": "MERGEABLE",
-      "commits": 1,
-      "reviews": [],
-      "labels": []
-    },
-    {
-      "type": "pr",
-      "number": 145,
-      "title": "Autotune: rules.json update",
-      "url": "https://github.com/boat-satan/racecard-crawl-api/pull/145",
-      "state": "OPEN",
-      "date": "2026-01-13T15:50:59Z",
-      "repo": "racecard-crawl-api",
-      "repoFull": "boat-satan/racecard-crawl-api",
-      "stats": {
-        "added": 6,
-        "deleted": 0,
-        "files": 1
-      },
-      "baseBranch": "main",
-      "headBranch": "autotune/rules-20963129997",
-      "mergeable": "MERGEABLE",
-      "commits": 1,
-      "reviews": [],
-      "labels": []
-    },
-    {
-      "type": "pr",
-      "number": 51,
-      "title": "New Crowdin translations",
-      "url": "https://github.com/raspberrypilearning/generic-scratch3-add-music-extension/pull/51",
-      "state": "OPEN",
-      "date": "2026-01-13T15:50:52Z",
-      "repo": "generic-scratch3-add-music-extension",
-      "repoFull": "raspberrypilearning/generic-scratch3-add-music-extension",
-      "stats": {
-        "added": 531,
-        "deleted": 89,
-        "files": 186
-      },
-      "baseBranch": "master",
-      "headBranch": "l10n_crowdin_translations",
-      "mergeable": "MERGEABLE",
-      "commits": 1,
-      "reviews": [],
-      "labels": []
-    },
-    {
-      "type": "pr",
-      "number": 4351,
-      "title": "Auto Compress Images",
-      "url": "https://github.com/HTTPArchive/almanac.httparchive.org/pull/4351",
-      "state": "MERGED",
-      "date": "2026-01-13T15:50:14Z",
-      "repo": "almanac.httparchive.org",
-      "repoFull": "HTTPArchive/almanac.httparchive.org",
-      "stats": {
-        "added": 0,
-        "deleted": 0,
-        "files": 13
-      },
-      "baseBranch": "main",
-      "headBranch": "create-pull-request/patch-1768319413",
-      "mergeable": "UNKNOWN",
-      "commits": 1,
-      "reviews": [],
-      "labels": [
-        "performance"
-      ]
-    },
-    {
-      "type": "pr",
-      "number": 8030,
-      "title": "fix(l10n): update mmex.pot",
-      "url": "https://github.com/moneymanagerex/moneymanagerex/pull/8030",
-      "state": "OPEN",
-      "date": "2026-01-13T15:49:55Z",
-      "repo": "moneymanagerex",
-      "repoFull": "moneymanagerex/moneymanagerex",
-      "stats": {
-        "added": 39,
-        "deleted": 39,
-        "files": 1
-      },
-      "baseBranch": "master",
-      "headBranch": "l10n",
-      "mergeable": "MERGEABLE",
-      "commits": 1,
-      "reviews": [],
-      "labels": []
-    },
-    {
-      "type": "pr",
-      "number": 9539,
-      "title": "chore: sync content to repository - ruby",
-      "url": "https://github.com/kamranahmedse/developer-roadmap/pull/9539",
-      "state": "MERGED",
-      "date": "2026-01-13T15:49:46Z",
-      "repo": "developer-roadmap",
-      "repoFull": "kamranahmedse/developer-roadmap",
-      "stats": {
-        "added": 216,
-        "deleted": 38,
-        "files": 34
-      },
-      "baseBranch": "master",
-      "headBranch": "chore/sync-content-to-repo-ruby",
-      "mergeable": "UNKNOWN",
-      "commits": 1,
-      "reviews": [],
-      "labels": [
-        "automated pr"
-      ]
-    },
-    {
-      "type": "pr",
-      "number": 224,
-      "title": "Update OpenSSF data",
-      "url": "https://github.com/cass-community/cass-community.github.io/pull/224",
-      "state": "OPEN",
-      "date": "2026-01-13T15:49:38Z",
-      "repo": "cass-community.github.io",
-      "repoFull": "cass-community/cass-community.github.io",
-      "stats": {
-        "added": 0,
-        "deleted": 8,
-        "files": 8
-      },
-      "baseBranch": "main",
-      "headBranch": "bernhold-openssf-data-update-1768319377",
-      "mergeable": "UNKNOWN",
-      "commits": 1,
-      "reviews": [],
-      "labels": [
-        "Section: software catalog",
-        "data update"
-      ]
-    },
-    {
-      "type": "pr",
-      "number": 1180,
-      "title": "Update conversion rates - USD to BDT",
-      "url": "https://github.com/ediamin/ifastgb-conversion-rate-monitor/pull/1180",
-      "state": "MERGED",
-      "date": "2026-01-13T15:49:16Z",
-      "repo": "ifastgb-conversion-rate-monitor",
-      "repoFull": "ediamin/ifastgb-conversion-rate-monitor",
-      "stats": {
-        "added": 1,
-        "deleted": 0,
-        "files": 1
-      },
-      "baseBranch": "main",
-      "headBranch": "update-conversion-rates-1244",
-      "mergeable": "UNKNOWN",
-      "commits": 1,
-      "reviews": [],
-      "labels": [
-        "automated",
-        "conversion-rates"
-      ]
-    },
-    {
-      "type": "pr",
-      "number": 304,
-      "title": "Update podcast feed archive",
-      "url": "https://github.com/critrolesync/critrolesync.github.io/pull/304",
-      "state": "OPEN",
-      "date": "2026-01-13T15:48:28Z",
-      "repo": "critrolesync.github.io",
-      "repoFull": "critrolesync/critrolesync.github.io",
-      "stats": {
-        "added": 31806,
-        "deleted": 0,
-        "files": 6
-      },
-      "baseBranch": "master",
-      "headBranch": "update-feed-archive",
-      "mergeable": "MERGEABLE",
-      "commits": 1,
-      "reviews": [],
-      "labels": [
-        "feed archive update"
-      ]
-    },
-    {
-      "type": "pr",
-      "number": 68,
-      "title": "Fork Sync: Update from parent repository",
-      "url": "https://github.com/SamidyFR/FMHY/pull/68",
-      "state": "MERGED",
-      "date": "2026-01-13T15:48:00Z",
-      "repo": "FMHY",
-      "repoFull": "SamidyFR/FMHY",
-      "stats": {
-        "added": 2,
-        "deleted": 2,
+        "added": 392,
+        "deleted": 409,
         "files": 2
       },
-      "baseBranch": "main",
-      "headBranch": "main",
-      "mergeable": "UNKNOWN",
-      "commits": 2,
-      "reviews": [],
-      "labels": []
-    },
-    {
-      "type": "pr",
-      "number": 46,
-      "title": "chore(main): release 2.0.0",
-      "url": "https://github.com/CloudNationHQ/terraform-azure-nw/pull/46",
-      "state": "MERGED",
-      "date": "2026-01-13T15:47:49Z",
-      "repo": "terraform-azure-nw",
-      "repoFull": "CloudNationHQ/terraform-azure-nw",
-      "stats": {
-        "added": 13,
-        "deleted": 0,
-        "files": 1
-      },
-      "baseBranch": "main",
-      "headBranch": "release-please--branches--main",
-      "mergeable": "UNKNOWN",
-      "commits": 1,
-      "reviews": [],
-      "labels": [
-        "autorelease: tagged"
-      ]
-    },
-    {
-      "type": "pr",
-      "number": 334,
-      "title": "Container bump report",
-      "url": "https://github.com/abeglu/anvchecker/pull/334",
-      "state": "OPEN",
-      "date": "2026-01-13T15:47:28Z",
-      "repo": "anvchecker",
-      "repoFull": "abeglu/anvchecker",
-      "stats": {
-        "added": 1,
-        "deleted": 1,
-        "files": 1
-      },
-      "baseBranch": "main",
-      "headBranch": "container_new_version",
-      "mergeable": "MERGEABLE",
-      "commits": 1,
-      "reviews": [],
-      "labels": [
-        "report",
-        "automated pr",
-        "container"
-      ]
-    },
-    {
-      "type": "pr",
-      "number": 243,
-      "title": "ISPyB ORM schema update v4.11.0",
-      "url": "https://github.com/DiamondLightSource/ispyb-api/pull/243",
-      "state": "MERGED",
-      "date": "2026-01-13T15:46:36Z",
-      "repo": "ispyb-api",
-      "repoFull": "DiamondLightSource/ispyb-api",
-      "stats": {
-        "added": 162,
-        "deleted": 2,
-        "files": 1
-      },
-      "baseBranch": "bump-schema",
-      "headBranch": "orm-update",
-      "mergeable": "CONFLICTING",
-      "commits": 1,
-      "reviews": [],
-      "labels": []
-    },
-    {
-      "type": "pr",
-      "number": 553,
-      "title": "Version Packages",
-      "url": "https://github.com/pagopa/io-messages/pull/553",
-      "state": "OPEN",
-      "date": "2026-01-13T15:45:13Z",
-      "repo": "io-messages",
-      "repoFull": "pagopa/io-messages",
-      "stats": {
-        "added": 8,
-        "deleted": 7,
-        "files": 4
-      },
-      "baseBranch": "main",
-      "headBranch": "changeset-release/main",
-      "mergeable": "MERGEABLE",
-      "commits": 1,
-      "reviews": [],
-      "labels": []
-    },
-    {
-      "type": "pr",
-      "number": 116,
-      "title": "Checksum and version update v0.189.0",
-      "url": "https://github.com/doordeck/doordeck-headless-sdk-spm/pull/116",
-      "state": "MERGED",
-      "date": "2026-01-13T15:44:54Z",
-      "repo": "doordeck-headless-sdk-spm",
-      "repoFull": "doordeck/doordeck-headless-sdk-spm",
-      "stats": {
-        "added": 2,
-        "deleted": 2,
-        "files": 1
-      },
-      "baseBranch": "main",
-      "headBranch": "checksum-update-v0.189.0",
-      "mergeable": "UNKNOWN",
-      "commits": 1,
-      "reviews": [
+      "files": [
         {
-          "author": "BernatCarbo",
-          "state": "APPROVED",
-          "submittedAt": "2026-01-13T15:49:33Z"
+          "file": "activity-data.json",
+          "added": 256,
+          "deleted": 273
+        },
+        {
+          "file": "index.html",
+          "added": 136,
+          "deleted": 136
         }
-      ],
-      "labels": []
+      ]
     },
     {
-      "type": "pr",
-      "number": 398,
-      "title": "Automated recipe re-run",
-      "url": "https://github.com/howsoai/howso-engine-recipes/pull/398",
-      "state": "OPEN",
-      "date": "2026-01-13T15:44:52Z",
-      "repo": "howso-engine-recipes",
-      "repoFull": "howsoai/howso-engine-recipes",
+      "type": "commit",
+      "hash": "efaf82f6f5b7d2068c8d4d996e83f75c08edf481",
+      "shortHash": "efaf82f",
+      "date": "2026-01-13T16:14:02+01:00",
+      "headline": "chore: daily activity update",
+      "repo": "activity-report",
+      "owner": "verygoodplugins",
+      "repoSlug": "activity-report",
+      "remoteUrl": "https://github.com/verygoodplugins/activity-report",
       "stats": {
-        "added": 7202,
-        "deleted": 6200,
-        "files": 21
+        "added": 803,
+        "deleted": 8541,
+        "files": 2
       },
-      "baseBranch": "main",
-      "headBranch": "rerun-recipes-2026-01-13T15h31m38s",
-      "mergeable": "MERGEABLE",
-      "commits": 2,
-      "reviews": [],
-      "labels": []
-    },
-    {
-      "type": "pr",
-      "number": 12010,
-      "title": "Add LPMessagingSDK",
-      "url": "https://github.com/SwiftPackageIndex/PackageList/pull/12010",
-      "state": "OPEN",
-      "date": "2026-01-13T15:44:27Z",
-      "repo": "PackageList",
-      "repoFull": "SwiftPackageIndex/PackageList",
-      "stats": {
-        "added": 1,
-        "deleted": 0,
-        "files": 1
-      },
-      "baseBranch": "main",
-      "headBranch": "spi-auto-12009",
-      "mergeable": "MERGEABLE",
-      "commits": 1,
-      "reviews": [],
-      "labels": [
-        "cla-signed"
+      "files": [
+        {
+          "file": "activity-data.json",
+          "added": 317,
+          "deleted": 7363
+        },
+        {
+          "file": "index.html",
+          "added": 486,
+          "deleted": 1178
+        }
       ]
     }
   ],
-  "repos": {},
+  "prs": [],
+  "repos": {
+    "activity-report": {
+      "commits": 2,
+      "additions": 1195,
+      "deletions": 8950,
+      "remoteUrl": "https://github.com/verygoodplugins/activity-report",
+      "owner": "verygoodplugins",
+      "repoSlug": "activity-report"
+    }
+  },
   "stats": {
-    "additions": 0,
-    "deletions": 0,
-    "files": 0,
-    "commits": 0,
-    "prs": 20
+    "additions": 1195,
+    "deletions": 8950,
+    "files": 4,
+    "commits": 2,
+    "prs": 0
   }
 }
