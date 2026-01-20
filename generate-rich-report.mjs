@@ -9,6 +9,17 @@ import os from "os";
 import path from "path";
 import fs from "fs";
 
+// Repos to exclude from report (focus on AI/automation work)
+const EXCLUDE_PATTERNS = [
+  /wp-fusion/i,
+  /wpfusion/i,
+  /dana/i,
+];
+
+function shouldExcludeRepo(repoName) {
+  return EXCLUDE_PATTERNS.some((p) => p.test(repoName));
+}
+
 function expandHome(inputPath) {
   if (!inputPath) return inputPath;
   if (inputPath === "~") return os.homedir();
@@ -212,6 +223,9 @@ async function fetchData({
   for (const basePath of repoRoots) {
     for (const repoPath of findGitReposUnder(basePath, maxDepth)) {
       const repoName = path.basename(repoPath);
+
+      // Skip excluded repos (WP Fusion, personal/private repos)
+      if (shouldExcludeRepo(repoName)) continue;
 
       let remoteUrl = "";
       let owner = "",

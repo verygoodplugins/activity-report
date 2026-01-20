@@ -1,108 +1,1898 @@
 {
-  "generatedAt": "2026-01-20T09:35:10.163Z",
-  "periodStart": "2026-01-13T09:35:10.156Z",
+  "generatedAt": "2026-01-20T22:52:46.915Z",
+  "periodStart": "2026-01-13T22:52:46.914Z",
   "commits": [
     {
       "type": "commit",
-      "hash": "566782a7695e0af835628b57c9cc81ec16fdf818",
-      "shortHash": "566782a",
-      "date": "2026-01-13T17:08:23+01:00",
-      "headline": "chore: daily activity update",
-      "repo": "activity-report",
+      "hash": "f0fad3f933f1a6fd4261e30c2268c871611d1c5f",
+      "shortHash": "f0fad3f",
+      "date": "2026-01-19T17:23:47+01:00",
+      "headline": "Add targeted patch tool for Evernote notes",
+      "repo": "mcp-evernote",
       "owner": "verygoodplugins",
-      "repoSlug": "activity-report",
-      "remoteUrl": "https://github.com/verygoodplugins/activity-report",
+      "repoSlug": "mcp-evernote",
+      "remoteUrl": "https://github.com/verygoodplugins/mcp-evernote",
       "stats": {
-        "added": 137,
-        "deleted": 838,
-        "files": 2
+        "added": 321,
+        "deleted": 0,
+        "files": 4
       },
       "files": [
         {
-          "file": "activity-data.json",
-          "added": 64,
-          "deleted": 449
+          "file": "__tests__/integration/mcp-tools.test.ts",
+          "added": 156,
+          "deleted": 0
         },
         {
-          "file": "index.html",
+          "file": "src/evernote-api.ts",
+          "added": 75,
+          "deleted": 0
+        },
+        {
+          "file": "src/index.ts",
           "added": 73,
-          "deleted": 389
+          "deleted": 0
+        },
+        {
+          "file": "src/types.ts",
+          "added": 17,
+          "deleted": 0
         }
       ]
     },
     {
       "type": "commit",
-      "hash": "89f44674c3bc5bdf36400cbdafc89e86f85cfa90",
-      "shortHash": "89f4467",
-      "date": "2026-01-13T16:53:57+01:00",
-      "headline": "chore: daily activity update",
-      "repo": "activity-report",
+      "hash": "3ca46ea9e9861f8c9d259270ca82db32ea44955f",
+      "shortHash": "3ca46ea",
+      "date": "2026-01-19T16:34:35+01:00",
+      "headline": "Add token fee badge and update project description",
+      "repo": "automem",
       "owner": "verygoodplugins",
-      "repoSlug": "activity-report",
-      "remoteUrl": "https://github.com/verygoodplugins/activity-report",
+      "repoSlug": "automem",
+      "remoteUrl": "https://github.com/verygoodplugins/automem",
       "stats": {
-        "added": 392,
-        "deleted": 409,
-        "files": 2
+        "added": 9,
+        "deleted": 0,
+        "files": 1
       },
       "files": [
         {
-          "file": "activity-data.json",
-          "added": 256,
-          "deleted": 273
-        },
-        {
-          "file": "index.html",
-          "added": 136,
-          "deleted": 136
+          "file": "README.md",
+          "added": 9,
+          "deleted": 0
         }
       ]
     },
     {
       "type": "commit",
-      "hash": "efaf82f6f5b7d2068c8d4d996e83f75c08edf481",
-      "shortHash": "efaf82f",
-      "date": "2026-01-13T16:14:02+01:00",
-      "headline": "chore: daily activity update",
-      "repo": "activity-report",
+      "hash": "5aa0b66cb1b20f3061df3a268112a14906d1f8f4",
+      "shortHash": "5aa0b66",
+      "date": "2026-01-19T15:38:34+01:00",
+      "headline": "Add association triggers and confidence to memory rules",
+      "repo": "mcp-automem",
       "owner": "verygoodplugins",
-      "repoSlug": "activity-report",
-      "remoteUrl": "https://github.com/verygoodplugins/activity-report",
+      "repoSlug": "mcp-automem",
+      "remoteUrl": "https://github.com/verygoodplugins/mcp-automem",
       "stats": {
-        "added": 803,
-        "deleted": 8541,
+        "added": 53,
+        "deleted": 4,
         "files": 2
       },
       "files": [
         {
-          "file": "activity-data.json",
-          "added": 317,
-          "deleted": 7363
+          "file": "templates/CLAUDE_MD_MEMORY_RULES.md",
+          "added": 32,
+          "deleted": 4
         },
         {
-          "file": "index.html",
-          "added": 486,
-          "deleted": 1178
+          "file": "templates/codex/memory-rules.md",
+          "added": 21,
+          "deleted": 0
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "c683453f9f75a6244f9a8d01664677b07df10b99",
+      "shortHash": "c683453",
+      "date": "2026-01-19T14:55:21+01:00",
+      "headline": "\"Update Discord links in blog posts\"",
+      "repo": "automem-website",
+      "owner": "verygoodplugins",
+      "repoSlug": "automem-website",
+      "remoteUrl": "https://github.com/verygoodplugins/automem-website",
+      "stats": {
+        "added": 2,
+        "deleted": 2,
+        "files": 2
+      },
+      "files": [
+        {
+          "file": "src/content/blog/05-self-hosting-guide/index.md",
+          "added": 1,
+          "deleted": 1
+        },
+        {
+          "file": "src/content/blog/07-visualization-preview/index.md",
+          "added": 1,
+          "deleted": 1
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "22669c94e64f987cd9e9ec2515d2d0cbc4f60482",
+      "shortHash": "22669c9",
+      "date": "2026-01-19T09:48:06+01:00",
+      "headline": "Add icon and $AUTOMEM token link to About page",
+      "repo": "automem-website",
+      "owner": "verygoodplugins",
+      "repoSlug": "automem-website",
+      "remoteUrl": "https://github.com/verygoodplugins/automem-website",
+      "stats": {
+        "added": 10,
+        "deleted": 1,
+        "files": 2
+      },
+      "files": [
+        {
+          "file": "public/icon.png",
+          "added": 0,
+          "deleted": 0
+        },
+        {
+          "file": "src/pages/about.astro",
+          "added": 10,
+          "deleted": 1
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "4daa49bcffcd62426cd44c5f60eeced37d0166e9",
+      "shortHash": "4daa49b",
+      "date": "2026-01-19T07:35:36+01:00",
+      "headline": "Add blog posts on MCP upgrade and visualization preview",
+      "repo": "automem-website",
+      "owner": "verygoodplugins",
+      "repoSlug": "automem-website",
+      "remoteUrl": "https://github.com/verygoodplugins/automem-website",
+      "stats": {
+        "added": 248,
+        "deleted": 0,
+        "files": 2
+      },
+      "files": [
+        {
+          "file": "src/content/blog/06-remote-mcp-upgrade/index.md",
+          "added": 113,
+          "deleted": 0
+        },
+        {
+          "file": "src/content/blog/07-visualization-preview/index.md",
+          "added": 135,
+          "deleted": 0
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "2f2d2acc83664e049c1a2b2d5f3d72d901fc4b96",
+      "shortHash": "2f2d2ac",
+      "date": "2026-01-19T06:30:32+01:00",
+      "headline": "Add mascot spec, waitlist guide, and mobile hero improvements",
+      "repo": "automem-website",
+      "owner": "verygoodplugins",
+      "repoSlug": "automem-website",
+      "remoteUrl": "https://github.com/verygoodplugins/automem-website",
+      "stats": {
+        "added": 995,
+        "deleted": 183,
+        "files": 7
+      },
+      "files": [
+        {
+          "file": "MASCOT_EXPORT_SPEC.md",
+          "added": 446,
+          "deleted": 0
+        },
+        {
+          "file": "WAITLIST_SETUP.md",
+          "added": 304,
+          "deleted": 0
+        },
+        {
+          "file": "public/og-image.png",
+          "added": 0,
+          "deleted": 0
+        },
+        {
+          "file": "public/og-image.svg",
+          "added": 0,
+          "deleted": 80
+        },
+        {
+          "file": "src/components/MemoryHero.astro",
+          "added": 174,
+          "deleted": 66
+        },
+        {
+          "file": "src/layouts/Layout.astro",
+          "added": 1,
+          "deleted": 1
+        },
+        {
+          "file": "src/pages/index.astro",
+          "added": 70,
+          "deleted": 36
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "6d45bd02d6e91d6d42269d4c6c721f106342d5f4",
+      "shortHash": "6d45bd0",
+      "date": "2026-01-18T15:34:21+01:00",
+      "headline": "fix(agent-todo): address CodeRabbit review feedback",
+      "repo": "autohub",
+      "owner": "verygoodplugins",
+      "repoSlug": "autohub",
+      "remoteUrl": "https://github.com/verygoodplugins/autohub",
+      "stats": {
+        "added": 40,
+        "deleted": 21,
+        "files": 2
+      },
+      "files": [
+        {
+          "file": "src/claude/server-tools/agent-todo.js",
+          "added": 36,
+          "deleted": 20
+        },
+        {
+          "file": "src/claude/service.js",
+          "added": 4,
+          "deleted": 1
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "6aa53e4fba0daf3b671523dd887f221ae07d88b3",
+      "shortHash": "6aa53e4",
+      "date": "2026-01-18T15:29:45+01:00",
+      "headline": "fix(whatsapp): respect requireMentionForReplies in gating logic",
+      "repo": "autohub",
+      "owner": "verygoodplugins",
+      "repoSlug": "autohub",
+      "remoteUrl": "https://github.com/verygoodplugins/autohub",
+      "stats": {
+        "added": 10,
+        "deleted": 6,
+        "files": 1
+      },
+      "files": [
+        {
+          "file": "src/core/platform-adapter.js",
+          "added": 10,
+          "deleted": 6
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "a1608afd56dc29dd7655d539fa825947d4bae179",
+      "shortHash": "a1608af",
+      "date": "2026-01-18T12:52:06+01:00",
+      "headline": "feat(agent-todo): add SQLite persistence for todo lists",
+      "repo": "autohub",
+      "owner": "verygoodplugins",
+      "repoSlug": "autohub",
+      "remoteUrl": "https://github.com/verygoodplugins/autohub",
+      "stats": {
+        "added": 193,
+        "deleted": 26,
+        "files": 1
+      },
+      "files": [
+        {
+          "file": "src/claude/server-tools/agent-todo.js",
+          "added": 193,
+          "deleted": 26
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "7992cb8710bcf0cd44ceb21258f6413204aa951c",
+      "shortHash": "7992cb8",
+      "date": "2026-01-18T11:55:05+01:00",
+      "headline": "fix(memory): remove unnecessary memory storage in workflows",
+      "repo": "autohub",
+      "owner": "verygoodplugins",
+      "repoSlug": "autohub",
+      "remoteUrl": "https://github.com/verygoodplugins/autohub",
+      "stats": {
+        "added": 3,
+        "deleted": 12,
+        "files": 2
+      },
+      "files": [
+        {
+          "file": "src/workflows/runner.js",
+          "added": 3,
+          "deleted": 6
+        },
+        {
+          "file": "workflows/hourly/memory-cache-refresh.md",
+          "added": 0,
+          "deleted": 6
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "a048bd4281550662dd1d60e6fb1c8243929e9d04",
+      "shortHash": "a048bd4",
+      "date": "2026-01-18T09:51:18+01:00",
+      "headline": "fix(discord): handle custom emoji format in remove-reaction",
+      "repo": "autohub",
+      "owner": "verygoodplugins",
+      "repoSlug": "autohub",
+      "remoteUrl": "https://github.com/verygoodplugins/autohub",
+      "stats": {
+        "added": 2,
+        "deleted": 1,
+        "files": 1
+      },
+      "files": [
+        {
+          "file": "src/discord-server/index.js",
+          "added": 2,
+          "deleted": 1
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "8dee807dc762baa1c55862aeda55b354bf37d8a6",
+      "shortHash": "8dee807",
+      "date": "2026-01-18T09:40:19+01:00",
+      "headline": "fix(discord): address CodeRabbit review feedback",
+      "repo": "autohub",
+      "owner": "verygoodplugins",
+      "repoSlug": "autohub",
+      "remoteUrl": "https://github.com/verygoodplugins/autohub",
+      "stats": {
+        "added": 20,
+        "deleted": 6,
+        "files": 4
+      },
+      "files": [
+        {
+          "file": "servers/discord-mcp/package.json",
+          "added": 2,
+          "deleted": 1
+        },
+        {
+          "file": "servers/discord-mcp/server.js",
+          "added": 7,
+          "deleted": 3
+        },
+        {
+          "file": "src/discord-server/index.js",
+          "added": 7,
+          "deleted": 1
+        },
+        {
+          "file": "test/discord-mcp.test.js",
+          "added": 4,
+          "deleted": 1
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "9f4a08987ec6c8ac854766c5972cabc81f17b171",
+      "shortHash": "9f4a089",
+      "date": "2026-01-18T09:38:05+01:00",
+      "headline": "fix(tests): address CodeRabbit review comments",
+      "repo": "mcp-evernote",
+      "owner": "verygoodplugins",
+      "repoSlug": "mcp-evernote",
+      "remoteUrl": "https://github.com/verygoodplugins/mcp-evernote",
+      "stats": {
+        "added": 2,
+        "deleted": 18,
+        "files": 2
+      },
+      "files": [
+        {
+          "file": "__tests__/integration/mcp-tools.test.ts",
+          "added": 1,
+          "deleted": 1
+        },
+        {
+          "file": "__tests__/unit/recognition.test.ts",
+          "added": 1,
+          "deleted": 17
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "132cd11db3b0fd608d9f12042a3839748ef0a270",
+      "shortHash": "132cd11",
+      "date": "2026-01-18T09:06:08+01:00",
+      "headline": "feat(discord): add MCP tool enhancements",
+      "repo": "autohub",
+      "owner": "verygoodplugins",
+      "repoSlug": "autohub",
+      "remoteUrl": "https://github.com/verygoodplugins/autohub",
+      "stats": {
+        "added": 477,
+        "deleted": 5,
+        "files": 4
+      },
+      "files": [
+        {
+          "file": "config/tool-filters.json",
+          "added": 6,
+          "deleted": 1
+        },
+        {
+          "file": "servers/discord-mcp/server.js",
+          "added": 102,
+          "deleted": 1
+        },
+        {
+          "file": "src/discord-server/index.js",
+          "added": 139,
+          "deleted": 3
+        },
+        {
+          "file": "test/discord-mcp.test.js",
+          "added": 230,
+          "deleted": 0
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "2a1c68766a3ded8e2f4be39ee3177e365d51a3a0",
+      "shortHash": "2a1c687",
+      "date": "2026-01-18T08:56:37+01:00",
+      "headline": "test(ocr): add resource and recognition test coverage",
+      "repo": "mcp-evernote",
+      "owner": "verygoodplugins",
+      "repoSlug": "mcp-evernote",
+      "remoteUrl": "https://github.com/verygoodplugins/mcp-evernote",
+      "stats": {
+        "added": 636,
+        "deleted": 0,
+        "files": 4
+      },
+      "files": [
+        {
+          "file": "__tests__/integration/mcp-tools.test.ts",
+          "added": 327,
+          "deleted": 0
+        },
+        {
+          "file": "__tests__/mocks/evernote.mock.ts",
+          "added": 86,
+          "deleted": 0
+        },
+        {
+          "file": "__tests__/unit/recognition.test.ts",
+          "added": 221,
+          "deleted": 0
+        },
+        {
+          "file": "jest.config.js",
+          "added": 2,
+          "deleted": 0
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "3d478ff7feba724aa07cc2b1f3776c45c9b8e441",
+      "shortHash": "3d478ff",
+      "date": "2026-01-18T08:49:07+01:00",
+      "headline": "Add Discord MCP server and update tool filters",
+      "repo": "autohub",
+      "owner": "verygoodplugins",
+      "repoSlug": "autohub",
+      "remoteUrl": "https://github.com/verygoodplugins/autohub",
+      "stats": {
+        "added": 1407,
+        "deleted": 0,
+        "files": 5
+      },
+      "files": [
+        {
+          "file": "config/tool-filters.json",
+          "added": 15,
+          "deleted": 0
+        },
+        {
+          "file": "servers/discord-mcp/package-lock.json",
+          "added": 1122,
+          "deleted": 0
+        },
+        {
+          "file": "servers/discord-mcp/package.json",
+          "added": 13,
+          "deleted": 0
+        },
+        {
+          "file": "servers/discord-mcp/server.js",
+          "added": 138,
+          "deleted": 0
+        },
+        {
+          "file": "src/discord-server/index.js",
+          "added": 119,
+          "deleted": 0
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "84477e966e7e8367280faa61de301b4bf7d87f8f",
+      "shortHash": "84477e9",
+      "date": "2026-01-18T08:29:01+01:00",
+      "headline": "docs(readme): fix npx invocation",
+      "repo": "mcp-evernote",
+      "owner": "verygoodplugins",
+      "repoSlug": "mcp-evernote",
+      "remoteUrl": "https://github.com/verygoodplugins/mcp-evernote",
+      "stats": {
+        "added": 1,
+        "deleted": 1,
+        "files": 1
+      },
+      "files": [
+        {
+          "file": "README.md",
+          "added": 1,
+          "deleted": 1
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "08f339bf09b32ea094afc8ee1c81891115775579",
+      "shortHash": "08f339b",
+      "date": "2026-01-18T07:15:14+01:00",
+      "headline": "docs(agents): align AutoMem API examples",
+      "repo": "mcp-evernote",
+      "owner": "verygoodplugins",
+      "repoSlug": "mcp-evernote",
+      "remoteUrl": "https://github.com/verygoodplugins/mcp-evernote",
+      "stats": {
+        "added": 8,
+        "deleted": 6,
+        "files": 1
+      },
+      "files": [
+        {
+          "file": "AGENTS.md",
+          "added": 8,
+          "deleted": 6
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "080f3be85dbc67e869f06262a7b09d466bf7a9d9",
+      "shortHash": "080f3be",
+      "date": "2026-01-18T07:11:01+01:00",
+      "headline": "chore(repo): support develop branching",
+      "repo": "mcp-evernote",
+      "owner": "verygoodplugins",
+      "repoSlug": "mcp-evernote",
+      "remoteUrl": "https://github.com/verygoodplugins/mcp-evernote",
+      "stats": {
+        "added": 12,
+        "deleted": 6,
+        "files": 4
+      },
+      "files": [
+        {
+          "file": ".github/workflows/ci.yml",
+          "added": 2,
+          "deleted": 2
+        },
+        {
+          "file": ".github/workflows/security.yml",
+          "added": 2,
+          "deleted": 2
+        },
+        {
+          "file": "AGENTS.md",
+          "added": 7,
+          "deleted": 1
+        },
+        {
+          "file": "README.md",
+          "added": 1,
+          "deleted": 1
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "8e55c6aeeab99ff7c74d91929fca33a9d642030f",
+      "shortHash": "8e55c6a",
+      "date": "2026-01-18T06:11:31+01:00",
+      "headline": "Refactor platform message gating and improve MCP process cleanup",
+      "repo": "autohub",
+      "owner": "verygoodplugins",
+      "repoSlug": "autohub",
+      "remoteUrl": "https://github.com/verygoodplugins/autohub",
+      "stats": {
+        "added": 379,
+        "deleted": 362,
+        "files": 14
+      },
+      "files": [
+        {
+          "file": "server.js",
+          "added": 13,
+          "deleted": 0
+        },
+        {
+          "file": "src/chat-server/middleware/rate-limiter.js",
+          "added": 127,
+          "deleted": 99
+        },
+        {
+          "file": "src/chat-server/routes/agent-tasks.js",
+          "added": 4,
+          "deleted": 0
+        },
+        {
+          "file": "src/chat-server/routes/chat.js",
+          "added": 49,
+          "deleted": 24
+        },
+        {
+          "file": "src/core/platform-adapter.js",
+          "added": 20,
+          "deleted": 66
+        },
+        {
+          "file": "src/discord-server/index.js",
+          "added": 3,
+          "deleted": 39
+        },
+        {
+          "file": "src/platforms/slack/adapter.js",
+          "added": 25,
+          "deleted": 0
+        },
+        {
+          "file": "src/platforms/whatsapp/adapter.js",
+          "added": 24,
+          "deleted": 0
+        },
+        {
+          "file": "src/services/mcp-client.js",
+          "added": 67,
+          "deleted": 11
+        },
+        {
+          "file": "src/services/mcp-process-title.cjs",
+          "added": 17,
+          "deleted": 0
+        },
+        {
+          "file": "src/slack-server/handlers/events.js",
+          "added": 18,
+          "deleted": 111
+        },
+        {
+          "file": "src/workflows/workflow-executor.js",
+          "added": 8,
+          "deleted": 8
+        },
+        {
+          "file": "test/slack-work-object-validator.js",
+          "added": 1,
+          "deleted": 1
+        },
+        {
+          "file": "tools/supervisor-tools.js",
+          "added": 3,
+          "deleted": 3
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "c95fd213ac5a8402687bd3e32070088f12b7a7bd",
+      "shortHash": "c95fd21",
+      "date": "2026-01-18T01:52:33+01:00",
+      "headline": "feat(discord): add Discord platform integration",
+      "repo": "autohub",
+      "owner": "verygoodplugins",
+      "repoSlug": "autohub",
+      "remoteUrl": "https://github.com/verygoodplugins/autohub",
+      "stats": {
+        "added": 1147,
+        "deleted": 8,
+        "files": 8
+      },
+      "files": [
+        {
+          "file": "CLAUDE.md",
+          "added": 28,
+          "deleted": 5
+        },
+        {
+          "file": "config/services/discord.json",
+          "added": 34,
+          "deleted": 0
+        },
+        {
+          "file": "config/tool-filters.json",
+          "added": 21,
+          "deleted": 0
+        },
+        {
+          "file": "package-lock.json",
+          "added": 246,
+          "deleted": 1
+        },
+        {
+          "file": "package.json",
+          "added": 5,
+          "deleted": 2
+        },
+        {
+          "file": "src/discord-server/index.js",
+          "added": 291,
+          "deleted": 0
+        },
+        {
+          "file": "src/platforms/discord/adapter.js",
+          "added": 510,
+          "deleted": 0
+        },
+        {
+          "file": "src/services/user-identity.js",
+          "added": 12,
+          "deleted": 0
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "d7f1a1f47836e8f614e48fb5167959b2e54a3fad",
+      "shortHash": "d7f1a1f",
+      "date": "2026-01-17T19:46:33+01:00",
+      "headline": "chore(ci): don't fail on npm audit or codecov",
+      "repo": "mcp-evernote",
+      "owner": "verygoodplugins",
+      "repoSlug": "mcp-evernote",
+      "remoteUrl": "https://github.com/verygoodplugins/mcp-evernote",
+      "stats": {
+        "added": 2,
+        "deleted": 1,
+        "files": 1
+      },
+      "files": [
+        {
+          "file": ".github/workflows/test.yml",
+          "added": 2,
+          "deleted": 1
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "a2372e85961763d0d07bd8beacd3ff0c0df786f0",
+      "shortHash": "a2372e8",
+      "date": "2026-01-17T19:24:41+01:00",
+      "headline": "chore(release): mark 1.2.0 as unreleased",
+      "repo": "mcp-evernote",
+      "owner": "verygoodplugins",
+      "repoSlug": "mcp-evernote",
+      "remoteUrl": "https://github.com/verygoodplugins/mcp-evernote",
+      "stats": {
+        "added": 6,
+        "deleted": 4,
+        "files": 3
+      },
+      "files": [
+        {
+          "file": "CHANGELOG.md",
+          "added": 3,
+          "deleted": 1
+        },
+        {
+          "file": "package.json",
+          "added": 1,
+          "deleted": 1
+        },
+        {
+          "file": "server.json",
+          "added": 2,
+          "deleted": 2
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "92543a0dc0a97fc95787c1fcf76ebac5aa515f2f",
+      "shortHash": "92543a0",
+      "date": "2026-01-17T19:21:03+01:00",
+      "headline": "chore(cursor): stop tracking local AutoMem cursor rule",
+      "repo": "mcp-evernote",
+      "owner": "verygoodplugins",
+      "repoSlug": "mcp-evernote",
+      "remoteUrl": "https://github.com/verygoodplugins/mcp-evernote",
+      "stats": {
+        "added": 1,
+        "deleted": 305,
+        "files": 2
+      },
+      "files": [
+        {
+          "file": ".cursor/rules/automem.mdc",
+          "added": 0,
+          "deleted": 305
+        },
+        {
+          "file": ".gitignore",
+          "added": 1,
+          "deleted": 0
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "f488b3877330fb4bf1378c6b46f78f8c373c10fa",
+      "shortHash": "f488b38",
+      "date": "2026-01-17T18:57:45+01:00",
+      "headline": "docs(cursor): align automem memory rule examples",
+      "repo": "mcp-evernote",
+      "owner": "verygoodplugins",
+      "repoSlug": "mcp-evernote",
+      "remoteUrl": "https://github.com/verygoodplugins/mcp-evernote",
+      "stats": {
+        "added": 50,
+        "deleted": 31,
+        "files": 1
+      },
+      "files": [
+        {
+          "file": ".cursor/rules/automem.mdc",
+          "added": 50,
+          "deleted": 31
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "2d8c639bfd9e79a79a45eae5b55df274f408ac93",
+      "shortHash": "2d8c639",
+      "date": "2026-01-17T18:57:38+01:00",
+      "headline": "docs: update README and test documentation",
+      "repo": "mcp-evernote",
+      "owner": "verygoodplugins",
+      "repoSlug": "mcp-evernote",
+      "remoteUrl": "https://github.com/verygoodplugins/mcp-evernote",
+      "stats": {
+        "added": 56,
+        "deleted": 377,
+        "files": 3
+      },
+      "files": [
+        {
+          "file": "FIXES_SUMMARY.md",
+          "added": 0,
+          "deleted": 277
+        },
+        {
+          "file": "README.md",
+          "added": 6,
+          "deleted": 9
+        },
+        {
+          "file": "TEST_DOCUMENTATION.md",
+          "added": 50,
+          "deleted": 91
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "a471dda94bbc70bd5bf431a94d48c4765ee0f288",
+      "shortHash": "a471dda",
+      "date": "2026-01-17T18:57:25+01:00",
+      "headline": "chore(security): stop tracking local Cursor MCP config",
+      "repo": "mcp-evernote",
+      "owner": "verygoodplugins",
+      "repoSlug": "mcp-evernote",
+      "remoteUrl": "https://github.com/verygoodplugins/mcp-evernote",
+      "stats": {
+        "added": 3,
+        "deleted": 13,
+        "files": 2
+      },
+      "files": [
+        {
+          "file": ".cursor/mcp.json",
+          "added": 0,
+          "deleted": 12
+        },
+        {
+          "file": ".gitignore",
+          "added": 3,
+          "deleted": 1
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "6295537b3a9d8274b18d6d27d8e4bd6e3ee4aac2",
+      "shortHash": "6295537",
+      "date": "2026-01-17T18:57:12+01:00",
+      "headline": "fix(auth): write token field; support legacy accessToken tokens",
+      "repo": "mcp-evernote",
+      "owner": "verygoodplugins",
+      "repoSlug": "mcp-evernote",
+      "remoteUrl": "https://github.com/verygoodplugins/mcp-evernote",
+      "stats": {
+        "added": 59,
+        "deleted": 5,
+        "files": 3
+      },
+      "files": [
+        {
+          "file": "__tests__/unit/simple-oauth.test.ts",
+          "added": 48,
+          "deleted": 0
+        },
+        {
+          "file": "src/auth-standalone.ts",
+          "added": 4,
+          "deleted": 3
+        },
+        {
+          "file": "src/oauth.ts",
+          "added": 7,
+          "deleted": 2
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "b71f4c59f7315d0bce66b84d10253e898260ae41",
+      "shortHash": "b71f4c5",
+      "date": "2026-01-17T18:28:02+01:00",
+      "headline": "Delete .cursor directory",
+      "repo": "mcp-evernote",
+      "owner": "verygoodplugins",
+      "repoSlug": "mcp-evernote",
+      "remoteUrl": "https://github.com/verygoodplugins/mcp-evernote",
+      "stats": {
+        "added": 0,
+        "deleted": 298,
+        "files": 2
+      },
+      "files": [
+        {
+          "file": ".cursor/mcp.json",
+          "added": 0,
+          "deleted": 12
+        },
+        {
+          "file": ".cursor/rules/automem.mdc",
+          "added": 0,
+          "deleted": 286
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "57abf68ef42cd18217bead9cfbc5fa8203ad75f6",
+      "shortHash": "57abf68",
+      "date": "2026-01-17T18:21:16+01:00",
+      "headline": "Send individual webhook notifications per change",
+      "repo": "mcp-evernote",
+      "owner": "verygoodplugins",
+      "repoSlug": "mcp-evernote",
+      "remoteUrl": "https://github.com/verygoodplugins/mcp-evernote",
+      "stats": {
+        "added": 40,
+        "deleted": 32,
+        "files": 2
+      },
+      "files": [
+        {
+          "file": "server.json",
+          "added": 12,
+          "deleted": 11
+        },
+        {
+          "file": "src/index.ts",
+          "added": 28,
+          "deleted": 21
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "85bc2ec2751268202a8966a26c1ac8a69b69241e",
+      "shortHash": "85bc2ec",
+      "date": "2026-01-17T18:20:35+01:00",
+      "headline": "Add ESLint config and project guidelines documentation",
+      "repo": "mcp-evernote",
+      "owner": "verygoodplugins",
+      "repoSlug": "mcp-evernote",
+      "remoteUrl": "https://github.com/verygoodplugins/mcp-evernote",
+      "stats": {
+        "added": 124,
+        "deleted": 8,
+        "files": 6
+      },
+      "files": [
+        {
+          "file": ".eslintignore",
+          "added": 5,
+          "deleted": 0
+        },
+        {
+          "file": ".eslintrc.cjs",
+          "added": 19,
+          "deleted": 0
+        },
+        {
+          "file": "AGENTS.md",
+          "added": 89,
+          "deleted": 0
+        },
+        {
+          "file": "package-lock.json",
+          "added": 9,
+          "deleted": 6
+        },
+        {
+          "file": "package.json",
+          "added": 1,
+          "deleted": 1
+        },
+        {
+          "file": "src/index.ts",
+          "added": 1,
+          "deleted": 1
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "92ab2b9e357283ee9227df74dd1afbba28230ebc",
+      "shortHash": "92ab2b9",
+      "date": "2026-01-17T17:56:03+01:00",
+      "headline": "Revert \"fix: upgrade CodeQL Action to v4\"",
+      "repo": "mcp-evernote",
+      "owner": "verygoodplugins",
+      "repoSlug": "mcp-evernote",
+      "remoteUrl": "https://github.com/verygoodplugins/mcp-evernote",
+      "stats": {
+        "added": 3,
+        "deleted": 3,
+        "files": 1
+      },
+      "files": [
+        {
+          "file": ".github/workflows/security.yml",
+          "added": 3,
+          "deleted": 3
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "a5cdc7a1b03d5090dded13e8aa5ece2e40d6d4ea",
+      "shortHash": "a5cdc7a",
+      "date": "2026-01-16T03:02:02+01:00",
+      "headline": "Improve SSEClient error handling and event parsing",
+      "repo": "autoapp",
+      "owner": "verygoodplugins",
+      "repoSlug": "AutoApp",
+      "remoteUrl": "https://github.com/verygoodplugins/AutoApp",
+      "stats": {
+        "added": 38,
+        "deleted": 4,
+        "files": 1
+      },
+      "files": [
+        {
+          "file": "AutoHub/Services/HubAPIService.swift",
+          "added": 38,
+          "deleted": 4
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "a563f3725ce1e18072eccee3ed77d435b9fb0c49",
+      "shortHash": "a563f37",
+      "date": "2026-01-15T15:58:20+01:00",
+      "headline": "Adds process tag/title for safe cleanup",
+      "repo": "mcp-automem",
+      "owner": "verygoodplugins",
+      "repoSlug": "mcp-automem",
+      "remoteUrl": "https://github.com/verygoodplugins/mcp-automem",
+      "stats": {
+        "added": 866,
+        "deleted": 790,
+        "files": 3
+      },
+      "files": [
+        {
+          "file": "dist/index.js",
+          "added": 849,
+          "deleted": 789
+        },
+        {
+          "file": "dist/index.js.map",
+          "added": 1,
+          "deleted": 1
+        },
+        {
+          "file": "src/index.ts",
+          "added": 16,
+          "deleted": 0
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "20885806093ee03f1b0d134c5bbfb4e862d6d102",
+      "shortHash": "2088580",
+      "date": "2026-01-14T03:04:33+01:00",
+      "headline": "Disable agent pruning in HubSyncService",
+      "repo": "autoapp",
+      "owner": "verygoodplugins",
+      "repoSlug": "AutoApp",
+      "remoteUrl": "https://github.com/verygoodplugins/AutoApp",
+      "stats": {
+        "added": 2,
+        "deleted": 32,
+        "files": 2
+      },
+      "files": [
+        {
+          "file": "AutoHub.xcodeproj/xcuserdata/jgarturo.xcuserdatad/xcdebugger/Breakpoints_v2.xcbkptlist",
+          "added": 0,
+          "deleted": 30
+        },
+        {
+          "file": "AutoHub/Services/HubSyncService.swift",
+          "added": 2,
+          "deleted": 2
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "fa4d218b5eac1fa75f920e2cad2e2f9db493985f",
+      "shortHash": "fa4d218",
+      "date": "2026-01-14T03:03:33+01:00",
+      "headline": "Revise memory management strategy and recall guidance",
+      "repo": "autohub",
+      "owner": "verygoodplugins",
+      "repoSlug": "autohub",
+      "remoteUrl": "https://github.com/verygoodplugins/autohub",
+      "stats": {
+        "added": 23,
+        "deleted": 36,
+        "files": 1
+      },
+      "files": [
+        {
+          "file": "src/claude/prompt/system-prompt.js",
+          "added": 23,
+          "deleted": 36
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "dc8ef7a539018b1819e212d6fcde4b0d9e880574",
+      "shortHash": "dc8ef7a",
+      "date": "2026-01-14T02:37:13+01:00",
+      "headline": "Improve thinking and inline tool handling in chat view",
+      "repo": "autoapp",
+      "owner": "verygoodplugins",
+      "repoSlug": "AutoApp",
+      "remoteUrl": "https://github.com/verygoodplugins/AutoApp",
+      "stats": {
+        "added": 128,
+        "deleted": 26,
+        "files": 4
+      },
+      "files": [
+        {
+          "file": "AGENTS.md",
+          "added": 9,
+          "deleted": 3
+        },
+        {
+          "file": "AutoHub.xcodeproj/xcuserdata/jgarturo.xcuserdatad/xcdebugger/Breakpoints_v2.xcbkptlist",
+          "added": 30,
+          "deleted": 0
+        },
+        {
+          "file": "AutoHub/Services/HubAPIService.swift",
+          "added": 9,
+          "deleted": 10
+        },
+        {
+          "file": "AutoHub/Views/OrchestratorChatView.swift",
+          "added": 80,
+          "deleted": 13
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "9ae3b1ab871a1832efef6a8ada7865523abfacd4",
+      "shortHash": "9ae3b1a",
+      "date": "2026-01-14T02:03:08+01:00",
+      "headline": "Fix UI state synchronization and duplicate thinking display",
+      "repo": "autoapp",
+      "owner": "verygoodplugins",
+      "repoSlug": "AutoApp",
+      "remoteUrl": "https://github.com/verygoodplugins/AutoApp",
+      "stats": {
+        "added": 22,
+        "deleted": 6,
+        "files": 3
+      },
+      "files": [
+        {
+          "file": "AutoHub/AdaptiveContentView.swift",
+          "added": 16,
+          "deleted": 2
+        },
+        {
+          "file": "AutoHub/Services/HubAPIService.swift",
+          "added": 4,
+          "deleted": 3
+        },
+        {
+          "file": "AutoHub/Views/SidebarView.swift",
+          "added": 2,
+          "deleted": 1
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "7ea8ce46c75e164b4a34a96379ca92317205742b",
+      "shortHash": "7ea8ce4",
+      "date": "2026-01-14T01:45:42+01:00",
+      "headline": "Fix display cache not refreshing after streaming completes",
+      "repo": "autoapp",
+      "owner": "verygoodplugins",
+      "repoSlug": "AutoApp",
+      "remoteUrl": "https://github.com/verygoodplugins/AutoApp",
+      "stats": {
+        "added": 4,
+        "deleted": 0,
+        "files": 1
+      },
+      "files": [
+        {
+          "file": "AutoHub/Views/OrchestratorChatView.swift",
+          "added": 4,
+          "deleted": 0
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "58a3316cc375b256a00a222919af9dd58869fe05",
+      "shortHash": "58a3316",
+      "date": "2026-01-14T01:33:38+01:00",
+      "headline": "Add support for v3 tool events and text reset in chat",
+      "repo": "autoapp",
+      "owner": "verygoodplugins",
+      "repoSlug": "AutoApp",
+      "remoteUrl": "https://github.com/verygoodplugins/AutoApp",
+      "stats": {
+        "added": 60,
+        "deleted": 1,
+        "files": 2
+      },
+      "files": [
+        {
+          "file": "AutoHub/Services/HubAPIService.swift",
+          "added": 52,
+          "deleted": 1
+        },
+        {
+          "file": "AutoHub/Views/OrchestratorChatView.swift",
+          "added": 8,
+          "deleted": 0
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "404ca0cf62040d12cc79c81647966ad81dd6e8ee",
+      "shortHash": "404ca0c",
+      "date": "2026-01-14T01:19:32+01:00",
+      "headline": "Add AutoHub Chat Stream v3 protocol and schema",
+      "repo": "autohub",
+      "owner": "verygoodplugins",
+      "repoSlug": "autohub",
+      "remoteUrl": "https://github.com/verygoodplugins/autohub",
+      "stats": {
+        "added": 784,
+        "deleted": 8,
+        "files": 4
+      },
+      "files": [
+        {
+          "file": "docs/chat-stream-v3.md",
+          "added": 223,
+          "deleted": 0
+        },
+        {
+          "file": "docs/schemas/chat-stream-v3.schema.json",
+          "added": 477,
+          "deleted": 0
+        },
+        {
+          "file": "src/chat-server/CLAUDE.md",
+          "added": 29,
+          "deleted": 8
+        },
+        {
+          "file": "src/chat-server/routes/chat.js",
+          "added": 55,
+          "deleted": 0
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "8cb7fb29222cff801050503285d740bb1154d5f3",
+      "shortHash": "8cb7fb2",
+      "date": "2026-01-14T00:29:56+01:00",
+      "headline": "Improve chat API streaming, persistence, and process cleanup",
+      "repo": "autohub",
+      "owner": "verygoodplugins",
+      "repoSlug": "autohub",
+      "remoteUrl": "https://github.com/verygoodplugins/autohub",
+      "stats": {
+        "added": 342,
+        "deleted": 119,
+        "files": 10
+      },
+      "files": [
+        {
+          "file": "package.json",
+          "added": 1,
+          "deleted": 0
+        },
+        {
+          "file": "scripts/chat-api-smoke-test.sh",
+          "added": 45,
+          "deleted": 0
+        },
+        {
+          "file": "src/chat-server/index.js",
+          "added": 90,
+          "deleted": 59
+        },
+        {
+          "file": "src/chat-server/middleware/rate-limiter.js",
+          "added": 9,
+          "deleted": 5
+        },
+        {
+          "file": "src/chat-server/routes/chat.js",
+          "added": 60,
+          "deleted": 18
+        },
+        {
+          "file": "src/claude/service.js",
+          "added": 7,
+          "deleted": 1
+        },
+        {
+          "file": "src/db/logger.js",
+          "added": 4,
+          "deleted": 2
+        },
+        {
+          "file": "src/services/mcp-client.js",
+          "added": 109,
+          "deleted": 15
+        },
+        {
+          "file": "web/src/api/client.js",
+          "added": 17,
+          "deleted": 8
+        },
+        {
+          "file": "web/src/components/ChatInterface.jsx",
+          "added": 0,
+          "deleted": 11
         }
       ]
     }
   ],
-  "prs": [],
-  "repos": {
-    "activity-report": {
+  "prs": [
+    {
+      "type": "pr",
+      "number": 13,
+      "title": "Add targeted patch tool for Evernote notes",
+      "url": "https://github.com/verygoodplugins/mcp-evernote/pull/13",
+      "state": "OPEN",
+      "date": "2026-01-19T16:24:49Z",
+      "repo": "mcp-evernote",
+      "repoFull": "verygoodplugins/mcp-evernote",
+      "stats": {
+        "added": 321,
+        "deleted": 0,
+        "files": 4
+      },
+      "baseBranch": "develop",
+      "headBranch": "feat/patch-note",
+      "mergeable": "MERGEABLE",
+      "commits": 1,
+      "reviews": [
+        {
+          "author": "coderabbitai",
+          "state": "COMMENTED",
+          "submittedAt": "2026-01-19T16:28:29Z"
+        }
+      ],
+      "labels": []
+    },
+    {
+      "type": "pr",
+      "number": 50,
+      "title": "Add token fee badge and update project description",
+      "url": "https://github.com/verygoodplugins/automem/pull/50",
+      "state": "MERGED",
+      "date": "2026-01-19T15:34:45Z",
+      "repo": "automem",
+      "repoFull": "verygoodplugins/automem",
+      "stats": {
+        "added": 9,
+        "deleted": 0,
+        "files": 1
+      },
+      "baseBranch": "main",
+      "headBranch": "jack-arturo-patch-1-1",
+      "mergeable": "UNKNOWN",
+      "commits": 1,
+      "reviews": [],
+      "labels": []
+    },
+    {
+      "type": "pr",
+      "number": 25,
+      "title": "Adds process tag/title for safe cleanup",
+      "url": "https://github.com/verygoodplugins/mcp-automem/pull/25",
+      "state": "OPEN",
+      "date": "2026-01-19T14:34:44Z",
+      "repo": "mcp-automem",
+      "repoFull": "verygoodplugins/mcp-automem",
+      "stats": {
+        "added": 866,
+        "deleted": 790,
+        "files": 3
+      },
+      "baseBranch": "main",
+      "headBranch": "feat/process-tag",
+      "mergeable": "MERGEABLE",
+      "commits": 1,
+      "reviews": [],
+      "labels": []
+    },
+    {
+      "type": "pr",
+      "number": 11,
+      "title": "fix(security): resolve CodeQL security alerts",
+      "url": "https://github.com/verygoodplugins/mcp-evernote/pull/11",
+      "state": "MERGED",
+      "date": "2026-01-19T13:23:26Z",
+      "repo": "mcp-evernote",
+      "repoFull": "verygoodplugins/mcp-evernote",
+      "stats": {
+        "added": 68,
+        "deleted": 20,
+        "files": 4
+      },
+      "baseBranch": "develop",
+      "headBranch": "fix/codeql-security-alerts",
+      "mergeable": "UNKNOWN",
+      "commits": 5,
+      "reviews": [
+        {
+          "author": "github-advanced-security",
+          "state": "COMMENTED",
+          "submittedAt": "2026-01-19T13:24:44Z"
+        },
+        {
+          "author": "github-advanced-security",
+          "state": "COMMENTED",
+          "submittedAt": "2026-01-19T14:37:59Z"
+        },
+        {
+          "author": "github-advanced-security",
+          "state": "COMMENTED",
+          "submittedAt": "2026-01-19T14:41:00Z"
+        }
+      ],
+      "labels": []
+    },
+    {
+      "type": "pr",
+      "number": 10,
+      "title": "feat(search): enhance search results with metadata and optional content preview",
+      "url": "https://github.com/verygoodplugins/mcp-evernote/pull/10",
+      "state": "MERGED",
+      "date": "2026-01-19T12:09:54Z",
+      "repo": "mcp-evernote",
+      "repoFull": "verygoodplugins/mcp-evernote",
+      "stats": {
+        "added": 485,
+        "deleted": 9,
+        "files": 5
+      },
+      "baseBranch": "develop",
+      "headBranch": "feature/search-note-preview",
+      "mergeable": "UNKNOWN",
+      "commits": 1,
+      "reviews": [
+        {
+          "author": "github-advanced-security",
+          "state": "COMMENTED",
+          "submittedAt": "2026-01-19T12:11:04Z"
+        }
+      ],
+      "labels": []
+    },
+    {
+      "type": "pr",
+      "number": 7,
+      "title": "Add icon and $AUTOMEM token link to About page",
+      "url": "https://github.com/verygoodplugins/automem-website/pull/7",
+      "state": "MERGED",
+      "date": "2026-01-19T08:48:31Z",
+      "repo": "automem-website",
+      "repoFull": "verygoodplugins/automem-website",
+      "stats": {
+        "added": 10,
+        "deleted": 1,
+        "files": 2
+      },
+      "baseBranch": "main",
+      "headBranch": "content/jan-2026-update",
+      "mergeable": "UNKNOWN",
+      "commits": 1,
+      "reviews": [],
+      "labels": []
+    },
+    {
+      "type": "pr",
+      "number": 6,
+      "title": "Add blog posts on MCP upgrade and visualization preview",
+      "url": "https://github.com/verygoodplugins/automem-website/pull/6",
+      "state": "MERGED",
+      "date": "2026-01-19T06:38:37Z",
+      "repo": "automem-website",
+      "repoFull": "verygoodplugins/automem-website",
+      "stats": {
+        "added": 248,
+        "deleted": 0,
+        "files": 2
+      },
+      "baseBranch": "main",
+      "headBranch": "content/jan-2026-update",
+      "mergeable": "UNKNOWN",
+      "commits": 1,
+      "reviews": [],
+      "labels": []
+    },
+    {
+      "type": "pr",
+      "number": 50,
+      "title": "fix: memory storage cleanup + agent todo persistence",
+      "url": "https://github.com/verygoodplugins/autohub/pull/50",
+      "state": "MERGED",
+      "date": "2026-01-18T11:53:37Z",
+      "repo": "autohub",
+      "repoFull": "verygoodplugins/autohub",
+      "stats": {
+        "added": 227,
+        "deleted": 46,
+        "files": 5
+      },
+      "baseBranch": "main",
+      "headBranch": "fix/memory-storage-cleanup",
+      "mergeable": "UNKNOWN",
+      "commits": 4,
+      "reviews": [
+        {
+          "author": "coderabbitai",
+          "state": "COMMENTED",
+          "submittedAt": "2026-01-18T12:03:06Z"
+        }
+      ],
+      "labels": []
+    },
+    {
+      "type": "pr",
+      "number": 9,
+      "title": "Feature/7 ocr integration tests",
+      "url": "https://github.com/verygoodplugins/mcp-evernote/pull/9",
+      "state": "MERGED",
+      "date": "2026-01-18T08:25:02Z",
+      "repo": "mcp-evernote",
+      "repoFull": "verygoodplugins/mcp-evernote",
+      "stats": {
+        "added": 620,
+        "deleted": 0,
+        "files": 4
+      },
+      "baseBranch": "develop",
+      "headBranch": "feature/7-ocr-integration-tests",
+      "mergeable": "UNKNOWN",
+      "commits": 2,
+      "reviews": [
+        {
+          "author": "coderabbitai",
+          "state": "COMMENTED",
+          "submittedAt": "2026-01-18T08:31:15Z"
+        }
+      ],
+      "labels": []
+    },
+    {
+      "type": "pr",
+      "number": 49,
+      "title": "feat(discord): add MCP tool enhancements",
+      "url": "https://github.com/verygoodplugins/autohub/pull/49",
+      "state": "MERGED",
+      "date": "2026-01-18T08:06:42Z",
+      "repo": "autohub",
+      "repoFull": "verygoodplugins/autohub",
+      "stats": {
+        "added": 3381,
+        "deleted": 331,
+        "files": 25
+      },
+      "baseBranch": "main",
+      "headBranch": "feat/discord-integration",
+      "mergeable": "UNKNOWN",
+      "commits": 6,
+      "reviews": [
+        {
+          "author": "coderabbitai",
+          "state": "COMMENTED",
+          "submittedAt": "2026-01-18T08:13:42Z"
+        },
+        {
+          "author": "jack-arturo",
+          "state": "COMMENTED",
+          "submittedAt": "2026-01-18T08:31:37Z"
+        },
+        {
+          "author": "coderabbitai",
+          "state": "COMMENTED",
+          "submittedAt": "2026-01-18T08:32:05Z"
+        },
+        {
+          "author": "coderabbitai",
+          "state": "COMMENTED",
+          "submittedAt": "2026-01-18T08:45:01Z"
+        }
+      ],
+      "labels": []
+    },
+    {
+      "type": "pr",
+      "number": 8,
+      "title": "fix(auth): token file compatibility + release hardening",
+      "url": "https://github.com/verygoodplugins/mcp-evernote/pull/8",
+      "state": "MERGED",
+      "date": "2026-01-17T17:58:27Z",
+      "repo": "mcp-evernote",
+      "repoFull": "verygoodplugins/mcp-evernote",
+      "stats": {
+        "added": 303,
+        "deleted": 432,
+        "files": 18
+      },
+      "baseBranch": "develop",
+      "headBranch": "fix/bugs-stability-jan-2026",
+      "mergeable": "UNKNOWN",
+      "commits": 13,
+      "reviews": [
+        {
+          "author": "chatgpt-codex-connector",
+          "state": "COMMENTED",
+          "submittedAt": "2026-01-17T18:02:22Z"
+        },
+        {
+          "author": "coderabbitai",
+          "state": "COMMENTED",
+          "submittedAt": "2026-01-17T18:04:06Z"
+        },
+        {
+          "author": "coderabbitai",
+          "state": "COMMENTED",
+          "submittedAt": "2026-01-17T18:50:26Z"
+        },
+        {
+          "author": "coderabbitai",
+          "state": "COMMENTED",
+          "submittedAt": "2026-01-18T06:17:24Z"
+        }
+      ],
+      "labels": []
+    },
+    {
+      "type": "pr",
+      "number": 48,
+      "title": "Feat/streaming blocks chat api",
+      "url": "https://github.com/verygoodplugins/autohub/pull/48",
+      "state": "MERGED",
+      "date": "2026-01-14T02:04:14Z",
+      "repo": "autohub",
+      "repoFull": "verygoodplugins/autohub",
+      "stats": {
+        "added": 1149,
+        "deleted": 163,
+        "files": 14
+      },
+      "baseBranch": "main",
+      "headBranch": "feat/streaming-blocks-chat-api",
+      "mergeable": "UNKNOWN",
       "commits": 3,
-      "additions": 1332,
-      "deletions": 9788,
-      "remoteUrl": "https://github.com/verygoodplugins/activity-report",
+      "reviews": [
+        {
+          "author": "chatgpt-codex-connector",
+          "state": "COMMENTED",
+          "submittedAt": "2026-01-14T02:11:26Z"
+        }
+      ],
+      "labels": []
+    },
+    {
+      "type": "pr",
+      "number": 3,
+      "title": "Feature/improve inline blocks streaming jan 2026",
+      "url": "https://github.com/verygoodplugins/AutoApp/pull/3",
+      "state": "MERGED",
+      "date": "2026-01-14T00:51:32Z",
+      "repo": "AutoApp",
+      "repoFull": "verygoodplugins/AutoApp",
+      "stats": {
+        "added": 1616,
+        "deleted": 248,
+        "files": 15
+      },
+      "baseBranch": "main",
+      "headBranch": "feature/improve-inline-blocks-streaming-jan-2026",
+      "mergeable": "UNKNOWN",
+      "commits": 8,
+      "reviews": [
+        {
+          "author": "coderabbitai",
+          "state": "COMMENTED",
+          "submittedAt": "2026-01-14T00:55:22Z"
+        },
+        {
+          "author": "chatgpt-codex-connector",
+          "state": "COMMENTED",
+          "submittedAt": "2026-01-14T00:56:01Z"
+        },
+        {
+          "author": "coderabbitai",
+          "state": "COMMENTED",
+          "submittedAt": "2026-01-14T02:09:56Z"
+        }
+      ],
+      "labels": []
+    },
+    {
+      "type": "pr",
+      "number": 47,
+      "title": "Refactor/slack chat workflow cleanup",
+      "url": "https://github.com/verygoodplugins/autohub/pull/47",
+      "state": "MERGED",
+      "date": "2026-01-13T20:42:02Z",
+      "repo": "autohub",
+      "repoFull": "verygoodplugins/autohub",
+      "stats": {
+        "added": 623,
+        "deleted": 2371,
+        "files": 24
+      },
+      "baseBranch": "main",
+      "headBranch": "refactor/slack-chat-workflow-cleanup",
+      "mergeable": "UNKNOWN",
+      "commits": 2,
+      "reviews": [
+        {
+          "author": "coderabbitai",
+          "state": "COMMENTED",
+          "submittedAt": "2026-01-13T20:45:00Z"
+        }
+      ],
+      "labels": []
+    }
+  ],
+  "repos": {
+    "mcp-evernote": {
+      "commits": 17,
+      "additions": 1324,
+      "deletions": 1108,
+      "remoteUrl": "https://github.com/verygoodplugins/mcp-evernote",
       "owner": "verygoodplugins",
-      "repoSlug": "activity-report"
+      "repoSlug": "mcp-evernote"
+    },
+    "mcp-automem": {
+      "commits": 2,
+      "additions": 919,
+      "deletions": 794,
+      "remoteUrl": "https://github.com/verygoodplugins/mcp-automem",
+      "owner": "verygoodplugins",
+      "repoSlug": "mcp-automem"
+    },
+    "automem-website": {
+      "commits": 4,
+      "additions": 1255,
+      "deletions": 186,
+      "remoteUrl": "https://github.com/verygoodplugins/automem-website",
+      "owner": "verygoodplugins",
+      "repoSlug": "automem-website"
+    },
+    "automem": {
+      "commits": 1,
+      "additions": 9,
+      "deletions": 0,
+      "remoteUrl": "https://github.com/verygoodplugins/automem",
+      "owner": "verygoodplugins",
+      "repoSlug": "automem"
+    },
+    "autohub": {
+      "commits": 13,
+      "additions": 4827,
+      "deletions": 610,
+      "remoteUrl": "https://github.com/verygoodplugins/autohub",
+      "owner": "verygoodplugins",
+      "repoSlug": "autohub"
+    },
+    "autoapp": {
+      "commits": 6,
+      "additions": 254,
+      "deletions": 69,
+      "remoteUrl": "https://github.com/verygoodplugins/AutoApp",
+      "owner": "verygoodplugins",
+      "repoSlug": "AutoApp"
     }
   },
   "stats": {
-    "additions": 1332,
-    "deletions": 9788,
-    "files": 6,
-    "commits": 3,
-    "prs": 0
+    "additions": 8588,
+    "deletions": 2767,
+    "files": 131,
+    "commits": 43,
+    "prs": 14
   }
 }
