@@ -20,7 +20,7 @@ jobs:
           node-version: 20
 
       - name: Generate report
-        run: node generate-rich-report.mjs --paths=/Users/jgarturo/Projects,/Users/jgarturo/Local\ Sites
+        run: node generate-rich-report.mjs "--paths=/Users/jgarturo/Projects,/Users/jgarturo/Local Sites"
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
