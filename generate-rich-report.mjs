@@ -173,6 +173,8 @@ async function main() {
     .map((p) => path.resolve(process.cwd(), p))
     .filter((p) => fs.existsSync(p));
 
+  console.log("   Searching paths:", repoRootsResolved);
+  
   let data;
 
   if (useCache && fs.existsSync(cacheFile)) {
