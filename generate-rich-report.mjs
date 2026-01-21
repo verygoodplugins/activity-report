@@ -152,7 +152,7 @@ function safeExec(command, options) {
 async function main() {
   const args = parseArgs(process.argv.slice(2));
 
-  const hoursBack = parseNumber(args.hours, 168);
+  const hoursBack = parseNumber(args.hours, 720);
   const maxDepth = parseNumber(args["max-depth"], 4);
   const cacheFile = args["cache-file"] || "activity-data.json";
   const outputFile = args["output-file"] || "index.html";

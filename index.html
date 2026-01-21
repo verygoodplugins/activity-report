@@ -309,6 +309,259 @@
       font-weight: 700;
     }
 
+    /* View Transition Styles */
+    .weekly-grid {
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .weekly-grid.view-week {
+      grid-template-columns: repeat(7, 1fr);
+    }
+
+    .weekly-grid.view-month {
+      grid-template-columns: repeat(7, 1fr);
+      gap: 0.5rem;
+    }
+
+    .weekly-grid.view-day {
+      grid-template-columns: 1fr;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .day-column {
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                  opacity 0.3s ease,
+                  padding 0.3s ease,
+                  min-height 0.3s ease;
+    }
+
+    .day-column.fade-out {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+
+    .day-column.fade-in {
+      animation: fadeIn 0.3s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: scale(0.95);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    /* Month View - Compact Calendar Cards */
+    .weekly-grid.view-month .day-column {
+      padding: 0.75rem;
+      min-height: auto;
+    }
+
+    .weekly-grid.view-month .day-date {
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .weekly-grid.view-month .day-bars {
+      min-height: 40px;
+    }
+
+    .weekly-grid.view-month .day-stats {
+      font-size: 0.6rem;
+      gap: 0.5rem;
+    }
+
+    .weekly-grid.view-month .day-column.inactive-month {
+      opacity: 0.4;
+    }
+
+    /* Activity Intensity Dot for Month View */
+    .activity-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      display: inline-block;
+      margin-right: 0.5rem;
+    }
+
+    .activity-dot.high { background: var(--green); }
+    .activity-dot.medium { background: var(--amber); }
+    .activity-dot.low { background: var(--border); }
+    .activity-dot.none { background: transparent; border: 1px dashed var(--border); }
+
+    /* Day View - Hero Display */
+    .day-hero {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 1.5rem;
+      padding: 2rem;
+      text-align: center;
+      box-shadow: var(--shadow-md);
+      animation: heroExpand 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    @keyframes heroExpand {
+      from {
+        opacity: 0;
+        transform: scale(0.9);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .day-hero .hero-date {
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+    }
+
+    .day-hero .hero-weekday {
+      font-size: 1.25rem;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 1.5rem;
+    }
+
+    .day-hero .hero-stats-row {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .day-hero .hero-stat {
+      text-align: center;
+    }
+
+    .day-hero .hero-stat-value {
+      font-size: 2rem;
+      font-weight: 700;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .day-hero .hero-stat-value.added { color: var(--green); }
+    .day-hero .hero-stat-value.deleted { color: var(--red); }
+
+    .day-hero .hero-stat-label {
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* Hourly Activity Chart */
+    .hourly-chart {
+      margin-top: 1.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .hourly-chart-title {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 1rem;
+      text-align: left;
+    }
+
+    .hourly-bars {
+      display: flex;
+      align-items: flex-end;
+      gap: 2px;
+      height: 80px;
+    }
+
+    .hour-bar {
+      flex: 1;
+      background: var(--accent-light);
+      border-radius: 2px 2px 0 0;
+      min-height: 4px;
+      transition: height 0.3s ease, background 0.2s ease;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .hour-bar:hover {
+      background: var(--accent);
+    }
+
+    .hour-bar:hover::after {
+      content: attr(data-tooltip);
+      position: absolute;
+      bottom: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--text);
+      color: var(--bg);
+      padding: 0.25rem 0.5rem;
+      border-radius: 0.25rem;
+      font-size: 0.7rem;
+      white-space: nowrap;
+      margin-bottom: 4px;
+    }
+
+    .hour-labels {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 0.5rem;
+      font-size: 0.6rem;
+      color: var(--text-secondary);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* Repos touched that day */
+    .day-repos {
+      margin-top: 1.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .day-repos-title {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.75rem;
+      text-align: left;
+    }
+
+    .day-repos-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      justify-content: flex-start;
+    }
+
+    .day-repo-chip {
+      background: var(--surface-elevated);
+      border: 1px solid var(--border);
+      border-radius: 2rem;
+      padding: 0.35rem 0.75rem;
+      font-size: 0.75rem;
+      font-family: 'JetBrains Mono', monospace;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.2s ease;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .day-repo-chip:hover {
+      border-color: var(--accent);
+      transform: translateY(-1px);
+    }
+
     .day-name {
       font-size: 0.7rem;
       color: var(--text-secondary);
@@ -778,8 +1031,24 @@
 
     /* Responsive */
     @media (max-width: 1024px) {
-      .weekly-grid {
+      .weekly-grid.view-week {
         grid-template-columns: repeat(4, 1fr);
+      }
+      .weekly-grid.view-month {
+        grid-template-columns: repeat(7, 1fr);
+        gap: 0.35rem;
+      }
+      .weekly-grid.view-month .day-column {
+        padding: 0.5rem;
+      }
+      .weekly-grid.view-month .day-name {
+        font-size: 0.55rem;
+      }
+      .weekly-grid.view-month .day-date {
+        font-size: 0.9rem;
+      }
+      .weekly-grid.view-day {
+        max-width: 100%;
       }
       .timeline::before {
         left: 80px;
@@ -798,7 +1067,37 @@
       .hero-left h1 { font-size: 2.5rem; }
       .hero-content { flex-wrap: wrap; }
       .hero-stats { flex-wrap: wrap; }
-      .weekly-grid { grid-template-columns: repeat(2, 1fr); }
+      .weekly-grid.view-week { grid-template-columns: repeat(2, 1fr); }
+      .weekly-grid.view-month {
+        grid-template-columns: repeat(7, 1fr);
+        gap: 0.25rem;
+      }
+      .weekly-grid.view-month .day-column {
+        padding: 0.35rem;
+      }
+      .weekly-grid.view-month .day-name {
+        font-size: 0.45rem;
+      }
+      .weekly-grid.view-month .day-date {
+        font-size: 0.75rem;
+        margin-bottom: 0.25rem;
+      }
+      .weekly-grid.view-month .day-bars {
+        display: none;
+      }
+      .weekly-grid.view-month .day-stats {
+        display: none;
+      }
+      .day-hero .hero-date {
+        font-size: 2rem;
+      }
+      .day-hero .hero-stats-row {
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+      .hourly-bars {
+        height: 60px;
+      }
       .categories-grid { grid-template-columns: 1fr; }
       .timeline::before { display: none; }
       .commit-item { grid-template-columns: 1fr; gap: 0.5rem; }
@@ -864,12 +1163,15 @@
     <!-- Weekly Rhythm -->
     <section class="section">
       <div class="section-header">
-        <h2 class="section-title">
+        <h2 class="section-title" id="rhythm-title">
           <span class="section-title-icon">📊</span>
-          Weekly Rhythm
+          <span id="rhythm-title-text">Weekly Rhythm</span>
         </h2>
+        <button class="toggle-btn" id="back-to-week-btn" style="display: none;" onclick="backToWeekView()">
+          ← Back to Week
+        </button>
       </div>
-      <div class="weekly-grid" id="weekly-grid">
+      <div class="weekly-grid view-week" id="weekly-grid">
         <!-- Filled by JS -->
       </div>
     </section>
@@ -941,6 +1243,8 @@
     // Load and render activity data
     let rawData = null;
     let currentPeriod = 'week';
+    let currentView = 'week';  // 'day' | 'week' | 'month'
+    let viewTransitioning = false;
     let selectedDate = null; // When set, filters to specific day
 
     const PERIOD_CONFIG = {
@@ -1092,14 +1396,93 @@
     function setupToggleButtons() {
       document.querySelectorAll('.toggle-btn').forEach(btn => {
         btn.addEventListener('click', () => {
-          document.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
+          const newPeriod = btn.dataset.period;
+          // Skip the back-to-week button (it has its own handler)
+          if (!newPeriod || viewTransitioning) return;
+
+          document.querySelectorAll('.toggle-btn[data-period]').forEach(b => b.classList.remove('active'));
           btn.classList.add('active');
-          currentPeriod = btn.dataset.period;
+          currentPeriod = newPeriod;
           selectedDate = null; // Clear day selection when using period toggles
           document.getElementById('period-label').textContent = PERIOD_CONFIG[currentPeriod].label;
-          renderDashboard();
+
+          // Map period to view: day/week periods use week view, month uses month view
+          const newView = newPeriod === 'month' ? 'month' : 'week';
+          transitionToView(newView);
         });
       });
+    }
+
+    // FLIP animation for smooth view transitions
+    function transitionToView(newView, targetDate = null) {
+      if (viewTransitioning || (newView === currentView && !targetDate)) return;
+      viewTransitioning = true;
+
+      const grid = document.getElementById('weekly-grid');
+      const dayColumns = grid.querySelectorAll('.day-column, .day-hero');
+
+      // FLIP: First - record current positions
+      const firstPositions = new Map();
+      dayColumns.forEach((el, i) => {
+        const rect = el.getBoundingClientRect();
+        firstPositions.set(i, { x: rect.left, y: rect.top, width: rect.width, height: rect.height });
+      });
+
+      // Apply fade-out to current elements
+      dayColumns.forEach(el => el.classList.add('fade-out'));
+
+      setTimeout(() => {
+        // Update view class
+        grid.classList.remove('view-week', 'view-month', 'view-day');
+        grid.classList.add(`view-${newView}`);
+        currentView = newView;
+
+        // Update section title and back button visibility
+        const titleText = document.getElementById('rhythm-title-text');
+        const backBtn = document.getElementById('back-to-week-btn');
+
+        if (newView === 'month') {
+          titleText.textContent = 'Monthly Calendar';
+          backBtn.style.display = 'inline-block';
+        } else if (newView === 'day') {
+          titleText.textContent = 'Day Detail';
+          backBtn.style.display = 'inline-block';
+        } else {
+          titleText.textContent = 'Weekly Rhythm';
+          backBtn.style.display = 'none';
+        }
+
+        // Re-render content based on view
+        if (newView === 'month') {
+          renderMonthView(rawData.commits);
+        } else if (newView === 'day' && targetDate) {
+          selectedDate = targetDate;
+          renderDayView(targetDate, rawData.commits);
+        } else {
+          selectedDate = null;
+          renderWeeklyRhythm(rawData.commits);
+        }
+
+        // Animate new elements in
+        const newElements = grid.querySelectorAll('.day-column, .day-hero');
+        newElements.forEach((el, i) => {
+          el.classList.add('fade-in');
+          setTimeout(() => el.classList.remove('fade-in'), 300);
+        });
+
+        viewTransitioning = false;
+        renderDashboard();
+      }, 200);
+    }
+
+    function backToWeekView() {
+      // Reset to week view and restore period toggle
+      document.querySelectorAll('.toggle-btn').forEach(b => {
+        b.classList.toggle('active', b.dataset.period === 'week');
+      });
+      currentPeriod = 'week';
+      document.getElementById('period-label').textContent = PERIOD_CONFIG.week.label;
+      transitionToView('week');
     }
 
     function selectDay(date) {
@@ -1107,7 +1490,8 @@
       // Clear period toggle active states
       document.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
       document.getElementById('period-label').textContent = formatDateLabel(date);
-      renderDashboard();
+      // Use transitionToView for day view
+      transitionToView('day', date);
     }
 
     function renderDashboard() {
@@ -1145,8 +1529,19 @@
       animateCounter(document.getElementById('deleted-count'), totalDeleted, '-');
       animateCounter(document.getElementById('prs-count'), prs.length);
 
-      // Render sections
-      renderWeeklyRhythm(allCommits); // Always show full week
+      // Render weekly rhythm section based on current view
+      // (only re-render if not in a transition - transitionToView handles the grid)
+      if (!viewTransitioning) {
+        if (currentView === 'week') {
+          renderWeeklyRhythm(allCommits);
+        } else if (currentView === 'month') {
+          renderMonthView(allCommits);
+        } else if (currentView === 'day' && selectedDate) {
+          renderDayView(selectedDate, allCommits);
+        }
+      }
+
+      // Render other sections
       renderCategories(commits);
       renderPullRequests(prs);
       renderTimeline(commits);
@@ -1232,7 +1627,175 @@
         date.setDate(date.getDate() - i);
         days.push(date);
       }
-      selectDay(days[index]);
+      // Transition to day view instead of just filtering
+      transitionToView('day', days[index]);
+    }
+
+    function handleMonthDayClick(dateStr) {
+      const date = new Date(dateStr);
+      transitionToView('day', date);
+    }
+
+    function renderMonthView(commits) {
+      const container = document.getElementById('weekly-grid');
+      const today = new Date();
+      const days = [];
+
+      // Get last 35 days (5 weeks) for calendar view
+      for (let i = 34; i >= 0; i--) {
+        const date = new Date(today);
+        date.setDate(date.getDate() - i);
+        days.push(date);
+      }
+
+      // Group commits by day
+      const commitsByDay = {};
+      commits.forEach(c => {
+        const date = new Date(c.date);
+        const key = date.toDateString();
+        if (!commitsByDay[key]) {
+          commitsByDay[key] = { commits: 0, added: 0, deleted: 0 };
+        }
+        commitsByDay[key].commits++;
+        commitsByDay[key].added += c.stats?.added || 0;
+        commitsByDay[key].deleted += c.stats?.deleted || 0;
+      });
+
+      // Find max commits for intensity scaling
+      const maxCommits = Math.max(...Object.values(commitsByDay).map(d => d.commits), 1);
+      const dayNames = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
+
+      container.innerHTML = days.map((date, index) => {
+        const key = date.toDateString();
+        const dayData = commitsByDay[key] || { commits: 0, added: 0, deleted: 0 };
+        const isToday = date.toDateString() === today.toDateString();
+        const isSelected = selectedDate && date.toDateString() === selectedDate.toDateString();
+
+        // Calculate activity intensity
+        const intensity = dayData.commits === 0 ? 'none' :
+                         dayData.commits >= maxCommits * 0.7 ? 'high' :
+                         dayData.commits >= maxCommits * 0.3 ? 'medium' : 'low';
+
+        const classes = ['day-column'];
+        if (isToday) classes.push('today');
+        if (isSelected) classes.push('selected');
+
+        return `
+          <div class="${classes.join(' ')}" onclick="handleMonthDayClick('${date.toISOString()}')">
+            <div class="day-name">${dayNames[date.getDay()]}</div>
+            <div class="day-date">${date.getDate()}</div>
+            <div class="day-bars">
+              <span class="activity-dot ${intensity}" title="${dayData.commits} commits"></span>
+              ${dayData.commits > 0 ? `<span style="font-size: 0.65rem; color: var(--text-secondary)">${dayData.commits}c</span>` : ''}
+            </div>
+            <div class="day-stats">
+              <span class="day-stat added">+${formatNumber(dayData.added)}</span>
+              <span class="day-stat deleted">-${formatNumber(dayData.deleted)}</span>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function renderDayView(date, commits) {
+      const container = document.getElementById('weekly-grid');
+      const dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+      const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+      // Filter commits for this specific day
+      const dayCommits = commits.filter(c => {
+        const commitDate = new Date(c.date);
+        return commitDate.toDateString() === date.toDateString();
+      });
+
+      // Calculate stats
+      let totalAdded = 0, totalDeleted = 0;
+      const repoStats = {};
+      const hourlyActivity = new Array(24).fill(0);
+
+      dayCommits.forEach(c => {
+        totalAdded += c.stats?.added || 0;
+        totalDeleted += c.stats?.deleted || 0;
+
+        // Track repos
+        if (!repoStats[c.repo]) {
+          repoStats[c.repo] = { commits: 0, url: c.remoteUrl };
+        }
+        repoStats[c.repo].commits++;
+
+        // Track hourly activity
+        const hour = new Date(c.date).getHours();
+        hourlyActivity[hour]++;
+      });
+
+      const maxHourly = Math.max(...hourlyActivity, 1);
+
+      // Build hourly chart bars
+      const hourlyBars = hourlyActivity.map((count, hour) => {
+        const height = count > 0 ? Math.max((count / maxHourly) * 100, 10) : 4;
+        const tooltip = `${hour}:00 - ${count} commit${count !== 1 ? 's' : ''}`;
+        return `<div class="hour-bar" style="height: ${height}%" data-tooltip="${tooltip}"></div>`;
+      }).join('');
+
+      // Build repo chips
+      const repoChips = Object.entries(repoStats)
+        .sort((a, b) => b[1].commits - a[1].commits)
+        .slice(0, 8)
+        .map(([repo, data]) => {
+          const color = REPO_COLORS[repo] || '#6366f1';
+          return `
+            <a href="${data.url}" target="_blank" class="day-repo-chip">
+              <span class="repo-dot" style="background: ${color}"></span>
+              ${repo}
+              <span style="color: var(--text-secondary)">${data.commits}</span>
+            </a>
+          `;
+        }).join('');
+
+      const isToday = date.toDateString() === new Date().toDateString();
+      const dateLabel = isToday ? 'Today' : `${monthNames[date.getMonth()]} ${date.getDate()}`;
+
+      container.innerHTML = `
+        <div class="day-hero">
+          <div class="hero-weekday">${dayNames[date.getDay()]}</div>
+          <div class="hero-date">${dateLabel}</div>
+          <div class="hero-stats-row">
+            <div class="hero-stat">
+              <div class="hero-stat-value">${dayCommits.length}</div>
+              <div class="hero-stat-label">Commits</div>
+            </div>
+            <div class="hero-stat">
+              <div class="hero-stat-value added">+${formatNumber(totalAdded)}</div>
+              <div class="hero-stat-label">Lines Added</div>
+            </div>
+            <div class="hero-stat">
+              <div class="hero-stat-value deleted">-${formatNumber(totalDeleted)}</div>
+              <div class="hero-stat-label">Lines Removed</div>
+            </div>
+            <div class="hero-stat">
+              <div class="hero-stat-value">${Object.keys(repoStats).length}</div>
+              <div class="hero-stat-label">Repos</div>
+            </div>
+          </div>
+          ${dayCommits.length > 0 ? `
+          <div class="hourly-chart">
+            <div class="hourly-chart-title">Activity by Hour</div>
+            <div class="hourly-bars">${hourlyBars}</div>
+            <div class="hour-labels">
+              <span>12am</span>
+              <span>6am</span>
+              <span>12pm</span>
+              <span>6pm</span>
+              <span>11pm</span>
+            </div>
+          </div>
+          <div class="day-repos">
+            <div class="day-repos-title">Repos Touched</div>
+            <div class="day-repos-grid">${repoChips || '<span style="color: var(--text-secondary)">No repos</span>'}</div>
+          </div>
+          ` : '<p style="color: var(--text-secondary); margin-top: 1rem;">No activity on this day</p>'}
+        </div>
+      `;
     }
 
     function renderCategories(commits) {
