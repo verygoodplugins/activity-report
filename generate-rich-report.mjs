@@ -9,6 +9,17 @@ import os from "os";
 import path from "path";
 import fs from "fs";
 
+// Repos to exclude from report (focus on AI/automation work)
+const EXCLUDE_PATTERNS = [
+  /wp-fusion/i,
+  /wpfusion/i,
+  /dana/i,
+];
+
+function shouldExcludeRepo(repoName) {
+  return EXCLUDE_PATTERNS.some((p) => p.test(repoName));
+}
+
 function expandHome(inputPath) {
   if (!inputPath) return inputPath;
   if (inputPath === "~") return os.homedir();
@@ -184,7 +195,8 @@ async function main() {
       console.log("Cached to", cacheFile);
     }
   }
-  generateHtml(data, { outputFile, hoursBack });
+  // HTML generation disabled - using static index.html that loads activity-data.json
+  // generateHtml(data, { outputFile, hoursBack });
 }
 
 async function fetchData({
@@ -212,6 +224,9 @@ async function fetchData({
   for (const basePath of repoRoots) {
     for (const repoPath of findGitReposUnder(basePath, maxDepth)) {
       const repoName = path.basename(repoPath);
+
+      // Skip excluded repos (WP Fusion, personal/private repos)
+      if (shouldExcludeRepo(repoName)) continue;
 
       let remoteUrl = "";
       let owner = "",
@@ -361,7 +376,7 @@ async function fetchData({
       for (const pr of prList) {
         try {
           const detailRaw = safeExec(
-            `gh pr view ${pr.number} --repo ${pr.repository.nameWithOwner} --json number,title,url,state,createdAt,additions,deletions,changedFiles,commits,baseRefName,headRefName,mergeable,reviews,labels`,
+            `gh pr view ${pr.number} --repo ${pr.repository.nameWithOwner} --json number,title,url,state,createdAt,additions,deletions,changedFiles,commits,baseRefName,headRefName,mergeable,reviews,labels,files`,
             { encoding: "utf-8" }
           );
           if (!detailRaw) continue;
@@ -390,6 +405,11 @@ async function fetchData({
               submittedAt: r.submittedAt,
             })),
             labels: (detail.labels || []).map((l) => l.name),
+            files: (detail.files || []).map((f) => ({
+              file: f.path,
+              added: f.additions,
+              deleted: f.deletions,
+            })),
           });
           data.stats.prs++;
         } catch {}
