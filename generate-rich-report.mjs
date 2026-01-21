@@ -331,8 +331,7 @@ async function fetchData({
   // 2. PRs with full details
   if (includePrs) {
     console.log("   Fetching PRs...");
-    try {
-      const dateFilter = sinceDate.toISOString().split("T")[0];
+    const dateFilter = sinceDate.toISOString().split("T")[0];
       const reposWithGitHubRemote = Object.values(data.repos)
         .filter((r) => r?.owner && r?.repoSlug)
         .sort((a, b) => (b.commits || 0) - (a.commits || 0));
@@ -369,7 +368,10 @@ async function fetchData({
           `gh search prs --author="${ghAuthor}" --created=">=${dateFilter}" --limit 20 --json number,repository,url,createdAt`,
           { encoding: "utf-8" }
         );
-        if (!search) throw new Error("gh not available or not authenticated");
+        if (!search) {
+          console.error("ERROR: gh CLI not available or not authenticated. Set GH_TOKEN environment variable.");
+          process.exit(1);
+        }
         prList = JSON.parse(search);
       }
 
@@ -414,9 +416,6 @@ async function fetchData({
           data.stats.prs++;
         } catch {}
       }
-    } catch (e) {
-      console.error("   PR fetch skipped:", e.message);
-    }
   }
 
   // Sort

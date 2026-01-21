@@ -5,12 +5,12 @@ permissions:
 
 on:
   schedule:
-    - cron: '0 9 * * *'  # Daily at 9 AM UTC
-  workflow_dispatch:      # Manual trigger
+    - cron: "0 9 * * *" # Daily at 9 AM UTC
+  workflow_dispatch: # Manual trigger
 
 jobs:
   generate:
-    runs-on: self-hosted  # Uses your Mac with access to local repos
+    runs-on: self-hosted # Uses your Mac with access to local repos
     steps:
       - uses: actions/checkout@v4
 
@@ -21,6 +21,8 @@ jobs:
 
       - name: Generate report
         run: node generate-rich-report.mjs
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Commit if changed
         run: |
