@@ -1,7 +1,30 @@
 {
-  "generatedAt": "2026-01-21T19:07:11.904Z",
-  "periodStart": "2026-01-14T19:07:11.903Z",
+  "generatedAt": "2026-01-21T19:08:42.393Z",
+  "periodStart": "2026-01-14T19:08:42.392Z",
   "commits": [
+    {
+      "type": "commit",
+      "hash": "ecf186190956d2e961fb3f2c4e02e0a830f393cf",
+      "shortHash": "ecf1861",
+      "date": "2026-01-21T20:08:06+01:00",
+      "headline": "fix: use explicit gh username (GITHUB_TOKEN doesn't support @me alias)",
+      "repo": "activity-report",
+      "owner": "verygoodplugins",
+      "repoSlug": "activity-report",
+      "remoteUrl": "https://github.com/verygoodplugins/activity-report",
+      "stats": {
+        "added": 1,
+        "deleted": 1,
+        "files": 1
+      },
+      "files": [
+        {
+          "file": ".github/workflows/daily-update.yml",
+          "added": 1,
+          "deleted": 1
+        }
+      ]
+    },
     {
       "type": "commit",
       "hash": "1b8949b376ab7ac2f8da9be563aab8ff050e6137",
@@ -2502,281 +2525,458 @@
   "prs": [
     {
       "type": "pr",
-      "number": 18,
-      "title": "chore(main): release mcp-evernote 1.2.3",
-      "url": "https://github.com/verygoodplugins/mcp-evernote/pull/18",
+      "number": 14,
+      "title": "v1.2.0",
+      "url": "https://github.com/verygoodplugins/mcp-evernote/pull/14",
       "state": "MERGED",
-      "date": "2026-01-21T07:00:14Z",
+      "date": "2026-01-21T02:29:34Z",
       "repo": "mcp-evernote",
       "repoFull": "verygoodplugins/mcp-evernote",
       "stats": {
-        "added": 13,
-        "deleted": 6,
-        "files": 5
+        "added": 1222,
+        "deleted": 1495,
+        "files": 12
       },
       "baseBranch": "main",
-      "headBranch": "release-please--branches--main--components--mcp-evernote",
+      "headBranch": "develop",
       "mergeable": "UNKNOWN",
-      "commits": 1,
-      "reviews": [],
-      "labels": [
-        "autorelease: tagged"
-      ],
-      "files": [
+      "commits": 18,
+      "reviews": [
         {
-          "file": ".release-please-manifest.json",
-          "added": 1,
-          "deleted": 1
+          "author": "github-advanced-security",
+          "state": "COMMENTED",
+          "submittedAt": "2026-01-21T02:29:36Z"
         },
         {
-          "file": "CHANGELOG.md",
-          "added": 7,
+          "author": "coderabbitai",
+          "state": "COMMENTED",
+          "submittedAt": "2026-01-21T02:41:30Z"
+        },
+        {
+          "author": "coderabbitai",
+          "state": "COMMENTED",
+          "submittedAt": "2026-01-21T02:47:11Z"
+        }
+      ],
+      "labels": [],
+      "files": [
+        {
+          "file": ".github/codeql/codeql-config.yml",
+          "added": 33,
+          "deleted": 0
+        },
+        {
+          "file": ".github/workflows/security.yml",
+          "added": 1,
+          "deleted": 0
+        },
+        {
+          "file": "__tests__/integration/mcp-tools.test.ts",
+          "added": 364,
+          "deleted": 2
+        },
+        {
+          "file": "__tests__/mocks/evernote.mock.ts",
+          "added": 33,
+          "deleted": 0
+        },
+        {
+          "file": "__tests__/unit/search-preview.test.ts",
+          "added": 171,
           "deleted": 0
         },
         {
           "file": "package-lock.json",
-          "added": 2,
-          "deleted": 2
+          "added": 240,
+          "deleted": 1458
         },
         {
           "file": "package.json",
-          "added": 1,
-          "deleted": 1
+          "added": 3,
+          "deleted": 2
         },
         {
-          "file": "server.json",
-          "added": 2,
-          "deleted": 2
+          "file": "scripts/install-to-claude.js",
+          "added": 20,
+          "deleted": 13
+        },
+        {
+          "file": "src/auth-standalone.ts",
+          "added": 14,
+          "deleted": 7
+        },
+        {
+          "file": "src/evernote-api.ts",
+          "added": 188,
+          "deleted": 5
+        },
+        {
+          "file": "src/index.ts",
+          "added": 138,
+          "deleted": 8
+        },
+        {
+          "file": "src/types.ts",
+          "added": 17,
+          "deleted": 0
         }
       ]
     },
     {
       "type": "pr",
-      "number": 17,
-      "title": "chore(main): release mcp-evernote 1.2.2",
-      "url": "https://github.com/verygoodplugins/mcp-evernote/pull/17",
+      "number": 51,
+      "title": "docs: Update API documentation and configuration settings",
+      "url": "https://github.com/verygoodplugins/automem/pull/51",
       "state": "MERGED",
-      "date": "2026-01-21T06:57:35Z",
-      "repo": "mcp-evernote",
-      "repoFull": "verygoodplugins/mcp-evernote",
-      "stats": {
-        "added": 14,
-        "deleted": 6,
-        "files": 5
-      },
-      "baseBranch": "main",
-      "headBranch": "release-please--branches--main--components--mcp-evernote",
-      "mergeable": "UNKNOWN",
-      "commits": 1,
-      "reviews": [],
-      "labels": [
-        "autorelease: tagged"
-      ],
-      "files": [
-        {
-          "file": ".release-please-manifest.json",
-          "added": 1,
-          "deleted": 1
-        },
-        {
-          "file": "CHANGELOG.md",
-          "added": 8,
-          "deleted": 0
-        },
-        {
-          "file": "package-lock.json",
-          "added": 2,
-          "deleted": 2
-        },
-        {
-          "file": "package.json",
-          "added": 1,
-          "deleted": 1
-        },
-        {
-          "file": "server.json",
-          "added": 2,
-          "deleted": 2
-        }
-      ]
-    },
-    {
-      "type": "pr",
-      "number": 16,
-      "title": "chore(main): release mcp-evernote 1.2.1",
-      "url": "https://github.com/verygoodplugins/mcp-evernote/pull/16",
-      "state": "MERGED",
-      "date": "2026-01-21T06:54:44Z",
-      "repo": "mcp-evernote",
-      "repoFull": "verygoodplugins/mcp-evernote",
-      "stats": {
-        "added": 14,
-        "deleted": 6,
-        "files": 5
-      },
-      "baseBranch": "main",
-      "headBranch": "release-please--branches--main--components--mcp-evernote",
-      "mergeable": "UNKNOWN",
-      "commits": 1,
-      "reviews": [],
-      "labels": [
-        "autorelease: tagged"
-      ],
-      "files": [
-        {
-          "file": ".release-please-manifest.json",
-          "added": 1,
-          "deleted": 1
-        },
-        {
-          "file": "CHANGELOG.md",
-          "added": 8,
-          "deleted": 0
-        },
-        {
-          "file": "package-lock.json",
-          "added": 2,
-          "deleted": 2
-        },
-        {
-          "file": "package.json",
-          "added": 1,
-          "deleted": 1
-        },
-        {
-          "file": "server.json",
-          "added": 2,
-          "deleted": 2
-        }
-      ]
-    },
-    {
-      "type": "pr",
-      "number": 15,
-      "title": "chore(main): release mcp-evernote 1.2.1",
-      "url": "https://github.com/verygoodplugins/mcp-evernote/pull/15",
-      "state": "CLOSED",
-      "date": "2026-01-21T04:38:17Z",
-      "repo": "mcp-evernote",
-      "repoFull": "verygoodplugins/mcp-evernote",
-      "stats": {
-        "added": 13,
-        "deleted": 6,
-        "files": 5
-      },
-      "baseBranch": "main",
-      "headBranch": "release-please--branches--main--components--mcp-evernote",
-      "mergeable": "UNKNOWN",
-      "commits": 1,
-      "reviews": [],
-      "labels": [
-        "autorelease: pending"
-      ],
-      "files": [
-        {
-          "file": ".release-please-manifest.json",
-          "added": 1,
-          "deleted": 1
-        },
-        {
-          "file": "CHANGELOG.md",
-          "added": 7,
-          "deleted": 0
-        },
-        {
-          "file": "package-lock.json",
-          "added": 2,
-          "deleted": 2
-        },
-        {
-          "file": "package.json",
-          "added": 1,
-          "deleted": 1
-        },
-        {
-          "file": "server.json",
-          "added": 2,
-          "deleted": 2
-        }
-      ]
-    },
-    {
-      "type": "pr",
-      "number": 52,
-      "title": "chore(main): release 0.10.0",
-      "url": "https://github.com/verygoodplugins/automem/pull/52",
-      "state": "OPEN",
-      "date": "2026-01-21T02:39:06Z",
+      "date": "2026-01-21T01:16:46Z",
       "repo": "automem",
       "repoFull": "verygoodplugins/automem",
       "stats": {
-        "added": 57,
+        "added": 84,
+        "deleted": 122,
+        "files": 7
+      },
+      "baseBranch": "main",
+      "headBranch": "docs-update-20-january",
+      "mergeable": "UNKNOWN",
+      "commits": 3,
+      "reviews": [
+        {
+          "author": "coderabbitai",
+          "state": "COMMENTED",
+          "submittedAt": "2026-01-21T01:24:30Z"
+        },
+        {
+          "author": "coderabbitai",
+          "state": "COMMENTED",
+          "submittedAt": "2026-01-21T01:37:30Z"
+        }
+      ],
+      "labels": [
+        "enhancement"
+      ],
+      "files": [
+        {
+          "file": "CLAUDE.md",
+          "added": 5,
+          "deleted": 5
+        },
+        {
+          "file": "INSTALLATION.md",
+          "added": 3,
+          "deleted": 3
+        },
+        {
+          "file": "README.md",
+          "added": 62,
+          "deleted": 102
+        },
+        {
+          "file": "docs/API.md",
+          "added": 5,
+          "deleted": 2
+        },
+        {
+          "file": "docs/MCP_SSE.md",
+          "added": 2,
+          "deleted": 2
+        },
+        {
+          "file": "docs/RAILWAY_DEPLOYMENT.md",
+          "added": 1,
+          "deleted": 1
+        },
+        {
+          "file": "docs/TESTING.md",
+          "added": 6,
+          "deleted": 7
+        }
+      ]
+    },
+    {
+      "type": "pr",
+      "number": 13,
+      "title": "Add targeted patch tool for Evernote notes",
+      "url": "https://github.com/verygoodplugins/mcp-evernote/pull/13",
+      "state": "MERGED",
+      "date": "2026-01-19T16:24:49Z",
+      "repo": "mcp-evernote",
+      "repoFull": "verygoodplugins/mcp-evernote",
+      "stats": {
+        "added": 437,
+        "deleted": 10,
+        "files": 5
+      },
+      "baseBranch": "develop",
+      "headBranch": "feat/patch-note",
+      "mergeable": "UNKNOWN",
+      "commits": 6,
+      "reviews": [
+        {
+          "author": "coderabbitai",
+          "state": "COMMENTED",
+          "submittedAt": "2026-01-19T16:28:29Z"
+        },
+        {
+          "author": "coderabbitai",
+          "state": "COMMENTED",
+          "submittedAt": "2026-01-21T01:51:07Z"
+        }
+      ],
+      "labels": [],
+      "files": [
+        {
+          "file": "__tests__/integration/mcp-tools.test.ts",
+          "added": 205,
+          "deleted": 1
+        },
+        {
+          "file": "__tests__/unit/search-preview.test.ts",
+          "added": 2,
+          "deleted": 2
+        },
+        {
+          "file": "src/evernote-api.ts",
+          "added": 133,
+          "deleted": 7
+        },
+        {
+          "file": "src/index.ts",
+          "added": 80,
+          "deleted": 0
+        },
+        {
+          "file": "src/types.ts",
+          "added": 17,
+          "deleted": 0
+        }
+      ]
+    },
+    {
+      "type": "pr",
+      "number": 50,
+      "title": "Add token fee badge and update project description",
+      "url": "https://github.com/verygoodplugins/automem/pull/50",
+      "state": "MERGED",
+      "date": "2026-01-19T15:34:45Z",
+      "repo": "automem",
+      "repoFull": "verygoodplugins/automem",
+      "stats": {
+        "added": 9,
         "deleted": 0,
         "files": 1
       },
       "baseBranch": "main",
-      "headBranch": "release-please--branches--main",
-      "mergeable": "MERGEABLE",
+      "headBranch": "jack-arturo-patch-1-1",
+      "mergeable": "UNKNOWN",
       "commits": 1,
       "reviews": [],
-      "labels": [
-        "autorelease: pending"
-      ],
+      "labels": [],
       "files": [
         {
-          "file": "CHANGELOG.md",
-          "added": 57,
+          "file": "README.md",
+          "added": 9,
           "deleted": 0
         }
       ]
     },
     {
       "type": "pr",
-      "number": 12,
-      "title": "chore(main): release mcp-evernote 1.2.0",
-      "url": "https://github.com/verygoodplugins/mcp-evernote/pull/12",
+      "number": 25,
+      "title": "Adds process tag/title for safe cleanup",
+      "url": "https://github.com/verygoodplugins/mcp-automem/pull/25",
+      "state": "OPEN",
+      "date": "2026-01-19T14:34:44Z",
+      "repo": "mcp-automem",
+      "repoFull": "verygoodplugins/mcp-automem",
+      "stats": {
+        "added": 866,
+        "deleted": 790,
+        "files": 3
+      },
+      "baseBranch": "main",
+      "headBranch": "feat/process-tag",
+      "mergeable": "MERGEABLE",
+      "commits": 1,
+      "reviews": [],
+      "labels": [],
+      "files": [
+        {
+          "file": "dist/index.js",
+          "added": 849,
+          "deleted": 789
+        },
+        {
+          "file": "dist/index.js.map",
+          "added": 1,
+          "deleted": 1
+        },
+        {
+          "file": "src/index.ts",
+          "added": 16,
+          "deleted": 0
+        }
+      ]
+    },
+    {
+      "type": "pr",
+      "number": 11,
+      "title": "fix(security): resolve CodeQL security alerts",
+      "url": "https://github.com/verygoodplugins/mcp-evernote/pull/11",
       "state": "MERGED",
-      "date": "2026-01-19T15:08:51Z",
+      "date": "2026-01-19T13:23:26Z",
       "repo": "mcp-evernote",
       "repoFull": "verygoodplugins/mcp-evernote",
       "stats": {
-        "added": 30,
-        "deleted": 6,
-        "files": 5
+        "added": 68,
+        "deleted": 20,
+        "files": 4
       },
-      "baseBranch": "main",
-      "headBranch": "release-please--branches--main--components--mcp-evernote",
+      "baseBranch": "develop",
+      "headBranch": "fix/codeql-security-alerts",
       "mergeable": "UNKNOWN",
-      "commits": 1,
-      "reviews": [],
-      "labels": [
-        "autorelease: tagged"
-      ],
-      "files": [
+      "commits": 5,
+      "reviews": [
         {
-          "file": ".release-please-manifest.json",
-          "added": 1,
-          "deleted": 1
+          "author": "github-advanced-security",
+          "state": "COMMENTED",
+          "submittedAt": "2026-01-19T13:24:44Z"
         },
         {
-          "file": "CHANGELOG.md",
-          "added": 24,
+          "author": "github-advanced-security",
+          "state": "COMMENTED",
+          "submittedAt": "2026-01-19T14:37:59Z"
+        },
+        {
+          "author": "github-advanced-security",
+          "state": "COMMENTED",
+          "submittedAt": "2026-01-19T14:41:00Z"
+        }
+      ],
+      "labels": [],
+      "files": [
+        {
+          "file": ".github/codeql/codeql-config.yml",
+          "added": 33,
           "deleted": 0
         },
         {
-          "file": "package-lock.json",
-          "added": 2,
-          "deleted": 2
+          "file": ".github/workflows/security.yml",
+          "added": 1,
+          "deleted": 0
         },
         {
-          "file": "package.json",
-          "added": 1,
+          "file": "scripts/install-to-claude.js",
+          "added": 20,
+          "deleted": 13
+        },
+        {
+          "file": "src/auth-standalone.ts",
+          "added": 14,
+          "deleted": 7
+        }
+      ]
+    },
+    {
+      "type": "pr",
+      "number": 10,
+      "title": "feat(search): enhance search results with metadata and optional content preview",
+      "url": "https://github.com/verygoodplugins/mcp-evernote/pull/10",
+      "state": "MERGED",
+      "date": "2026-01-19T12:09:54Z",
+      "repo": "mcp-evernote",
+      "repoFull": "verygoodplugins/mcp-evernote",
+      "stats": {
+        "added": 485,
+        "deleted": 9,
+        "files": 5
+      },
+      "baseBranch": "develop",
+      "headBranch": "feature/search-note-preview",
+      "mergeable": "UNKNOWN",
+      "commits": 1,
+      "reviews": [
+        {
+          "author": "github-advanced-security",
+          "state": "COMMENTED",
+          "submittedAt": "2026-01-19T12:11:04Z"
+        }
+      ],
+      "labels": [],
+      "files": [
+        {
+          "file": "__tests__/integration/mcp-tools.test.ts",
+          "added": 159,
           "deleted": 1
         },
         {
-          "file": "server.json",
+          "file": "__tests__/mocks/evernote.mock.ts",
+          "added": 33,
+          "deleted": 0
+        },
+        {
+          "file": "__tests__/unit/search-preview.test.ts",
+          "added": 171,
+          "deleted": 0
+        },
+        {
+          "file": "src/evernote-api.ts",
+          "added": 64,
+          "deleted": 0
+        },
+        {
+          "file": "src/index.ts",
+          "added": 58,
+          "deleted": 8
+        }
+      ]
+    },
+    {
+      "type": "pr",
+      "number": 9,
+      "title": "Feature/7 ocr integration tests",
+      "url": "https://github.com/verygoodplugins/mcp-evernote/pull/9",
+      "state": "MERGED",
+      "date": "2026-01-18T08:25:02Z",
+      "repo": "mcp-evernote",
+      "repoFull": "verygoodplugins/mcp-evernote",
+      "stats": {
+        "added": 620,
+        "deleted": 0,
+        "files": 4
+      },
+      "baseBranch": "develop",
+      "headBranch": "feature/7-ocr-integration-tests",
+      "mergeable": "UNKNOWN",
+      "commits": 2,
+      "reviews": [
+        {
+          "author": "coderabbitai",
+          "state": "COMMENTED",
+          "submittedAt": "2026-01-18T08:31:15Z"
+        }
+      ],
+      "labels": [],
+      "files": [
+        {
+          "file": "__tests__/integration/mcp-tools.test.ts",
+          "added": 327,
+          "deleted": 0
+        },
+        {
+          "file": "__tests__/mocks/evernote.mock.ts",
+          "added": 86,
+          "deleted": 0
+        },
+        {
+          "file": "__tests__/unit/recognition.test.ts",
+          "added": 205,
+          "deleted": 0
+        },
+        {
+          "file": "jest.config.js",
           "added": 2,
-          "deleted": 2
+          "deleted": 0
         }
       ]
     }
@@ -2839,19 +3039,19 @@
       "repoSlug": "AutoApp"
     },
     "activity-report": {
-      "commits": 9,
-      "additions": 7832,
-      "deletions": 2461,
+      "commits": 10,
+      "additions": 7833,
+      "deletions": 2462,
       "remoteUrl": "https://github.com/verygoodplugins/activity-report",
       "owner": "verygoodplugins",
       "repoSlug": "activity-report"
     }
   },
   "stats": {
-    "additions": 26783,
-    "deletions": 9864,
-    "files": 233,
-    "commits": 74,
-    "prs": 6
+    "additions": 26784,
+    "deletions": 9865,
+    "files": 234,
+    "commits": 75,
+    "prs": 8
   }
 }
