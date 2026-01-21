@@ -353,7 +353,7 @@ async function fetchData({
         for (const repo of candidateRepos) {
           const repoFull = `${repo.owner}/${repo.repoSlug}`;
           const search = safeExec(
-            `gh search prs --author="${ghAuthor}" --created=">=${dateFilter}" --repo="${repoFull}" --limit ${perRepoLimit} --json number,repository,url,createdAt`,
+            `gh search prs --author="${ghAuthor}" --created=">=${dateFilter}" --repo="${repoFull}" --limit ${perRepoLimit} --json number,repository,url,createdAt 2>/dev/null`,
             { encoding: "utf-8" }
           );
           if (!search) continue;
@@ -371,7 +371,7 @@ async function fetchData({
         prList = prList.slice(0, 20);
       } else {
         const search = safeExec(
-          `gh search prs --author="${ghAuthor}" --created=">=${dateFilter}" --limit 20 --json number,repository,url,createdAt`,
+          `gh search prs --author="${ghAuthor}" --created=">=${dateFilter}" --limit 20 --json number,repository,url,createdAt 2>/dev/null`,
           { encoding: "utf-8" }
         );
         if (!search) {
