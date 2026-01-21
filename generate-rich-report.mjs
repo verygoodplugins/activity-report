@@ -212,6 +212,8 @@ async function fetchData({
   const sinceDate = new Date(Date.now() - hoursBack * 60 * 60 * 1000);
   const sinceIso = sinceDate.toISOString();
   console.log(`   Since: ${sinceIso}`);
+  console.log(`   Author filter: ${authorEmail || "(none)"}`);
+  console.log(`   Searching ${repoRoots.length} root(s)...`);
 
   const data = {
     generatedAt: new Date().toISOString(),
@@ -224,7 +226,9 @@ async function fetchData({
 
   // 1. Local Repos
   for (const basePath of repoRoots) {
-    for (const repoPath of findGitReposUnder(basePath, maxDepth)) {
+    const foundRepos = findGitReposUnder(basePath, maxDepth);
+    console.log(`   Found ${foundRepos.length} git repos under ${basePath}`);
+    for (const repoPath of foundRepos) {
       const repoName = path.basename(repoPath);
 
       // Skip excluded repos (WP Fusion, personal/private repos)
