@@ -1,7 +1,40 @@
 {
-  "generatedAt": "2026-01-20T22:52:46.915Z",
-  "periodStart": "2026-01-13T22:52:46.914Z",
+  "generatedAt": "2026-01-20T23:53:49.959Z",
+  "periodStart": "2026-01-13T23:53:49.958Z",
   "commits": [
+    {
+      "type": "commit",
+      "hash": "fe57d8924adc0ee5cab614d6ab52acaff1560d74",
+      "shortHash": "fe57d89",
+      "date": "2026-01-21T00:05:49+01:00",
+      "headline": "Update activity data and recent commit history",
+      "repo": "activity-report",
+      "owner": "verygoodplugins",
+      "repoSlug": "activity-report",
+      "remoteUrl": "https://github.com/verygoodplugins/activity-report",
+      "stats": {
+        "added": 3843,
+        "deleted": 103,
+        "files": 3
+      },
+      "files": [
+        {
+          "file": "activity-data.json",
+          "added": 1849,
+          "deleted": 59
+        },
+        {
+          "file": "generate-rich-report.mjs",
+          "added": 14,
+          "deleted": 0
+        },
+        {
+          "file": "index.html",
+          "added": 1980,
+          "deleted": 44
+        }
+      ]
+    },
     {
       "type": "commit",
       "hash": "f0fad3f933f1a6fd4261e30c2268c871611d1c5f",
@@ -1362,74 +1395,6 @@
           "deleted": 0
         }
       ]
-    },
-    {
-      "type": "commit",
-      "hash": "8cb7fb29222cff801050503285d740bb1154d5f3",
-      "shortHash": "8cb7fb2",
-      "date": "2026-01-14T00:29:56+01:00",
-      "headline": "Improve chat API streaming, persistence, and process cleanup",
-      "repo": "autohub",
-      "owner": "verygoodplugins",
-      "repoSlug": "autohub",
-      "remoteUrl": "https://github.com/verygoodplugins/autohub",
-      "stats": {
-        "added": 342,
-        "deleted": 119,
-        "files": 10
-      },
-      "files": [
-        {
-          "file": "package.json",
-          "added": 1,
-          "deleted": 0
-        },
-        {
-          "file": "scripts/chat-api-smoke-test.sh",
-          "added": 45,
-          "deleted": 0
-        },
-        {
-          "file": "src/chat-server/index.js",
-          "added": 90,
-          "deleted": 59
-        },
-        {
-          "file": "src/chat-server/middleware/rate-limiter.js",
-          "added": 9,
-          "deleted": 5
-        },
-        {
-          "file": "src/chat-server/routes/chat.js",
-          "added": 60,
-          "deleted": 18
-        },
-        {
-          "file": "src/claude/service.js",
-          "added": 7,
-          "deleted": 1
-        },
-        {
-          "file": "src/db/logger.js",
-          "added": 4,
-          "deleted": 2
-        },
-        {
-          "file": "src/services/mcp-client.js",
-          "added": 109,
-          "deleted": 15
-        },
-        {
-          "file": "web/src/api/client.js",
-          "added": 17,
-          "deleted": 8
-        },
-        {
-          "file": "web/src/components/ChatInterface.jsx",
-          "added": 0,
-          "deleted": 11
-        }
-      ]
     }
   ],
   "prs": [
@@ -1458,7 +1423,29 @@
           "submittedAt": "2026-01-19T16:28:29Z"
         }
       ],
-      "labels": []
+      "labels": [],
+      "files": [
+        {
+          "file": "__tests__/integration/mcp-tools.test.ts",
+          "added": 156,
+          "deleted": 0
+        },
+        {
+          "file": "src/evernote-api.ts",
+          "added": 75,
+          "deleted": 0
+        },
+        {
+          "file": "src/index.ts",
+          "added": 73,
+          "deleted": 0
+        },
+        {
+          "file": "src/types.ts",
+          "added": 17,
+          "deleted": 0
+        }
+      ]
     },
     {
       "type": "pr",
@@ -1479,7 +1466,14 @@
       "mergeable": "UNKNOWN",
       "commits": 1,
       "reviews": [],
-      "labels": []
+      "labels": [],
+      "files": [
+        {
+          "file": "README.md",
+          "added": 9,
+          "deleted": 0
+        }
+      ]
     },
     {
       "type": "pr",
@@ -1500,7 +1494,24 @@
       "mergeable": "MERGEABLE",
       "commits": 1,
       "reviews": [],
-      "labels": []
+      "labels": [],
+      "files": [
+        {
+          "file": "dist/index.js",
+          "added": 849,
+          "deleted": 789
+        },
+        {
+          "file": "dist/index.js.map",
+          "added": 1,
+          "deleted": 1
+        },
+        {
+          "file": "src/index.ts",
+          "added": 16,
+          "deleted": 0
+        }
+      ]
     },
     {
       "type": "pr",
@@ -1537,7 +1548,29 @@
           "submittedAt": "2026-01-19T14:41:00Z"
         }
       ],
-      "labels": []
+      "labels": [],
+      "files": [
+        {
+          "file": ".github/codeql/codeql-config.yml",
+          "added": 33,
+          "deleted": 0
+        },
+        {
+          "file": ".github/workflows/security.yml",
+          "added": 1,
+          "deleted": 0
+        },
+        {
+          "file": "scripts/install-to-claude.js",
+          "added": 20,
+          "deleted": 13
+        },
+        {
+          "file": "src/auth-standalone.ts",
+          "added": 14,
+          "deleted": 7
+        }
+      ]
     },
     {
       "type": "pr",
@@ -1564,7 +1597,34 @@
           "submittedAt": "2026-01-19T12:11:04Z"
         }
       ],
-      "labels": []
+      "labels": [],
+      "files": [
+        {
+          "file": "__tests__/integration/mcp-tools.test.ts",
+          "added": 159,
+          "deleted": 1
+        },
+        {
+          "file": "__tests__/mocks/evernote.mock.ts",
+          "added": 33,
+          "deleted": 0
+        },
+        {
+          "file": "__tests__/unit/search-preview.test.ts",
+          "added": 171,
+          "deleted": 0
+        },
+        {
+          "file": "src/evernote-api.ts",
+          "added": 64,
+          "deleted": 0
+        },
+        {
+          "file": "src/index.ts",
+          "added": 58,
+          "deleted": 8
+        }
+      ]
     },
     {
       "type": "pr",
@@ -1585,7 +1645,19 @@
       "mergeable": "UNKNOWN",
       "commits": 1,
       "reviews": [],
-      "labels": []
+      "labels": [],
+      "files": [
+        {
+          "file": "public/icon.png",
+          "added": 0,
+          "deleted": 0
+        },
+        {
+          "file": "src/pages/about.astro",
+          "added": 10,
+          "deleted": 1
+        }
+      ]
     },
     {
       "type": "pr",
@@ -1606,7 +1678,19 @@
       "mergeable": "UNKNOWN",
       "commits": 1,
       "reviews": [],
-      "labels": []
+      "labels": [],
+      "files": [
+        {
+          "file": "src/content/blog/06-remote-mcp-upgrade/index.md",
+          "added": 113,
+          "deleted": 0
+        },
+        {
+          "file": "src/content/blog/07-visualization-preview/index.md",
+          "added": 135,
+          "deleted": 0
+        }
+      ]
     },
     {
       "type": "pr",
@@ -1633,7 +1717,34 @@
           "submittedAt": "2026-01-18T12:03:06Z"
         }
       ],
-      "labels": []
+      "labels": [],
+      "files": [
+        {
+          "file": "src/claude/server-tools/agent-todo.js",
+          "added": 210,
+          "deleted": 27
+        },
+        {
+          "file": "src/claude/service.js",
+          "added": 4,
+          "deleted": 1
+        },
+        {
+          "file": "src/core/platform-adapter.js",
+          "added": 10,
+          "deleted": 6
+        },
+        {
+          "file": "src/workflows/runner.js",
+          "added": 3,
+          "deleted": 6
+        },
+        {
+          "file": "workflows/hourly/memory-cache-refresh.md",
+          "added": 0,
+          "deleted": 6
+        }
+      ]
     },
     {
       "type": "pr",
@@ -1660,7 +1771,29 @@
           "submittedAt": "2026-01-18T08:31:15Z"
         }
       ],
-      "labels": []
+      "labels": [],
+      "files": [
+        {
+          "file": "__tests__/integration/mcp-tools.test.ts",
+          "added": 327,
+          "deleted": 0
+        },
+        {
+          "file": "__tests__/mocks/evernote.mock.ts",
+          "added": 86,
+          "deleted": 0
+        },
+        {
+          "file": "__tests__/unit/recognition.test.ts",
+          "added": 205,
+          "deleted": 0
+        },
+        {
+          "file": "jest.config.js",
+          "added": 2,
+          "deleted": 0
+        }
+      ]
     },
     {
       "type": "pr",
@@ -1702,7 +1835,134 @@
           "submittedAt": "2026-01-18T08:45:01Z"
         }
       ],
-      "labels": []
+      "labels": [],
+      "files": [
+        {
+          "file": "CLAUDE.md",
+          "added": 28,
+          "deleted": 5
+        },
+        {
+          "file": "config/services/discord.json",
+          "added": 34,
+          "deleted": 0
+        },
+        {
+          "file": "config/tool-filters.json",
+          "added": 41,
+          "deleted": 0
+        },
+        {
+          "file": "package-lock.json",
+          "added": 246,
+          "deleted": 1
+        },
+        {
+          "file": "package.json",
+          "added": 5,
+          "deleted": 2
+        },
+        {
+          "file": "server.js",
+          "added": 13,
+          "deleted": 0
+        },
+        {
+          "file": "servers/discord-mcp/package-lock.json",
+          "added": 1122,
+          "deleted": 0
+        },
+        {
+          "file": "servers/discord-mcp/package.json",
+          "added": 14,
+          "deleted": 0
+        },
+        {
+          "file": "servers/discord-mcp/server.js",
+          "added": 243,
+          "deleted": 0
+        },
+        {
+          "file": "src/chat-server/middleware/rate-limiter.js",
+          "added": 127,
+          "deleted": 99
+        },
+        {
+          "file": "src/chat-server/routes/agent-tasks.js",
+          "added": 4,
+          "deleted": 0
+        },
+        {
+          "file": "src/chat-server/routes/chat.js",
+          "added": 49,
+          "deleted": 24
+        },
+        {
+          "file": "src/core/platform-adapter.js",
+          "added": 20,
+          "deleted": 66
+        },
+        {
+          "file": "src/discord-server/index.js",
+          "added": 517,
+          "deleted": 0
+        },
+        {
+          "file": "src/platforms/discord/adapter.js",
+          "added": 510,
+          "deleted": 0
+        },
+        {
+          "file": "src/platforms/slack/adapter.js",
+          "added": 25,
+          "deleted": 0
+        },
+        {
+          "file": "src/platforms/whatsapp/adapter.js",
+          "added": 24,
+          "deleted": 0
+        },
+        {
+          "file": "src/services/mcp-client.js",
+          "added": 67,
+          "deleted": 11
+        },
+        {
+          "file": "src/services/mcp-process-title.cjs",
+          "added": 17,
+          "deleted": 0
+        },
+        {
+          "file": "src/services/user-identity.js",
+          "added": 12,
+          "deleted": 0
+        },
+        {
+          "file": "src/slack-server/handlers/events.js",
+          "added": 18,
+          "deleted": 111
+        },
+        {
+          "file": "src/workflows/workflow-executor.js",
+          "added": 8,
+          "deleted": 8
+        },
+        {
+          "file": "test/discord-mcp.test.js",
+          "added": 233,
+          "deleted": 0
+        },
+        {
+          "file": "test/slack-work-object-validator.js",
+          "added": 1,
+          "deleted": 1
+        },
+        {
+          "file": "tools/supervisor-tools.js",
+          "added": 3,
+          "deleted": 3
+        }
+      ]
     },
     {
       "type": "pr",
@@ -1744,7 +2004,99 @@
           "submittedAt": "2026-01-18T06:17:24Z"
         }
       ],
-      "labels": []
+      "labels": [],
+      "files": [
+        {
+          "file": ".eslintignore",
+          "added": 5,
+          "deleted": 0
+        },
+        {
+          "file": ".eslintrc.cjs",
+          "added": 19,
+          "deleted": 0
+        },
+        {
+          "file": ".github/workflows/ci.yml",
+          "added": 2,
+          "deleted": 2
+        },
+        {
+          "file": ".github/workflows/security.yml",
+          "added": 2,
+          "deleted": 2
+        },
+        {
+          "file": ".github/workflows/test.yml",
+          "added": 2,
+          "deleted": 1
+        },
+        {
+          "file": ".gitignore",
+          "added": 4,
+          "deleted": 1
+        },
+        {
+          "file": "AGENTS.md",
+          "added": 97,
+          "deleted": 0
+        },
+        {
+          "file": "CHANGELOG.md",
+          "added": 3,
+          "deleted": 1
+        },
+        {
+          "file": "FIXES_SUMMARY.md",
+          "added": 0,
+          "deleted": 277
+        },
+        {
+          "file": "README.md",
+          "added": 7,
+          "deleted": 10
+        },
+        {
+          "file": "TEST_DOCUMENTATION.md",
+          "added": 50,
+          "deleted": 91
+        },
+        {
+          "file": "__tests__/unit/simple-oauth.test.ts",
+          "added": 48,
+          "deleted": 0
+        },
+        {
+          "file": "package-lock.json",
+          "added": 9,
+          "deleted": 6
+        },
+        {
+          "file": "package.json",
+          "added": 2,
+          "deleted": 2
+        },
+        {
+          "file": "server.json",
+          "added": 13,
+          "deleted": 12
+        },
+        {
+          "file": "src/auth-standalone.ts",
+          "added": 4,
+          "deleted": 3
+        },
+        {
+          "file": "src/index.ts",
+          "added": 29,
+          "deleted": 22
+        },
+        {
+          "file": "src/oauth.ts",
+          "added": 7,
+          "deleted": 2
+        }
+      ]
     },
     {
       "type": "pr",
@@ -1771,7 +2123,79 @@
           "submittedAt": "2026-01-14T02:11:26Z"
         }
       ],
-      "labels": []
+      "labels": [],
+      "files": [
+        {
+          "file": "docs/chat-stream-v3.md",
+          "added": 223,
+          "deleted": 0
+        },
+        {
+          "file": "docs/schemas/chat-stream-v3.schema.json",
+          "added": 477,
+          "deleted": 0
+        },
+        {
+          "file": "package.json",
+          "added": 1,
+          "deleted": 0
+        },
+        {
+          "file": "scripts/chat-api-smoke-test.sh",
+          "added": 45,
+          "deleted": 0
+        },
+        {
+          "file": "src/chat-server/CLAUDE.md",
+          "added": 29,
+          "deleted": 8
+        },
+        {
+          "file": "src/chat-server/index.js",
+          "added": 90,
+          "deleted": 59
+        },
+        {
+          "file": "src/chat-server/middleware/rate-limiter.js",
+          "added": 9,
+          "deleted": 5
+        },
+        {
+          "file": "src/chat-server/routes/chat.js",
+          "added": 115,
+          "deleted": 18
+        },
+        {
+          "file": "src/claude/prompt/system-prompt.js",
+          "added": 23,
+          "deleted": 36
+        },
+        {
+          "file": "src/claude/service.js",
+          "added": 7,
+          "deleted": 1
+        },
+        {
+          "file": "src/db/logger.js",
+          "added": 4,
+          "deleted": 2
+        },
+        {
+          "file": "src/services/mcp-client.js",
+          "added": 109,
+          "deleted": 15
+        },
+        {
+          "file": "web/src/api/client.js",
+          "added": 17,
+          "deleted": 8
+        },
+        {
+          "file": "web/src/components/ChatInterface.jsx",
+          "added": 0,
+          "deleted": 11
+        }
+      ]
     },
     {
       "type": "pr",
@@ -1808,7 +2232,84 @@
           "submittedAt": "2026-01-14T02:09:56Z"
         }
       ],
-      "labels": []
+      "labels": [],
+      "files": [
+        {
+          "file": "AGENTS.md",
+          "added": 9,
+          "deleted": 3
+        },
+        {
+          "file": "AutoHub.xcodeproj/xcuserdata/jgarturo.xcuserdatad/xcdebugger/Breakpoints_v2.xcbkptlist",
+          "added": 1,
+          "deleted": 1
+        },
+        {
+          "file": "AutoHub/AdaptiveContentView.swift",
+          "added": 38,
+          "deleted": 66
+        },
+        {
+          "file": "AutoHub/Components/InlineToolCallView.swift",
+          "added": 267,
+          "deleted": 0
+        },
+        {
+          "file": "AutoHub/Services/HubAPIService.swift",
+          "added": 357,
+          "deleted": 42
+        },
+        {
+          "file": "AutoHub/Services/HubSyncService.swift",
+          "added": 8,
+          "deleted": 7
+        },
+        {
+          "file": "AutoHub/Services/WatchRelayHandler.swift",
+          "added": 30,
+          "deleted": 0
+        },
+        {
+          "file": "AutoHub/Utilities/MessageFormatter.swift",
+          "added": 204,
+          "deleted": 4
+        },
+        {
+          "file": "AutoHub/Views/DashboardView.swift",
+          "added": 58,
+          "deleted": 5
+        },
+        {
+          "file": "AutoHub/Views/InteractiveSessionView.swift",
+          "added": 2,
+          "deleted": 0
+        },
+        {
+          "file": "AutoHub/Views/MarkdownMessageView.swift",
+          "added": 11,
+          "deleted": 1
+        },
+        {
+          "file": "AutoHub/Views/OrchestratorChatView.swift",
+          "added": 272,
+          "deleted": 23
+        },
+        {
+          "file": "AutoHub/Views/SidebarView.swift",
+          "added": 16,
+          "deleted": 94
+        },
+        {
+          "file": "AutoHubWatch Watch App/MessageFormatter.swift",
+          "added": 340,
+          "deleted": 0
+        },
+        {
+          "file": "AutoHubWatch Watch App/WatchConversationView.swift",
+          "added": 3,
+          "deleted": 2
+        }
+      ]
     },
     {
       "type": "pr",
@@ -1835,7 +2336,129 @@
           "submittedAt": "2026-01-13T20:45:00Z"
         }
       ],
-      "labels": []
+      "labels": [],
+      "files": [
+        {
+          "file": "docs/slack-bot-audit-2025.md",
+          "added": 1,
+          "deleted": 35
+        },
+        {
+          "file": "docs/slack-bot-improvements-summary.md",
+          "added": 4,
+          "deleted": 32
+        },
+        {
+          "file": "docs/slack-work-objects-fix.md",
+          "added": 1,
+          "deleted": 66
+        },
+        {
+          "file": "package.json",
+          "added": 3,
+          "deleted": 0
+        },
+        {
+          "file": "scripts/review-and-fix.sh",
+          "added": 260,
+          "deleted": 0
+        },
+        {
+          "file": "src/platforms/slack/adapter.js",
+          "added": 1,
+          "deleted": 8
+        },
+        {
+          "file": "src/slack-server/CLAUDE.md",
+          "added": 0,
+          "deleted": 1
+        },
+        {
+          "file": "src/slack-server/assistant/feedback-blocks.js",
+          "added": 0,
+          "deleted": 154
+        },
+        {
+          "file": "src/slack-server/format/blocks.js",
+          "added": 0,
+          "deleted": 25
+        },
+        {
+          "file": "src/slack-server/handlers/interactive.js",
+          "added": 0,
+          "deleted": 61
+        },
+        {
+          "file": "src/slack-server/index.js",
+          "added": 1,
+          "deleted": 12
+        },
+        {
+          "file": "src/workflows/CLAUDE.md",
+          "added": 18,
+          "deleted": 1
+        },
+        {
+          "file": "src/workflows/seed-workflows.js",
+          "added": 0,
+          "deleted": 43
+        },
+        {
+          "file": "src/workflows/sync-workflows.js",
+          "added": 54,
+          "deleted": 0
+        },
+        {
+          "file": "src/workflows/workflow-executor.js",
+          "added": 279,
+          "deleted": 164
+        },
+        {
+          "file": "web/src/components/ChatInterface.jsx",
+          "added": 1,
+          "deleted": 1
+        },
+        {
+          "file": "workflows/daily/todoist-ai-orchestrator.md",
+          "added": 0,
+          "deleted": 484
+        },
+        {
+          "file": "workflows/examples/automem-graph-demo.md",
+          "added": 0,
+          "deleted": 377
+        },
+        {
+          "file": "workflows/on-demand/celebrity-comprehensive-research.md",
+          "added": 0,
+          "deleted": 275
+        },
+        {
+          "file": "workflows/on-demand/celebrity-contact-research.md",
+          "added": 0,
+          "deleted": 161
+        },
+        {
+          "file": "workflows/on-demand/morning-sanity.md",
+          "added": 0,
+          "deleted": 31
+        },
+        {
+          "file": "workflows/on-demand/narrative-smoke.md",
+          "added": 0,
+          "deleted": 16
+        },
+        {
+          "file": "workflows/on-demand/wpf-support-dashboard-agent-test.md",
+          "added": 0,
+          "deleted": 354
+        },
+        {
+          "file": "workflows/on-demand/wpf-ticket-investigation-dry-run.md",
+          "added": 0,
+          "deleted": 70
+        }
+      ]
     }
   ],
   "repos": {
@@ -1872,9 +2495,9 @@
       "repoSlug": "automem"
     },
     "autohub": {
-      "commits": 13,
-      "additions": 4827,
-      "deletions": 610,
+      "commits": 12,
+      "additions": 4485,
+      "deletions": 491,
       "remoteUrl": "https://github.com/verygoodplugins/autohub",
       "owner": "verygoodplugins",
       "repoSlug": "autohub"
@@ -1886,12 +2509,20 @@
       "remoteUrl": "https://github.com/verygoodplugins/AutoApp",
       "owner": "verygoodplugins",
       "repoSlug": "AutoApp"
+    },
+    "activity-report": {
+      "commits": 1,
+      "additions": 3843,
+      "deletions": 103,
+      "remoteUrl": "https://github.com/verygoodplugins/activity-report",
+      "owner": "verygoodplugins",
+      "repoSlug": "activity-report"
     }
   },
   "stats": {
-    "additions": 8588,
-    "deletions": 2767,
-    "files": 131,
+    "additions": 12089,
+    "deletions": 2751,
+    "files": 124,
     "commits": 43,
     "prs": 14
   }

@@ -195,7 +195,8 @@ async function main() {
       console.log("Cached to", cacheFile);
     }
   }
-  generateHtml(data, { outputFile, hoursBack });
+  // HTML generation disabled - using static index.html that loads activity-data.json
+  // generateHtml(data, { outputFile, hoursBack });
 }
 
 async function fetchData({
@@ -375,7 +376,7 @@ async function fetchData({
       for (const pr of prList) {
         try {
           const detailRaw = safeExec(
-            `gh pr view ${pr.number} --repo ${pr.repository.nameWithOwner} --json number,title,url,state,createdAt,additions,deletions,changedFiles,commits,baseRefName,headRefName,mergeable,reviews,labels`,
+            `gh pr view ${pr.number} --repo ${pr.repository.nameWithOwner} --json number,title,url,state,createdAt,additions,deletions,changedFiles,commits,baseRefName,headRefName,mergeable,reviews,labels,files`,
             { encoding: "utf-8" }
           );
           if (!detailRaw) continue;
@@ -404,6 +405,11 @@ async function fetchData({
               submittedAt: r.submittedAt,
             })),
             labels: (detail.labels || []).map((l) => l.name),
+            files: (detail.files || []).map((f) => ({
+              file: f.path,
+              added: f.additions,
+              deleted: f.deletions,
+            })),
           });
           data.stats.prs++;
         } catch {}
