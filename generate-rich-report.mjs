@@ -179,8 +179,6 @@ async function main() {
     .map((p) => path.resolve(process.cwd(), p))
     .filter((p) => fs.existsSync(p));
 
-  console.log("   Searching paths:", repoRootsResolved);
-  
   let data;
 
   if (useCache && fs.existsSync(cacheFile)) {
@@ -218,8 +216,6 @@ async function fetchData({
   const sinceDate = new Date(Date.now() - hoursBack * 60 * 60 * 1000);
   const sinceIso = sinceDate.toISOString();
   console.log(`   Since: ${sinceIso}`);
-  console.log(`   Author filter: ${authorEmail || "(none)"}`);
-  console.log(`   Searching ${repoRoots.length} root(s)...`);
 
   const data = {
     generatedAt: new Date().toISOString(),
@@ -232,9 +228,7 @@ async function fetchData({
 
   // 1. Local Repos
   for (const basePath of repoRoots) {
-    const foundRepos = findGitReposUnder(basePath, maxDepth);
-    console.log(`   Found ${foundRepos.length} git repos under ${basePath}`);
-    for (const repoPath of foundRepos) {
+    for (const repoPath of findGitReposUnder(basePath, maxDepth)) {
       const repoName = path.basename(repoPath);
 
       // Skip excluded repos (WP Fusion, personal/private repos)
