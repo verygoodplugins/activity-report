@@ -30,10 +30,16 @@ function expandHome(inputPath) {
 
 function readGitConfigValue(key) {
   try {
-    const value = execSync(`git config --get ${key}`, {
+    // Try global first (user's actual config), then fall back to local
+    const globalValue = execSync(`git config --global --get ${key}`, {
       encoding: "utf-8",
     }).trim();
-    return value || undefined;
+    if (globalValue) return globalValue;
+    
+    const localValue = execSync(`git config --get ${key}`, {
+      encoding: "utf-8",
+    }).trim();
+    return localValue || undefined;
   } catch {
     return undefined;
   }
