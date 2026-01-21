@@ -1,7 +1,73 @@
 {
-  "generatedAt": "2026-01-21T18:49:40.230Z",
-  "periodStart": "2026-01-14T18:49:40.229Z",
+  "generatedAt": "2026-01-21T19:07:11.904Z",
+  "periodStart": "2026-01-14T19:07:11.903Z",
   "commits": [
+    {
+      "type": "commit",
+      "hash": "1b8949b376ab7ac2f8da9be563aab8ff050e6137",
+      "shortHash": "1b8949b",
+      "date": "2026-01-21T20:05:33+01:00",
+      "headline": "Fix Chat2BT port from 3000 to 8767 in all VoiceInk docs",
+      "repo": "autohub",
+      "owner": "verygoodplugins",
+      "repoSlug": "autohub",
+      "remoteUrl": "https://github.com/verygoodplugins/autohub",
+      "stats": {
+        "added": 40,
+        "deleted": 40,
+        "files": 5
+      },
+      "files": [
+        {
+          "file": "config/voiceink-power-modes-chat2bt.json",
+          "added": 3,
+          "deleted": 3
+        },
+        {
+          "file": "docs/VOICEINK-CHAT2BT-IMPLEMENTATION.md",
+          "added": 8,
+          "deleted": 8
+        },
+        {
+          "file": "docs/VOICEINK-CHAT2BT-QUICKREF.md",
+          "added": 7,
+          "deleted": 7
+        },
+        {
+          "file": "docs/VOICEINK-CHAT2BT-SETUP.md",
+          "added": 12,
+          "deleted": 12
+        },
+        {
+          "file": "docs/VOICEINK-CLIENT-INTEGRATION.md",
+          "added": 10,
+          "deleted": 10
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "079a1e24b1895706ad442f2a4a8a0e09b11e920e",
+      "shortHash": "079a1e2",
+      "date": "2026-01-21T19:52:16+01:00",
+      "headline": "chore: remove debug logging",
+      "repo": "activity-report",
+      "owner": "verygoodplugins",
+      "repoSlug": "activity-report",
+      "remoteUrl": "https://github.com/verygoodplugins/activity-report",
+      "stats": {
+        "added": 1,
+        "deleted": 7,
+        "files": 1
+      },
+      "files": [
+        {
+          "file": "generate-rich-report.mjs",
+          "added": 1,
+          "deleted": 7
+        }
+      ]
+    },
     {
       "type": "commit",
       "hash": "8d10b7bb0369f1f203eab9c404bbe6d698a13ee6",
@@ -2757,9 +2823,9 @@
       "repoSlug": "automem"
     },
     "autohub": {
-      "commits": 17,
-      "additions": 12847,
-      "deletions": 2793,
+      "commits": 18,
+      "additions": 12887,
+      "deletions": 2833,
       "remoteUrl": "https://github.com/verygoodplugins/autohub",
       "owner": "verygoodplugins",
       "repoSlug": "autohub"
@@ -2773,19 +2839,19 @@
       "repoSlug": "AutoApp"
     },
     "activity-report": {
-      "commits": 8,
-      "additions": 7831,
-      "deletions": 2454,
+      "commits": 9,
+      "additions": 7832,
+      "deletions": 2461,
       "remoteUrl": "https://github.com/verygoodplugins/activity-report",
       "owner": "verygoodplugins",
       "repoSlug": "activity-report"
     }
   },
   "stats": {
-    "additions": 26742,
-    "deletions": 9817,
-    "files": 227,
-    "commits": 72,
+    "additions": 26783,
+    "deletions": 9864,
+    "files": 233,
+    "commits": 74,
     "prs": 6
   }
 }
