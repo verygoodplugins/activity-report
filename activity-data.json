@@ -1,7 +1,656 @@
 {
-  "generatedAt": "2026-01-21T19:08:42.393Z",
-  "periodStart": "2026-01-14T19:08:42.392Z",
+  "generatedAt": "2026-01-22T09:35:05.852Z",
+  "periodStart": "2026-01-15T09:35:05.851Z",
   "commits": [
+    {
+      "type": "commit",
+      "hash": "293446233339039adf3af26c0d15a43140f0307c",
+      "shortHash": "2934462",
+      "date": "2026-01-22T04:03:56+01:00",
+      "headline": "feat: add markdown rendering, commit descriptions, and git graph visualization",
+      "repo": "activity-report",
+      "owner": "verygoodplugins",
+      "repoSlug": "activity-report",
+      "remoteUrl": "https://github.com/verygoodplugins/activity-report",
+      "stats": {
+        "added": 673,
+        "deleted": 51,
+        "files": 3
+      },
+      "files": [
+        {
+          "file": "activity-data.json",
+          "added": 433,
+          "deleted": 10
+        },
+        {
+          "file": "generate-rich-report.mjs",
+          "added": 12,
+          "deleted": 4
+        },
+        {
+          "file": "index.html",
+          "added": 228,
+          "deleted": 37
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "21b4a62bb769ec165ce9157c4d4f31343c7d1825",
+      "shortHash": "21b4a62",
+      "date": "2026-01-22T03:06:00+01:00",
+      "headline": "feat: add PR description preview with fade-out effect",
+      "repo": "activity-report",
+      "owner": "verygoodplugins",
+      "repoSlug": "activity-report",
+      "remoteUrl": "https://github.com/verygoodplugins/activity-report",
+      "stats": {
+        "added": 579,
+        "deleted": 47,
+        "files": 3
+      },
+      "files": [
+        {
+          "file": "activity-data.json",
+          "added": 516,
+          "deleted": 45
+        },
+        {
+          "file": "generate-rich-report.mjs",
+          "added": 2,
+          "deleted": 1
+        },
+        {
+          "file": "index.html",
+          "added": 61,
+          "deleted": 1
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "f876a6ce02ae2c55e3435bdbc55c6d33891b3470",
+      "shortHash": "f876a6c",
+      "date": "2026-01-22T02:12:09+01:00",
+      "headline": "Enhance DiscordAdapter with improved streaming update management and embed formatting",
+      "repo": "autohub",
+      "owner": "verygoodplugins",
+      "repoSlug": "autohub",
+      "remoteUrl": "https://github.com/verygoodplugins/autohub",
+      "stats": {
+        "added": 120,
+        "deleted": 38,
+        "files": 2
+      },
+      "files": [
+        {
+          "file": "src/platforms/discord/adapter.js",
+          "added": 68,
+          "deleted": 28
+        },
+        {
+          "file": "src/platforms/discord/formatting/embeds.js",
+          "added": 52,
+          "deleted": 10
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "d945777117a356c0f0545468d712200491517d59",
+      "shortHash": "d945777",
+      "date": "2026-01-22T02:07:47+01:00",
+      "headline": "Enhance error handling and improve embed formatting in Discord components",
+      "repo": "autohub",
+      "owner": "verygoodplugins",
+      "repoSlug": "autohub",
+      "remoteUrl": "https://github.com/verygoodplugins/autohub",
+      "stats": {
+        "added": 95,
+        "deleted": 41,
+        "files": 7
+      },
+      "files": [
+        {
+          "file": "src/core/tool-icons.js",
+          "added": 6,
+          "deleted": 2
+        },
+        {
+          "file": "src/platforms/discord/components/interaction-handler.js",
+          "added": 4,
+          "deleted": 1
+        },
+        {
+          "file": "src/platforms/discord/formatting/cv2-layouts.js",
+          "added": 14,
+          "deleted": 16
+        },
+        {
+          "file": "src/platforms/discord/formatting/embeds.js",
+          "added": 24,
+          "deleted": 8
+        },
+        {
+          "file": "src/platforms/discord/messaging/threaded-handler.js",
+          "added": 39,
+          "deleted": 10
+        },
+        {
+          "file": "src/platforms/telegram/adapter.js",
+          "added": 5,
+          "deleted": 1
+        },
+        {
+          "file": "test/tool-icons.test.js",
+          "added": 3,
+          "deleted": 3
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "44a35a028eed7ad04e16a285087a12ff0677876d",
+      "shortHash": "44a35a0",
+      "date": "2026-01-22T01:54:19+01:00",
+      "headline": "feat: implement staggered reveal animation for month view and enhance activity bars with repo-level tracking",
+      "repo": "activity-report",
+      "owner": "verygoodplugins",
+      "repoSlug": "activity-report",
+      "remoteUrl": "https://github.com/verygoodplugins/activity-report",
+      "stats": {
+        "added": 78,
+        "deleted": 16,
+        "files": 1
+      },
+      "files": [
+        {
+          "file": "index.html",
+          "added": 78,
+          "deleted": 16
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "ce223724d641cad7081d72d3d508fd3c6843e911",
+      "shortHash": "ce22372",
+      "date": "2026-01-22T00:45:17+01:00",
+      "headline": "feat: initial verygoodplugins marketplace with automem plugin",
+      "repo": "claude-plugins",
+      "owner": "verygoodplugins",
+      "repoSlug": "claude-plugins",
+      "remoteUrl": "https://github.com/verygoodplugins/claude-plugins",
+      "stats": {
+        "added": 1910,
+        "deleted": 0,
+        "files": 20
+      },
+      "files": [
+        {
+          "file": ".claude-plugin/marketplace.json",
+          "added": 50,
+          "deleted": 0
+        },
+        {
+          "file": "LICENSE",
+          "added": 21,
+          "deleted": 0
+        },
+        {
+          "file": "README.md",
+          "added": 73,
+          "deleted": 0
+        },
+        {
+          "file": "plugins/automem/.claude-plugin/plugin.json",
+          "added": 23,
+          "deleted": 0
+        },
+        {
+          "file": "plugins/automem/.mcp.json",
+          "added": 11,
+          "deleted": 0
+        },
+        {
+          "file": "plugins/automem/README.md",
+          "added": 107,
+          "deleted": 0
+        },
+        {
+          "file": "plugins/automem/commands/memory-health.md",
+          "added": 25,
+          "deleted": 0
+        },
+        {
+          "file": "plugins/automem/commands/memory-recall.md",
+          "added": 51,
+          "deleted": 0
+        },
+        {
+          "file": "plugins/automem/commands/memory-store.md",
+          "added": 45,
+          "deleted": 0
+        },
+        {
+          "file": "plugins/automem/hooks/hooks.json",
+          "added": 62,
+          "deleted": 0
+        },
+        {
+          "file": "plugins/automem/scripts/capture-build-result.sh",
+          "added": 202,
+          "deleted": 0
+        },
+        {
+          "file": "plugins/automem/scripts/capture-deployment.sh",
+          "added": 228,
+          "deleted": 0
+        },
+        {
+          "file": "plugins/automem/scripts/capture-test-pattern.sh",
+          "added": 191,
+          "deleted": 0
+        },
+        {
+          "file": "plugins/automem/scripts/memory-filters.json",
+          "added": 129,
+          "deleted": 0
+        },
+        {
+          "file": "plugins/automem/scripts/process-session-memory.py",
+          "added": 36,
+          "deleted": 0
+        },
+        {
+          "file": "plugins/automem/scripts/queue-cleanup.sh",
+          "added": 174,
+          "deleted": 0
+        },
+        {
+          "file": "plugins/automem/scripts/session-memory.sh",
+          "added": 147,
+          "deleted": 0
+        },
+        {
+          "file": "plugins/automem/scripts/session-start.sh",
+          "added": 18,
+          "deleted": 0
+        },
+        {
+          "file": "plugins/automem/skills/memory-management/SKILL.md",
+          "added": 215,
+          "deleted": 0
+        },
+        {
+          "file": "plugins/automem/skills/memory-management/patterns.md",
+          "added": 102,
+          "deleted": 0
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "58377d00e8bd59651b5fc98e7eae9495bb268849",
+      "shortHash": "58377d0",
+      "date": "2026-01-22T00:18:00+01:00",
+      "headline": "feat: enhance activity report with new view transitions and improved month/day views",
+      "repo": "activity-report",
+      "owner": "verygoodplugins",
+      "repoSlug": "activity-report",
+      "remoteUrl": "https://github.com/verygoodplugins/activity-report",
+      "stats": {
+        "added": 18042,
+        "deleted": 732,
+        "files": 3
+      },
+      "files": [
+        {
+          "file": "activity-data.json",
+          "added": 17466,
+          "deleted": 719
+        },
+        {
+          "file": "generate-rich-report.mjs",
+          "added": 1,
+          "deleted": 1
+        },
+        {
+          "file": "index.html",
+          "added": 575,
+          "deleted": 12
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "7e7f88f973425dc122c2c58315771d500012736c",
+      "shortHash": "7e7f88f",
+      "date": "2026-01-22T00:09:30+01:00",
+      "headline": "Update DiscordAdapter and components for enhanced button interactions and streaming management",
+      "repo": "autohub",
+      "owner": "verygoodplugins",
+      "repoSlug": "autohub",
+      "remoteUrl": "https://github.com/verygoodplugins/autohub",
+      "stats": {
+        "added": 1045,
+        "deleted": 279,
+        "files": 15
+      },
+      "files": [
+        {
+          "file": "config/services/discord.json",
+          "added": 1,
+          "deleted": 1
+        },
+        {
+          "file": "src/core/tool-icons.js",
+          "added": 198,
+          "deleted": 0
+        },
+        {
+          "file": "src/core/ui-directives.js",
+          "added": 191,
+          "deleted": 0
+        },
+        {
+          "file": "src/platforms/discord/adapter.js",
+          "added": 233,
+          "deleted": 49
+        },
+        {
+          "file": "src/platforms/discord/components/action-buttons.js",
+          "added": 30,
+          "deleted": 27
+        },
+        {
+          "file": "src/platforms/discord/components/feedback-modal.js",
+          "added": 2,
+          "deleted": 13
+        },
+        {
+          "file": "src/platforms/discord/components/interaction-handler.js",
+          "added": 168,
+          "deleted": 63
+        },
+        {
+          "file": "src/platforms/discord/formatting/embeds.js",
+          "added": 19,
+          "deleted": 66
+        },
+        {
+          "file": "src/platforms/discord/messaging/threaded-handler.js",
+          "added": 26,
+          "deleted": 11
+        },
+        {
+          "file": "src/platforms/telegram/adapter.js",
+          "added": 62,
+          "deleted": 0
+        },
+        {
+          "file": "src/platforms/telegram/index.js",
+          "added": 2,
+          "deleted": 0
+        },
+        {
+          "file": "src/platforms/whatsapp/adapter.js",
+          "added": 9,
+          "deleted": 2
+        },
+        {
+          "file": "src/shared/status-formatter.js",
+          "added": 19,
+          "deleted": 47
+        },
+        {
+          "file": "test/tool-icons.test.js",
+          "added": 35,
+          "deleted": 0
+        },
+        {
+          "file": "test/ui-directives.test.js",
+          "added": 50,
+          "deleted": 0
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "938c4d09288c669a06aa24364bb69a9a258cf643",
+      "shortHash": "938c4d0",
+      "date": "2026-01-21T23:05:04+01:00",
+      "headline": "Add interactive Discord UX v2 with buttons and pagination",
+      "repo": "autohub",
+      "owner": "verygoodplugins",
+      "repoSlug": "autohub",
+      "remoteUrl": "https://github.com/verygoodplugins/autohub",
+      "stats": {
+        "added": 1825,
+        "deleted": 64,
+        "files": 8
+      },
+      "files": [
+        {
+          "file": "config/services/discord.json",
+          "added": 36,
+          "deleted": 6
+        },
+        {
+          "file": "src/discord-server/index.js",
+          "added": 66,
+          "deleted": 9
+        },
+        {
+          "file": "src/platforms/discord/adapter.js",
+          "added": 171,
+          "deleted": 21
+        },
+        {
+          "file": "src/platforms/discord/components/action-buttons.js",
+          "added": 304,
+          "deleted": 0
+        },
+        {
+          "file": "src/platforms/discord/components/feedback-modal.js",
+          "added": 71,
+          "deleted": 0
+        },
+        {
+          "file": "src/platforms/discord/components/interaction-handler.js",
+          "added": 578,
+          "deleted": 0
+        },
+        {
+          "file": "src/platforms/discord/formatting/cv2-layouts.js",
+          "added": 346,
+          "deleted": 0
+        },
+        {
+          "file": "src/platforms/discord/formatting/embeds.js",
+          "added": 253,
+          "deleted": 28
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "8cc65b94da9d09f028eb27e7df5d5d30600bf52c",
+      "shortHash": "8cc65b9",
+      "date": "2026-01-21T22:16:08+01:00",
+      "headline": "feat(discord): enhance DiscordAdapter with advanced UX features and streaming updates",
+      "repo": "autohub",
+      "owner": "verygoodplugins",
+      "repoSlug": "autohub",
+      "remoteUrl": "https://github.com/verygoodplugins/autohub",
+      "stats": {
+        "added": 1071,
+        "deleted": 158,
+        "files": 4
+      },
+      "files": [
+        {
+          "file": "config/services/discord.json",
+          "added": 24,
+          "deleted": 1
+        },
+        {
+          "file": "src/platforms/discord/adapter.js",
+          "added": 342,
+          "deleted": 157
+        },
+        {
+          "file": "src/platforms/discord/formatting/embeds.js",
+          "added": 388,
+          "deleted": 0
+        },
+        {
+          "file": "src/platforms/discord/messaging/threaded-handler.js",
+          "added": 317,
+          "deleted": 0
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "7753e502c1c03b728f956738fb4ba85b3a33b9cf",
+      "shortHash": "7753e50",
+      "date": "2026-01-21T21:25:11+01:00",
+      "headline": "fix(discord): correct AutoMem casing in server prompt",
+      "repo": "autohub",
+      "owner": "verygoodplugins",
+      "repoSlug": "autohub",
+      "remoteUrl": "https://github.com/verygoodplugins/autohub",
+      "stats": {
+        "added": 3,
+        "deleted": 3,
+        "files": 1
+      },
+      "files": [
+        {
+          "file": "config/services/discord.json",
+          "added": 3,
+          "deleted": 3
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "a21bd307315a8a933d58dc1cc71a2e4b4742b472",
+      "shortHash": "a21bd30",
+      "date": "2026-01-21T21:20:48+01:00",
+      "headline": "feat(discord): enhance DiscordAdapter with server-specific prompts and streaming capabilities",
+      "repo": "autohub",
+      "owner": "verygoodplugins",
+      "repoSlug": "autohub",
+      "remoteUrl": "https://github.com/verygoodplugins/autohub",
+      "stats": {
+        "added": 538,
+        "deleted": 145,
+        "files": 15
+      },
+      "files": [
+        {
+          "file": "config/services/discord.json",
+          "added": 14,
+          "deleted": 1
+        },
+        {
+          "file": "config/tool-filters.json",
+          "added": 30,
+          "deleted": 0
+        },
+        {
+          "file": "src/agents/task-queue.js",
+          "added": 1,
+          "deleted": 1
+        },
+        {
+          "file": "src/agents/worker.js",
+          "added": 1,
+          "deleted": 1
+        },
+        {
+          "file": "src/chat-server/index.js",
+          "added": 4,
+          "deleted": 4
+        },
+        {
+          "file": "src/chat-server/routes/chat.js",
+          "added": 2,
+          "deleted": 2
+        },
+        {
+          "file": "src/chat-server/voice-context-cache.js",
+          "added": 2,
+          "deleted": 1
+        },
+        {
+          "file": "src/claude/service.js",
+          "added": 40,
+          "deleted": 29
+        },
+        {
+          "file": "src/claude/services/tool-selection-service.js",
+          "added": 19,
+          "deleted": 2
+        },
+        {
+          "file": "src/core/platform-adapter.js",
+          "added": 5,
+          "deleted": 5
+        },
+        {
+          "file": "src/memory/memory-indexer.js",
+          "added": 13,
+          "deleted": 11
+        },
+        {
+          "file": "src/memory/memory-prefetcher.js",
+          "added": 24,
+          "deleted": 21
+        },
+        {
+          "file": "src/platforms/discord/adapter.js",
+          "added": 353,
+          "deleted": 48
+        },
+        {
+          "file": "src/services/user-identity.js",
+          "added": 26,
+          "deleted": 15
+        },
+        {
+          "file": "src/voice/voice-server.js",
+          "added": 4,
+          "deleted": 4
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "2fb4a1c25e3517bd2066a42a8e3c188e84a09b68",
+      "shortHash": "2fb4a1c",
+      "date": "2026-01-21T20:22:37+01:00",
+      "headline": "fix: suppress gh search stderr noise for inaccessible repos",
+      "repo": "activity-report",
+      "owner": "verygoodplugins",
+      "repoSlug": "activity-report",
+      "remoteUrl": "https://github.com/verygoodplugins/activity-report",
+      "stats": {
+        "added": 2,
+        "deleted": 2,
+        "files": 1
+      },
+      "files": [
+        {
+          "file": "generate-rich-report.mjs",
+          "added": 2,
+          "deleted": 2
+        }
+      ]
+    },
     {
       "type": "commit",
       "hash": "ecf186190956d2e961fb3f2c4e02e0a830f393cf",
@@ -22,49 +671,6 @@
           "file": ".github/workflows/daily-update.yml",
           "added": 1,
           "deleted": 1
-        }
-      ]
-    },
-    {
-      "type": "commit",
-      "hash": "1b8949b376ab7ac2f8da9be563aab8ff050e6137",
-      "shortHash": "1b8949b",
-      "date": "2026-01-21T20:05:33+01:00",
-      "headline": "Fix Chat2BT port from 3000 to 8767 in all VoiceInk docs",
-      "repo": "autohub",
-      "owner": "verygoodplugins",
-      "repoSlug": "autohub",
-      "remoteUrl": "https://github.com/verygoodplugins/autohub",
-      "stats": {
-        "added": 40,
-        "deleted": 40,
-        "files": 5
-      },
-      "files": [
-        {
-          "file": "config/voiceink-power-modes-chat2bt.json",
-          "added": 3,
-          "deleted": 3
-        },
-        {
-          "file": "docs/VOICEINK-CHAT2BT-IMPLEMENTATION.md",
-          "added": 8,
-          "deleted": 8
-        },
-        {
-          "file": "docs/VOICEINK-CHAT2BT-QUICKREF.md",
-          "added": 7,
-          "deleted": 7
-        },
-        {
-          "file": "docs/VOICEINK-CHAT2BT-SETUP.md",
-          "added": 12,
-          "deleted": 12
-        },
-        {
-          "file": "docs/VOICEINK-CLIENT-INTEGRATION.md",
-          "added": 10,
-          "deleted": 10
         }
       ]
     },
@@ -208,67 +814,6 @@
     },
     {
       "type": "commit",
-      "hash": "1a775c2056b934d1b5a4786b7371026813ee9f54",
-      "shortHash": "1a775c2",
-      "date": "2026-01-21T19:39:49+01:00",
-      "headline": "fix: Handle clipboard write failures in queue functions",
-      "repo": "autohub",
-      "owner": "verygoodplugins",
-      "repoSlug": "autohub",
-      "remoteUrl": "https://github.com/verygoodplugins/autohub",
-      "stats": {
-        "added": 13,
-        "deleted": 3,
-        "files": 1
-      },
-      "files": [
-        {
-          "file": "tools/clipboard-tool.js",
-          "added": 13,
-          "deleted": 3
-        }
-      ]
-    },
-    {
-      "type": "commit",
-      "hash": "7d78dc19a498f561d8e8a63306599404398e96ff",
-      "shortHash": "7d78dc1",
-      "date": "2026-01-21T19:29:40+01:00",
-      "headline": "Fix additional review issues in Chat2BT, agent-names, and clipboard",
-      "repo": "autohub",
-      "owner": "verygoodplugins",
-      "repoSlug": "autohub",
-      "remoteUrl": "https://github.com/verygoodplugins/autohub",
-      "stats": {
-        "added": 26,
-        "deleted": 13,
-        "files": 4
-      },
-      "files": [
-        {
-          "file": "docs/VOICEINK-CLIENT-INTEGRATION.md",
-          "added": 3,
-          "deleted": 4
-        },
-        {
-          "file": "src/services/agent-names-manager.js",
-          "added": 9,
-          "deleted": 5
-        },
-        {
-          "file": "src/services/chat2bt-service.js",
-          "added": 4,
-          "deleted": 3
-        },
-        {
-          "file": "tools/clipboard-tool.js",
-          "added": 10,
-          "deleted": 1
-        }
-      ]
-    },
-    {
-      "type": "commit",
       "hash": "c7e7a5873738d467223ba771ecb226ccc130f1b0",
       "shortHash": "c7e7a58",
       "date": "2026-01-21T19:13:26+01:00",
@@ -302,265 +847,159 @@
     },
     {
       "type": "commit",
-      "hash": "677c0cff2983962dd8f304fe10540344f7c0ee42",
-      "shortHash": "677c0cf",
-      "date": "2026-01-21T18:54:43+01:00",
-      "headline": "Add clipboard tool with queue support for macOS",
+      "hash": "f2e78b0210703214f0f5cda581318f35e4c62449",
+      "shortHash": "f2e78b0",
+      "date": "2026-01-21T17:21:59+01:00",
+      "headline": "fix: correct tool naming and markdown code fences",
       "repo": "autohub",
       "owner": "verygoodplugins",
       "repoSlug": "autohub",
       "remoteUrl": "https://github.com/verygoodplugins/autohub",
       "stats": {
-        "added": 263,
+        "added": 12,
+        "deleted": 12,
+        "files": 2
+      },
+      "files": [
+        {
+          "file": "docs/OBS-MCP-INTEGRATION.md",
+          "added": 2,
+          "deleted": 2
+        },
+        {
+          "file": "src/claude/prompt/system-prompt.js",
+          "added": 10,
+          "deleted": 10
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "82484e6f665b648743b578e04173095f94475854",
+      "shortHash": "82484e6",
+      "date": "2026-01-21T17:11:04+01:00",
+      "headline": "refactor(tool-filters): remove home automation references and clean up OBS tools",
+      "repo": "autohub",
+      "owner": "verygoodplugins",
+      "repoSlug": "autohub",
+      "remoteUrl": "https://github.com/verygoodplugins/autohub",
+      "stats": {
+        "added": 5,
+        "deleted": 48,
+        "files": 2
+      },
+      "files": [
+        {
+          "file": "config/services/voice.json",
+          "added": 2,
+          "deleted": 3
+        },
+        {
+          "file": "config/tool-filters.json",
+          "added": 3,
+          "deleted": 45
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "76f474fd92b80a75f1692ed6919c5858961410b4",
+      "shortHash": "76f474f",
+      "date": "2026-01-21T14:04:49+01:00",
+      "headline": "feat(obs): add OBS tools and filters to MCP configuration",
+      "repo": "autohub",
+      "owner": "verygoodplugins",
+      "repoSlug": "autohub",
+      "remoteUrl": "https://github.com/verygoodplugins/autohub",
+      "stats": {
+        "added": 645,
+        "deleted": 4,
+        "files": 2
+      },
+      "files": [
+        {
+          "file": "config/mcp-tools.json",
+          "added": 577,
+          "deleted": 2
+        },
+        {
+          "file": "config/tool-filters.json",
+          "added": 68,
+          "deleted": 2
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "e19da867e7ceb3ba79dd94b9f1672faaf042d83d",
+      "shortHash": "e19da86",
+      "date": "2026-01-21T13:41:32+01:00",
+      "headline": "docs: Add OBS MCP Integration guide",
+      "repo": "autohub",
+      "owner": "verygoodplugins",
+      "repoSlug": "autohub",
+      "remoteUrl": "https://github.com/verygoodplugins/autohub",
+      "stats": {
+        "added": 346,
+        "deleted": 126,
+        "files": 2
+      },
+      "files": [
+        {
+          "file": "config/mcp-servers.example.json",
+          "added": 135,
+          "deleted": 126
+        },
+        {
+          "file": "docs/OBS-MCP-INTEGRATION.md",
+          "added": 211,
+          "deleted": 0
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "869d58c6a07c6e237b1e054be3c19c934df2cda6",
+      "shortHash": "869d58c",
+      "date": "2026-01-21T13:34:52+01:00",
+      "headline": "docs(agents): add branch workflow guidance, avoid worktrees",
+      "repo": "autohub",
+      "owner": "verygoodplugins",
+      "repoSlug": "autohub",
+      "remoteUrl": "https://github.com/verygoodplugins/autohub",
+      "stats": {
+        "added": 25,
         "deleted": 0,
         "files": 1
       },
       "files": [
         {
-          "file": "tools/clipboard-tool.js",
-          "added": 263,
+          "file": "AGENTS.md",
+          "added": 25,
           "deleted": 0
         }
       ]
     },
     {
       "type": "commit",
-      "hash": "45b6c57af5b3f862374255ee760bb9f83139e437",
-      "shortHash": "45b6c57",
-      "date": "2026-01-21T17:57:58+01:00",
-      "headline": "Improve Chat2BT robustness, CORS, and agent name handling",
+      "hash": "e4d2edd2e902c6645ce7c12934807f2cb0e7aa5c",
+      "shortHash": "e4d2edd",
+      "date": "2026-01-21T13:25:45+01:00",
+      "headline": "feat(memory): enhance system prompt with aggressive memory recall strategies",
       "repo": "autohub",
       "owner": "verygoodplugins",
       "repoSlug": "autohub",
       "remoteUrl": "https://github.com/verygoodplugins/autohub",
       "stats": {
-        "added": 199,
-        "deleted": 58,
-        "files": 11
+        "added": 73,
+        "deleted": 16,
+        "files": 1
       },
       "files": [
         {
-          "file": "docs/VOICEINK-CHAT2BT-IMPLEMENTATION.md",
-          "added": 3,
-          "deleted": 1
-        },
-        {
-          "file": "docs/VOICEINK-CHAT2BT-QUICKREF.md",
-          "added": 6,
-          "deleted": 5
-        },
-        {
-          "file": "docs/VOICEINK-CHAT2BT-SETUP.md",
-          "added": 3,
-          "deleted": 2
-        },
-        {
-          "file": "docs/VOICEINK-CLIENT-INTEGRATION.md",
-          "added": 26,
-          "deleted": 7
-        },
-        {
-          "file": "scripts/setup-voiceinc-complete.py",
-          "added": 26,
-          "deleted": 5
-        },
-        {
-          "file": "scripts/setup-voiceinc.js",
-          "added": 8,
-          "deleted": 4
-        },
-        {
-          "file": "src/api/routes/chat2bt.js",
-          "added": 13,
-          "deleted": 8
-        },
-        {
-          "file": "src/config/agent-names/ikea-furniture.json",
-          "added": 1,
-          "deleted": 2
-        },
-        {
-          "file": "src/services/agent-names-manager.js",
-          "added": 28,
-          "deleted": 7
-        },
-        {
-          "file": "src/services/chat2bt-service.js",
-          "added": 81,
-          "deleted": 17
-        },
-        {
-          "file": "src/slack-server/index.js",
-          "added": 4,
-          "deleted": 0
-        }
-      ]
-    },
-    {
-      "type": "commit",
-      "hash": "0b171ac63f7fb6c4cbcff08048cb2489a182f5e4",
-      "shortHash": "0b171ac",
-      "date": "2026-01-21T13:01:29+01:00",
-      "headline": "Add VoiceInk Chat2BT config and documentation",
-      "repo": "autohub",
-      "owner": "verygoodplugins",
-      "repoSlug": "autohub",
-      "remoteUrl": "https://github.com/verygoodplugins/autohub",
-      "stats": {
-        "added": 4435,
-        "deleted": 2271,
-        "files": 30
-      },
-      "files": [
-        {
-          "file": "LOGGING_DOCUMENTATION_INDEX.md",
-          "added": 0,
-          "deleted": 252
-        },
-        {
-          "file": "LOGGING_QUICK_REFERENCE.md",
-          "added": 0,
-          "deleted": 282
-        },
-        {
-          "file": "LOGGING_SYSTEM_ANALYSIS.md",
-          "added": 0,
-          "deleted": 526
-        },
-        {
-          "file": "OPEN-APPLICATION-IMPLEMENTATION.md",
-          "added": 0,
-          "deleted": 335
-        },
-        {
-          "file": "config/voiceink-power-modes-chat2bt.json",
-          "added": 170,
-          "deleted": 0
-        },
-        {
-          "file": "docs/VOICEINC-AUTOMATED-SETUP-SUMMARY.md",
-          "added": 318,
-          "deleted": 0
-        },
-        {
-          "file": "docs/VOICEINC-SETUP-COMPLETE.md",
-          "added": 232,
-          "deleted": 0
-        },
-        {
-          "file": "docs/VOICEINK-CHAT2BT-IMPLEMENTATION.md",
-          "added": 598,
-          "deleted": 0
-        },
-        {
-          "file": "docs/VOICEINK-CHAT2BT-QUICKREF.md",
-          "added": 221,
-          "deleted": 0
-        },
-        {
-          "file": "docs/VOICEINK-CHAT2BT-SETUP.md",
-          "added": 667,
-          "deleted": 0
-        },
-        {
-          "file": "docs/VOICEINK-CLIENT-INTEGRATION.md",
-          "added": 573,
-          "deleted": 0
-        },
-        {
-          "file": "package-lock.json",
-          "added": 45,
-          "deleted": 44
-        },
-        {
-          "file": "package.json",
-          "added": 6,
-          "deleted": 0
-        },
-        {
-          "file": "replit.md",
-          "added": 0,
-          "deleted": 69
-        },
-        {
-          "file": "scripts/setup-voiceinc-complete.py",
-          "added": 262,
-          "deleted": 0
-        },
-        {
-          "file": "scripts/setup-voiceinc.js",
-          "added": 198,
-          "deleted": 0
-        },
-        {
-          "file": "src/agents/task-queue.js",
-          "added": 13,
-          "deleted": 0
-        },
-        {
-          "file": "src/api/routes/chat2bt.js",
-          "added": 254,
-          "deleted": 0
-        },
-        {
-          "file": "src/api/routes/v1.js",
-          "added": 4,
-          "deleted": 0
-        },
-        {
-          "file": "src/claude/server-tools/agent-delegation.js",
-          "added": 15,
-          "deleted": 1
-        },
-        {
-          "file": "src/config/agent-names-config.json",
-          "added": 11,
-          "deleted": 0
-        },
-        {
-          "file": "src/config/agent-names/action-heroes.json",
-          "added": 31,
-          "deleted": 0
-        },
-        {
-          "file": "src/config/agent-names/cheeses.json",
-          "added": 31,
-          "deleted": 0
-        },
-        {
-          "file": "src/config/agent-names/failed-startups.json",
-          "added": 31,
-          "deleted": 0
-        },
-        {
-          "file": "src/config/agent-names/ikea-furniture.json",
-          "added": 36,
-          "deleted": 0
-        },
-        {
-          "file": "src/config/agent-names/wrestlers.json",
-          "added": 31,
-          "deleted": 0
-        },
-        {
-          "file": "src/services/agent-names-manager.js",
-          "added": 246,
-          "deleted": 0
-        },
-        {
-          "file": "src/services/chat2bt-service.js",
-          "added": 442,
-          "deleted": 0
-        },
-        {
-          "file": "voiceinc-optimization-guide.md",
-          "added": 0,
-          "deleted": 353
-        },
-        {
-          "file": "voiceink-optimization-guide.md",
-          "added": 0,
-          "deleted": 409
+          "file": "src/claude/prompt/system-prompt.js",
+          "added": 73,
+          "deleted": 16
         }
       ]
     },
@@ -606,74 +1045,6 @@
         {
           "file": "packages/graph-viewer/Dockerfile",
           "added": 25,
-          "deleted": 0
-        }
-      ]
-    },
-    {
-      "type": "commit",
-      "hash": "db1c1cd037a4ddebe987f9529f75ac44166e06e1",
-      "shortHash": "db1c1cd",
-      "date": "2026-01-21T10:57:00+01:00",
-      "headline": "feat: implement comprehensive VoiceInk optimization suite",
-      "repo": "autohub",
-      "owner": "verygoodplugins",
-      "repoSlug": "autohub",
-      "remoteUrl": "https://github.com/verygoodplugins/autohub",
-      "stats": {
-        "added": 2712,
-        "deleted": 0,
-        "files": 10
-      },
-      "files": [
-        {
-          "file": "config/voiceinc-custom-dictionary.json",
-          "added": 109,
-          "deleted": 0
-        },
-        {
-          "file": "config/voiceinc-power-modes.json",
-          "added": 160,
-          "deleted": 0
-        },
-        {
-          "file": "config/voiceinc-smart-modes.json",
-          "added": 152,
-          "deleted": 0
-        },
-        {
-          "file": "config/voiceinc-voice-shortcuts.json",
-          "added": 184,
-          "deleted": 0
-        },
-        {
-          "file": "docs/VOICEINC-ACCURACY-TRACKER.md",
-          "added": 279,
-          "deleted": 0
-        },
-        {
-          "file": "docs/VOICEINC-IMPLEMENTATION-CHECKLIST.md",
-          "added": 471,
-          "deleted": 0
-        },
-        {
-          "file": "docs/VOICEINC-QUICK-START.md",
-          "added": 169,
-          "deleted": 0
-        },
-        {
-          "file": "docs/VOICEINC-WORKFLOW-TEMPLATES.md",
-          "added": 426,
-          "deleted": 0
-        },
-        {
-          "file": "voiceinc-optimization-guide.md",
-          "added": 353,
-          "deleted": 0
-        },
-        {
-          "file": "voiceink-optimization-guide.md",
-          "added": 409,
           "deleted": 0
         }
       ]
@@ -1376,8 +1747,8 @@
     },
     {
       "type": "commit",
-      "hash": "5aa0b66cb1b20f3061df3a268112a14906d1f8f4",
-      "shortHash": "5aa0b66",
+      "hash": "19051ef061e30b32a4a21ccef309ffdb4fa49be9",
+      "shortHash": "19051ef",
       "date": "2026-01-19T15:38:34+01:00",
       "headline": "Add association triggers and confidence to memory rules",
       "repo": "mcp-automem",
@@ -2790,15 +3161,21 @@
       "repo": "mcp-automem",
       "repoFull": "verygoodplugins/mcp-automem",
       "stats": {
-        "added": 866,
-        "deleted": 790,
-        "files": 3
+        "added": 919,
+        "deleted": 794,
+        "files": 5
       },
       "baseBranch": "main",
       "headBranch": "feat/process-tag",
       "mergeable": "MERGEABLE",
-      "commits": 1,
-      "reviews": [],
+      "commits": 2,
+      "reviews": [
+        {
+          "author": "coderabbitai",
+          "state": "COMMENTED",
+          "submittedAt": "2026-01-22T01:29:49Z"
+        }
+      ],
       "labels": [],
       "files": [
         {
@@ -2814,6 +3191,16 @@
         {
           "file": "src/index.ts",
           "added": 16,
+          "deleted": 0
+        },
+        {
+          "file": "templates/CLAUDE_MD_MEMORY_RULES.md",
+          "added": 32,
+          "deleted": 4
+        },
+        {
+          "file": "templates/codex/memory-rules.md",
+          "added": 21,
           "deleted": 0
         }
       ]
@@ -3006,6 +3393,14 @@
       "owner": "verygoodplugins",
       "repoSlug": "mcp-automem"
     },
+    "claude-plugins": {
+      "commits": 1,
+      "additions": 1910,
+      "deletions": 0,
+      "remoteUrl": "https://github.com/verygoodplugins/claude-plugins",
+      "owner": "verygoodplugins",
+      "repoSlug": "claude-plugins"
+    },
     "automem-website": {
       "commits": 4,
       "additions": 1255,
@@ -3023,9 +3418,9 @@
       "repoSlug": "automem"
     },
     "autohub": {
-      "commits": 18,
-      "additions": 12887,
-      "deletions": 2833,
+      "commits": 24,
+      "additions": 11002,
+      "deletions": 1382,
       "remoteUrl": "https://github.com/verygoodplugins/autohub",
       "owner": "verygoodplugins",
       "repoSlug": "autohub"
@@ -3039,19 +3434,19 @@
       "repoSlug": "AutoApp"
     },
     "activity-report": {
-      "commits": 10,
-      "additions": 7833,
-      "deletions": 2462,
+      "commits": 15,
+      "additions": 27207,
+      "deletions": 3310,
       "remoteUrl": "https://github.com/verygoodplugins/activity-report",
       "owner": "verygoodplugins",
       "repoSlug": "activity-report"
     }
   },
   "stats": {
-    "additions": 26784,
-    "deletions": 9865,
-    "files": 234,
-    "commits": 75,
+    "additions": 46183,
+    "deletions": 9262,
+    "files": 265,
+    "commits": 87,
     "prs": 8
   }
 }
