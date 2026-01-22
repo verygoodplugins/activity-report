@@ -7,7 +7,7 @@ import './MonthView.css';
 interface MonthViewProps {
   commits: Commit[];
   periodStart: string;
-  onDayClick: (day: DayActivity) => void;
+  onDayClick?: (day: DayActivity) => void;
 }
 
 interface CalendarDay {
@@ -125,7 +125,7 @@ export function MonthView({ commits, periodStart, onDayClick }: MonthViewProps) 
       repos: day.repos,
       isToday: day.isToday
     };
-    onDayClick(dayActivity);
+    onDayClick?.(dayActivity);
   };
 
   const getActivityColor = (level: number): string => {

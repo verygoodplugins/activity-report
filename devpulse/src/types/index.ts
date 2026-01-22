@@ -49,6 +49,40 @@ export interface PullRequest {
     files: number;
   };
   body?: string;
+  reviewStatus?: 'approved' | 'changes_requested' | 'pending' | 'review_required';
+  commentsCount?: number;
+  ciStatus?: 'success' | 'failure' | 'pending' | 'none';
+  labels?: string[];
+}
+
+export interface DashboardConfig {
+  theme: {
+    name: string;
+    colors: {
+      primary: string;
+      secondary: string;
+      background: string;
+      surface: string;
+      text: string;
+      accent: string;
+    };
+  };
+  sections: {
+    hero: { enabled: boolean; title?: string; subtitle?: string };
+    weekly: { enabled: boolean; title?: string };
+    repos: { enabled: boolean; title?: string; maxItems?: number };
+    prs: { enabled: boolean; title?: string; maxItems?: number };
+  };
+  branding: {
+    logo?: string;
+    footer?: string;
+    attribution?: string;
+  };
+  interactivity: {
+    animations: boolean;
+    dayDetailModal: boolean;
+    monthView: boolean;
+  };
 }
 
 export interface ActivityData {
@@ -56,6 +90,7 @@ export interface ActivityData {
   periodStart: string;
   commits: Commit[];
   prs?: PullRequest[];
+  config?: DashboardConfig;
 }
 
 export interface DayActivity {

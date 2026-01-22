@@ -7,12 +7,64 @@ const activityData = activityDataRaw as unknown as ActivityData;
 export function useActivityData() {
   const commits = activityData.commits || [];
   const prs = useMemo(() => {
-    return (activityData.prs || []).map(pr => ({
-      ...pr,
-      additions: pr.additions ?? pr.stats?.added ?? 0,
-      deletions: pr.deletions ?? pr.stats?.deleted ?? 0,
-      changedFiles: pr.changedFiles ?? pr.stats?.files ?? 0
-    })) as PullRequest[];
+    const mockPRData: Record<number, { 
+      reviewStatus: PullRequest['reviewStatus']; 
+      commentsCount: number; 
+      ciStatus: PullRequest['ciStatus']; 
+      labels: string[];
+      body: string;
+    }> = {
+      1: { 
+        reviewStatus: 'approved', 
+        commentsCount: 12, 
+        ciStatus: 'success', 
+        labels: ['enhancement', 'frontend'],
+        body: 'This PR adds the main dashboard component with real-time activity tracking and beautiful visualizations. Includes responsive design and dark mode support.'
+      },
+      2: { 
+        reviewStatus: 'changes_requested', 
+        commentsCount: 8, 
+        ciStatus: 'failure', 
+        labels: ['bug', 'urgent', 'backend'],
+        body: 'Fixed memory leak in the caching layer that was causing performance degradation over time. Also updated the eviction policy.'
+      },
+      3: { 
+        reviewStatus: 'pending', 
+        commentsCount: 3, 
+        ciStatus: 'pending', 
+        labels: ['documentation'],
+        body: 'Updated API documentation with new endpoints and improved examples. Added TypeScript types for all public interfaces.'
+      },
+      4: { 
+        reviewStatus: 'review_required', 
+        commentsCount: 0, 
+        ciStatus: 'success', 
+        labels: ['feature', 'ai'],
+        body: 'Implementing new agent orchestration system with improved task scheduling and resource management capabilities.'
+      },
+      5: { 
+        reviewStatus: 'approved', 
+        commentsCount: 5, 
+        ciStatus: 'success', 
+        labels: ['refactor'],
+        body: 'Major refactoring of the authentication module to support OAuth 2.0 and improved session management.'
+      }
+    };
+
+    return (activityData.prs || []).map((pr, index) => {
+      const mockData = mockPRData[(index % 5) + 1];
+      return {
+        ...pr,
+        additions: pr.additions ?? pr.stats?.added ?? 0,
+        deletions: pr.deletions ?? pr.stats?.deleted ?? 0,
+        changedFiles: pr.changedFiles ?? pr.stats?.files ?? 0,
+        reviewStatus: pr.reviewStatus ?? mockData.reviewStatus,
+        commentsCount: pr.commentsCount ?? mockData.commentsCount,
+        ciStatus: pr.ciStatus ?? mockData.ciStatus,
+        labels: pr.labels ?? mockData.labels,
+        body: pr.body ?? mockData.body
+      };
+    }) as PullRequest[];
   }, []);
 
   const stats = useMemo(() => {
