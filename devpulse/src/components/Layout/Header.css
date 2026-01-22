@@ -43,6 +43,14 @@
   transform: translateX(-2px);
 }
 
+.setup-link .setup-arrow {
+  transition: transform 0.2s ease;
+}
+
+.setup-link:hover .setup-arrow {
+  transform: translateX(2px);
+}
+
 .header-center {
   position: absolute;
   left: 50%;
@@ -122,12 +130,18 @@
     transition: border-color 0.2s ease;
   }
   
-  .back-arrow {
+  .back-arrow,
+  .setup-arrow {
     transition: none;
   }
   
   .back-link {
     transition: color 0.2s ease;
+  }
+  
+  .back-link:hover .back-arrow,
+  .setup-link:hover .setup-arrow {
+    transform: none;
   }
 }
 

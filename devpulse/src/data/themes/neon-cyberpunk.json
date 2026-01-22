@@ -1,14 +1,13 @@
 {
-  "_comment": "THEME PACKS: Alternative theme configurations are available in devpulse/src/data/themes/. To use a different theme, copy the desired theme file (terminal-dark.json, minimal-light.json, or neon-cyberpunk.json) and replace the 'theme' section of this config. Each theme file contains a complete config.json with different color palettes and aesthetics.",
   "theme": {
-    "name": "terminal-dark",
+    "name": "neon-cyberpunk",
     "colors": {
-      "primary": "#F9D857",
-      "secondary": "#D4A425",
-      "background": "#0A0A0A",
-      "surface": "#1a1a1a",
-      "text": "#F5F5F5",
-      "accent": "#F472B6"
+      "primary": "#00FFFF",
+      "secondary": "#FF00FF",
+      "background": "#0D0D1A",
+      "surface": "#1a0a2e",
+      "text": "#FFFFFF",
+      "accent": "#FF3366"
     }
   },
   "sections": {

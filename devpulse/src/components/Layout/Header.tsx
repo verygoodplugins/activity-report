@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useTheme } from '../../hooks/useTheme';
 import { useReducedMotion } from '../../hooks/useReducedMotion';
 import { Jack } from '../Jack';
@@ -36,6 +37,9 @@ export function Header({ generatedAt }: HeaderProps) {
         <a href="https://drunk.support" className="back-link">
           <span className="back-arrow">←</span> drunk.support
         </a>
+        <Link to="/setup" className="back-link setup-link">
+          Setup Guide <span className="setup-arrow">→</span>
+        </Link>
       </div>
       
       <div className="header-center">
