@@ -50,7 +50,7 @@ devpulse/
 - **JSON Config System** - sections, colors, and interactivity configurable via config.json
 - **Theme Packs** - 3 themes: terminal-dark, cream-light, neon-cyberpunk
 - **Setup Page** (/setup) - deployment instructions for Cloudflare Pages
-- **Jack character** with multiple poses (wave, thumbsUp, sleeping, celebrate)
+- **JackHead mascot** - Bigger head-only design with nodding/blinking animations
 - **Reduced motion support** - respects prefers-reduced-motion
 - **Responsive design** for mobile
 
@@ -67,10 +67,12 @@ Edit `src/data/config.json` to customize:
 - Branding and attribution
 
 ### Theme Packs
-Swap themes via the Settings Panel (gear icon) or by copying a theme pack to config.json:
-- `themes/terminal-dark.json` - Default gold/dark terminal aesthetic
-- `themes/minimal-light.json` - Warm cream/gold light theme (automem.ai style)
-- `themes/neon-cyberpunk.json` - Vibrant cyan/magenta cyberpunk
+Swap themes via the Settings Panel (gear icon) - each theme includes unique colors AND fonts:
+- `themes/terminal-dark.json` - Default gold/dark terminal aesthetic (JetBrains Mono)
+- `themes/minimal-light.json` - Warm cream/gold light theme, automem.ai style (IBM Plex Mono)
+- `themes/neon-cyberpunk.json` - Vibrant cyan/magenta cyberpunk (Orbitron + Share Tech Mono)
+- `themes/corporate-pro.json` - Professional blue/white corporate theme (Inter)
+- `themes/retro-arcade.json` - Pixelated green-on-black arcade style (VT323)
 
 ## Running Locally
 ```bash
