@@ -14,6 +14,132 @@
       "repoSlug": "activity-report",
       "remoteUrl": "https://github.com/verygoodplugins/activity-report",
       "stats": {
+        "added": 18042,
+        "deleted": 732,
+        "files": 3
+      },
+      "files": [
+        {
+          "file": "activity-data.json",
+          "added": 17466,
+          "deleted": 719
+        },
+        {
+          "file": "generate-rich-report.mjs",
+          "added": 1,
+          "deleted": 1
+        },
+        {
+          "file": "index.html",
+          "added": 575,
+          "deleted": 12
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "7e7f88f973425dc122c2c58315771d500012736c",
+      "shortHash": "7e7f88f",
+      "date": "2026-01-22T00:09:30+01:00",
+      "headline": "Update DiscordAdapter and components for enhanced button interactions and streaming management",
+      "repo": "autohub",
+      "owner": "verygoodplugins",
+      "repoSlug": "autohub",
+      "remoteUrl": "https://github.com/verygoodplugins/autohub",
+      "stats": {
+        "added": 1045,
+        "deleted": 279,
+        "files": 15
+      },
+      "files": [
+        {
+          "file": "config/services/discord.json",
+          "added": 1,
+          "deleted": 1
+        },
+        {
+          "file": "src/core/tool-icons.js",
+          "added": 198,
+          "deleted": 0
+        },
+        {
+          "file": "src/core/ui-directives.js",
+          "added": 191,
+          "deleted": 0
+        },
+        {
+          "file": "src/platforms/discord/adapter.js",
+          "added": 233,
+          "deleted": 49
+        },
+        {
+          "file": "src/platforms/discord/components/action-buttons.js",
+          "added": 30,
+          "deleted": 27
+        },
+        {
+          "file": "src/platforms/discord/components/feedback-modal.js",
+          "added": 2,
+          "deleted": 13
+        },
+        {
+          "file": "src/platforms/discord/components/interaction-handler.js",
+          "added": 168,
+          "deleted": 63
+        },
+        {
+          "file": "src/platforms/discord/formatting/embeds.js",
+          "added": 19,
+          "deleted": 66
+        },
+        {
+          "file": "src/platforms/discord/messaging/threaded-handler.js",
+          "added": 26,
+          "deleted": 11
+        },
+        {
+          "file": "src/platforms/telegram/adapter.js",
+          "added": 62,
+          "deleted": 0
+        },
+        {
+          "file": "src/platforms/telegram/index.js",
+          "added": 2,
+          "deleted": 0
+        },
+        {
+          "file": "src/platforms/whatsapp/adapter.js",
+          "added": 9,
+          "deleted": 2
+        },
+        {
+          "file": "src/shared/status-formatter.js",
+          "added": 19,
+          "deleted": 47
+        },
+        {
+          "file": "test/tool-icons.test.js",
+          "added": 35,
+          "deleted": 0
+        },
+        {
+          "file": "test/ui-directives.test.js",
+          "added": 50,
+          "deleted": 0
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "938c4d09288c669a06aa24364bb69a9a258cf643",
+      "shortHash": "938c4d0",
+      "date": "2026-01-21T23:05:04+01:00",
+      "headline": "Add interactive Discord UX v2 with buttons and pagination",
+      "repo": "autohub",
+      "owner": "verygoodplugins",
+      "repoSlug": "autohub",
+      "remoteUrl": "https://github.com/verygoodplugins/autohub",
+      "stats": {
         "added": 579,
         "deleted": 47,
         "files": 3
@@ -33,6 +159,21 @@
           "file": "index.html",
           "added": 61,
           "deleted": 1
+        },
+        {
+          "file": "src/platforms/discord/adapter.js",
+          "added": 342,
+          "deleted": 157
+        },
+        {
+          "file": "src/platforms/discord/formatting/embeds.js",
+          "added": 388,
+          "deleted": 0
+        },
+        {
+          "file": "src/platforms/discord/messaging/threaded-handler.js",
+          "added": 317,
+          "deleted": 0
         }
       ]
     },
