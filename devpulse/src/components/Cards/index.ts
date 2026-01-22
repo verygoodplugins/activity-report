@@ -3,3 +3,4 @@ export { DayCard } from './DayCard';
 export { RepoCard } from './RepoCard';
 export { PRCard } from './PRCard';
 export { DayDetailModal } from './DayDetailModal';
+export { MonthView } from './MonthView';

@@ -1,0 +1,277 @@
+.month-view {
+  background: var(--surface-card);
+  border: 1px solid var(--border-dark);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  overflow: hidden;
+}
+
+.month-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+}
+
+.month-title {
+  font-family: var(--font-mono);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: 0.02em;
+}
+
+.calendar-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.calendar-day-headers {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.day-header-cell {
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 0.5rem 0;
+}
+
+.calendar-weeks {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.calendar-week {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0.25rem;
+}
+
+.calendar-cell {
+  position: relative;
+  aspect-ratio: 1;
+  min-height: 60px;
+  background: var(--surface-elevated);
+  border: 1px solid var(--border-dark);
+  border-radius: var(--radius-sm);
+  padding: 0.4rem;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.2s var(--ease-out);
+  overflow: hidden;
+}
+
+.calendar-cell:hover:not(.outside-period) {
+  border-color: var(--gold-secondary);
+  box-shadow: var(--shadow-sm);
+}
+
+.calendar-cell.today {
+  border-color: var(--gold-primary);
+  background: linear-gradient(180deg, rgba(249, 216, 87, 0.08) 0%, var(--surface-elevated) 100%);
+}
+
+.calendar-cell.outside-period {
+  opacity: 0.35;
+  background: var(--surface-dark);
+}
+
+.calendar-cell.has-activity:not(.outside-period) {
+  border-color: var(--border-light);
+}
+
+.cell-date {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: auto;
+}
+
+.outside-period .cell-date {
+  color: var(--text-muted);
+}
+
+.activity-indicator {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.3;
+  z-index: 0;
+}
+
+.mini-stats {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  margin-top: auto;
+}
+
+.mini-bar {
+  display: flex;
+  height: 3px;
+  border-radius: 2px;
+  overflow: hidden;
+  background: var(--border-dark);
+  transform-origin: left;
+}
+
+.mini-added {
+  height: 100%;
+  background: var(--green);
+}
+
+.mini-deleted {
+  height: 100%;
+  background: var(--red);
+}
+
+.commit-count {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  color: var(--text-secondary);
+  text-align: right;
+}
+
+.today-dot {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 6px;
+  height: 6px;
+  background: var(--gold-primary);
+  border-radius: 50%;
+  animation: todayPulse 2s ease-in-out infinite;
+}
+
+@keyframes todayPulse {
+  0%, 100% { opacity: 0.6; box-shadow: 0 0 0 0 rgba(249, 216, 87, 0.4); }
+  50% { opacity: 1; box-shadow: 0 0 8px 2px rgba(249, 216, 87, 0.3); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .today-dot {
+    animation: none;
+    opacity: 0.8;
+  }
+}
+
+.month-legend {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1.25rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-dark);
+}
+
+.legend-label,
+.legend-label-end {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.legend-scale {
+  display: flex;
+  gap: 3px;
+}
+
+.legend-item {
+  width: 14px;
+  height: 14px;
+  border-radius: 2px;
+  border: 1px solid var(--border-dark);
+}
+
+.view-toggle {
+  display: flex;
+  gap: 0.25rem;
+  background: var(--surface-elevated);
+  border: 1px solid var(--border-dark);
+  border-radius: var(--radius-md);
+  padding: 0.25rem;
+}
+
+.view-toggle-btn {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 500;
+  padding: 0.4rem 0.75rem;
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.2s var(--ease-out);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.view-toggle-btn:hover:not(.active) {
+  color: var(--text-primary);
+  background: var(--surface-hover);
+}
+
+.view-toggle-btn.active {
+  background: var(--gold-primary);
+  color: var(--surface-dark);
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .month-view {
+    padding: 1rem;
+  }
+
+  .calendar-cell {
+    min-height: 45px;
+    padding: 0.25rem;
+  }
+
+  .cell-date {
+    font-size: 0.65rem;
+  }
+
+  .commit-count {
+    font-size: 0.5rem;
+  }
+
+  .mini-bar {
+    height: 2px;
+  }
+
+  .legend-item {
+    width: 10px;
+    height: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .calendar-cell {
+    min-height: 35px;
+  }
+
+  .mini-stats {
+    display: none;
+  }
+
+  .month-legend {
+    flex-wrap: wrap;
+  }
+}

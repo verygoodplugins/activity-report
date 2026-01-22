@@ -77,6 +77,11 @@ export interface RepoStats {
   deleted: number;
   url: string;
   owner: string;
+  description?: string;
+  stars?: number;
+  language?: string;
+  topics?: string[];
+  forks?: number;
 }
 
 export type Theme = 'dark' | 'light';

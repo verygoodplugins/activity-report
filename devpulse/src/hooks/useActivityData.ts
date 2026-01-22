@@ -74,6 +74,13 @@ export function useActivityData() {
   const repoStats = useMemo((): RepoStats[] => {
     const repoMap = new Map<string, RepoStats>();
     
+    const mockData: Record<string, { description: string; stars: number; language: string; topics: string[]; forks: number }> = {
+      'devpulse': { description: 'Developer activity dashboard with real-time commit tracking and beautiful visualizations', stars: 234, language: 'TypeScript', topics: ['react', 'dashboard', 'developer-tools'], forks: 18 },
+      'automem': { description: 'Automated memory management and caching solution for high-performance applications', stars: 1847, language: 'Rust', topics: ['memory', 'performance', 'cache'], forks: 126 },
+      'agent-core': { description: 'Core framework for building AI agents with modular architecture', stars: 892, language: 'Python', topics: ['ai', 'agents', 'ml'], forks: 67 },
+      'web-toolkit': { description: 'Modern web development toolkit with batteries included', stars: 456, language: 'JavaScript', topics: ['web', 'toolkit', 'frontend'], forks: 34 },
+    };
+    
     commits.forEach(c => {
       const existing = repoMap.get(c.repo);
       if (existing) {
@@ -81,13 +88,26 @@ export function useActivityData() {
         existing.added += c.stats.added;
         existing.deleted += c.stats.deleted;
       } else {
+        const mock = mockData[c.repo] || {
+          description: `Repository for ${c.repo} project`,
+          stars: Math.floor(Math.random() * 500) + 10,
+          language: ['TypeScript', 'JavaScript', 'Python', 'Go', 'Rust'][Math.floor(Math.random() * 5)],
+          topics: ['open-source'],
+          forks: Math.floor(Math.random() * 50)
+        };
+        
         repoMap.set(c.repo, {
           name: c.repo,
           commits: 1,
           added: c.stats.added,
           deleted: c.stats.deleted,
           url: c.remoteUrl,
-          owner: c.owner
+          owner: c.owner,
+          description: mock.description,
+          stars: mock.stars,
+          language: mock.language,
+          topics: mock.topics,
+          forks: mock.forks
         });
       }
     });

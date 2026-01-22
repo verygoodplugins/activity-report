@@ -4,18 +4,19 @@ import { useActivityData } from './hooks/useActivityData';
 import { useTheme } from './hooks/useTheme';
 import { useReducedMotion } from './hooks/useReducedMotion';
 import { HexSidebar, Header, ScrollProgressBar } from './components/Layout';
-import { StatCard, DayCard, RepoCard, PRCard, DayDetailModal } from './components/Cards';
+import { StatCard, DayCard, RepoCard, PRCard, DayDetailModal, MonthView } from './components/Cards';
 import type { DayActivity } from './types';
 import { JackPeek } from './components/Jack';
 import './App.css';
 
 function App() {
-  const { stats, weeklyActivity, repoStats, prs, maxDayActivity, generatedAt } = useActivityData();
+  const { commits, stats, weeklyActivity, repoStats, prs, maxDayActivity, generatedAt, periodStart } = useActivityData();
   const { theme } = useTheme();
   const prefersReducedMotion = useReducedMotion();
   const [activeSection, setActiveSection] = useState('hero');
   const [showJack, setShowJack] = useState(false);
   const [selectedDay, setSelectedDay] = useState<DayActivity | null>(null);
+  const [viewMode, setViewMode] = useState<'week' | 'month'>('week');
 
   useEffect(() => {
     const timer = setTimeout(() => setShowJack(true), 2000);
@@ -79,21 +80,55 @@ function App() {
 
         <section id="weekly" className="section">
           <div className="section-header">
-            <span className="section-label">:: WEEKLY_RHYTHM</span>
-            <h2 className="section-title">This Week's Activity</h2>
+            <div className="section-header-left">
+              <span className="section-label">:: WEEKLY_RHYTHM</span>
+              <h2 className="section-title">{viewMode === 'week' ? "This Week's Activity" : "Monthly Activity"}</h2>
+            </div>
+            <div className="view-toggle">
+              <button 
+                className={`view-toggle-btn ${viewMode === 'week' ? 'active' : ''}`}
+                onClick={() => setViewMode('week')}
+              >
+                Week
+              </button>
+              <button 
+                className={`view-toggle-btn ${viewMode === 'month' ? 'active' : ''}`}
+                onClick={() => setViewMode('month')}
+              >
+                Month
+              </button>
+            </div>
           </div>
           
-          <div className="weekly-grid">
-            {weeklyActivity.map((day, index) => (
-              <DayCard
-                key={day.date.toISOString()}
-                day={day}
-                maxActivity={maxDayActivity}
-                index={index}
-                onClick={() => setSelectedDay(day)}
+          <AnimatePresence mode="wait">
+            {viewMode === 'week' ? (
+              <motion.div 
+                key="week"
+                className="weekly-grid"
+                initial={prefersReducedMotion ? false : { opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, x: 20 }}
+                transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+              >
+                {weeklyActivity.map((day, index) => (
+                  <DayCard
+                    key={day.date.toISOString()}
+                    day={day}
+                    maxActivity={maxDayActivity}
+                    index={index}
+                    onClick={() => setSelectedDay(day)}
+                  />
+                ))}
+              </motion.div>
+            ) : (
+              <MonthView
+                key="month"
+                commits={commits}
+                periodStart={periodStart}
+                onDayClick={setSelectedDay}
               />
-            ))}
-          </div>
+            )}
+          </AnimatePresence>
         </section>
 
         <section id="projects" className="section">
