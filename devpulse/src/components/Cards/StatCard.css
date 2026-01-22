@@ -1,0 +1,62 @@
+.stat-card {
+  background: var(--surface-card);
+  border: 1px solid var(--border-dark);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem 1.5rem;
+  text-align: center;
+  min-width: 110px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s var(--spring);
+}
+
+.stat-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--gold-primary);
+}
+
+.stat-card.stat-repos::before { background: var(--purple); }
+.stat-card.stat-commits::before { background: var(--gold-primary); }
+.stat-card.stat-added::before { background: var(--green); }
+.stat-card.stat-deleted::before { background: var(--red); }
+.stat-card.stat-prs::before { background: var(--cyan); }
+
+.stat-value {
+  font-size: 2rem;
+  font-weight: 700;
+  font-family: var(--font-mono);
+  line-height: 1.2;
+  margin-bottom: 0.25rem;
+  color: var(--text-primary);
+}
+
+.stat-added .stat-value { color: var(--green); }
+.stat-deleted .stat-value { color: var(--red); }
+
+.stat-label {
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 500;
+}
+
+@media (max-width: 768px) {
+  .stat-card {
+    padding: 1rem;
+    min-width: 80px;
+  }
+  
+  .stat-value {
+    font-size: 1.5rem;
+  }
+  
+  .stat-label {
+    font-size: 0.6rem;
+  }
+}
