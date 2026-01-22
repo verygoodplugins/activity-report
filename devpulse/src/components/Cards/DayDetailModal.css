@@ -1,0 +1,341 @@
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1rem;
+}
+
+.day-detail-modal {
+  position: relative;
+  background: var(--surface-dark);
+  border: 1px solid var(--border-dark);
+  border-radius: var(--radius-xl);
+  width: 100%;
+  max-width: 600px;
+  max-height: 85vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-lg), 0 0 40px rgba(249, 216, 87, 0.1);
+}
+
+.modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: transparent;
+  border: 1px solid var(--border-dark);
+  border-radius: var(--radius-md);
+  padding: 0.5rem;
+  cursor: pointer;
+  color: var(--text-muted);
+  transition: all 0.2s ease;
+  z-index: 10;
+}
+
+.modal-close:hover {
+  background: var(--surface-hover);
+  border-color: var(--gold-secondary);
+  color: var(--gold-primary);
+}
+
+.modal-header {
+  padding: 1.5rem 1.5rem 1rem;
+  border-bottom: 1px solid var(--border-dark);
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.modal-day-name {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.modal-date {
+  font-family: var(--font-mono);
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.modal-today-badge {
+  display: inline-block;
+  background: var(--gold-primary);
+  color: var(--surface-dark);
+  font-size: 0.55rem;
+  font-weight: 700;
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--radius-sm);
+  letter-spacing: 0.05em;
+  width: fit-content;
+  margin-top: 0.5rem;
+}
+
+.modal-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  padding: 1.25rem 1.5rem;
+  background: var(--surface-elevated);
+  border-bottom: 1px solid var(--border-dark);
+}
+
+.modal-stat {
+  text-align: center;
+}
+
+.modal-stat-value {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--gold-primary);
+}
+
+.modal-stat.added .modal-stat-value {
+  color: var(--green);
+}
+
+.modal-stat.deleted .modal-stat-value {
+  color: var(--red);
+}
+
+.modal-stat-label {
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.modal-repos {
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid var(--border-dark);
+}
+
+.modal-section-title {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin: 0 0 0.75rem;
+}
+
+.modal-repo-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.modal-repo-tag {
+  background: var(--surface-card);
+  border: 1px solid var(--border-dark);
+  border-radius: var(--radius-md);
+  padding: 0.35rem 0.75rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--gold-primary);
+}
+
+.modal-commits {
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 1.5rem 1.5rem;
+}
+
+.modal-commits-list {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding-right: 0.5rem;
+}
+
+.modal-commits-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.modal-commits-list::-webkit-scrollbar-track {
+  background: var(--surface-elevated);
+  border-radius: 3px;
+}
+
+.modal-commits-list::-webkit-scrollbar-thumb {
+  background: var(--border-light);
+  border-radius: 3px;
+}
+
+.modal-commits-list::-webkit-scrollbar-thumb:hover {
+  background: var(--gold-secondary);
+}
+
+.modal-no-commits {
+  text-align: center;
+  color: var(--text-muted);
+  font-style: italic;
+  padding: 2rem;
+}
+
+.modal-commit {
+  background: var(--surface-card);
+  border: 1px solid var(--border-dark);
+  border-radius: var(--radius-md);
+  padding: 1rem;
+  transition: border-color 0.2s ease;
+}
+
+.modal-commit:hover {
+  border-color: var(--border-light);
+}
+
+.commit-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.commit-headline {
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  font-weight: 500;
+  line-height: 1.4;
+  flex: 1;
+}
+
+.commit-time {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.commit-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.commit-repo-link {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--gold-primary);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.commit-repo-link:hover {
+  color: var(--gold-light);
+  text-decoration: underline;
+}
+
+.commit-hash {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  background: var(--surface-elevated);
+  padding: 0.15rem 0.4rem;
+  border-radius: var(--radius-sm);
+}
+
+.commit-files {
+  border-top: 1px solid var(--border-dark);
+  padding-top: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.commit-file {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+}
+
+.file-name {
+  color: var(--text-secondary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex: 1;
+}
+
+.file-stats {
+  display: flex;
+  gap: 0.5rem;
+  white-space: nowrap;
+}
+
+.file-added {
+  color: var(--green);
+}
+
+.file-deleted {
+  color: var(--red);
+}
+
+.commit-files-more {
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  font-style: italic;
+  padding-top: 0.25rem;
+}
+
+@media (max-width: 640px) {
+  .modal-backdrop {
+    padding: 0.5rem;
+    align-items: flex-end;
+  }
+
+  .day-detail-modal {
+    max-height: 90vh;
+    border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+  }
+
+  .modal-header {
+    padding: 1.25rem 1rem 1rem;
+  }
+
+  .modal-stats {
+    padding: 1rem;
+    gap: 0.5rem;
+  }
+
+  .modal-stat-value {
+    font-size: 1rem;
+  }
+
+  .modal-repos,
+  .modal-commits {
+    padding: 1rem;
+  }
+
+  .modal-commit {
+    padding: 0.75rem;
+  }
+
+  .commit-header {
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .commit-time {
+    order: -1;
+  }
+}

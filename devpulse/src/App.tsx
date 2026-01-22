@@ -4,7 +4,8 @@ import { useActivityData } from './hooks/useActivityData';
 import { useTheme } from './hooks/useTheme';
 import { useReducedMotion } from './hooks/useReducedMotion';
 import { HexSidebar, Header, ScrollProgressBar } from './components/Layout';
-import { StatCard, DayCard, RepoCard, PRCard } from './components/Cards';
+import { StatCard, DayCard, RepoCard, PRCard, DayDetailModal } from './components/Cards';
+import type { DayActivity } from './types';
 import { JackPeek } from './components/Jack';
 import './App.css';
 
@@ -14,6 +15,7 @@ function App() {
   const prefersReducedMotion = useReducedMotion();
   const [activeSection, setActiveSection] = useState('hero');
   const [showJack, setShowJack] = useState(false);
+  const [selectedDay, setSelectedDay] = useState<DayActivity | null>(null);
 
   useEffect(() => {
     const timer = setTimeout(() => setShowJack(true), 2000);
@@ -88,6 +90,7 @@ function App() {
                 day={day}
                 maxActivity={maxDayActivity}
                 index={index}
+                onClick={() => setSelectedDay(day)}
               />
             ))}
           </div>
@@ -137,6 +140,12 @@ function App() {
       <AnimatePresence>
         {showJack && <JackPeek isVisible={showJack} />}
       </AnimatePresence>
+
+      <DayDetailModal
+        day={selectedDay}
+        isOpen={selectedDay !== null}
+        onClose={() => setSelectedDay(null)}
+      />
     </div>
   );
 }
