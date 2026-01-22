@@ -42,15 +42,15 @@ devpulse/
 
 ## Key Features
 - **Hex sidebar navigation** with memory addresses (0x0000, 0x0010, etc.)
+- **Settings Panel** - gear button in bottom-right opens panel to switch themes and toggle features live
 - **Day Detail Modal** - click any day to see commits, files changed, repos touched
 - **Week/Month toggle** - switch between weekly cards and monthly calendar heatmap
 - **Enhanced Repo Cards** - description, stars, language badge with color, topics as pills
 - **Enhanced PR Cards** - description preview, review status, comments count, CI status badges
 - **JSON Config System** - sections, colors, and interactivity configurable via config.json
-- **Theme Packs** - 3 themes: terminal-dark, minimal-light, neon-cyberpunk
+- **Theme Packs** - 3 themes: terminal-dark, cream-light, neon-cyberpunk
 - **Setup Page** (/setup) - deployment instructions for Cloudflare Pages
 - **Jack character** with multiple poses (wave, thumbsUp, sleeping, celebrate)
-- **Dark/Light theme toggle**
 - **Reduced motion support** - respects prefers-reduced-motion
 - **Responsive design** for mobile
 
@@ -67,9 +67,9 @@ Edit `src/data/config.json` to customize:
 - Branding and attribution
 
 ### Theme Packs
-Swap themes by copying a theme pack to config.json:
+Swap themes via the Settings Panel (gear icon) or by copying a theme pack to config.json:
 - `themes/terminal-dark.json` - Default gold/dark terminal aesthetic
-- `themes/minimal-light.json` - Clean blue/white minimal design
+- `themes/minimal-light.json` - Warm cream/gold light theme (automem.ai style)
 - `themes/neon-cyberpunk.json` - Vibrant cyan/magenta cyberpunk
 
 ## Running Locally
