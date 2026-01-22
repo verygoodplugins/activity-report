@@ -384,7 +384,7 @@ async function fetchData({
       for (const pr of prList) {
         try {
           const detailRaw = safeExec(
-            `gh pr view ${pr.number} --repo ${pr.repository.nameWithOwner} --json number,title,url,state,createdAt,additions,deletions,changedFiles,commits,baseRefName,headRefName,mergeable,reviews,labels,files`,
+            `gh pr view ${pr.number} --repo ${pr.repository.nameWithOwner} --json number,title,url,state,createdAt,additions,deletions,changedFiles,commits,baseRefName,headRefName,mergeable,reviews,labels,files,body`,
             { encoding: "utf-8" }
           );
           if (!detailRaw) continue;
@@ -418,6 +418,7 @@ async function fetchData({
               added: f.additions,
               deleted: f.deletions,
             })),
+            body: detail.body || '',
           });
           data.stats.prs++;
         } catch {}

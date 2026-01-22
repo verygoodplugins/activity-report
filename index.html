@@ -1037,6 +1037,44 @@
       opacity: 1;
     }
 
+    /* PR Description Preview */
+    .pr-description {
+      margin-top: 0.75rem;
+      padding-top: 0.75rem;
+      border-top: 1px dashed var(--border);
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+      max-height: 8em;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .pr-description::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 3em;
+      background: linear-gradient(transparent, var(--surface));
+      pointer-events: none;
+    }
+
+    .pr-description-text {
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    /* Hide fade when expanded */
+    .expandable-card.expanded .pr-description::after {
+      display: none;
+    }
+
+    .expandable-card.expanded .pr-description {
+      max-height: none;
+    }
+
     .file-item {
       display: flex;
       justify-content: space-between;
@@ -1373,6 +1411,14 @@
         return (num / 1000).toFixed(1) + 'k';
       }
       return num.toString();
+    }
+
+    function escapeHtml(text) {
+      return text
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
     }
 
     function animateCounter(element, target, prefix = '', duration = 1500) {
@@ -1953,6 +1999,12 @@
         const prFiles = pr.files || [];
         const hasFileDetails = prFiles.length > 0;
 
+        // Truncate body to first section or ~500 chars
+        const bodyPreview = pr.body
+          ? pr.body.split(/\n\n|\r\n\r\n/)[0].slice(0, 500)
+          : '';
+        const hasBody = bodyPreview.length > 0;
+
         const files = prFiles
           .slice(0, 10)
           .map(f => `
@@ -1962,8 +2014,11 @@
             </div>
           `).join('');
 
+        // Card is expandable if it has body OR file details
+        const isExpandable = hasBody || hasFileDetails;
+
         return `
-          <div class="pr-card ${hasFileDetails ? 'expandable-card' : ''}" ${hasFileDetails ? 'onclick="this.classList.toggle(\'expanded\')"' : ''}>
+          <div class="pr-card ${isExpandable ? 'expandable-card' : ''}" ${isExpandable ? 'onclick="this.classList.toggle(\'expanded\')"' : ''}>
             <div class="pr-card-main">
               <div class="pr-status ${state}">${stateIcon}</div>
               <div class="pr-info">
@@ -1981,6 +2036,11 @@
                 <div class="files">${fileCount} files</div>
               </div>
             </div>
+            ${hasBody ? `
+              <div class="pr-description">
+                <div class="pr-description-text">${escapeHtml(bodyPreview)}</div>
+              </div>
+            ` : ''}
             ${hasFileDetails ? `<div class="pr-files">${files}</div>` : ''}
           </div>
         `;

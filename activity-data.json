@@ -1,7 +1,355 @@
 {
-  "generatedAt": "2026-01-21T23:07:56.498Z",
-  "periodStart": "2025-12-22T23:07:56.497Z",
+  "generatedAt": "2026-01-22T01:26:50.704Z",
+  "periodStart": "2025-12-23T01:26:50.703Z",
   "commits": [
+    {
+      "type": "commit",
+      "hash": "f876a6ce02ae2c55e3435bdbc55c6d33891b3470",
+      "shortHash": "f876a6c",
+      "date": "2026-01-22T02:12:09+01:00",
+      "headline": "Enhance DiscordAdapter with improved streaming update management and embed formatting",
+      "repo": "autohub",
+      "owner": "verygoodplugins",
+      "repoSlug": "autohub",
+      "remoteUrl": "https://github.com/verygoodplugins/autohub",
+      "stats": {
+        "added": 120,
+        "deleted": 38,
+        "files": 2
+      },
+      "files": [
+        {
+          "file": "src/platforms/discord/adapter.js",
+          "added": 68,
+          "deleted": 28
+        },
+        {
+          "file": "src/platforms/discord/formatting/embeds.js",
+          "added": 52,
+          "deleted": 10
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "d945777117a356c0f0545468d712200491517d59",
+      "shortHash": "d945777",
+      "date": "2026-01-22T02:07:47+01:00",
+      "headline": "Enhance error handling and improve embed formatting in Discord components",
+      "repo": "autohub",
+      "owner": "verygoodplugins",
+      "repoSlug": "autohub",
+      "remoteUrl": "https://github.com/verygoodplugins/autohub",
+      "stats": {
+        "added": 95,
+        "deleted": 41,
+        "files": 7
+      },
+      "files": [
+        {
+          "file": "src/core/tool-icons.js",
+          "added": 6,
+          "deleted": 2
+        },
+        {
+          "file": "src/platforms/discord/components/interaction-handler.js",
+          "added": 4,
+          "deleted": 1
+        },
+        {
+          "file": "src/platforms/discord/formatting/cv2-layouts.js",
+          "added": 14,
+          "deleted": 16
+        },
+        {
+          "file": "src/platforms/discord/formatting/embeds.js",
+          "added": 24,
+          "deleted": 8
+        },
+        {
+          "file": "src/platforms/discord/messaging/threaded-handler.js",
+          "added": 39,
+          "deleted": 10
+        },
+        {
+          "file": "src/platforms/telegram/adapter.js",
+          "added": 5,
+          "deleted": 1
+        },
+        {
+          "file": "test/tool-icons.test.js",
+          "added": 3,
+          "deleted": 3
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "44a35a028eed7ad04e16a285087a12ff0677876d",
+      "shortHash": "44a35a0",
+      "date": "2026-01-22T01:54:19+01:00",
+      "headline": "feat: implement staggered reveal animation for month view and enhance activity bars with repo-level tracking",
+      "repo": "activity-report",
+      "owner": "verygoodplugins",
+      "repoSlug": "activity-report",
+      "remoteUrl": "https://github.com/verygoodplugins/activity-report",
+      "stats": {
+        "added": 78,
+        "deleted": 16,
+        "files": 1
+      },
+      "files": [
+        {
+          "file": "index.html",
+          "added": 78,
+          "deleted": 16
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "ce223724d641cad7081d72d3d508fd3c6843e911",
+      "shortHash": "ce22372",
+      "date": "2026-01-22T00:45:17+01:00",
+      "headline": "feat: initial verygoodplugins marketplace with automem plugin",
+      "repo": "claude-plugins",
+      "owner": "verygoodplugins",
+      "repoSlug": "claude-plugins",
+      "remoteUrl": "https://github.com/verygoodplugins/claude-plugins",
+      "stats": {
+        "added": 1910,
+        "deleted": 0,
+        "files": 20
+      },
+      "files": [
+        {
+          "file": ".claude-plugin/marketplace.json",
+          "added": 50,
+          "deleted": 0
+        },
+        {
+          "file": "LICENSE",
+          "added": 21,
+          "deleted": 0
+        },
+        {
+          "file": "README.md",
+          "added": 73,
+          "deleted": 0
+        },
+        {
+          "file": "plugins/automem/.claude-plugin/plugin.json",
+          "added": 23,
+          "deleted": 0
+        },
+        {
+          "file": "plugins/automem/.mcp.json",
+          "added": 11,
+          "deleted": 0
+        },
+        {
+          "file": "plugins/automem/README.md",
+          "added": 107,
+          "deleted": 0
+        },
+        {
+          "file": "plugins/automem/commands/memory-health.md",
+          "added": 25,
+          "deleted": 0
+        },
+        {
+          "file": "plugins/automem/commands/memory-recall.md",
+          "added": 51,
+          "deleted": 0
+        },
+        {
+          "file": "plugins/automem/commands/memory-store.md",
+          "added": 45,
+          "deleted": 0
+        },
+        {
+          "file": "plugins/automem/hooks/hooks.json",
+          "added": 62,
+          "deleted": 0
+        },
+        {
+          "file": "plugins/automem/scripts/capture-build-result.sh",
+          "added": 202,
+          "deleted": 0
+        },
+        {
+          "file": "plugins/automem/scripts/capture-deployment.sh",
+          "added": 228,
+          "deleted": 0
+        },
+        {
+          "file": "plugins/automem/scripts/capture-test-pattern.sh",
+          "added": 191,
+          "deleted": 0
+        },
+        {
+          "file": "plugins/automem/scripts/memory-filters.json",
+          "added": 129,
+          "deleted": 0
+        },
+        {
+          "file": "plugins/automem/scripts/process-session-memory.py",
+          "added": 36,
+          "deleted": 0
+        },
+        {
+          "file": "plugins/automem/scripts/queue-cleanup.sh",
+          "added": 174,
+          "deleted": 0
+        },
+        {
+          "file": "plugins/automem/scripts/session-memory.sh",
+          "added": 147,
+          "deleted": 0
+        },
+        {
+          "file": "plugins/automem/scripts/session-start.sh",
+          "added": 18,
+          "deleted": 0
+        },
+        {
+          "file": "plugins/automem/skills/memory-management/SKILL.md",
+          "added": 215,
+          "deleted": 0
+        },
+        {
+          "file": "plugins/automem/skills/memory-management/patterns.md",
+          "added": 102,
+          "deleted": 0
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "58377d00e8bd59651b5fc98e7eae9495bb268849",
+      "shortHash": "58377d0",
+      "date": "2026-01-22T00:18:00+01:00",
+      "headline": "feat: enhance activity report with new view transitions and improved month/day views",
+      "repo": "activity-report",
+      "owner": "verygoodplugins",
+      "repoSlug": "activity-report",
+      "remoteUrl": "https://github.com/verygoodplugins/activity-report",
+      "stats": {
+        "added": 18042,
+        "deleted": 732,
+        "files": 3
+      },
+      "files": [
+        {
+          "file": "activity-data.json",
+          "added": 17466,
+          "deleted": 719
+        },
+        {
+          "file": "generate-rich-report.mjs",
+          "added": 1,
+          "deleted": 1
+        },
+        {
+          "file": "index.html",
+          "added": 575,
+          "deleted": 12
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "7e7f88f973425dc122c2c58315771d500012736c",
+      "shortHash": "7e7f88f",
+      "date": "2026-01-22T00:09:30+01:00",
+      "headline": "Update DiscordAdapter and components for enhanced button interactions and streaming management",
+      "repo": "autohub",
+      "owner": "verygoodplugins",
+      "repoSlug": "autohub",
+      "remoteUrl": "https://github.com/verygoodplugins/autohub",
+      "stats": {
+        "added": 1045,
+        "deleted": 279,
+        "files": 15
+      },
+      "files": [
+        {
+          "file": "config/services/discord.json",
+          "added": 1,
+          "deleted": 1
+        },
+        {
+          "file": "src/core/tool-icons.js",
+          "added": 198,
+          "deleted": 0
+        },
+        {
+          "file": "src/core/ui-directives.js",
+          "added": 191,
+          "deleted": 0
+        },
+        {
+          "file": "src/platforms/discord/adapter.js",
+          "added": 233,
+          "deleted": 49
+        },
+        {
+          "file": "src/platforms/discord/components/action-buttons.js",
+          "added": 30,
+          "deleted": 27
+        },
+        {
+          "file": "src/platforms/discord/components/feedback-modal.js",
+          "added": 2,
+          "deleted": 13
+        },
+        {
+          "file": "src/platforms/discord/components/interaction-handler.js",
+          "added": 168,
+          "deleted": 63
+        },
+        {
+          "file": "src/platforms/discord/formatting/embeds.js",
+          "added": 19,
+          "deleted": 66
+        },
+        {
+          "file": "src/platforms/discord/messaging/threaded-handler.js",
+          "added": 26,
+          "deleted": 11
+        },
+        {
+          "file": "src/platforms/telegram/adapter.js",
+          "added": 62,
+          "deleted": 0
+        },
+        {
+          "file": "src/platforms/telegram/index.js",
+          "added": 2,
+          "deleted": 0
+        },
+        {
+          "file": "src/platforms/whatsapp/adapter.js",
+          "added": 9,
+          "deleted": 2
+        },
+        {
+          "file": "src/shared/status-formatter.js",
+          "added": 19,
+          "deleted": 47
+        },
+        {
+          "file": "test/tool-icons.test.js",
+          "added": 35,
+          "deleted": 0
+        },
+        {
+          "file": "test/ui-directives.test.js",
+          "added": 50,
+          "deleted": 0
+        }
+      ]
+    },
     {
       "type": "commit",
       "hash": "938c4d09288c669a06aa24364bb69a9a258cf643",
@@ -1333,8 +1681,8 @@
     },
     {
       "type": "commit",
-      "hash": "5aa0b66cb1b20f3061df3a268112a14906d1f8f4",
-      "shortHash": "5aa0b66",
+      "hash": "19051ef061e30b32a4a21ccef309ffdb4fa49be9",
+      "shortHash": "19051ef",
       "date": "2026-01-19T15:38:34+01:00",
       "headline": "Add association triggers and confidence to memory rules",
       "repo": "mcp-automem",
@@ -17866,14 +18214,14 @@
       "repo": "autohub",
       "repoFull": "verygoodplugins/autohub",
       "stats": {
-        "added": 538,
-        "deleted": 145,
-        "files": 15
+        "added": 4198,
+        "deleted": 229,
+        "files": 30
       },
       "baseBranch": "main",
       "headBranch": "fix/discord-user-profiles",
       "mergeable": "MERGEABLE",
-      "commits": 2,
+      "commits": 7,
       "reviews": [
         {
           "author": "coderabbitai",
@@ -17889,13 +18237,23 @@
           "author": "coderabbitai",
           "state": "COMMENTED",
           "submittedAt": "2026-01-21T22:13:00Z"
+        },
+        {
+          "author": "coderabbitai",
+          "state": "COMMENTED",
+          "submittedAt": "2026-01-21T23:23:08Z"
+        },
+        {
+          "author": "coderabbitai",
+          "state": "COMMENTED",
+          "submittedAt": "2026-01-22T01:21:43Z"
         }
       ],
       "labels": [],
       "files": [
         {
           "file": "config/services/discord.json",
-          "added": 14,
+          "added": 67,
           "deleted": 1
         },
         {
@@ -17944,6 +18302,21 @@
           "deleted": 5
         },
         {
+          "file": "src/core/tool-icons.js",
+          "added": 202,
+          "deleted": 0
+        },
+        {
+          "file": "src/core/ui-directives.js",
+          "added": 191,
+          "deleted": 0
+        },
+        {
+          "file": "src/discord-server/index.js",
+          "added": 66,
+          "deleted": 9
+        },
+        {
           "file": "src/memory/memory-indexer.js",
           "added": 13,
           "deleted": 11
@@ -17955,8 +18328,53 @@
         },
         {
           "file": "src/platforms/discord/adapter.js",
-          "added": 353,
-          "deleted": 48
+          "added": 938,
+          "deleted": 74
+        },
+        {
+          "file": "src/platforms/discord/components/action-buttons.js",
+          "added": 307,
+          "deleted": 0
+        },
+        {
+          "file": "src/platforms/discord/components/feedback-modal.js",
+          "added": 60,
+          "deleted": 0
+        },
+        {
+          "file": "src/platforms/discord/components/interaction-handler.js",
+          "added": 686,
+          "deleted": 0
+        },
+        {
+          "file": "src/platforms/discord/formatting/cv2-layouts.js",
+          "added": 344,
+          "deleted": 0
+        },
+        {
+          "file": "src/platforms/discord/formatting/embeds.js",
+          "added": 624,
+          "deleted": 0
+        },
+        {
+          "file": "src/platforms/discord/messaging/threaded-handler.js",
+          "added": 361,
+          "deleted": 0
+        },
+        {
+          "file": "src/platforms/telegram/adapter.js",
+          "added": 66,
+          "deleted": 0
+        },
+        {
+          "file": "src/platforms/telegram/index.js",
+          "added": 2,
+          "deleted": 0
+        },
+        {
+          "file": "src/platforms/whatsapp/adapter.js",
+          "added": 9,
+          "deleted": 2
         },
         {
           "file": "src/services/user-identity.js",
@@ -17964,11 +18382,27 @@
           "deleted": 15
         },
         {
+          "file": "src/shared/status-formatter.js",
+          "added": 19,
+          "deleted": 47
+        },
+        {
           "file": "src/voice/voice-server.js",
           "added": 4,
           "deleted": 4
+        },
+        {
+          "file": "test/tool-icons.test.js",
+          "added": 35,
+          "deleted": 0
+        },
+        {
+          "file": "test/ui-directives.test.js",
+          "added": 50,
+          "deleted": 0
         }
-      ]
+      ],
+      "body": "## Summary\n\nComprehensive Discord integration improvements:\n\n- **User profile detection**: Non-owners now correctly get `discord-user` profile instead of `discord-owner`, with restricted tool access (essential, memory, search, weather, research only)\n- **Platform terminology cleanup**: Renamed generic `slack` context parameter to `platformContext` across codebase for clarity (backward compatible)\n- **Per-server prompt system**: New `serverPrompts` config allows custom system prompt additions per Discord guild/channel. AutoMem server configured with $AUTOMem token context.\n- **Streaming responses**: Discord messages now update in real-time with progress indicators, similar to Slack streaming\n\n## Key Changes\n\n| Area | Change |\n|------|--------|\n| Discord Adapter | Streaming support, server prompts, progress indicators |\n| Tool Selection | Auto-selects `{platform}-user` profile for non-owners |\n| User Identity | Platform-agnostic log messages |\n| Config | `serverPrompts` for per-guild customization |\n\n## New Environment Variables\n\n- `DISCORD_STREAMING_ENABLED` (default: true)\n- `DISCORD_UPDATE_INTERVAL_MS` (default: 1500)\n\n## Test Plan\n\n1. Non-owner in AutoMem Discord server:\n   - [ ] Logs show `\"profile\":\"discord-user\"`\n   - [ ] Server prompt applied (mentions $AUTOMem)\n   - [ ] Streaming works (real-time updates)\n   - [ ] Restricted tools (no calendar/email/github)\n\n2. Owner message:\n   - [ ] Owner detection working\n   - [ ] Full tool access available\n\n<!-- This is an auto-generated comment: release notes by coderabbit.ai -->\n## Summary by CodeRabbit\n\n* **New Features**\n  * Interactive Discord UX v2: streaming replies, rich embeds, action buttons (regenerate/copy/thread/feedback/expand), pagination, threading, feedback modal, CV2 layouts\n  * Per-server and per-channel system prompts for Discord\n  * Telegram adapter scaffold and enhanced WhatsApp responses with tool progress\n  * Centralized tool icon/emoji registry and UI-directives support\n\n* **Improvements**\n  * Unified multi-platform context handling for consistent cross-platform behavior\n  * Improved progress/status rendering and streaming lifecycle across platforms\n\n* **Tests**\n  * Added tests for tool icons and UI directives\n\n<sub>✏️ Tip: You can customize this high-level summary in your review settings.</sub>\n<!-- end of auto-generated comment: release notes by coderabbit.ai -->"
     },
     {
       "type": "pr",
@@ -18201,7 +18635,8 @@
           "added": 263,
           "deleted": 0
         }
-      ]
+      ],
+      "body": "This pull request removes the `LOGGING_DOCUMENTATION_INDEX.md` file and its associated index content, which previously provided a comprehensive overview and navigation guide for the AutoHub logging system documentation. The removal streamlines the documentation set and eliminates redundancy, as the quick reference and system analysis documents remain available for implementation and architectural needs.\r\n\r\nDocumentation cleanup:\r\n\r\n* Deleted `LOGGING_DOCUMENTATION_INDEX.md`, removing the high-level index, role-based navigation, key statistics, file location references, action items, and maintenance instructions for the logging documentation suite.\r\n\r\nNo changes were made to logging implementation, configuration, or code files.\n\n<!-- This is an auto-generated comment: release notes by coderabbit.ai -->\n\n## Summary by CodeRabbit\n\n* **New Features**\n  * Added VoiceInc voice recognition system with custom dictionaries, power modes, and smart shortcuts for productivity workflows (coding, email, chat, Git).\n  * Implemented Chat2BT voice-to-AI integration for form filling and code completion via streaming responses.\n  * Added local Parakeet speech-to-text service for offline audio transcription.\n  * Introduced agent naming system for task delegation with customizable themes.\n\n* **Documentation**\n  * Added comprehensive VoiceInc setup, quick-start, and workflow guides.\n\n* **Chores**\n  * Added configuration utilities and npm scripts for VoiceInc management.\n\n<sub>✏️ Tip: You can customize this high-level summary in your review settings.</sub>\n\n<!-- end of auto-generated comment: release notes by coderabbit.ai -->"
     },
     {
       "type": "pr",
@@ -18275,7 +18710,8 @@
           "added": 75,
           "deleted": 18
         }
-      ]
+      ],
+      "body": "## Overview\nAdds OBS Studio integration to AutoHub, enabling programmatic control of Jack's live streams.\n\n## Changes\n- **Config Updates**:\n  - Added obs-mcp@latest to `config/mcp-servers.json` (production config)\n  - Added obs-mcp template to `config/mcp-servers.example.json`\n  - Added obs-mcp to `.cursor/mcp.json` for Cursor IDE support\n\n- **Documentation**:\n  - Created `docs/OBS-MCP-INTEGRATION.md` with complete setup and usage guide\n  - Includes troubleshooting, examples, and performance notes\n\n## Features Enabled\n- ✅ Scene switching and management\n- ✅ Source mute/visibility control\n- ✅ Recording and stream start/stop\n- ✅ Filter and effect management\n- ✅ Performance stats and monitoring\n\n## Testing\n- ✅ JSON validation passed\n- ✅ obs-mcp@latest successfully initialized\n- ✅ OBS WebSocket connection verified at localhost:4455\n- ✅ All tools available and responding\n\n## Setup Required\n1. Ensure OBS WebSocket server is enabled (Tools → WebSocket Server Settings)\n2. Verify port 4455 is accessible\n3. Restart AutoHub services to load MCP configuration\n\n## Notes\n- MCP server config files (mcp-servers.json, .cursor/mcp.json) are gitignored due to containing credentials\n- Documentation includes all necessary setup and troubleshooting steps\n- Tools use lazy loading (only loaded when first called)\n\nCloses #N/A\n\n<!-- This is an auto-generated comment: release notes by coderabbit.ai -->\n## Summary by CodeRabbit\n\n* **New Features**\n  * Added many new and reworked server integrations (ElevenLabs, Bright Data, Chrome MCP, Automem/Evernote, Slack workspaces, Desktop Commander/FreeScout, OBS, WordPress, etc.) and expanded OBS control toolset for studio automation.\n\n* **Documentation**\n  * Added a comprehensive OBS Studio integration guide.\n  * Added branch workflow guidance to review guidelines.\n\n* **New Behavior**\n  * Enhanced memory management with a multi-tier recall and association strategy.\n\n<sub>✏️ Tip: You can customize this high-level summary in your review settings.</sub>\n<!-- end of auto-generated comment: release notes by coderabbit.ai -->"
     },
     {
       "type": "pr",
@@ -18314,7 +18750,8 @@
           "added": 73,
           "deleted": 16
         }
-      ]
+      ],
+      "body": "## Summary\n\nOverhauls the Memory Management section of the system prompt to maximize usage of AutoMem v0.9.1 features for richer, more proactive memory recall.\n\n### Key Changes\n\n- **ALWAYS RECALL triggers**: Any question about people/projects, topic shifts, decisions, debugging\n- **6 recall strategies** from quick (low-latency) to thorough (multi-query + graph expansion):\n  1. QUICK - Single semantic query\n  2. STANDARD - Multi-hop with entity expansion (new default)\n  3. THOROUGH - Multi-query + graph expansion\n  4. TEMPORAL - Time-aware queries\n  5. RELATIONSHIP - Graph traversal for connections\n  6. CODING CONTEXT - Language/framework-aware recall\n- **Default `expand_entities=true`** for multi-hop reasoning (\"Who is Steve?\" → finds Steve → finds Steve's projects)\n- **Time query patterns** for temporal context (today/yesterday/last 7 days/last 30 days)\n- **Relationship expansion** for connected bugs/decisions\n- **Coding context strategy** with language hints and `context_types`\n- **Reduced reliance on tags** (hard filters) in favor of `context_tags` (boost)\n- **Liberal store policy** with immediate triggers and silent operation\n- **Memory types guide** with importance levels (Decision 0.9, Insight 0.8, Pattern 0.7, etc.)\n- **Association guidance** for building knowledge graphs\n- **Updated thinking block** to consider graph expansion options\n\n### Complements Existing Code\n\nThese changes work with and don't conflict with:\n- `src/memory/memory-prefetcher.js` - Already uses `expand_entities` in prefetch\n- `src/agents/memory-strategies/coding-agent-strategy.js` - Similar patterns for coding agents\n- `src/memory/memory-client.js` - Full v0.9.1 parameter support\n\n### Latency Considerations\n\nThe strategies are ordered from fastest to most thorough, allowing the agent to pick appropriately based on:\n- Platform (voice needs QUICK, web can use STANDARD/THOROUGH)\n- Question complexity (simple lookups vs multi-hop reasoning)\n- Time sensitivity (real-time chat vs async tasks)\n\n## Test Plan\n\n- [ ] Verify system prompt renders correctly with all strategies\n- [ ] Test memory recall with `expand_entities: true` produces richer results\n- [ ] Confirm no conflicts with existing memory prefetcher behavior\n- [ ] Check that coding context recall works with language/context_types hints\n\n<!-- This is an auto-generated comment: release notes by coderabbit.ai -->\n## Summary by CodeRabbit\n\n* **Improvements**\n  * Overhauled memory and recall behavior with multi-tier strategies (quick → thorough) for richer, proactive context retrieval and association\n  * Expanded memory tagging, types, metadata hints, and smarter temporal/relationship-aware recall\n  * More detailed response analysis flow for clearer, stepwise outputs\n\n* **Documentation**\n  * Added guidance on branching workflow to avoid local worktree pitfalls and streamline PRs via GitHub\n\n<sub>✏️ Tip: You can customize this high-level summary in your review settings.</sub>\n<!-- end of auto-generated comment: release notes by coderabbit.ai -->"
     },
     {
       "type": "pr",
@@ -18563,7 +19000,8 @@
           "added": 282,
           "deleted": 0
         }
-      ]
+      ],
+      "body": "- Add voiceinc-optimization-guide.md with 6-phase optimization framework\r\n- Create Power Mode profiles for Cursor, Claude, Slack, Gmail, Terminal\r\n- Build custom dictionary with 100+ tech terms and Jack's vocabulary\r\n- Configure 6 Smart Modes for different writing contexts\r\n- Add 50+ voice shortcuts for code snippets, emails, git commands\r\n- Create 10 detailed workflow templates for vibe coding, email, meetings\r\n- Add weekly accuracy tracking template for continuous improvement\r\n- Create comprehensive implementation checklist (3-4 hour setup)\r\n- Add quick start guide for immediate VoiceInk adoption\r\n- All optimizations focused on Jack's voice-first development workflow\r\n- Target: 95%+ accuracy, 3-5x productivity gain, continuous flow state\n\n<!-- This is an auto-generated comment: release notes by coderabbit.ai -->\n## Summary by CodeRabbit\n\n## Release Notes\n\n* **New Features**\n  * VoiceInk voice input system with configurable power modes, custom dictionaries, and voice shortcuts\n  * Chat2BT integration enabling voice-powered form filling and code completion\n  * Agent naming system with multiple themed naming profiles\n  * Clipboard management tool with queue support\n  * Voice workflow templates for coding, documentation, email, and collaboration tasks\n\n* **Documentation**\n  * Added comprehensive VoiceInk setup guides, quick start, implementation checklist, and accuracy tracking\n  * Added Chat2BT integration guides and quick reference documentation\n\n* **Configuration**\n  * New configuration files for voice modes, shortcuts, and custom dictionaries\n  * Agent names configuration with themed options\n\n* **Dependencies**\n  * Added SQLite database support\n\n<sub>✏️ Tip: You can customize this high-level summary in your review settings.</sub>\n<!-- end of auto-generated comment: release notes by coderabbit.ai -->"
     },
     {
       "type": "pr",
@@ -18662,7 +19100,8 @@
           "added": 17,
           "deleted": 0
         }
-      ]
+      ],
+      "body": "This pull request introduces major improvements to Evernote MCP tool integration, focusing on enhanced search functionality, robust note patching, and improved test coverage. It also adds a custom CodeQL configuration to suppress known false positives and tightens security in the installation script. The changes are grouped below by theme.\r\n\r\n**Evernote MCP Tool Enhancements:**\r\n\r\n* Expanded the number of available tools from 11 to 28 and added the new `evernote_patch_note` tool, with comprehensive integration tests for patching note content, including edge cases and error handling [[1]](diffhunk://#diff-2b1214433bbf3035421600d8f09615678e4906b17594bbccd9e846833fd6be40L82-R85) [[2]](diffhunk://#diff-2b1214433bbf3035421600d8f09615678e4906b17594bbccd9e846833fd6be40R99) [[3]](diffhunk://#diff-2b1214433bbf3035421600d8f09615678e4906b17594bbccd9e846833fd6be40R933-R1135).\r\n* Improved the `evernote_search_notes` tool to return enhanced metadata (such as `contentLength`, `notebookGuid`, `tags`, `sourceURL`, and `author`) and support for content previews, including tests for preview inclusion, absence, and error handling [[1]](diffhunk://#diff-2b1214433bbf3035421600d8f09615678e4906b17594bbccd9e846833fd6be40R262-R416) [[2]](diffhunk://#diff-1fbd9050e86d77f38063386c49e9d403d00fc500896de2258adcc508396b80cbR122-R154).\r\n\r\n**Testing Improvements:**\r\n\r\n* Added new mock data (`sampleNoteMetadata`, `sampleNoteWithLongContent`, `sampleTag2`) and updated imports to support enhanced search and preview tests [[1]](diffhunk://#diff-2b1214433bbf3035421600d8f09615678e4906b17594bbccd9e846833fd6be40R7-R11) [[2]](diffhunk://#diff-1fbd9050e86d77f38063386c49e9d403d00fc500896de2258adcc508396b80cbR122-R154).\r\n* Introduced a dedicated unit test for ENML-to-plain-text conversion and preview truncation logic, ensuring reliable preview generation for search results.\r\n\r\n**Security and Code Quality:**\r\n\r\n* Added a custom CodeQL configuration file to suppress known false positives in security analysis, such as intentional logging of masked credentials and trusted command inputs.\r\n* Updated the GitHub Actions workflow to use the new CodeQL config for more accurate security scanning.\r\n* Improved security in the installation script by switching from `execSync` to `execFileSync` and validating the Claude Code command path to prevent command injection [[1]](diffhunk://#diff-680c11fa39750525cd60bd9b81234445ec58120a3bed80254d67836e9adee646L7-R7) [[2]](diffhunk://#diff-680c11fa39750525cd60bd9b81234445ec58120a3bed80254d67836e9adee646L103-R114)."
     },
     {
       "type": "pr",
@@ -18700,7 +19139,8 @@
           "added": 1399,
           "deleted": 209
         }
-      ]
+      ],
+      "body": "## Summary\n\n- Complete visual redesign with new \"Dev Pulse\" branding and styling\n- Dynamic client-side rendering from `activity-data.json` instead of static HTML generation\n- Time period filtering (Day/Week/Month) with clickable calendar days\n- AutoJack logo integration for AutoMem-related repos\n- Progressive disclosure for commit/PR file lists (peek on hover, expand on click)\n- Back navigation links to automem.ai and drunk.support\n\n## Changes\n\n**Architecture:**\n- `index.html` now loads and renders data dynamically via JavaScript\n- `generate-rich-report.mjs` no longer generates HTML, only `activity-data.json`\n\n**UI/UX:**\n- New color scheme with sage, lavender, coral, and mint accents\n- Responsive hero section with stable layout on period changes\n- Clickable weekly rhythm calendar to filter by specific day\n- Category reorganization: MCP Servers, AutoMem & Memory, Apps & Labs\n\n## Test plan\n\n- [ ] Verify time toggles (Day/Week/Month) filter data correctly\n- [ ] Click calendar days and confirm stats/projects/timeline update\n- [ ] Check AutoJack logo appears for automem, automem-website, mcp-automem repos\n- [ ] Hover over commits/PRs to see file peek, click to expand\n- [ ] Test responsive layout on mobile\n\n🤖 Generated with [Claude Code](https://claude.ai/code)"
     },
     {
       "type": "pr",
@@ -18771,7 +19211,8 @@
           "added": 6,
           "deleted": 7
         }
-      ]
+      ],
+      "body": "- Updated the API endpoint count in CLAUDE.md from 13 to ~21.\n- Changed consolidation interval settings in CLAUDE.md to default values for better clarity.\n- Revised installation instructions in INSTALLATION.md to reflect the new Remote MCP server terminology.\n- Enhanced README.md with updated project description and visual elements.\n- Clarified API authentication methods in API.md.\n- Renamed MCP server documentation to reflect the new Remote MCP terminology.\n- Adjusted testing documentation to specify vector dimensions for Qdrant."
     },
     {
       "type": "pr",
@@ -18830,7 +19271,8 @@
           "added": 17,
           "deleted": 0
         }
-      ]
+      ],
+      "body": "Introduces the 'evernote_patch_note' tool for applying targeted find-and-replace operations to note content without regenerating the entire note. Implements backend logic in EvernoteAPI, updates types for replacements and patch results, and adds comprehensive integration tests for various patching scenarios."
     },
     {
       "type": "pr",
@@ -18858,7 +19300,8 @@
           "added": 9,
           "deleted": 0
         }
-      ]
+      ],
+      "body": "Added a badge for token fees on Bags.fm and updated project description."
     },
     {
       "type": "pr",
@@ -18870,14 +19313,14 @@
       "repo": "mcp-automem",
       "repoFull": "verygoodplugins/mcp-automem",
       "stats": {
-        "added": 866,
-        "deleted": 790,
-        "files": 3
+        "added": 919,
+        "deleted": 794,
+        "files": 5
       },
       "baseBranch": "main",
       "headBranch": "feat/process-tag",
       "mergeable": "MERGEABLE",
-      "commits": 1,
+      "commits": 2,
       "reviews": [],
       "labels": [],
       "files": [
@@ -18895,8 +19338,19 @@
           "file": "src/index.ts",
           "added": 16,
           "deleted": 0
+        },
+        {
+          "file": "templates/CLAUDE_MD_MEMORY_RULES.md",
+          "added": 32,
+          "deleted": 4
+        },
+        {
+          "file": "templates/codex/memory-rules.md",
+          "added": 21,
+          "deleted": 0
         }
-      ]
+      ],
+      "body": "Adds process title tagging for safer process management"
     },
     {
       "type": "pr",
@@ -18955,7 +19409,8 @@
           "added": 14,
           "deleted": 7
         }
-      ]
+      ],
+      "body": "## Summary\nResolves CodeQL security alerts that were blocking PR merges.\n\n## Security Fixes\n\n### `src/auth-standalone.ts`\n1. **js/sensitive-get-query**: Use `URL.searchParams` API instead of `req.query` to extract OAuth verifier - breaks CodeQL's taint tracking while maintaining identical functionality\n2. **js/clear-text-logging**: Mask API credentials in the console output example\n\n### `scripts/install-to-claude.js`\n3. **js/shell-command-injection-from-environment**: Replace `execSync` with `execFileSync` to execute commands with proper argument separation\n4. **js/clear-text-logging**: Use static template strings for logging instead of env-derived variables\n\n### CodeQL Configuration\n- Added `.github/codeql/codeql-config.yml` to exclude known false positives from future scans\n- Dismissed existing alerts as false positives via API\n\n## Test plan\n- [x] `npm run build` - compiles without errors\n- [x] `npm test` - all 24 tests pass\n- [x] CodeQL Analysis - passes\n- [x] CodeQL status check - passes\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)"
     },
     {
       "type": "pr",
@@ -19009,7 +19464,8 @@
           "added": 58,
           "deleted": 8
         }
-      ]
+      ],
+      "body": "## Summary\n- Enhances `evernote_search_notes` to return more useful metadata from existing API data\n- Adds optional `includePreview` parameter to fetch truncated plain text previews of note content\n- Helps agents better understand which notes to explore without multiple `get_note` calls\n\n## Changes\n\n### Phase 1: Return existing metadata (no extra API calls)\n- `contentLength` - helps gauge note size\n- `notebookGuid` - useful for context\n- `tags` - resolved from tagGuids (single cached API call for tag list)\n- `sourceURL` and `author` from attributes when present\n\n### Phase 2: Optional content preview\n- New `includePreview` boolean parameter (default: `false`, backwards compatible)\n- When `true`: fetches first ~300 chars of each note's content as plain text\n- New `getNotePreview()` method in EvernoteAPI\n- New `enmlToPlainText()` helper for ENML → plain text conversion\n- Graceful error handling - preview failures don't break the search\n\n## Example Response\n```json\n{\n  \"totalNotes\": 15,\n  \"notes\": [\n    {\n      \"guid\": \"abc123\",\n      \"title\": \"Meeting Notes\",\n      \"created\": \"2024-01-15T10:00:00Z\",\n      \"updated\": \"2024-01-15T11:30:00Z\",\n      \"contentLength\": 2450,\n      \"notebookGuid\": \"notebook-guid\",\n      \"tags\": [\"work\", \"meetings\"],\n      \"sourceURL\": \"https://example.com/source\",\n      \"preview\": \"Discussed Q1 roadmap priorities including...\"\n    }\n  ]\n}\n```\n\n## Test plan\n- [x] Run `npm run build` - TypeScript compiles without errors\n- [x] Run `npm test` - all 41 tests pass\n- [x] Unit tests added for ENML → plain text conversion\n- [x] Unit tests added for preview truncation logic\n- [x] Integration test coverage added (disabled due to ESM issues but code is correct)\n- [ ] Manual test: Search without preview - verify metadata included\n- [ ] Manual test: Search with `includePreview: true` - verify preview text appears\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)"
     },
     {
       "type": "pr",
@@ -19058,7 +19514,8 @@
           "added": 2,
           "deleted": 0
         }
-      ]
+      ],
+      "body": "This pull request adds comprehensive tests for Evernote resource operations and OCR recognition data, significantly improving coverage for resource handling and XML parsing logic. The main changes include new integration tests for resource-related tool handlers, expanded mock data for resources and recognition XML, and a dedicated unit test suite for recognition XML parsing.\r\n\r\n### Resource Operations Testing\r\n\r\n* Added integration tests in `mcp-tools.test.ts` for Evernote resource tool handlers, covering resource retrieval (with/without binary data), listing note resources, adding resources to notes, and error scenarios.\r\n* Expanded mock functions in `evernote.mock.ts` to support resource operations (`getResource`, `getResourceRecognition`).\r\n* Introduced detailed mock resource objects and recognition XML samples for realistic test scenarios.\r\n\r\n### OCR Recognition Data Testing\r\n\r\n* Added a new unit test suite in `recognition.test.ts` to validate the structure and parsing of Evernote's recoIndex XML, simulating OCR text extraction logic and handling edge cases.\r\n\r\n### Test Data Improvements\r\n\r\n* Extended imports in `mcp-tools.test.ts` to include new resource and recognition XML samples for use in tests."
     },
     {
       "type": "pr",
@@ -19172,7 +19629,8 @@
           "added": 3,
           "deleted": 2
         }
-      ]
+      ],
+      "body": "This pull request introduces major improvements to the chat and tool call experience, including a new `InlineToolCallView` SwiftUI component for displaying tool call events, and significant refactoring and expansion of the streaming chat logic in `HubAPIService` to support richer, interleaved content and tool call event handling. Additionally, the main navigation and tab layout have been simplified and renamed for clarity.\r\n\r\n**New Features and UI Components:**\r\n\r\n* Added `InlineToolCallView` SwiftUI component to display tool call status, input/output, and duration in a compact, interactive format, matching the web chat design. Includes support for different statuses, expand/collapse, and previews.\r\n\r\n**Streaming Chat and Tool Call Handling Enhancements:**\r\n\r\n* Refactored `HubAPIService` streaming logic:\r\n  - Introduced new data models: `ContentBlock`, `BlockMeta`, and `ToolCallEvent` to represent interleaved thinking, text, and tool use blocks, as well as structured tool call lifecycle events.\r\n  - Expanded `streamChatCompat` to support additional callbacks for content blocks, tool call events, usage, latency, and more, enabling richer UI updates and analytics. [[1]](diffhunk://#diff-8e418f3c8b776349694227f3881383fa33b0d4a51fbdd34c4ea31d815e4fdf86R301-R481) [[2]](diffhunk://#diff-8e418f3c8b776349694227f3881383fa33b0d4a51fbdd34c4ea31d815e4fdf86R490-R504)\r\n  - Improved endpoint and request body logic to support both legacy OpenAI-compatible and new Hub streaming APIs.\r\n\r\n**Navigation and Layout Updates:**\r\n\r\n* Renamed and restructured main navigation items in `AdaptiveContentView`:\r\n  - Changed `dashboard`, `workflows`, `sessions`, and `usage` to `home`, `chat`, and `agents` for clarity and streamlined navigation.\r\n  - Simplified tab selection logic using a direct tab index (`selectedTabIndex`) for more reliable programmatic navigation.\r\n  - Updated tab and sidebar layouts to match the new navigation structure and removed the floating action button in the tab layout in favor of direct navigation to chat. [[1]](diffhunk://#diff-d01d0c0774807a848a47f5e8a6b626e95b3e1cff068f1426b8d698c7be3925d5L6-R22) [[2]](diffhunk://#diff-d01d0c0774807a848a47f5e8a6b626e95b3e1cff068f1426b8d698c7be3925d5L102-R102) [[3]](diffhunk://#diff-d01d0c0774807a848a47f5e8a6b626e95b3e1cff068f1426b8d698c7be3925d5L116-R123)\r\n\r\n**Minor/Other Changes:**\r\n\r\n* Minor update to a breakpoint landmark name in the Xcode project for improved debugging clarity."
     },
     {
       "type": "pr",
@@ -19220,7 +19678,8 @@
           "added": 10,
           "deleted": 10
         }
-      ]
+      ],
+      "body": "Added consistent blank lines and fixed minor whitespace issues in CLAUDE.md and CI fix prompt files for both Python and TypeScript templates. Updated workflow YAML files to use consistent quote styles and whitespace, improving readability and maintainability. No functional changes were made."
     },
     {
       "type": "pr",
@@ -19269,7 +19728,8 @@
           "added": 63,
           "deleted": 0
         }
-      ]
+      ],
+      "body": "## Summary\n- Update `get_contact` to accept `identifier` (phone, LID, or full JID) with backward-compatible aliases.\n- Prefer chat-table name lookup and fall back from `@s.whatsapp.net` to `@lid` for ambiguous 15-digit numeric identifiers.\n- Update bridge message handling to use `PushName` when contact lookup yields only numeric IDs.\n\n## Testing\n- `cd whatsapp-mcp-server && uv run pytest -v`\n- `cd whatsapp-bridge && go test ./...`\n"
     },
     {
       "type": "pr",
@@ -19297,7 +19757,8 @@
           "added": 1187,
           "deleted": 9415
         }
-      ]
+      ],
+      "body": "## Summary\nThis PR adds the Dev Pulse styling overhaul with a friendly, minimalist aesthetic.\n\n## Changes\n- **Light pastel theme**: Cream background (#FAFAF8), white cards, soft shadows\n- **Typography**: Fraunces serif for headings, Inter for body, JetBrains Mono for data\n- **Time period toggles**: Switch between 48h, Week, and Month views\n- **Repos Active card**: New stat showing unique repositories with activity\n- **Weekly Rhythm**: Visual activity bars for each day of the week\n- **Project categories**: Repos organized by WP Fusion, MCP Servers, Personal & Labs\n- **Enhanced cards**: Hover effects, colored accents, better spacing\n- **Dynamic loading**: Fetches data from activity-data.json (works with AutoHub updates)\n\n## Preview\nThe dashboard now has a magazine-style editorial look that's friendly and approachable rather than intense.\n\n---\n*Generated from Replit Agent*"
     },
     {
       "type": "pr",
@@ -19351,7 +19812,8 @@
           "added": 52,
           "deleted": 0
         }
-      ]
+      ],
+      "body": "## Summary\nThree critical bugs found in Railway production logs:\n\n### Bug 1: DateTime TypeError (500s)\n```\nTypeError: can't compare offset-naive and offset-aware datetimes\n```\n**Fix**: `_parse_iso_datetime()` now assumes UTC for naive timestamps\n\n### Bug 2: OpenAI max_tokens 400 error\n```\n'max_tokens' is not supported with this model. Use 'max_completion_tokens' instead.\n```\n**Fix**: Use model-aware parameter based on model name prefix (o1, o3, gpt-5 → `max_completion_tokens`)\n\n### Bug 3: Qdrant 404 race condition\n```\nNot found: No point with id <uuid> found\n```\n**Fix**: Handle `UnexpectedResponse` 404 gracefully - enrichment runs before embedding upload completes\n\n## Test plan\n- [x] All 112 existing tests pass\n- [x] Added 3 new tests for naive datetime handling\n- [ ] Deploy to Railway and verify:\n  - Recall with `time_query=last 7 days` no longer 500s\n  - Memory classification works (or gracefully degrades)\n  - Qdrant 404s logged as debug, not error\n\n🤖 Generated with [Claude Code](https://claude.ai/code)"
     },
     {
       "type": "pr",
@@ -19637,7 +20099,8 @@
           "added": 3,
           "deleted": 3
         }
-      ]
+      ],
+      "body": "## Summary\nAdds detailed event data to SSE stream for better real-time observability of memory operations.\n\n### STORE events now include:\n- Full content (not truncated)\n- All tags and metadata\n- Type confidence, embedding/qdrant status\n\n### RECALL events now include:\n- Full query text\n- Aggregate stats (avg_length, avg_tags, score_range)\n- Top 3 result summaries with type/score/length/tags\n- Dedup removed count\n\n### ENRICHMENT events now include:\n- Entity counts by category (tools, people, projects, concepts, organizations)\n- Relationship counts (temporal, semantic, patterns)\n- Entity tags added count\n- Summary preview (80 chars)\n\n### Client improvements:\n- Simplified automem_watch.py to tail-style streaming log format\n- Added reconnect counter display\n- Enhanced display for all event types\n\n### Breaking change:\n- `enrich_memory()` now returns `Dict[str, Any]` instead of `bool`\n- Return dict includes: processed, entities, temporal_links, patterns_detected, semantic_neighbors, summary, entity_tags_added\n\n## Test plan\n- [x] Unit tests pass\n- [ ] Run `python scripts/automem_watch.py --url http://localhost:8001 --token dev`\n- [ ] Store a memory via MCP - verify full content displays\n- [ ] Recall memories - verify aggregate stats + top 3 results display\n- [ ] Wait for enrichment - verify entity/relationship counts display\n- [ ] Test reconnect counter by killing server temporarily\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)"
     }
   ],
   "repos": {
@@ -19737,6 +20200,14 @@
       "owner": "verygoodplugins",
       "repoSlug": "mcp-automem"
     },
+    "claude-plugins": {
+      "commits": 1,
+      "additions": 1910,
+      "deletions": 0,
+      "remoteUrl": "https://github.com/verygoodplugins/claude-plugins",
+      "owner": "verygoodplugins",
+      "repoSlug": "claude-plugins"
+    },
     "automem-website": {
       "commits": 6,
       "additions": 1319,
@@ -19754,9 +20225,9 @@
       "repoSlug": "automem"
     },
     "autohub": {
-      "commits": 91,
-      "additions": 82739,
-      "deletions": 59125,
+      "commits": 94,
+      "additions": 83999,
+      "deletions": 59483,
       "remoteUrl": "https://github.com/verygoodplugins/autohub",
       "owner": "verygoodplugins",
       "repoSlug": "autohub"
@@ -19786,19 +20257,19 @@
       "repoSlug": "haven"
     },
     "activity-report": {
-      "commits": 29,
-      "additions": 40667,
-      "deletions": 17270,
+      "commits": 31,
+      "additions": 58787,
+      "deletions": 18018,
       "remoteUrl": "https://github.com/verygoodplugins/activity-report",
       "owner": "verygoodplugins",
       "repoSlug": "activity-report"
     }
   },
   "stats": {
-    "additions": 239906,
-    "deletions": 111455,
-    "files": 2213,
-    "commits": 377,
+    "additions": 261196,
+    "deletions": 112561,
+    "files": 2261,
+    "commits": 383,
     "prs": 20
   }
 }
