@@ -2,12 +2,12 @@
   "theme": {
     "name": "minimal-light",
     "colors": {
-      "primary": "#2563EB",
-      "secondary": "#1E40AF",
-      "background": "#FFFFFF",
-      "surface": "#F8FAFC",
-      "text": "#1E293B",
-      "accent": "#DC2626"
+      "primary": "#D4A425",
+      "secondary": "#B8860B",
+      "background": "#FAF8F5",
+      "surface": "#F0EDE8",
+      "text": "#2D2A26",
+      "accent": "#C4785E"
     }
   },
   "sections": {

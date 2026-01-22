@@ -6,6 +6,7 @@ import { useReducedMotion } from './hooks/useReducedMotion';
 import { useConfig, applyConfigColors } from './hooks/useConfig';
 import { HexSidebar, Header, ScrollProgressBar } from './components/Layout';
 import { StatCard, DayCard, RepoCard, PRCard, DayDetailModal, MonthView } from './components/Cards';
+import { SettingsPanel } from './components/Settings';
 import type { DayActivity } from './types';
 import { JackPeek } from './components/Jack';
 import './App.css';
@@ -32,6 +33,12 @@ function App() {
       return () => clearTimeout(timer);
     }
   }, [shouldAnimate]);
+
+  useEffect(() => {
+    if (!config.interactivity.monthView && viewMode === 'month') {
+      setViewMode('week');
+    }
+  }, [config.interactivity.monthView, viewMode]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -216,6 +223,8 @@ function App() {
           onClose={() => setSelectedDay(null)}
         />
       )}
+
+      <SettingsPanel />
     </div>
   );
 }
