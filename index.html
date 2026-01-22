@@ -876,18 +876,9 @@
       position: relative;
     }
 
-    .timeline::before {
-      content: '';
-      position: absolute;
-      left: 160px;
-      top: 0;
-      bottom: 0;
-      width: 2px;
-      background: linear-gradient(180deg, var(--lavender) 0%, var(--mint) 50%, var(--border) 100%);
-    }
-
     .timeline-day {
       margin-bottom: 2rem;
+      position: relative;
     }
 
     .timeline-day-header {
@@ -897,15 +888,39 @@
       text-transform: uppercase;
       letter-spacing: 0.1em;
       margin-bottom: 1rem;
-      padding-left: 180px;
+      padding-left: 230px;
+    }
+
+    /* Git Graph */
+    .git-graph-container {
+      display: grid;
+      grid-template-columns: 80px 80px 1fr;
+      gap: 0;
+      position: relative;
+    }
+
+    .git-graph {
+      position: relative;
+      width: 80px;
+      min-height: 60px;
+    }
+
+    .git-graph svg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: visible;
     }
 
     .commit-item {
       display: grid;
-      grid-template-columns: 150px 1fr;
-      gap: 2rem;
-      margin-bottom: 1rem;
+      grid-template-columns: 80px 80px 1fr;
+      gap: 0;
+      margin-bottom: 0;
       position: relative;
+      min-height: 80px;
     }
 
     .commit-time {
@@ -914,23 +929,52 @@
       font-size: 0.8rem;
       color: var(--text-secondary);
       padding-top: 1rem;
+      padding-right: 1rem;
+    }
+
+    .commit-graph-cell {
+      position: relative;
+      width: 80px;
     }
 
     .commit-content {
       position: relative;
-      padding-left: 2rem;
+      padding-left: 1rem;
+      padding-bottom: 0.75rem;
     }
 
     .commit-dot {
       position: absolute;
-      left: -7px;
       top: 1rem;
-      width: 14px;
-      height: 14px;
+      width: 12px;
+      height: 12px;
       border-radius: 50%;
       border: 3px solid;
       background: var(--bg);
-      z-index: 1;
+      z-index: 2;
+      transform: translateX(-50%);
+    }
+
+    /* Graph lane lines */
+    .graph-lane {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      border-radius: 2px;
+      opacity: 0.6;
+    }
+
+    .graph-lane.active {
+      opacity: 1;
+    }
+
+    /* Curved connection paths */
+    .graph-path {
+      fill: none;
+      stroke-width: 3;
+      stroke-linecap: round;
+      stroke-linejoin: round;
     }
 
     .commit-card {
@@ -1075,6 +1119,41 @@
       max-height: none;
     }
 
+    /* Commit Description Preview */
+    .commit-description {
+      margin-top: 0.5rem;
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+      max-height: 4em;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .commit-description::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 2em;
+      background: linear-gradient(transparent, var(--surface));
+      pointer-events: none;
+    }
+
+    .commit-description-text {
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    .expandable-card.expanded .commit-description::after {
+      display: none;
+    }
+
+    .expandable-card.expanded .commit-description {
+      max-height: none;
+    }
+
     .file-item {
       display: flex;
       justify-content: space-between;
@@ -1124,15 +1203,16 @@
       .weekly-grid.view-day {
         max-width: 100%;
       }
-      .timeline::before {
-        left: 80px;
-      }
       .commit-item {
-        grid-template-columns: 70px 1fr;
-        gap: 1.5rem;
+        grid-template-columns: 70px 60px 1fr;
+        gap: 0;
       }
       .timeline-day-header {
-        padding-left: 100px;
+        padding-left: 140px;
+      }
+      .timeline-graph-svg {
+        left: 70px !important;
+        width: 60px !important;
       }
     }
 
@@ -1173,11 +1253,11 @@
         height: 60px;
       }
       .categories-grid { grid-template-columns: 1fr; }
-      .timeline::before { display: none; }
-      .commit-item { grid-template-columns: 1fr; gap: 0.5rem; }
-      .commit-time { text-align: left; padding-top: 0; }
-      .commit-content { padding-left: 0; }
-      .commit-dot { display: none; }
+      .timeline-graph-svg { display: none; }
+      .commit-item { grid-template-columns: 60px 1fr; gap: 0.5rem; }
+      .commit-graph-cell { display: none; }
+      .commit-time { text-align: right; padding-top: 0.75rem; font-size: 0.7rem; }
+      .commit-content { padding-left: 0.5rem; border-left: 3px solid var(--accent); }
       .timeline-day-header { padding-left: 0; }
       .pr-card { grid-template-columns: auto 1fr; gap: 1rem; }
       .pr-stat-box { display: none; }
@@ -1419,6 +1499,34 @@
         .replace(/</g, '&lt;')
         .replace(/>/g, '&gt;')
         .replace(/"/g, '&quot;');
+    }
+
+    // Simple markdown renderer for PR/commit descriptions
+    function renderMarkdown(text) {
+      if (!text) return '';
+      let html = escapeHtml(text);
+
+      // Headers (## and ###)
+      html = html.replace(/^### (.+)$/gm, '<strong style="font-size: 0.85em;">$1</strong>');
+      html = html.replace(/^## (.+)$/gm, '<strong style="font-size: 0.9em;">$1</strong>');
+
+      // Bold and italic
+      html = html.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+      html = html.replace(/\*(.+?)\*/g, '<em>$1</em>');
+
+      // Inline code
+      html = html.replace(/`([^`]+)`/g, '<code style="background: var(--surface-elevated); padding: 0.1em 0.3em; border-radius: 3px; font-size: 0.9em;">$1</code>');
+
+      // Links [text](url)
+      html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" onclick="event.stopPropagation()" style="color: var(--accent);">$1</a>');
+
+      // Bullet points (- item)
+      html = html.replace(/^- (.+)$/gm, '<span style="display: block; padding-left: 1em;">• $1</span>');
+
+      // Line breaks
+      html = html.replace(/\n/g, '<br>');
+
+      return html;
     }
 
     function animateCounter(element, target, prefix = '', duration = 1500) {
@@ -2038,7 +2146,7 @@
             </div>
             ${hasBody ? `
               <div class="pr-description">
-                <div class="pr-description-text">${escapeHtml(bodyPreview)}</div>
+                <div class="pr-description-text">${renderMarkdown(bodyPreview)}</div>
               </div>
             ` : ''}
             ${hasFileDetails ? `<div class="pr-files">${files}</div>` : ''}
@@ -2049,7 +2157,7 @@
 
     function renderTimeline(commits) {
       const container = document.getElementById('timeline');
-      
+
       // Group by day
       const byDay = {};
       commits.forEach(c => {
@@ -2059,10 +2167,70 @@
         byDay[key].push(c);
       });
 
+      // Build lane assignments - active repos get lanes
+      const activeRepos = [...new Set(commits.map(c => c.repo))];
+      // Sort by commit count to put most active repos in primary lanes
+      const repoCommitCounts = {};
+      commits.forEach(c => { repoCommitCounts[c.repo] = (repoCommitCounts[c.repo] || 0) + 1; });
+      activeRepos.sort((a, b) => repoCommitCounts[b] - repoCommitCounts[a]);
+
+      // Assign lane positions (max 6 lanes shown)
+      const laneAssignments = {};
+      activeRepos.slice(0, 6).forEach((repo, i) => {
+        laneAssignments[repo] = i;
+      });
+      const LANE_WIDTH = 12;
+      const LANE_GAP = 2;
+      const GRAPH_PADDING = 10;
+
       container.innerHTML = Object.entries(byDay).map(([day, dayCommits]) => {
-        const commitItems = dayCommits.slice(0, 15).map(c => {
+        // Track last commit position per repo for drawing connections
+        const lastCommitY = {};
+        const ROW_HEIGHT = 80; // Approximate height per commit
+
+        // Build SVG paths for this day
+        let svgPaths = '';
+        let svgDots = '';
+        const limitedCommits = dayCommits.slice(0, 15);
+
+        limitedCommits.forEach((c, idx) => {
+          const lane = laneAssignments[c.repo];
+          if (lane === undefined) return; // Skip repos without lanes
+
+          const color = REPO_COLORS[c.repo] || '#6366f1';
+          const x = GRAPH_PADDING + lane * (LANE_WIDTH + LANE_GAP) + LANE_WIDTH / 2;
+          const y = idx * ROW_HEIGHT + ROW_HEIGHT / 2;
+
+          // Draw connection from previous commit of same repo
+          if (lastCommitY[c.repo] !== undefined) {
+            const prevY = lastCommitY[c.repo];
+            // Bezier curve connecting previous to current
+            const midY = (prevY + y) / 2;
+            svgPaths += `<path class="graph-path" d="M${x},${prevY} C${x},${midY} ${x},${midY} ${x},${y}" stroke="${color}" opacity="0.7"/>`;
+          }
+
+          // Draw the commit dot
+          svgDots += `<circle cx="${x}" cy="${y}" r="5" fill="${color}" stroke="var(--bg)" stroke-width="2"/>`;
+
+          lastCommitY[c.repo] = y;
+        });
+
+        // Calculate SVG height
+        const svgHeight = limitedCommits.length * ROW_HEIGHT;
+
+        // Draw vertical lane lines (faded) for context
+        let laneLines = '';
+        Object.entries(laneAssignments).forEach(([repo, lane]) => {
+          const color = REPO_COLORS[repo] || '#6366f1';
+          const x = GRAPH_PADDING + lane * (LANE_WIDTH + LANE_GAP) + LANE_WIDTH / 2;
+          laneLines += `<line x1="${x}" y1="0" x2="${x}" y2="${svgHeight}" stroke="${color}" stroke-width="2" opacity="0.15"/>`;
+        });
+
+        const commitItems = limitedCommits.map((c, idx) => {
           const time = new Date(c.date).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
           const color = REPO_COLORS[c.repo] || '#6366f1';
+          const lane = laneAssignments[c.repo];
+          const dotX = lane !== undefined ? GRAPH_PADDING + lane * (LANE_WIDTH + LANE_GAP) + LANE_WIDTH / 2 : 40;
 
           const fileList = (c.files || []).filter(f => f.added > 0 || f.deleted > 0);
           const hasFiles = fileList.length > 0;
@@ -2075,12 +2243,23 @@
               </div>
             `).join('');
 
+          // Truncate body to first section or ~300 chars
+          const bodyPreview = c.body
+            ? c.body.split(/\n\n|\r\n\r\n/)[0].slice(0, 300)
+            : '';
+          const hasBody = bodyPreview.length > 0;
+
+          // Card is expandable if it has body OR file details
+          const isExpandable = hasBody || hasFiles;
+
           return `
-            <div class="commit-item">
+            <div class="commit-item" data-repo="${c.repo}" data-idx="${idx}">
               <div class="commit-time">${time}</div>
+              <div class="commit-graph-cell">
+                <!-- Dot rendered via SVG overlay -->
+              </div>
               <div class="commit-content">
-                <div class="commit-dot" style="border-color: ${color}"></div>
-                <div class="commit-card ${hasFiles ? 'expandable-card' : ''}" ${hasFiles ? 'onclick="this.classList.toggle(\'expanded\')"' : ''}>
+                <div class="commit-card ${isExpandable ? 'expandable-card' : ''}" ${isExpandable ? 'onclick="this.classList.toggle(\'expanded\')"' : ''}>
                   <div class="commit-header">
                     <span class="commit-repo" style="color: ${color}">${getRepoLabel(c.repo)}</span>
                     <div class="commit-stats">
@@ -2092,6 +2271,11 @@
                     <a href="https://github.com/${c.owner}/${c.repo}/commit/${c.hash}" target="_blank" onclick="event.stopPropagation()">${c.headline}</a>
                     <a href="https://github.com/${c.owner}/${c.repo}/commit/${c.hash}" target="_blank" class="commit-hash" onclick="event.stopPropagation()">${c.shortHash}</a>
                   </div>
+                  ${hasBody ? `
+                    <div class="commit-description">
+                      <div class="commit-description-text">${renderMarkdown(bodyPreview)}</div>
+                    </div>
+                  ` : ''}
                   ${hasFiles ? `<div class="commit-files">${files}</div>` : ''}
                 </div>
               </div>
@@ -2102,7 +2286,14 @@
         return `
           <div class="timeline-day">
             <div class="timeline-day-header">${day}</div>
-            ${commitItems}
+            <div class="timeline-commits-wrapper" style="position: relative;">
+              <svg class="timeline-graph-svg" width="80" height="${svgHeight}" style="position: absolute; left: 80px; top: 0; pointer-events: none; z-index: 1;">
+                ${laneLines}
+                ${svgPaths}
+                ${svgDots}
+              </svg>
+              ${commitItems}
+            </div>
           </div>
         `;
       }).join('');
