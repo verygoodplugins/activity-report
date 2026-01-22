@@ -1,7 +1,7 @@
 .settings-toggle {
   position: fixed;
   right: 20px;
-  bottom: 20px;
+  bottom: 120px;
   width: 48px;
   height: 48px;
   border-radius: 50%;
@@ -139,6 +139,16 @@
 .theme-preview--neon-cyberpunk {
   background: linear-gradient(135deg, #0D0D1A 50%, #00FFFF 50%);
   border: 1px solid #333;
+}
+
+.theme-preview--corporate-pro {
+  background: linear-gradient(135deg, #FFFFFF 50%, #0066CC 50%);
+  border: 1px solid #ddd;
+}
+
+.theme-preview--retro-arcade {
+  background: linear-gradient(135deg, #0D0208 50%, #00FF00 50%);
+  border: 1px solid #00FF00;
 }
 
 .theme-label {

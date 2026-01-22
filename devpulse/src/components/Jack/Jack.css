@@ -18,8 +18,32 @@
   filter: drop-shadow(0 -4px 12px rgba(0, 0, 0, 0.3));
 }
 
+.jack-head-container {
+  position: fixed;
+  bottom: 10px;
+  right: 20px;
+  z-index: 99;
+  filter: drop-shadow(0 4px 16px rgba(0, 0, 0, 0.4));
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.jack-head-container:hover {
+  transform: scale(1.05);
+}
+
+.jack-head-svg {
+  width: 100%;
+  height: 100%;
+}
+
 @media (max-width: 768px) {
   .jack-peek-container {
     right: 16px;
+  }
+  
+  .jack-head-container {
+    right: 12px;
+    bottom: 8px;
   }
 }

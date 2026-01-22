@@ -66,6 +66,11 @@ export interface DashboardConfig {
       text: string;
       accent: string;
     };
+    fonts?: {
+      heading: string;
+      body: string;
+      mono: string;
+    };
   };
   sections: {
     hero: { enabled: boolean; title?: string; subtitle?: string };

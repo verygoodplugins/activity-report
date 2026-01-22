@@ -8,7 +8,7 @@ import { HexSidebar, Header, ScrollProgressBar } from './components/Layout';
 import { StatCard, DayCard, RepoCard, PRCard, DayDetailModal, MonthView } from './components/Cards';
 import { SettingsPanel } from './components/Settings';
 import type { DayActivity } from './types';
-import { JackPeek } from './components/Jack';
+import { JackHead } from './components/Jack';
 import './App.css';
 
 function App() {
@@ -28,10 +28,9 @@ function App() {
   }, [config]);
 
   useEffect(() => {
-    if (shouldAnimate) {
-      const timer = setTimeout(() => setShowJack(true), 2000);
-      return () => clearTimeout(timer);
-    }
+    const delay = shouldAnimate ? 2000 : 500;
+    const timer = setTimeout(() => setShowJack(true), delay);
+    return () => clearTimeout(timer);
   }, [shouldAnimate]);
 
   useEffect(() => {
@@ -212,9 +211,7 @@ function App() {
         </footer>
       </main>
 
-      <AnimatePresence>
-        {shouldAnimate && showJack && <JackPeek isVisible={showJack} />}
-      </AnimatePresence>
+      <JackHead isVisible={showJack} size={90} />
 
       {config.interactivity.dayDetailModal && (
         <DayDetailModal

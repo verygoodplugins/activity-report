@@ -8,6 +8,11 @@
       "surface": "#1a0a2e",
       "text": "#FFFFFF",
       "accent": "#FF3366"
+    },
+    "fonts": {
+      "heading": "'Orbitron', 'JetBrains Mono', monospace",
+      "body": "'Share Tech Mono', 'JetBrains Mono', monospace",
+      "mono": "'Share Tech Mono', monospace"
     }
   },
   "sections": {

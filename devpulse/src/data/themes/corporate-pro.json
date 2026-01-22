@@ -1,0 +1,49 @@
+{
+  "theme": {
+    "name": "corporate-pro",
+    "colors": {
+      "primary": "#0066CC",
+      "secondary": "#004499",
+      "background": "#FFFFFF",
+      "surface": "#F7F8FA",
+      "text": "#1A1A2E",
+      "accent": "#00A86B"
+    },
+    "fonts": {
+      "heading": "'Inter', system-ui, sans-serif",
+      "body": "'Inter', system-ui, sans-serif",
+      "mono": "'SF Mono', 'Monaco', monospace"
+    }
+  },
+  "sections": {
+    "hero": {
+      "enabled": true,
+      "title": "Developer Report",
+      "subtitle": "Weekly activity metrics and performance insights."
+    },
+    "weekly": {
+      "enabled": true,
+      "title": "Weekly Overview"
+    },
+    "repos": {
+      "enabled": true,
+      "title": "Repositories",
+      "maxItems": 10
+    },
+    "prs": {
+      "enabled": true,
+      "title": "Pull Requests",
+      "maxItems": 10
+    }
+  },
+  "branding": {
+    "logo": null,
+    "footer": "Generated with",
+    "attribution": "AutoMem"
+  },
+  "interactivity": {
+    "animations": true,
+    "dayDetailModal": true,
+    "monthView": true
+  }
+}

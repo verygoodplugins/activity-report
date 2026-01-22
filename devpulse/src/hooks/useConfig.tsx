@@ -5,6 +5,8 @@ import activityDataRaw from '../data/activity-data.json';
 import terminalDark from '../data/themes/terminal-dark.json';
 import minimalLight from '../data/themes/minimal-light.json';
 import neonCyberpunk from '../data/themes/neon-cyberpunk.json';
+import corporatePro from '../data/themes/corporate-pro.json';
+import retroArcade from '../data/themes/retro-arcade.json';
 
 const activityData = activityDataRaw as unknown as { config?: DashboardConfig };
 
@@ -12,6 +14,8 @@ export const themes: Record<string, DashboardConfig> = {
   'terminal-dark': terminalDark as unknown as DashboardConfig,
   'minimal-light': minimalLight as unknown as DashboardConfig,
   'neon-cyberpunk': neonCyberpunk as unknown as DashboardConfig,
+  'corporate-pro': corporatePro as unknown as DashboardConfig,
+  'retro-arcade': retroArcade as unknown as DashboardConfig,
 };
 
 const defaultConfig: DashboardConfig = {
@@ -179,4 +183,35 @@ export function applyConfigColors(config: DashboardConfig): void {
   root.style.setProperty('--config-surface', colors.surface);
   root.style.setProperty('--config-text', colors.text);
   root.style.setProperty('--config-accent', colors.accent);
+  
+  root.style.setProperty('--gold-primary', colors.primary);
+  root.style.setProperty('--gold-secondary', colors.secondary);
+  root.style.setProperty('--surface-dark', colors.background);
+  root.style.setProperty('--surface-elevated', colors.surface);
+  root.style.setProperty('--surface-card', colors.surface);
+  root.style.setProperty('--text-primary', colors.text);
+  root.style.setProperty('--pink-accent', colors.accent);
+  
+  const isLight = isLightColor(colors.background);
+  root.style.setProperty('--text-secondary', isLight ? '#525252' : '#A0A0A0');
+  root.style.setProperty('--text-muted', isLight ? '#A3A3A3' : '#666666');
+  root.style.setProperty('--border-dark', isLight ? '#E5E5E5' : '#2a2a2a');
+  root.style.setProperty('--border-light', isLight ? '#D4D4D4' : '#3a3a3a');
+  root.style.setProperty('--surface-hover', isLight ? '#F5F5F5' : '#252525');
+  
+  const { fonts } = config.theme;
+  if (fonts) {
+    root.style.setProperty('--font-heading', fonts.heading);
+    root.style.setProperty('--font-body', fonts.body);
+    root.style.setProperty('--font-mono', fonts.mono);
+  }
+}
+
+function isLightColor(color: string): boolean {
+  const hex = color.replace('#', '');
+  const r = parseInt(hex.substr(0, 2), 16);
+  const g = parseInt(hex.substr(2, 2), 16);
+  const b = parseInt(hex.substr(4, 2), 16);
+  const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+  return luminance > 0.5;
 }

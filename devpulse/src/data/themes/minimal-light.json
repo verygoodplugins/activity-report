@@ -8,6 +8,11 @@
       "surface": "#F0EDE8",
       "text": "#2D2A26",
       "accent": "#C4785E"
+    },
+    "fonts": {
+      "heading": "'JetBrains Mono', monospace",
+      "body": "'IBM Plex Mono', monospace",
+      "mono": "'JetBrains Mono', monospace"
     }
   },
   "sections": {

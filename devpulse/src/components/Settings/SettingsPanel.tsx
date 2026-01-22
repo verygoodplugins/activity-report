@@ -11,7 +11,9 @@ export function SettingsPanel() {
   const themeLabels: Record<string, string> = {
     'terminal-dark': 'Terminal Dark',
     'minimal-light': 'Cream Light',
-    'neon-cyberpunk': 'Neon Cyber'
+    'neon-cyberpunk': 'Neon Cyber',
+    'corporate-pro': 'Corporate Pro',
+    'retro-arcade': 'Retro Arcade'
   };
 
   return (

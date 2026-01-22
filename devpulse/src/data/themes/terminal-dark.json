@@ -8,6 +8,11 @@
       "surface": "#1a1a1a",
       "text": "#F5F5F5",
       "accent": "#F472B6"
+    },
+    "fonts": {
+      "heading": "'JetBrains Mono', monospace",
+      "body": "'JetBrains Mono', monospace",
+      "mono": "'JetBrains Mono', monospace"
     }
   },
   "sections": {
