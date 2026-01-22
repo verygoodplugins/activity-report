@@ -356,6 +356,30 @@
       }
     }
 
+    /* Week-by-week staggered reveal animation for month view */
+    @keyframes weekSlideIn {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Staggered delays by week row (0 = oldest, 4 = current/most recent) */
+    .weekly-grid.view-month .day-column.week-stagger[data-week="4"] { animation-delay: 0ms; }
+    .weekly-grid.view-month .day-column.week-stagger[data-week="3"] { animation-delay: 300ms; }
+    .weekly-grid.view-month .day-column.week-stagger[data-week="2"] { animation-delay: 600ms; }
+    .weekly-grid.view-month .day-column.week-stagger[data-week="1"] { animation-delay: 900ms; }
+    .weekly-grid.view-month .day-column.week-stagger[data-week="0"] { animation-delay: 1200ms; }
+
+    .weekly-grid.view-month .day-column.week-stagger {
+      animation: weekSlideIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+      opacity: 0;
+    }
+
     /* Month View - Compact Calendar Cards */
     .weekly-grid.view-month .day-column {
       padding: 0.75rem;
@@ -369,6 +393,18 @@
 
     .weekly-grid.view-month .day-bars {
       min-height: 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .weekly-grid.view-month .activity-bar {
+      height: 6px;
+      margin-bottom: 1px;
+    }
+
+    .weekly-grid.view-month .activity-fill {
+      height: 100%;
     }
 
     .weekly-grid.view-month .day-stats {
@@ -1454,7 +1490,14 @@
 
         // Re-render content based on view
         if (newView === 'month') {
-          renderMonthView(rawData.commits);
+          // Use staggered animation for month view - weeks appear one by one
+          renderMonthView(rawData.commits, true);
+          // Extended timeout for staggered animation to complete (~1.7s total)
+          setTimeout(() => {
+            viewTransitioning = false;
+            renderDashboard();
+          }, 1800);
+          return;
         } else if (newView === 'day' && targetDate) {
           selectedDate = targetDate;
           renderDayView(targetDate, rawData.commits);
@@ -1463,7 +1506,7 @@
           renderWeeklyRhythm(rawData.commits);
         }
 
-        // Animate new elements in
+        // Animate new elements in (for non-month views)
         const newElements = grid.querySelectorAll('.day-column, .day-hero');
         newElements.forEach((el, i) => {
           el.classList.add('fade-in');
@@ -1535,7 +1578,8 @@
         if (currentView === 'week') {
           renderWeeklyRhythm(allCommits);
         } else if (currentView === 'month') {
-          renderMonthView(allCommits);
+          // Don't apply stagger on re-renders, only on transitions
+          renderMonthView(allCommits, false);
         } else if (currentView === 'day' && selectedDate) {
           renderDayView(selectedDate, allCommits);
         }
@@ -1636,7 +1680,7 @@
       transitionToView('day', date);
     }
 
-    function renderMonthView(commits) {
+    function renderMonthView(commits, applyStagger = false) {
       const container = document.getElementById('weekly-grid');
       const today = new Date();
       const days = [];
@@ -1648,45 +1692,63 @@
         days.push(date);
       }
 
-      // Group commits by day
+      // Group commits by day WITH repo-level tracking
       const commitsByDay = {};
       commits.forEach(c => {
         const date = new Date(c.date);
         const key = date.toDateString();
         if (!commitsByDay[key]) {
-          commitsByDay[key] = { commits: 0, added: 0, deleted: 0 };
+          commitsByDay[key] = { commits: 0, added: 0, deleted: 0, repos: {} };
         }
         commitsByDay[key].commits++;
         commitsByDay[key].added += c.stats?.added || 0;
         commitsByDay[key].deleted += c.stats?.deleted || 0;
+
+        // Track per-repo commits for mini bars
+        const repo = c.repo;
+        if (!commitsByDay[key].repos[repo]) {
+          commitsByDay[key].repos[repo] = 0;
+        }
+        commitsByDay[key].repos[repo]++;
       });
 
-      // Find max commits for intensity scaling
-      const maxCommits = Math.max(...Object.values(commitsByDay).map(d => d.commits), 1);
       const dayNames = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
 
       container.innerHTML = days.map((date, index) => {
         const key = date.toDateString();
-        const dayData = commitsByDay[key] || { commits: 0, added: 0, deleted: 0 };
+        const dayData = commitsByDay[key] || { commits: 0, added: 0, deleted: 0, repos: {} };
         const isToday = date.toDateString() === today.toDateString();
         const isSelected = selectedDate && date.toDateString() === selectedDate.toDateString();
 
-        // Calculate activity intensity
-        const intensity = dayData.commits === 0 ? 'none' :
-                         dayData.commits >= maxCommits * 0.7 ? 'high' :
-                         dayData.commits >= maxCommits * 0.3 ? 'medium' : 'low';
+        // Calculate week row (0 = oldest week, 4 = most recent/current week)
+        // Days are ordered 0-34, with 0 being oldest. Rows: 0-6=week0, 7-13=week1, etc.
+        const weekRow = Math.floor(index / 7);
+
+        // Build mini activity bars from repo data (top 3 repos)
+        const repoEntries = Object.entries(dayData.repos);
+        const maxRepoCommits = Math.max(...Object.values(dayData.repos), 1);
+        const bars = repoEntries
+          .sort((a, b) => b[1] - a[1])
+          .slice(0, 3)
+          .map(([repo, count]) => {
+            const color = REPO_COLORS[repo] || '#B8C4D0';
+            const width = Math.max((count / maxRepoCommits) * 100, 15);
+            return `<div class="activity-bar">
+              <div class="activity-fill" style="background: ${color}; width: ${width}%;"></div>
+            </div>`;
+          }).join('');
 
         const classes = ['day-column'];
         if (isToday) classes.push('today');
         if (isSelected) classes.push('selected');
+        if (applyStagger) classes.push('week-stagger');
 
         return `
-          <div class="${classes.join(' ')}" onclick="handleMonthDayClick('${date.toISOString()}')">
+          <div class="${classes.join(' ')}" data-week="${weekRow}" onclick="handleMonthDayClick('${date.toISOString()}')">
             <div class="day-name">${dayNames[date.getDay()]}</div>
             <div class="day-date">${date.getDate()}</div>
             <div class="day-bars">
-              <span class="activity-dot ${intensity}" title="${dayData.commits} commits"></span>
-              ${dayData.commits > 0 ? `<span style="font-size: 0.65rem; color: var(--text-secondary)">${dayData.commits}c</span>` : ''}
+              ${bars || '<div style="opacity: 0.3; font-size: 0.6rem; color: var(--text-secondary)">—</div>'}
             </div>
             <div class="day-stats">
               <span class="day-stat added">+${formatNumber(dayData.added)}</span>
