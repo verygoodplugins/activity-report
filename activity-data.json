@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-01-22T09:35:05.852Z",
-  "periodStart": "2026-01-15T09:35:05.851Z",
+  "generatedAt": "2026-01-23T09:32:52.096Z",
+  "periodStart": "2026-01-16T09:32:52.095Z",
   "commits": [
     {
       "type": "commit",
@@ -2835,62 +2835,6 @@
           "deleted": 3
         }
       ]
-    },
-    {
-      "type": "commit",
-      "hash": "a5cdc7a1b03d5090dded13e8aa5ece2e40d6d4ea",
-      "shortHash": "a5cdc7a",
-      "date": "2026-01-16T03:02:02+01:00",
-      "headline": "Improve SSEClient error handling and event parsing",
-      "repo": "autoapp",
-      "owner": "verygoodplugins",
-      "repoSlug": "AutoApp",
-      "remoteUrl": "https://github.com/verygoodplugins/AutoApp",
-      "stats": {
-        "added": 38,
-        "deleted": 4,
-        "files": 1
-      },
-      "files": [
-        {
-          "file": "AutoHub/Services/HubAPIService.swift",
-          "added": 38,
-          "deleted": 4
-        }
-      ]
-    },
-    {
-      "type": "commit",
-      "hash": "a563f3725ce1e18072eccee3ed77d435b9fb0c49",
-      "shortHash": "a563f37",
-      "date": "2026-01-15T15:58:20+01:00",
-      "headline": "Adds process tag/title for safe cleanup",
-      "repo": "mcp-automem",
-      "owner": "verygoodplugins",
-      "repoSlug": "mcp-automem",
-      "remoteUrl": "https://github.com/verygoodplugins/mcp-automem",
-      "stats": {
-        "added": 866,
-        "deleted": 790,
-        "files": 3
-      },
-      "files": [
-        {
-          "file": "dist/index.js",
-          "added": 849,
-          "deleted": 789
-        },
-        {
-          "file": "dist/index.js.map",
-          "added": 1,
-          "deleted": 1
-        },
-        {
-          "file": "src/index.ts",
-          "added": 16,
-          "deleted": 0
-        }
-      ]
     }
   ],
   "prs": [
@@ -3386,9 +3330,9 @@
       "repoSlug": "mcp-ecosystem"
     },
     "mcp-automem": {
-      "commits": 2,
-      "additions": 919,
-      "deletions": 794,
+      "commits": 1,
+      "additions": 53,
+      "deletions": 4,
       "remoteUrl": "https://github.com/verygoodplugins/mcp-automem",
       "owner": "verygoodplugins",
       "repoSlug": "mcp-automem"
@@ -3425,14 +3369,6 @@
       "owner": "verygoodplugins",
       "repoSlug": "autohub"
     },
-    "autoapp": {
-      "commits": 1,
-      "additions": 38,
-      "deletions": 4,
-      "remoteUrl": "https://github.com/verygoodplugins/AutoApp",
-      "owner": "verygoodplugins",
-      "repoSlug": "AutoApp"
-    },
     "activity-report": {
       "commits": 15,
       "additions": 27207,
@@ -3443,10 +3379,10 @@
     }
   },
   "stats": {
-    "additions": 46183,
-    "deletions": 9262,
-    "files": 265,
-    "commits": 87,
+    "additions": 45279,
+    "deletions": 8468,
+    "files": 261,
+    "commits": 85,
     "prs": 8
   }
 }
