@@ -28,6 +28,7 @@ jobs:
         run: |
           git config user.email "jack@autojack.ai"
           git config user.name "AutoJack"
+          git pull --rebase
           git add index.html activity-data.json
           git diff --cached --quiet || git commit -m "chore: daily activity update"
           git push
