@@ -16,6 +16,7 @@ interface DayCardProps {
 export function DayCard({ day, maxActivity, index, onClick }: DayCardProps) {
   const [isHovered, setIsHovered] = useState(false);
   const prefersReducedMotion = useReducedMotion();
+  const isInteractive = Boolean(onClick);
   const totalActivity = day.added + day.deleted;
   const activityPercent = maxActivity > 0 ? (totalActivity / maxActivity) * 100 : 0;
   const addedPercent = totalActivity > 0 ? (day.added / totalActivity) * 100 : 50;
@@ -33,6 +34,14 @@ export function DayCard({ day, maxActivity, index, onClick }: DayCardProps) {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onClick={onClick}
+      role={isInteractive ? 'button' : undefined}
+      tabIndex={isInteractive ? 0 : undefined}
+      onKeyDown={isInteractive ? (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          onClick?.();
+        }
+      } : undefined}
       style={{ transformStyle: 'preserve-3d' }}
     >
       {day.isToday && (
@@ -85,7 +94,7 @@ export function DayCard({ day, maxActivity, index, onClick }: DayCardProps) {
       </div>
       
       <div className="day-repos-count">
-        {day.repos.size > 0 && `${day.repos.size} repo${day.repos.size > 1 ? 's' : ''}`}
+        {day.repos.length > 0 && `${day.repos.length} repo${day.repos.length > 1 ? 's' : ''}`}
       </div>
 
       {isHovered && isHighActivity && (

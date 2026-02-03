@@ -10,7 +10,7 @@ An interactive developer activity dashboard built with React + Vite, featuring t
 - **Fonts**: JetBrains Mono, IBM Plex Mono
 
 ## Project Structure
-```
+```text
 devpulse/
 ├── src/
 │   ├── components/

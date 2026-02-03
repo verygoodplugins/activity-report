@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { useTheme } from '../hooks/useTheme';
 import { useReducedMotion } from '../hooks/useReducedMotion';
@@ -50,6 +51,10 @@ export function SetupPage() {
   const { theme } = useTheme();
   const prefersReducedMotion = useReducedMotion();
   const shouldAnimate = !prefersReducedMotion;
+  const mockupOpacities = useMemo(
+    () => Array.from({ length: 7 }, () => 0.3 + Math.random() * 0.7),
+    []
+  );
 
   return (
     <div className="setup-page" data-theme={theme}>
@@ -109,8 +114,8 @@ export function SetupPage() {
                     <div className="mockup-stat"></div>
                   </div>
                   <div className="mockup-grid">
-                    {[...Array(7)].map((_, i) => (
-                      <div key={i} className="mockup-day" style={{ opacity: 0.3 + Math.random() * 0.7 }}></div>
+                    {mockupOpacities.map((opacity, i) => (
+                      <div key={i} className="mockup-day" style={{ opacity }}></div>
                     ))}
                   </div>
                 </div>

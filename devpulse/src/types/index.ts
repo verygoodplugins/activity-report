@@ -106,7 +106,7 @@ export interface DayActivity {
   commits: Commit[];
   added: number;
   deleted: number;
-  repos: Set<string>;
+  repos: string[];
   isToday: boolean;
 }
 

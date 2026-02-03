@@ -7,6 +7,7 @@ import './MonthView.css';
 interface MonthViewProps {
   commits: Commit[];
   periodStart: string;
+  referenceDate?: string;
   onDayClick?: (day: DayActivity) => void;
 }
 
@@ -20,15 +21,15 @@ interface CalendarDay {
   commits: Commit[];
   added: number;
   deleted: number;
-  repos: Set<string>;
+  repos: string[];
   activityLevel: number;
 }
 
-export function MonthView({ commits, periodStart, onDayClick }: MonthViewProps) {
+export function MonthView({ commits, periodStart, referenceDate, onDayClick }: MonthViewProps) {
   const prefersReducedMotion = useReducedMotion();
 
   const calendarData = useMemo(() => {
-    const today = new Date();
+    const today = referenceDate ? new Date(referenceDate) : new Date();
     today.setHours(0, 0, 0, 0);
     
     const periodStartDate = new Date(periodStart);
@@ -82,7 +83,7 @@ export function MonthView({ commits, periodStart, onDayClick }: MonthViewProps) 
     }
 
     for (const td of tempDays) {
-      const repos = new Set(td.commits.map(c => c.repo));
+      const repos = [...new Set(td.commits.map(c => c.repo))];
       const totalActivity = td.added + td.deleted;
       const activityLevel = maxActivity > 0 ? totalActivity / maxActivity : 0;
 
@@ -109,7 +110,7 @@ export function MonthView({ commits, periodStart, onDayClick }: MonthViewProps) 
       monthName: months[today.getMonth()],
       year: today.getFullYear()
     };
-  }, [commits, periodStart]);
+  }, [commits, periodStart, referenceDate]);
 
   const handleDayClick = (day: CalendarDay) => {
     if (!day.isInPeriod) return;

@@ -50,6 +50,10 @@ const defaultConfig: DashboardConfig = {
 function mergeConfig(base: DashboardConfig, override?: Partial<DashboardConfig>): DashboardConfig {
   if (!override) return base;
   
+  const mergedFonts =
+    base.theme.fonts || override.theme?.fonts
+      ? { ...(base.theme.fonts ?? {}), ...(override.theme?.fonts ?? {}) } as DashboardConfig['theme']['fonts']
+      : undefined;
   return {
     theme: {
       ...base.theme,
@@ -57,7 +61,8 @@ function mergeConfig(base: DashboardConfig, override?: Partial<DashboardConfig>)
       colors: {
         ...base.theme.colors,
         ...override.theme?.colors
-      }
+      },
+      ...(mergedFonts ? { fonts: mergedFonts } : {})
     },
     sections: {
       hero: { ...base.sections.hero, ...override.sections?.hero },
@@ -174,6 +179,7 @@ export function useConfigActions() {
 }
 
 export function applyConfigColors(config: DashboardConfig): void {
+  if (typeof document === 'undefined') return;
   const root = document.documentElement;
   const { colors } = config.theme;
   

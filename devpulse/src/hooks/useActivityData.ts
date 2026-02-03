@@ -84,7 +84,8 @@ export function useActivityData() {
   }, [commits, prs]);
 
   const weeklyActivity = useMemo((): DayActivity[] => {
-    const today = new Date();
+    const today = activityData.generatedAt ? new Date(activityData.generatedAt) : new Date();
+    today.setHours(0, 0, 0, 0);
     const days: DayActivity[] = [];
     
     for (let i = 6; i >= 0; i--) {
@@ -100,13 +101,13 @@ export function useActivityData() {
         return commitDate >= date && commitDate < nextDay;
       });
       
-      const repos = new Set(dayCommits.map(c => c.repo));
+      const repos = [...new Set(dayCommits.map(c => c.repo))];
       const added = dayCommits.reduce((sum, c) => sum + c.stats.added, 0);
       const deleted = dayCommits.reduce((sum, c) => sum + c.stats.deleted, 0);
-      
+
       const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
       const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-      
+
       days.push({
         date,
         dayName: dayNames[date.getDay()],
