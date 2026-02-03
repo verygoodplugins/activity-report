@@ -1,0 +1,49 @@
+{
+  "theme": {
+    "name": "neon-cyberpunk",
+    "colors": {
+      "primary": "#00FFFF",
+      "secondary": "#FF00FF",
+      "background": "#0D0D1A",
+      "surface": "#1a0a2e",
+      "text": "#FFFFFF",
+      "accent": "#FF3366"
+    },
+    "fonts": {
+      "heading": "'Orbitron', 'JetBrains Mono', monospace",
+      "body": "'Share Tech Mono', 'JetBrains Mono', monospace",
+      "mono": "'Share Tech Mono', monospace"
+    }
+  },
+  "sections": {
+    "hero": {
+      "enabled": true,
+      "title": "The Grind Report",
+      "subtitle": "Weekly developer activity transparency. Building in public."
+    },
+    "weekly": {
+      "enabled": true,
+      "title": "This Week's Activity"
+    },
+    "repos": {
+      "enabled": true,
+      "title": "Projects",
+      "maxItems": 10
+    },
+    "prs": {
+      "enabled": true,
+      "title": "Recent PRs",
+      "maxItems": 10
+    }
+  },
+  "branding": {
+    "logo": null,
+    "footer": "Generated with love by",
+    "attribution": "AutoMem"
+  },
+  "interactivity": {
+    "animations": true,
+    "dayDetailModal": true,
+    "monthView": true
+  }
+}

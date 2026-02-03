@@ -1,0 +1,49 @@
+{
+  "theme": {
+    "name": "terminal-dark",
+    "colors": {
+      "primary": "#F9D857",
+      "secondary": "#D4A425",
+      "background": "#0A0A0A",
+      "surface": "#1a1a1a",
+      "text": "#F5F5F5",
+      "accent": "#F472B6"
+    },
+    "fonts": {
+      "heading": "'JetBrains Mono', monospace",
+      "body": "'JetBrains Mono', monospace",
+      "mono": "'JetBrains Mono', monospace"
+    }
+  },
+  "sections": {
+    "hero": {
+      "enabled": true,
+      "title": "The Grind Report",
+      "subtitle": "Weekly developer activity transparency. Building in public."
+    },
+    "weekly": {
+      "enabled": true,
+      "title": "This Week's Activity"
+    },
+    "repos": {
+      "enabled": true,
+      "title": "Projects",
+      "maxItems": 10
+    },
+    "prs": {
+      "enabled": true,
+      "title": "Recent PRs",
+      "maxItems": 10
+    }
+  },
+  "branding": {
+    "logo": null,
+    "footer": "Generated with love by",
+    "attribution": "AutoMem"
+  },
+  "interactivity": {
+    "animations": true,
+    "dayDetailModal": true,
+    "monthView": true
+  }
+}

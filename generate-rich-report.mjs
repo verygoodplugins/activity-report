@@ -152,7 +152,7 @@ function safeExec(command, options) {
 async function main() {
   const args = parseArgs(process.argv.slice(2));
 
-  const hoursBack = parseNumber(args.hours, 168);
+  const hoursBack = parseNumber(args.hours, 720);
   const maxDepth = parseNumber(args["max-depth"], 4);
   const cacheFile = args["cache-file"] || "activity-data.json";
   const outputFile = args["output-file"] || "index.html";
@@ -263,7 +263,7 @@ async function fetchData({
 
       const authorFilter = authorEmail ? ` --author="${authorEmail}"` : "";
       const log = safeExec(
-        `git -C "${repoPath}" log${authorFilter} --since="${sinceIso}" --pretty=format:"===COMMIT===%n%H%x1f%aI%x1f%s" --numstat --no-merges 2>/dev/null`,
+        `git -C "${repoPath}" log${authorFilter} --since="${sinceIso}" --pretty=format:"===COMMIT===%n%H%x1f%aI%x1f%s%x1f%b%x1f===STATS===" --numstat --no-merges 2>/dev/null`,
         { encoding: "utf-8", maxBuffer: 20 * 1024 * 1024 }
       );
 
@@ -275,9 +275,16 @@ async function fetchData({
         repoCommits = 0;
 
       for (const block of blocks) {
-        const lines = block.trim().split("\n");
-        const [hash, dateStr, headline] = lines[0].split("\x1f");
-        const statLines = lines.slice(1);
+        // Split by ===STATS=== to separate commit info from numstat
+        const [commitInfo, statsSection] = block.split("===STATS===");
+        if (!commitInfo) continue;
+
+        const parts = commitInfo.trim().split("\x1f");
+        const [hash, dateStr, headline] = parts;
+        // Body is everything between headline and ===STATS===, may contain newlines
+        const body = (parts[3] || "").trim();
+
+        const statLines = (statsSection || "").trim().split("\n").filter(Boolean);
 
         let added = 0,
           deleted = 0;
@@ -303,6 +310,7 @@ async function fetchData({
           shortHash: hash.substring(0, 7),
           date: dateStr,
           headline,
+          body: body || "",
           repo: repoName,
           owner,
           repoSlug,
@@ -384,7 +392,7 @@ async function fetchData({
       for (const pr of prList) {
         try {
           const detailRaw = safeExec(
-            `gh pr view ${pr.number} --repo ${pr.repository.nameWithOwner} --json number,title,url,state,createdAt,additions,deletions,changedFiles,commits,baseRefName,headRefName,mergeable,reviews,labels,files`,
+            `gh pr view ${pr.number} --repo ${pr.repository.nameWithOwner} --json number,title,url,state,createdAt,additions,deletions,changedFiles,commits,baseRefName,headRefName,mergeable,reviews,labels,files,body`,
             { encoding: "utf-8" }
           );
           if (!detailRaw) continue;
@@ -418,6 +426,7 @@ async function fetchData({
               added: f.additions,
               deleted: f.deletions,
             })),
+            body: detail.body || '',
           });
           data.stats.prs++;
         } catch {}

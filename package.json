@@ -14,5 +14,8 @@
     "url": "git+https://github.com/jack-arturo/activity-report.git"
   },
   "author": "Jack Arturo",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "react-router-dom": "^7.12.0"
+  }
 }

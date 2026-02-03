@@ -1,0 +1,49 @@
+{
+  "theme": {
+    "name": "minimal-light",
+    "colors": {
+      "primary": "#D4A425",
+      "secondary": "#B8860B",
+      "background": "#FAF8F5",
+      "surface": "#F0EDE8",
+      "text": "#2D2A26",
+      "accent": "#C4785E"
+    },
+    "fonts": {
+      "heading": "'JetBrains Mono', monospace",
+      "body": "'IBM Plex Mono', monospace",
+      "mono": "'JetBrains Mono', monospace"
+    }
+  },
+  "sections": {
+    "hero": {
+      "enabled": true,
+      "title": "The Grind Report",
+      "subtitle": "Weekly developer activity transparency. Building in public."
+    },
+    "weekly": {
+      "enabled": true,
+      "title": "This Week's Activity"
+    },
+    "repos": {
+      "enabled": true,
+      "title": "Projects",
+      "maxItems": 10
+    },
+    "prs": {
+      "enabled": true,
+      "title": "Recent PRs",
+      "maxItems": 10
+    }
+  },
+  "branding": {
+    "logo": null,
+    "footer": "Generated with love by",
+    "attribution": "AutoMem"
+  },
+  "interactivity": {
+    "animations": true,
+    "dayDetailModal": true,
+    "monthView": true
+  }
+}
