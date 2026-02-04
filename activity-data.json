@@ -1,7 +1,134 @@
 {
-  "generatedAt": "2026-02-04T06:50:51.533Z",
-  "periodStart": "2026-01-05T06:50:51.532Z",
+  "generatedAt": "2026-02-04T09:47:46.221Z",
+  "periodStart": "2026-01-05T09:47:46.220Z",
   "commits": [
+    {
+      "type": "commit",
+      "hash": "b8b27e6e5dd5f05936e5ca3bd3a6b8c4ea94b094",
+      "shortHash": "b8b27e6",
+      "date": "2026-02-04T15:04:44+05:30",
+      "headline": "chore: make commit-msg hook husky v9 compatible",
+      "body": "",
+      "repo": "mcp-automem",
+      "owner": "verygoodplugins",
+      "repoSlug": "mcp-automem",
+      "remoteUrl": "https://github.com/verygoodplugins/mcp-automem",
+      "stats": {
+        "added": 0,
+        "deleted": 3,
+        "files": 1
+      },
+      "files": [
+        {
+          "file": ".husky/commit-msg",
+          "added": 0,
+          "deleted": 3
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "cdaf5f84b3e20af856b8c1974fabfc17db913938",
+      "shortHash": "cdaf5f8",
+      "date": "2026-02-04T15:03:54+05:30",
+      "headline": "chore: enforce conventional commit titles",
+      "body": "",
+      "repo": "mcp-automem",
+      "owner": "verygoodplugins",
+      "repoSlug": "mcp-automem",
+      "remoteUrl": "https://github.com/verygoodplugins/mcp-automem",
+      "stats": {
+        "added": 891,
+        "deleted": 1,
+        "files": 6
+      },
+      "files": [
+        {
+          "file": ".commitlintrc.cjs",
+          "added": 4,
+          "deleted": 0
+        },
+        {
+          "file": ".github/workflows/semantic-pr-title.yml",
+          "added": 30,
+          "deleted": 0
+        },
+        {
+          "file": ".husky/commit-msg",
+          "added": 5,
+          "deleted": 0
+        },
+        {
+          "file": "CLAUDE.md",
+          "added": 16,
+          "deleted": 0
+        },
+        {
+          "file": "package-lock.json",
+          "added": 831,
+          "deleted": 0
+        },
+        {
+          "file": "package.json",
+          "added": 5,
+          "deleted": 1
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "c4da84344a6f4d716e15fe28e30b42c7081c0ac1",
+      "shortHash": "c4da843",
+      "date": "2026-02-04T14:46:52+05:30",
+      "headline": "Silence dotenv logs in stdio mode (#55)",
+      "body": "",
+      "repo": "mcp-automem",
+      "owner": "verygoodplugins",
+      "repoSlug": "mcp-automem",
+      "remoteUrl": "https://github.com/verygoodplugins/mcp-automem",
+      "prNumber": "55",
+      "stats": {
+        "added": 17,
+        "deleted": 7,
+        "files": 1
+      },
+      "files": [
+        {
+          "file": "src/index.ts",
+          "added": 17,
+          "deleted": 7
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "0f7f8e82b535b5a9e6e9a17f652b7f1487f89120",
+      "shortHash": "0f7f8e8",
+      "date": "2026-02-04T14:46:31+05:30",
+      "headline": "Remove review script; add timezone fallback warnings",
+      "body": "Delete scripts/review-and-fix.sh. In src/scheduler/workflow-scheduler.js, tighten null checks (use === null) and improve timezone handling: declare zoned as let, detect invalid/non-parsable timezones, log a one-time warning, and fall back to UTC for scheduleDaily and scheduleInterval. These changes make scheduling more robust against bad timezone configs and provide clearer diagnostics.",
+      "repo": "autohub",
+      "owner": "verygoodplugins",
+      "repoSlug": "autohub",
+      "remoteUrl": "https://github.com/verygoodplugins/autohub",
+      "stats": {
+        "added": 25,
+        "deleted": 263,
+        "files": 2
+      },
+      "files": [
+        {
+          "file": "scripts/review-and-fix.sh",
+          "added": 0,
+          "deleted": 260
+        },
+        {
+          "file": "src/scheduler/workflow-scheduler.js",
+          "added": 25,
+          "deleted": 3
+        }
+      ]
+    },
     {
       "type": "commit",
       "hash": "c7ad8dd7f201716101e3d2aee6a6d20db02672c8",
@@ -14902,82 +15029,121 @@
           "deleted": 0
         }
       ]
-    },
+    }
+  ],
+  "prs": [
     {
-      "type": "commit",
-      "hash": "4a91593c264cb6fc7ffd3439ef36f9bc241a0e83",
-      "shortHash": "4a91593",
-      "date": "2026-01-05T10:21:31+01:00",
-      "headline": "Update wrangler.toml for Cloudflare Pages deployment",
-      "body": "Reconfigure wrangler.toml for Cloudflare Pages by updating the project name, removing worker-specific settings, and specifying the build output directory. Environment variables and secrets are now managed according to Pages conventions.",
-      "repo": "haven",
-      "owner": "jack-arturo",
-      "repoSlug": "haven",
-      "remoteUrl": "https://github.com/jack-arturo/haven",
+      "type": "pr",
+      "number": 57,
+      "title": "chore: enforce conventional commit titles",
+      "url": "https://github.com/verygoodplugins/mcp-automem/pull/57",
+      "state": "MERGED",
+      "date": "2026-02-04T09:34:10Z",
+      "repo": "mcp-automem",
+      "repoFull": "verygoodplugins/mcp-automem",
       "stats": {
-        "added": 7,
-        "deleted": 18,
-        "files": 1
-      },
-      "files": [
-        {
-          "file": "wrangler.toml",
-          "added": 7,
-          "deleted": 18
-        }
-      ]
-    },
-    {
-      "type": "commit",
-      "hash": "1b07c5ca4caf256bab92e011d4ab99c0d4a297ae",
-      "shortHash": "1b07c5c",
-      "date": "2026-01-05T10:04:39+01:00",
-      "headline": "Add developer activity report tool and Cloudflare Workers config",
-      "body": "Introduced a new 'developer_activity_report' tool in mcp-tools.json and tool-filters.json, providing schema and description for generating developer activity reports. Added initial implementation at tools/developer-activity-report.js. Updated Cloudflare Workers configuration in mcp-tools.json. Modified related workflow documentation to reference the new tool.",
-      "repo": "autohub",
-      "owner": "verygoodplugins",
-      "repoSlug": "autohub",
-      "remoteUrl": "https://github.com/verygoodplugins/autohub",
-      "stats": {
-        "added": 5834,
-        "deleted": 6267,
+        "added": 888,
+        "deleted": 1,
         "files": 6
       },
+      "baseBranch": "main",
+      "headBranch": "chore/conventional-commit-standards",
+      "mergeable": "UNKNOWN",
+      "commits": 3,
+      "reviews": [],
+      "labels": [],
       "files": [
         {
-          "file": "config/mcp-tools.json",
-          "added": 4817,
-          "deleted": 6042
-        },
-        {
-          "file": "config/tool-filters.json",
-          "added": 9,
+          "file": ".commitlintrc.cjs",
+          "added": 4,
           "deleted": 0
         },
         {
-          "file": "src/services/mcp-executor.js",
+          "file": ".github/workflows/semantic-pr-title.yml",
+          "added": 30,
+          "deleted": 0
+        },
+        {
+          "file": ".husky/commit-msg",
           "added": 2,
           "deleted": 0
         },
         {
-          "file": "tools/developer-activity-report.js",
-          "added": 445,
+          "file": "CLAUDE.md",
+          "added": 16,
           "deleted": 0
         },
         {
-          "file": "workflows/daily/wpf-support-dashboard.md",
-          "added": 301,
-          "deleted": 142
+          "file": "package-lock.json",
+          "added": 831,
+          "deleted": 0
         },
         {
-          "file": "workflows/on-demand/wpf-support-dashboard-agent-test.md",
-          "added": 260,
-          "deleted": 83
+          "file": "package.json",
+          "added": 5,
+          "deleted": 1
         }
-      ]
-    }
-  ],
-  "prs": [
+      ],
+      "body": "## Goal\\nPrevent Release Please from skipping releases due to non-Conventional merge commit messages.\\n\\n## Changes\\n- Add commit-msg hook (Husky + Commitlint) to lint commit messages locally\\n- Add CI check to enforce Conventional PR titles (so squash merges stay Conventional)\\n- Document the standard in CLAUDE.md\\n\\n## Testing\\n- npm test"
+    },
+    {
+      "type": "pr",
+      "number": 56,
+      "title": "fix: prevent dotenv stdout noise in stdio mode",
+      "url": "https://github.com/verygoodplugins/mcp-automem/pull/56",
+      "state": "MERGED",
+      "date": "2026-02-04T09:28:20Z",
+      "repo": "mcp-automem",
+      "repoFull": "verygoodplugins/mcp-automem",
+      "stats": {
+        "added": 4,
+        "deleted": 1,
+        "files": 1
+      },
+      "baseBranch": "main",
+      "headBranch": "fix/stdio-quiet-hardening",
+      "mergeable": "UNKNOWN",
+      "commits": 1,
+      "reviews": [],
+      "labels": [],
+      "files": [
+        {
+          "file": "src/index.ts",
+          "added": 4,
+          "deleted": 1
+        }
+      ],
+      "body": "## Why\r\n\r\nClaude Desktop expects pure JSON-RPC over stdout for stdio transports. dotenv v17 can emit a stdout log line by default (or when debug is enabled), which corrupts the stream.\r\n\r\n## What\r\n\r\nForce dotenv quiet mode and disable dotenv debug in stdio/server mode\r\n\r\n- Redirect console log/info/debug/warn to stderr in stdio/server mode\r\n\r\n## Testing\r\n\r\n- npm test"
+    },
+    {
+      "type": "pr",
+      "number": 55,
+      "title": "Silence dotenv stdout in stdio mode",
+      "url": "https://github.com/verygoodplugins/mcp-automem/pull/55",
+      "state": "MERGED",
+      "date": "2026-02-04T09:09:50Z",
+      "repo": "mcp-automem",
+      "repoFull": "verygoodplugins/mcp-automem",
+      "stats": {
+        "added": 17,
+        "deleted": 7,
+        "files": 1
+      },
+      "baseBranch": "main",
+      "headBranch": "fix/dotenv-stdio-silence",
+      "mergeable": "UNKNOWN",
+      "commits": 1,
+      "reviews": [],
+      "labels": [],
+      "files": [
+        {
+          "file": "src/index.ts",
+          "added": 17,
+          "deleted": 7
+        }
+      ],
+      "body": "## Summary\n- suppress dotenv stdout logs in stdio/server mode\n- redirect console log/info/debug to stderr in stdio mode\n- keep stdout clean for MCP JSON\n\n## Testing\n- npm test"
+    },
     {
       "type": "pr",
       "number": 52,
@@ -15066,119 +15232,6 @@
         }
       ],
       "body": "## Summary\n\n- Add real integration tests against AutoMem service (`tests/integration/automem-service.test.ts`)\n- Add CLI smoke tests (`tests/cli/smoke.test.ts`)\n- Add separate vitest config for integration tests\n- Add `test:integration` and `test:all` npm scripts\n\n## Test Plan\n\n- [x] Unit tests pass (`npm test`)\n- [x] Integration tests skip gracefully when service unavailable\n- [ ] Integration tests pass with local Docker AutoMem (`npm run test:integration`)\n\n## Details\n\n### Integration Tests\n- Health check\n- Store/recall cycle (by query, by tag, time-bounded)\n- Associations (create and retrieve)\n- Update and delete\n- Edge cases (special characters, embeddings)\n\n### CLI Smoke Tests\n- Config command outputs MCP server snippet\n- Cursor command dry-run\n- Template files exist and have version markers\n\nTests are designed to:\n1. Skip gracefully if AutoMem service is not available\n2. Use unique test tags for isolation\n3. Clean up test data after each test\n\nMade with [Cursor](https://cursor.com)"
-    },
-    {
-      "type": "pr",
-      "number": 50,
-      "title": "ci: add link checker for documentation",
-      "url": "https://github.com/verygoodplugins/mcp-automem/pull/50",
-      "state": "MERGED",
-      "date": "2026-02-03T00:18:56Z",
-      "repo": "mcp-automem",
-      "repoFull": "verygoodplugins/mcp-automem",
-      "stats": {
-        "added": 31,
-        "deleted": 7,
-        "files": 4
-      },
-      "baseBranch": "main",
-      "headBranch": "chore/add-link-checker",
-      "mergeable": "UNKNOWN",
-      "commits": 4,
-      "reviews": [
-        {
-          "author": "coderabbitai",
-          "state": "COMMENTED",
-          "submittedAt": "2026-02-03T00:24:00Z"
-        }
-      ],
-      "labels": [],
-      "files": [
-        {
-          "file": ".github/workflows/ci.yml",
-          "added": 22,
-          "deleted": 1
-        },
-        {
-          "file": ".github/workflows/release-please.yml",
-          "added": 6,
-          "deleted": 3
-        },
-        {
-          "file": ".github/workflows/security.yml",
-          "added": 1,
-          "deleted": 1
-        },
-        {
-          "file": "INSTALLATION.md",
-          "added": 2,
-          "deleted": 2
-        }
-      ],
-      "body": "Adds lychee link checker to catch broken links in documentation on every PR.\n\nWould have caught:\n- Wrong .mcpb filename (404)\n- Broken @verygoodplugins X handle\n\nExcludes:\n- localhost/127.0.0.1 (local dev)\n- x.com/i/communities (returns 403 to bots)\n- Email addresses\n\nMade with [Cursor](https://cursor.com)"
-    },
-    {
-      "type": "pr",
-      "number": 49,
-      "title": "fix: correct .mcpb filename and update community links",
-      "url": "https://github.com/verygoodplugins/mcp-automem/pull/49",
-      "state": "MERGED",
-      "date": "2026-02-03T00:14:37Z",
-      "repo": "mcp-automem",
-      "repoFull": "verygoodplugins/mcp-automem",
-      "stats": {
-        "added": 4,
-        "deleted": 2,
-        "files": 1
-      },
-      "baseBranch": "main",
-      "headBranch": "fix/readme-links",
-      "mergeable": "UNKNOWN",
-      "commits": 1,
-      "reviews": [],
-      "labels": [],
-      "files": [
-        {
-          "file": "README.md",
-          "added": 4,
-          "deleted": 2
-        }
-      ],
-      "body": "## Fixes\n- `.mcpb` download link was 404 (wrong filename)\n- X handle `@verygoodplugins` is broken\n- Community section missing Discord and X community\n\n## Changes\n- Fix download: `automem.mcpb` → `mcp-automem.mcpb`\n- Add Discord, X Community, @automem_ai to Community & Support\n- Remove broken @verygoodplugins reference\n\nMade with [Cursor](https://cursor.com)"
-    },
-    {
-      "type": "pr",
-      "number": 47,
-      "title": "chore: add icon and community links to README",
-      "url": "https://github.com/verygoodplugins/mcp-automem/pull/47",
-      "state": "MERGED",
-      "date": "2026-02-02T23:56:00Z",
-      "repo": "mcp-automem",
-      "repoFull": "verygoodplugins/mcp-automem",
-      "stats": {
-        "added": 33,
-        "deleted": 4,
-        "files": 2
-      },
-      "baseBranch": "main",
-      "headBranch": "chore/branding-updates",
-      "mergeable": "UNKNOWN",
-      "commits": 1,
-      "reviews": [],
-      "labels": [],
-      "files": [
-        {
-          "file": "README.md",
-          "added": 12,
-          "deleted": 4
-        },
-        {
-          "file": "assets/icon.svg",
-          "added": 21,
-          "deleted": 0
-        }
-      ],
-      "body": "## Changes\n- Add cute floppy disk SVG icon to header\n- Add Discord badge linking to https://automem.ai/discord\n- Add X (Twitter) badge linking to @automem_ai\n- Center the header badges and icon\n\n<p align=\"center\">\n  <img src=\"https://raw.githubusercontent.com/verygoodplugins/mcp-automem/chore/branding-updates/assets/icon.svg\" alt=\"AutoMem Icon\" width=\"80\" />\n</p>\n\nMade with [Cursor](https://cursor.com)"
     },
     {
       "type": "pr",
@@ -16331,9 +16384,9 @@
       "repoSlug": "mcp-ecosystem"
     },
     "mcp-automem": {
-      "commits": 34,
-      "additions": 6662,
-      "deletions": 3015,
+      "commits": 37,
+      "additions": 7570,
+      "deletions": 3026,
       "remoteUrl": "https://github.com/verygoodplugins/mcp-automem",
       "owner": "verygoodplugins",
       "repoSlug": "mcp-automem"
@@ -16372,8 +16425,8 @@
     },
     "autohub": {
       "commits": 144,
-      "additions": 106658,
-      "deletions": 59453,
+      "additions": 100849,
+      "deletions": 53449,
       "remoteUrl": "https://github.com/verygoodplugins/autohub",
       "owner": "verygoodplugins",
       "repoSlug": "autohub"
@@ -16386,14 +16439,6 @@
       "owner": "verygoodplugins",
       "repoSlug": "AutoApp"
     },
-    "haven": {
-      "commits": 1,
-      "additions": 7,
-      "deletions": 18,
-      "remoteUrl": "https://github.com/jack-arturo/haven",
-      "owner": "jack-arturo",
-      "repoSlug": "haven"
-    },
     "activity-report": {
       "commits": 37,
       "additions": 60154,
@@ -16404,10 +16449,10 @@
     }
   },
   "stats": {
-    "additions": 227246,
-    "deletions": 89789,
-    "files": 1741,
-    "commits": 329,
+    "additions": 222338,
+    "deletions": 83778,
+    "files": 1744,
+    "commits": 331,
     "prs": 20
   }
 }
