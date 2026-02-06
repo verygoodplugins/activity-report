@@ -1,7 +1,56 @@
 {
-  "generatedAt": "2026-02-05T09:49:29.764Z",
-  "periodStart": "2026-01-06T09:49:29.763Z",
+  "generatedAt": "2026-02-06T09:45:18.747Z",
+  "periodStart": "2026-01-07T09:45:18.747Z",
   "commits": [
+    {
+      "type": "commit",
+      "hash": "8f45bb1b583a26e0f0d374136cbc201819c2b19c",
+      "shortHash": "8f45bb1",
+      "date": "2026-02-06T15:04:48+05:30",
+      "headline": "feat: enhance voice agent stability and configuration",
+      "body": "- Added new environment variables for voice agent auto-restart and crash handling in .env.example.\n- Implemented logic in voice-supervisor.js to manage agent restarts with backoff and crash-loop protection.\n- Updated CartesiaAudio service to improve error handling during context management.\n- Refactored audio-utils to streamline jitter buffer reset functionality.\n- Enhanced TTSOrchestrator and voice-server.js to ensure proper flushing and error handling during streaming TTS operations.",
+      "repo": "autohub",
+      "owner": "verygoodplugins",
+      "repoSlug": "autohub",
+      "remoteUrl": "https://github.com/verygoodplugins/autohub",
+      "stats": {
+        "added": 295,
+        "deleted": 57,
+        "files": 6
+      },
+      "files": [
+        {
+          "file": ".env.example",
+          "added": 16,
+          "deleted": 2
+        },
+        {
+          "file": "scripts/voice-supervisor.js",
+          "added": 196,
+          "deleted": 1
+        },
+        {
+          "file": "src/services/cartesia-audio.js",
+          "added": 55,
+          "deleted": 28
+        },
+        {
+          "file": "src/voice/audio-utils.js",
+          "added": 18,
+          "deleted": 16
+        },
+        {
+          "file": "src/voice/tts-orchestrator.js",
+          "added": 2,
+          "deleted": 6
+        },
+        {
+          "file": "src/voice/voice-server.js",
+          "added": 8,
+          "deleted": 4
+        }
+      ]
+    },
     {
       "type": "commit",
       "hash": "0386f6f6c8016d90ab6244d154191db76b89f1af",
@@ -13397,1551 +13446,6 @@
           "deleted": 78
         }
       ]
-    },
-    {
-      "type": "commit",
-      "hash": "d58e89ff69d6050fa2c942b535ca371384866b9d",
-      "shortHash": "d58e89f",
-      "date": "2026-01-07T10:37:56+01:00",
-      "headline": "fix: timeline layout issues and smoother hover animations",
-      "body": "- Use minmax(0,1fr) for grid column to properly constrain width\n- Add min-width:0 to event elements for grid overflow handling\n- Add smooth opacity/max-height transitions for hover expand effect\n- Escape HTML in file name that was breaking DOM (<em> tag)\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>",
-      "repo": "activity-report",
-      "owner": "verygoodplugins",
-      "repoSlug": "activity-report",
-      "remoteUrl": "https://github.com/verygoodplugins/activity-report",
-      "stats": {
-        "added": 8,
-        "deleted": 8,
-        "files": 1
-      },
-      "files": [
-        {
-          "file": "index.html",
-          "added": 8,
-          "deleted": 8
-        }
-      ]
-    },
-    {
-      "type": "commit",
-      "hash": "b3da19bd97a26e51ae16f50948e6ae1ab3023c1a",
-      "shortHash": "b3da19b",
-      "date": "2026-01-07T10:23:51+01:00",
-      "headline": "fix: timeline layout and add responsive styles",
-      "body": "- Fix day-marker class to day-header (CSS class name mismatch broke grid layout)\n- Add responsive media queries for tablet (768px) and mobile (480px)\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>",
-      "repo": "activity-report",
-      "owner": "verygoodplugins",
-      "repoSlug": "activity-report",
-      "remoteUrl": "https://github.com/verygoodplugins/activity-report",
-      "stats": {
-        "added": 36,
-        "deleted": 3,
-        "files": 1
-      },
-      "files": [
-        {
-          "file": "index.html",
-          "added": 36,
-          "deleted": 3
-        }
-      ]
-    },
-    {
-      "type": "commit",
-      "hash": "99fee24ce2e3f8ffba5422063b8b4a49c3b9e62e",
-      "shortHash": "99fee24",
-      "date": "2026-01-07T06:20:07+01:00",
-      "headline": "Add buffer phrase for ElevenLabs voice responses",
-      "body": "When ElevenLabs voice is used, a random buffer phrase is sent before processing the main response. This improves user experience by providing immediate feedback during voice interactions.",
-      "repo": "autohub",
-      "owner": "verygoodplugins",
-      "repoSlug": "autohub",
-      "remoteUrl": "https://github.com/verygoodplugins/autohub",
-      "stats": {
-        "added": 15,
-        "deleted": 0,
-        "files": 1
-      },
-      "files": [
-        {
-          "file": "src/chat-server/index.js",
-          "added": 15,
-          "deleted": 0
-        }
-      ]
-    },
-    {
-      "type": "commit",
-      "hash": "455f3b928bfabbb4e334b006911ed830c61f9392",
-      "shortHash": "455f3b9",
-      "date": "2026-01-07T06:02:27+01:00",
-      "headline": "Add Robinhood tools, email handler agent, and zombie cleanup",
-      "body": "Introduces Robinhood MCP tools for portfolio analysis, adds a new 'email-handler' agent profile replacing 'email-triage', and implements periodic zombie process cleanup in MCP client. Enhances the voice realtime controller with post-speech listening, updates supervisor tools with a zombie cleanup utility, and adds a new on-demand portfolio analysis workflow. Also updates the email-received webhook workflow for simpler agent handling and memory storage.",
-      "repo": "autohub",
-      "owner": "verygoodplugins",
-      "repoSlug": "autohub",
-      "remoteUrl": "https://github.com/verygoodplugins/autohub",
-      "stats": {
-        "added": 857,
-        "deleted": 417,
-        "files": 12
-      },
-      "files": [
-        {
-          "file": ".env.example",
-          "added": 17,
-          "deleted": 0
-        },
-        {
-          "file": "config/mcp-tools.json",
-          "added": 181,
-          "deleted": 2
-        },
-        {
-          "file": "src/agents/executor.js",
-          "added": 2,
-          "deleted": 1
-        },
-        {
-          "file": "src/agents/profiles/email-handler.js",
-          "added": 76,
-          "deleted": 0
-        },
-        {
-          "file": "src/agents/profiles/email-triage.js",
-          "added": 0,
-          "deleted": 117
-        },
-        {
-          "file": "src/chat-server/index.js",
-          "added": 2,
-          "deleted": 0
-        },
-        {
-          "file": "src/services/mcp-client.js",
-          "added": 254,
-          "deleted": 31
-        },
-        {
-          "file": "src/services/voice/realtime-controller.js",
-          "added": 145,
-          "deleted": 30
-        },
-        {
-          "file": "src/workflows/runner.js",
-          "added": 15,
-          "deleted": 0
-        },
-        {
-          "file": "tools/supervisor-tools.js",
-          "added": 77,
-          "deleted": 1
-        },
-        {
-          "file": "workflows/on-demand/portfolio-analysis.md",
-          "added": 64,
-          "deleted": 0
-        },
-        {
-          "file": "workflows/webhooks/email-received.md",
-          "added": 24,
-          "deleted": 235
-        }
-      ]
-    },
-    {
-      "type": "commit",
-      "hash": "2bff0764139f9fe797d998705ce58fcaf2e7eccc",
-      "shortHash": "2bff076",
-      "date": "2026-01-07T00:19:01+01:00",
-      "headline": "chore: refresh npm audit exception",
-      "body": "",
-      "repo": "mcp-automem",
-      "owner": "verygoodplugins",
-      "repoSlug": "mcp-automem",
-      "remoteUrl": "https://github.com/verygoodplugins/mcp-automem",
-      "stats": {
-        "added": 2,
-        "deleted": 2,
-        "files": 1
-      },
-      "files": [
-        {
-          "file": ".nsprc",
-          "added": 2,
-          "deleted": 2
-        }
-      ]
-    },
-    {
-      "type": "commit",
-      "hash": "b1b983426b772a047501263c8a6527134781d72f",
-      "shortHash": "b1b9834",
-      "date": "2026-01-06T23:44:19+01:00",
-      "headline": "chore: trigger CI for release PR",
-      "body": "",
-      "repo": "mcp-automem",
-      "owner": "verygoodplugins",
-      "repoSlug": "mcp-automem",
-      "remoteUrl": "https://github.com/verygoodplugins/mcp-automem",
-      "stats": {
-        "added": 0,
-        "deleted": 0,
-        "files": 0
-      },
-      "files": []
-    },
-    {
-      "type": "commit",
-      "hash": "3d102d53adcd81dda8deca2f8beb46115f1a3fd3",
-      "shortHash": "3d102d5",
-      "date": "2026-01-06T23:21:35+01:00",
-      "headline": "Fix: function name in CLAUDE_MD_MEMORY_RULES.md",
-      "body": "Corrected the debugging example to use the proper mcp**memory**recall_memory function name for consistency.",
-      "repo": "mcp-automem",
-      "owner": "verygoodplugins",
-      "repoSlug": "mcp-automem",
-      "remoteUrl": "https://github.com/verygoodplugins/mcp-automem",
-      "stats": {
-        "added": 1,
-        "deleted": 2,
-        "files": 2
-      },
-      "files": [
-        {
-          "file": ".nsprc",
-          "added": 0,
-          "deleted": 1
-        },
-        {
-          "file": "templates/CLAUDE_MD_MEMORY_RULES.md",
-          "added": 1,
-          "deleted": 1
-        }
-      ]
-    },
-    {
-      "type": "commit",
-      "hash": "129b665cd2fa59628d229e3855aee13852c2c68a",
-      "shortHash": "129b665",
-      "date": "2026-01-06T23:18:05+01:00",
-      "headline": "fix: allowlist MCP SDK ReDoS vulnerability (GHSA-8r9q-7v3j-jr4g)",
-      "body": "No fix available from Anthropic yet. Using .nsprc to allowlist\nthe advisory until a patched version is released.\n\nExpires: 2025-02-06 (30 days)",
-      "repo": "mcp-automem",
-      "owner": "verygoodplugins",
-      "repoSlug": "mcp-automem",
-      "remoteUrl": "https://github.com/verygoodplugins/mcp-automem",
-      "stats": {
-        "added": 11,
-        "deleted": 2,
-        "files": 2
-      },
-      "files": [
-        {
-          "file": ".github/workflows/security.yml",
-          "added": 3,
-          "deleted": 2
-        },
-        {
-          "file": ".nsprc",
-          "added": 8,
-          "deleted": 0
-        }
-      ]
-    },
-    {
-      "type": "commit",
-      "hash": "1008c1acc9807d43702fd0799c061ae76eeba2f7",
-      "shortHash": "1008c1a",
-      "date": "2026-01-06T23:12:07+01:00",
-      "headline": "Standardize formatting and code examples in memory rules",
-      "body": "Added consistent spacing and formatting across CLAUDE_CODE_INTEGRATION.md, CLAUDE_MD_MEMORY_RULES.md, and codex/memory-rules.md. Updated code examples to use uniform syntax and improved readability. No functional changes; this improves clarity and consistency for users integrating AutoMem.",
-      "repo": "mcp-automem",
-      "owner": "verygoodplugins",
-      "repoSlug": "mcp-automem",
-      "remoteUrl": "https://github.com/verygoodplugins/mcp-automem",
-      "stats": {
-        "added": 92,
-        "deleted": 68,
-        "files": 3
-      },
-      "files": [
-        {
-          "file": "templates/CLAUDE_CODE_INTEGRATION.md",
-          "added": 11,
-          "deleted": 0
-        },
-        {
-          "file": "templates/CLAUDE_MD_MEMORY_RULES.md",
-          "added": 57,
-          "deleted": 51
-        },
-        {
-          "file": "templates/codex/memory-rules.md",
-          "added": 24,
-          "deleted": 17
-        }
-      ]
-    },
-    {
-      "type": "commit",
-      "hash": "bc6f7301cf3f003ab47ac0de51b158fb3c187473",
-      "shortHash": "bc6f730",
-      "date": "2026-01-06T23:11:40+01:00",
-      "headline": "fix: reject oversized memories and use placeholder for month tags",
-      "body": "- store_memory: Now rejects content > HARD_LIMIT (2000 chars) with error\n  instead of just warning; prevents storing unusable memories\n- Templates: Replace hardcoded '2025-12' with '[YYYY-MM]' placeholder\n  in CLAUDE_DESKTOP_INSTRUCTIONS.md (3 occurrences)",
-      "repo": "mcp-automem",
-      "owner": "verygoodplugins",
-      "repoSlug": "mcp-automem",
-      "remoteUrl": "https://github.com/verygoodplugins/mcp-automem",
-      "stats": {
-        "added": 103,
-        "deleted": 58,
-        "files": 4
-      },
-      "files": [
-        {
-          "file": "dist/index.js",
-          "added": 19,
-          "deleted": 3
-        },
-        {
-          "file": "dist/index.js.map",
-          "added": 1,
-          "deleted": 1
-        },
-        {
-          "file": "src/index.ts",
-          "added": 21,
-          "deleted": 3
-        },
-        {
-          "file": "templates/CLAUDE_DESKTOP_INSTRUCTIONS.md",
-          "added": 62,
-          "deleted": 51
-        }
-      ]
-    },
-    {
-      "type": "commit",
-      "hash": "6cab145ea6e4e65ad172ccf242b2a57c8f585018",
-      "shortHash": "6cab145",
-      "date": "2026-01-06T22:55:38+01:00",
-      "headline": "fix: Refine summarization token limit and improve tests",
-      "body": "Updated summarize_content to estimate max_tokens based on target character length, capping at 150 tokens. Test cases now use authorization headers and properly patch openai_client to ensure summarization logic is exercised. Also switched to using the app instance directly in tests for consistency.",
-      "repo": "automem",
-      "owner": "verygoodplugins",
-      "repoSlug": "automem",
-      "remoteUrl": "https://github.com/verygoodplugins/automem",
-      "stats": {
-        "added": 38,
-        "deleted": 19,
-        "files": 2
-      },
-      "files": [
-        {
-          "file": "automem/utils/text.py",
-          "added": 4,
-          "deleted": 1
-        },
-        {
-          "file": "tests/test_content_size.py",
-          "added": 34,
-          "deleted": 18
-        }
-      ]
-    },
-    {
-      "type": "commit",
-      "hash": "876aabf320cc5937c44d6678e02f0aed33b051b8",
-      "shortHash": "876aabf",
-      "date": "2026-01-06T22:37:34+01:00",
-      "headline": "feat: add memory content size governance with auto-summarization",
-      "body": "Implements backend enforcement of memory content size limits:\n\n## Config (automem/config.py)\n- MEMORY_CONTENT_SOFT_LIMIT: 500 chars (triggers auto-summarization)\n- MEMORY_CONTENT_HARD_LIMIT: 2000 chars (rejects with 400)\n- MEMORY_AUTO_SUMMARIZE: true/false toggle\n- MEMORY_SUMMARY_TARGET_LENGTH: 300 chars target\n\n## Summarization (automem/utils/text.py)\n- summarize_content(): Uses LLM to condense oversized content\n- should_summarize_content(): Checks content against limits\n\n## Store Endpoint (automem/api/memory.py)\n- Rejects content exceeding hard limit with descriptive 400 error\n- Auto-summarizes content above soft limit (if enabled)\n- Preserves original_content in metadata for audit trail\n- Response includes summarized=true and length info when summarized\n\n## Tests (tests/test_content_size.py)\n- Unit tests for should_summarize_content helper\n- Unit tests for summarize_content function\n- Integration test fixtures (skipped in CI without fixtures)\n\nWhy: Large memories cause semantic dilution, context bloat, and\ninformation loss on retrieval. This ensures high-quality, focused\nmemories with automatic condensation of oversized content.",
-      "repo": "automem",
-      "owner": "verygoodplugins",
-      "repoSlug": "automem",
-      "remoteUrl": "https://github.com/verygoodplugins/automem",
-      "stats": {
-        "added": 334,
-        "deleted": 1,
-        "files": 5
-      },
-      "files": [
-        {
-          "file": "app.py",
-          "added": 1,
-          "deleted": 0
-        },
-        {
-          "file": "automem/api/memory.py",
-          "added": 65,
-          "deleted": 0
-        },
-        {
-          "file": "automem/config.py",
-          "added": 14,
-          "deleted": 0
-        },
-        {
-          "file": "automem/utils/text.py",
-          "added": 106,
-          "deleted": 1
-        },
-        {
-          "file": "tests/test_content_size.py",
-          "added": 148,
-          "deleted": 0
-        }
-      ]
-    },
-    {
-      "type": "commit",
-      "hash": "e62dd5993e7e58e26590e7712af1377224a4b9c2",
-      "shortHash": "e62dd59",
-      "date": "2026-01-06T21:58:50+01:00",
-      "headline": "chore: rebuild dist",
-      "body": "",
-      "repo": "mcp-automem",
-      "owner": "verygoodplugins",
-      "repoSlug": "mcp-automem",
-      "remoteUrl": "https://github.com/verygoodplugins/mcp-automem",
-      "stats": {
-        "added": 334,
-        "deleted": 265,
-        "files": 2
-      },
-      "files": [
-        {
-          "file": "dist/index.js",
-          "added": 333,
-          "deleted": 264
-        },
-        {
-          "file": "dist/index.js.map",
-          "added": 1,
-          "deleted": 1
-        }
-      ]
-    },
-    {
-      "type": "commit",
-      "hash": "5ac5833cfd357dd173fbb7638d6e5b44a87e3fc8",
-      "shortHash": "5ac5833",
-      "date": "2026-01-06T21:58:42+01:00",
-      "headline": "feat: add memory content size guidelines and warnings",
-      "body": "- Add size warning in store_memory handler (soft: 500, hard: 2000 chars)\n- Update tool description with content size guidelines\n- Update all templates with size guidelines:\n  - Cursor: automem.mdc.template\n  - Claude Code: CLAUDE_CODE_INTEGRATION.md\n  - Claude Desktop: CLAUDE_DESKTOP_INSTRUCTIONS.md, CLAUDE_MD_MEMORY_RULES.md\n  - Codex: memory-rules.md\n\nContent size governance helps prevent context window bloat and\nensures memories remain semantically focused for better search.",
-      "repo": "mcp-automem",
-      "owner": "verygoodplugins",
-      "repoSlug": "mcp-automem",
-      "remoteUrl": "https://github.com/verygoodplugins/mcp-automem",
-      "stats": {
-        "added": 453,
-        "deleted": 289,
-        "files": 6
-      },
-      "files": [
-        {
-          "file": "src/index.ts",
-          "added": 409,
-          "deleted": 286
-        },
-        {
-          "file": "templates/CLAUDE_CODE_INTEGRATION.md",
-          "added": 3,
-          "deleted": 2
-        },
-        {
-          "file": "templates/CLAUDE_DESKTOP_INSTRUCTIONS.md",
-          "added": 14,
-          "deleted": 1
-        },
-        {
-          "file": "templates/CLAUDE_MD_MEMORY_RULES.md",
-          "added": 8,
-          "deleted": 0
-        },
-        {
-          "file": "templates/codex/memory-rules.md",
-          "added": 7,
-          "deleted": 0
-        },
-        {
-          "file": "templates/cursor/automem.mdc.template",
-          "added": 12,
-          "deleted": 0
-        }
-      ]
-    },
-    {
-      "type": "commit",
-      "hash": "c07171a75d390524d197da1c18c3bb5d8850be9e",
-      "shortHash": "c07171a",
-      "date": "2026-01-06T21:35:05+01:00",
-      "headline": "fix: reduce Cursor stderr noise and stdio flapping",
-      "body": "",
-      "repo": "mcp-automem",
-      "owner": "verygoodplugins",
-      "repoSlug": "mcp-automem",
-      "remoteUrl": "https://github.com/verygoodplugins/mcp-automem",
-      "stats": {
-        "added": 46,
-        "deleted": 5,
-        "files": 3
-      },
-      "files": [
-        {
-          "file": "dist/index.js",
-          "added": 20,
-          "deleted": 2
-        },
-        {
-          "file": "dist/index.js.map",
-          "added": 1,
-          "deleted": 1
-        },
-        {
-          "file": "src/index.ts",
-          "added": 25,
-          "deleted": 2
-        }
-      ]
-    },
-    {
-      "type": "commit",
-      "hash": "31db0aba8fc7a77c7296779310f5f908cb22d372",
-      "shortHash": "31db0ab",
-      "date": "2026-01-06T20:24:07+01:00",
-      "headline": "fix: use correct better-npm-audit version (3.11.0)",
-      "body": "Version 3.2.2 doesn't exist - latest stable is 3.11.0",
-      "repo": "mcp-automem",
-      "owner": "verygoodplugins",
-      "repoSlug": "mcp-automem",
-      "remoteUrl": "https://github.com/verygoodplugins/mcp-automem",
-      "stats": {
-        "added": 1,
-        "deleted": 1,
-        "files": 1
-      },
-      "files": [
-        {
-          "file": ".github/workflows/security.yml",
-          "added": 1,
-          "deleted": 1
-        }
-      ]
-    },
-    {
-      "type": "commit",
-      "hash": "d1d7bee8ed5714d2e5c8d2bdd80b438a3f58f896",
-      "shortHash": "d1d7bee",
-      "date": "2026-01-06T20:22:18+01:00",
-      "headline": "docs: update markdown formatting and improve code block syntax",
-      "body": "- Remove unnecessary line breaks in .markdownlint.json\n- Change code block syntax to specify language in INSTALLATION.md for better clarity\n- Standardize code block formatting across INSTALLATION.md and README.md",
-      "repo": "mcp-automem",
-      "owner": "verygoodplugins",
-      "repoSlug": "mcp-automem",
-      "remoteUrl": "https://github.com/verygoodplugins/mcp-automem",
-      "stats": {
-        "added": 8,
-        "deleted": 10,
-        "files": 3
-      },
-      "files": [
-        {
-          "file": ".markdownlint.json",
-          "added": 0,
-          "deleted": 1
-        },
-        {
-          "file": "INSTALLATION.md",
-          "added": 7,
-          "deleted": 8
-        },
-        {
-          "file": "README.md",
-          "added": 1,
-          "deleted": 1
-        }
-      ]
-    },
-    {
-      "type": "commit",
-      "hash": "f7dc0a1aa63f0c1f021f661297022c36718b7e73",
-      "shortHash": "f7dc0a1",
-      "date": "2026-01-06T20:19:25+01:00",
-      "headline": "fix: enforce security audits and fix server.json structure",
-      "body": "Security workflow changes:\n- Remove continue-on-error from npm audit to fail on high-severity vulnerabilities\n- Pin better-npm-audit to v3.2.2 to eliminate supply-chain volatility\n- Remove continue-on-error to block merges on detected vulnerabilities\n\nServer.json fixes:\n- Fix remotes structure to use variables for URL template (endpoint)\n- Use isRequired/isSecret instead of is_required/is_secret (correct camelCase)\n- Keep x-release-please-version as separate property (no inline comments)",
-      "repo": "mcp-automem",
-      "owner": "verygoodplugins",
-      "repoSlug": "mcp-automem",
-      "remoteUrl": "https://github.com/verygoodplugins/mcp-automem",
-      "stats": {
-        "added": 17,
-        "deleted": 19,
-        "files": 2
-      },
-      "files": [
-        {
-          "file": ".github/workflows/security.yml",
-          "added": 1,
-          "deleted": 3
-        },
-        {
-          "file": "server.json",
-          "added": 16,
-          "deleted": 16
-        }
-      ]
-    },
-    {
-      "type": "commit",
-      "hash": "bc2a4a5996ba8fb63941d53517b3ab45d16f953d",
-      "shortHash": "bc2a4a5",
-      "date": "2026-01-06T20:05:22+01:00",
-      "headline": "fix: resolve MD033 linter warnings for HTML elements",
-      "body": "- Add .markdownlint.json to allow <details> and <summary> elements\n- Replace <b> tags with markdown bold syntax in INSTALLATION.md\n- These HTML elements are standard GitHub markdown features for collapsible sections",
-      "repo": "mcp-automem",
-      "owner": "verygoodplugins",
-      "repoSlug": "mcp-automem",
-      "remoteUrl": "https://github.com/verygoodplugins/mcp-automem",
-      "stats": {
-        "added": 14,
-        "deleted": 7,
-        "files": 2
-      },
-      "files": [
-        {
-          "file": ".markdownlint.json",
-          "added": 6,
-          "deleted": 0
-        },
-        {
-          "file": "INSTALLATION.md",
-          "added": 8,
-          "deleted": 7
-        }
-      ]
-    },
-    {
-      "type": "commit",
-      "hash": "02a3b9797282ebcf6614d79da5e3caa9db59b4f9",
-      "shortHash": "02a3b97",
-      "date": "2026-01-06T19:58:27+01:00",
-      "headline": "Update server.json",
-      "body": "",
-      "repo": "mcp-automem",
-      "owner": "verygoodplugins",
-      "repoSlug": "mcp-automem",
-      "remoteUrl": "https://github.com/verygoodplugins/mcp-automem",
-      "stats": {
-        "added": 19,
-        "deleted": 18,
-        "files": 1
-      },
-      "files": [
-        {
-          "file": "server.json",
-          "added": 19,
-          "deleted": 18
-        }
-      ]
-    },
-    {
-      "type": "commit",
-      "hash": "fab79bd0956037bd25aaeaa8b4a97c7f66fbde68",
-      "shortHash": "fab79bd",
-      "date": "2026-01-06T17:44:15+01:00",
-      "headline": "fix: upgrade CodeQL Action to v4",
-      "body": "v3 deprecated December 2026, proactively upgrading to v4.\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>",
-      "repo": "mcp-toggl",
-      "owner": "verygoodplugins",
-      "repoSlug": "mcp-toggl",
-      "remoteUrl": "https://github.com/verygoodplugins/mcp-toggl",
-      "stats": {
-        "added": 3,
-        "deleted": 3,
-        "files": 1
-      },
-      "files": [
-        {
-          "file": ".github/workflows/security.yml",
-          "added": 3,
-          "deleted": 3
-        }
-      ]
-    },
-    {
-      "type": "commit",
-      "hash": "4f2605b6f1edb506599a03ec4095658bfe55c60e",
-      "shortHash": "4f2605b",
-      "date": "2026-01-06T17:44:13+01:00",
-      "headline": "fix: upgrade CodeQL Action to v4",
-      "body": "v3 deprecated December 2026, proactively upgrading to v4.\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>",
-      "repo": "mcp-local-wp",
-      "owner": "verygoodplugins",
-      "repoSlug": "mcp-local-wp",
-      "remoteUrl": "https://github.com/verygoodplugins/mcp-local-wp",
-      "stats": {
-        "added": 3,
-        "deleted": 3,
-        "files": 1
-      },
-      "files": [
-        {
-          "file": ".github/workflows/security.yml",
-          "added": 3,
-          "deleted": 3
-        }
-      ]
-    },
-    {
-      "type": "commit",
-      "hash": "4317881f4aaebeda1f3b6429f95a7bd5f632e22e",
-      "shortHash": "4317881",
-      "date": "2026-01-06T17:44:11+01:00",
-      "headline": "fix: upgrade CodeQL Action to v4",
-      "body": "v3 deprecated December 2026, proactively upgrading to v4.\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>",
-      "repo": "mcp-evernote",
-      "owner": "verygoodplugins",
-      "repoSlug": "mcp-evernote",
-      "remoteUrl": "https://github.com/verygoodplugins/mcp-evernote",
-      "stats": {
-        "added": 3,
-        "deleted": 3,
-        "files": 1
-      },
-      "files": [
-        {
-          "file": ".github/workflows/security.yml",
-          "added": 3,
-          "deleted": 3
-        }
-      ]
-    },
-    {
-      "type": "commit",
-      "hash": "861d60f3d6a00484e9dfcc8f96c876ae61b7c581",
-      "shortHash": "861d60f",
-      "date": "2026-01-06T17:44:08+01:00",
-      "headline": "fix: add security.yml workflow with CodeQL v4",
-      "body": "Adds weekly security scanning with:\n- CodeQL static analysis for TypeScript\n- npm audit for dependency vulnerabilities\n- better-npm-audit for enhanced checks\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>",
-      "repo": "mcp-automem",
-      "owner": "verygoodplugins",
-      "repoSlug": "mcp-automem",
-      "remoteUrl": "https://github.com/verygoodplugins/mcp-automem",
-      "stats": {
-        "added": 53,
-        "deleted": 0,
-        "files": 1
-      },
-      "files": [
-        {
-          "file": ".github/workflows/security.yml",
-          "added": 53,
-          "deleted": 0
-        }
-      ]
-    },
-    {
-      "type": "commit",
-      "hash": "60895a291d8ab57fac11f176e955ce3a5921c09d",
-      "shortHash": "60895a2",
-      "date": "2026-01-06T17:40:16+01:00",
-      "headline": "Update suggested-prompts.js",
-      "body": "",
-      "repo": "autohub",
-      "owner": "verygoodplugins",
-      "repoSlug": "autohub",
-      "remoteUrl": "https://github.com/verygoodplugins/autohub",
-      "stats": {
-        "added": 2,
-        "deleted": 2,
-        "files": 1
-      },
-      "files": [
-        {
-          "file": "src/slack-server/assistant/suggested-prompts.js",
-          "added": 2,
-          "deleted": 2
-        }
-      ]
-    },
-    {
-      "type": "commit",
-      "hash": "a88930c49392d7e03c9cb9580babc5f767b37872",
-      "shortHash": "a88930c",
-      "date": "2026-01-06T17:32:18+01:00",
-      "headline": "Update suggested-prompts.js",
-      "body": "",
-      "repo": "autohub",
-      "owner": "verygoodplugins",
-      "repoSlug": "autohub",
-      "remoteUrl": "https://github.com/verygoodplugins/autohub",
-      "stats": {
-        "added": 12,
-        "deleted": 5,
-        "files": 1
-      },
-      "files": [
-        {
-          "file": "src/slack-server/assistant/suggested-prompts.js",
-          "added": 12,
-          "deleted": 5
-        }
-      ]
-    },
-    {
-      "type": "commit",
-      "hash": "59c5296b32f0c523d12490d721f66cd0e4f049c1",
-      "shortHash": "59c5296",
-      "date": "2026-01-06T17:23:24+01:00",
-      "headline": "Remove email webhook route and update related code",
-      "body": "Deleted the email webhook route handler from the API and removed its registration from the chat server. Updated related files to reflect this removal and added a new documentation file for the email-received webhook. This change likely reflects a migration of email webhook handling to a different service or architecture.",
-      "repo": "autohub",
-      "owner": "verygoodplugins",
-      "repoSlug": "autohub",
-      "remoteUrl": "https://github.com/verygoodplugins/autohub",
-      "stats": {
-        "added": 1407,
-        "deleted": 1411,
-        "files": 6
-      },
-      "files": [
-        {
-          "file": "src/api/routes/email-webhook.js",
-          "added": 0,
-          "deleted": 474
-        },
-        {
-          "file": "src/chat-server/index.js",
-          "added": 1105,
-          "deleted": 934
-        },
-        {
-          "file": "src/slack-server/assistant/suggested-prompts.js",
-          "added": 1,
-          "deleted": 1
-        },
-        {
-          "file": "workers/autojack-email/src/index.js",
-          "added": 3,
-          "deleted": 1
-        },
-        {
-          "file": "workers/autojack-email/wrangler.toml",
-          "added": 2,
-          "deleted": 1
-        },
-        {
-          "file": "workflows/webhooks/email-received.md",
-          "added": 296,
-          "deleted": 0
-        }
-      ]
-    },
-    {
-      "type": "commit",
-      "hash": "89fc39bf9ee059fc5eb7f6a157f129fbbc1a7254",
-      "shortHash": "89fc39b",
-      "date": "2026-01-06T17:09:22+01:00",
-      "headline": "Improve Linux app launching and JSON parsing in chat",
-      "body": "Added a Linux executable mapping for common apps in open-tools.js to improve reliability when launching applications. Introduced a safe JSON parsing utility in chat.js to prevent errors when parsing tool input and output. Updated mcp-tools.json schema to require 'target_workspace_id' for relevant operations.",
-      "repo": "autohub",
-      "owner": "verygoodplugins",
-      "repoSlug": "autohub",
-      "remoteUrl": "https://github.com/verygoodplugins/autohub",
-      "stats": {
-        "added": 71,
-        "deleted": 13,
-        "files": 3
-      },
-      "files": [
-        {
-          "file": "config/mcp-tools.json",
-          "added": 6,
-          "deleted": 1
-        },
-        {
-          "file": "src/chat-server/routes/chat.js",
-          "added": 14,
-          "deleted": 4
-        },
-        {
-          "file": "tools/open-tools.js",
-          "added": 51,
-          "deleted": 8
-        }
-      ]
-    },
-    {
-      "type": "commit",
-      "hash": "e57525c8d6c0157ed8e2e35f528973a431b25d00",
-      "shortHash": "e57525c",
-      "date": "2026-01-06T15:56:31+01:00",
-      "headline": "Improve error handling, add in-memory fallback, and enhance tools",
-      "body": "This update introduces in-memory fallback for chat sessions in src/chat-server/db.js, ensuring chat functionality during database outages. It improves shutdown and disconnect logic for scripts and voice supervisor, adds stricter schema validation and priority normalization for supervisor tools, and enhances error handling and logging throughout the codebase. Several scripts and tools now use safer process spawning, and the Twitter mentions bot is more robust with improved error reporting. Minor documentation and config updates are also included.",
-      "repo": "autohub",
-      "owner": "verygoodplugins",
-      "repoSlug": "autohub",
-      "remoteUrl": "https://github.com/verygoodplugins/autohub",
-      "stats": {
-        "added": 483,
-        "deleted": 284,
-        "files": 18
-      },
-      "files": [
-        {
-          "file": "README.md",
-          "added": 3,
-          "deleted": 3
-        },
-        {
-          "file": "config/mcp-tools.json",
-          "added": 2,
-          "deleted": 1
-        },
-        {
-          "file": "prisma.config.ts",
-          "added": 2,
-          "deleted": 1
-        },
-        {
-          "file": "prisma/schema.prisma",
-          "added": 1,
-          "deleted": 1
-        },
-        {
-          "file": "scripts/generate-rich-report.mjs",
-          "added": 1,
-          "deleted": 1
-        },
-        {
-          "file": "scripts/migrate-databases.js",
-          "added": 5,
-          "deleted": 1
-        },
-        {
-          "file": "scripts/pi-voice-client-no-wake.js",
-          "added": 27,
-          "deleted": 3
-        },
-        {
-          "file": "scripts/voice-supervisor.js",
-          "added": 27,
-          "deleted": 14
-        },
-        {
-          "file": "src/chat-server/db.js",
-          "added": 85,
-          "deleted": 4
-        },
-        {
-          "file": "src/chat-server/routes/chat.js",
-          "added": 1,
-          "deleted": 1
-        },
-        {
-          "file": "src/db/logger.js",
-          "added": 70,
-          "deleted": 64
-        },
-        {
-          "file": "src/services/voice/realtime-controller.js",
-          "added": 8,
-          "deleted": 2
-        },
-        {
-          "file": "src/slack-server/assistant/suggested-prompts.js",
-          "added": 8,
-          "deleted": 5
-        },
-        {
-          "file": "src/voice/whisper-stt.js",
-          "added": 13,
-          "deleted": 3
-        },
-        {
-          "file": "tools/open-tools.js",
-          "added": 42,
-          "deleted": 29
-        },
-        {
-          "file": "tools/supervisor-tools.js",
-          "added": 44,
-          "deleted": 6
-        },
-        {
-          "file": "tools/twitter-mentions-bot.js",
-          "added": 139,
-          "deleted": 145
-        },
-        {
-          "file": "workflows/heartbeat/twitter-mentions.md",
-          "added": 5,
-          "deleted": 0
-        }
-      ]
-    },
-    {
-      "type": "commit",
-      "hash": "c597a5074a8e4db7681c3688fe3a14bb84bf821f",
-      "shortHash": "c597a50",
-      "date": "2026-01-06T15:10:56+01:00",
-      "headline": "Unify databases with Prisma",
-      "body": "- Add Prisma schema for unified hub-unified.db (sessions, interactions, tool_calls, events, todos, agent_runs)\n- Refactor chat-server/db.js to use Prisma instead of raw SQLite (autochat.db)\n- Refactor chat-server/routes/chat.js to use async chatDb methods\n- Add chat-specific fields to Session model (title, starred, archived)\n- Extend src/db/logger.js with chat helpers (listSessions, updateSessionTitle, etc.)\n- Migration: 20260106140314_add_session_chat_fields\n\nVoice agent and supervisor were refactored in previous commits.\nLegacy DBs (conversations.db, logs.db, agent-tasks.db) still receive some writes from agent-executor and conversation-extractor - to be cleaned up incrementally.",
-      "repo": "autohub",
-      "owner": "verygoodplugins",
-      "repoSlug": "autohub",
-      "remoteUrl": "https://github.com/verygoodplugins/autohub",
-      "stats": {
-        "added": 464,
-        "deleted": 485,
-        "files": 5
-      },
-      "files": [
-        {
-          "file": "prisma/migrations/20260106140314_add_session_chat_fields/migration.sql",
-          "added": 48,
-          "deleted": 0
-        },
-        {
-          "file": "prisma/schema.prisma",
-          "added": 9,
-          "deleted": 0
-        },
-        {
-          "file": "src/chat-server/db.js",
-          "added": 149,
-          "deleted": 346
-        },
-        {
-          "file": "src/chat-server/routes/chat.js",
-          "added": 74,
-          "deleted": 139
-        },
-        {
-          "file": "src/db/logger.js",
-          "added": 184,
-          "deleted": 0
-        }
-      ]
-    },
-    {
-      "type": "commit",
-      "hash": "916197451bcdbd2fa8c7253dde08a27f82176909",
-      "shortHash": "9161974",
-      "date": "2026-01-06T14:59:10+01:00",
-      "headline": "Add Pi voice client with wake word detection",
-      "body": "Replaces the simplified Pi voice client with a version that supports wake word detection using Picovoice Porcupine. Enables local wake word detection while maintaining compatibility with ARM devices and Sox/arecord for audio capture.",
-      "repo": "autohub",
-      "owner": "verygoodplugins",
-      "repoSlug": "autohub",
-      "remoteUrl": "https://github.com/verygoodplugins/autohub",
-      "stats": {
-        "added": 4205,
-        "deleted": 2067,
-        "files": 32
-      },
-      "files": [
-        {
-          "file": ".env.example",
-          "added": 35,
-          "deleted": 0
-        },
-        {
-          "file": ".gitignore",
-          "added": 1,
-          "deleted": 0
-        },
-        {
-          "file": "README.md",
-          "added": 35,
-          "deleted": 0
-        },
-        {
-          "file": "config/mcp-tools.json",
-          "added": 262,
-          "deleted": 356
-        },
-        {
-          "file": "public/dashboard/app.js",
-          "added": 0,
-          "deleted": 301
-        },
-        {
-          "file": "public/dashboard/index.html",
-          "added": 0,
-          "deleted": 271
-        },
-        {
-          "file": "public/dashboard/logs.html",
-          "added": 0,
-          "deleted": 197
-        },
-        {
-          "file": "public/dashboard/tools.html",
-          "added": 0,
-          "deleted": 721
-        },
-        {
-          "file": "scripts/generate-rich-report.mjs",
-          "added": 212,
-          "deleted": 96
-        },
-        {
-          "file": "scripts/pi-voice-client-no-wake.js",
-          "added": 349,
-          "deleted": 73
-        },
-        {
-          "file": "scripts/realtime-mcp-agent.js",
-          "added": 7,
-          "deleted": 3
-        },
-        {
-          "file": "slack/config/manifest.example.json",
-          "added": 4,
-          "deleted": 1
-        },
-        {
-          "file": "src/claude/server-tools/agent-delegation.js",
-          "added": 28,
-          "deleted": 0
-        },
-        {
-          "file": "src/platforms/slack/adapter.js",
-          "added": 135,
-          "deleted": 7
-        },
-        {
-          "file": "src/services/voice/realtime-controller.js",
-          "added": 113,
-          "deleted": 1
-        },
-        {
-          "file": "src/slack-server/assistant/feedback-blocks.js",
-          "added": 187,
-          "deleted": 0
-        },
-        {
-          "file": "src/slack-server/assistant/status.js",
-          "added": 87,
-          "deleted": 0
-        },
-        {
-          "file": "src/slack-server/assistant/suggested-prompts.js",
-          "added": 149,
-          "deleted": 0
-        },
-        {
-          "file": "src/slack-server/format/blocks.js",
-          "added": 39,
-          "deleted": 6
-        },
-        {
-          "file": "src/slack-server/handlers/events.js",
-          "added": 51,
-          "deleted": 1
-        },
-        {
-          "file": "src/slack-server/handlers/interactive.js",
-          "added": 156,
-          "deleted": 0
-        },
-        {
-          "file": "src/slack-server/streaming/native-streamer.js",
-          "added": 176,
-          "deleted": 0
-        },
-        {
-          "file": "src/slack-server/work-objects/agent-entity-builder.js",
-          "added": 123,
-          "deleted": 0
-        },
-        {
-          "file": "src/slack-server/work-objects/entity-types.js",
-          "added": 258,
-          "deleted": 0
-        },
-        {
-          "file": "src/slack-server/work-objects/flexpane-handler.js",
-          "added": 472,
-          "deleted": 0
-        },
-        {
-          "file": "src/slack-server/work-objects/unfurl-service.js",
-          "added": 366,
-          "deleted": 0
-        },
-        {
-          "file": "src/voice/voice-config.js",
-          "added": 0,
-          "deleted": 11
-        },
-        {
-          "file": "src/voice/voice-server.js",
-          "added": 226,
-          "deleted": 16
-        },
-        {
-          "file": "src/voice/whisper-stt.js",
-          "added": 254,
-          "deleted": 0
-        },
-        {
-          "file": "tools/twitter-mentions-bot.js",
-          "added": 448,
-          "deleted": 0
-        },
-        {
-          "file": "workflows/daily/morning-routine.md",
-          "added": 0,
-          "deleted": 6
-        },
-        {
-          "file": "workflows/heartbeat/twitter-mentions.md",
-          "added": 32,
-          "deleted": 0
-        }
-      ]
-    },
-    {
-      "type": "commit",
-      "hash": "c5f63708f0bcb3ab63c56ae0ae63da0dd4b3229b",
-      "shortHash": "c5f6370",
-      "date": "2026-01-06T14:33:20+01:00",
-      "headline": "feat: Add real-time observability with SSE streaming and TUI monitor",
-      "body": "- Add /stream SSE endpoint for real-time event streaming\n- Emit events for memory.store, memory.recall, enrichment.*, consolidation.run\n- Create automem_watch.py CLI tool with Rich TUI dashboard\n- Include garbage detector for suspicious patterns (test data, duplicates, bursts)\n- Track consolidation timing, affected counts, and next scheduled runs\n\nUsage: python scripts/automem_watch.py --url $URL --token $TOKEN\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>",
-      "repo": "automem",
-      "owner": "verygoodplugins",
-      "repoSlug": "automem",
-      "remoteUrl": "https://github.com/verygoodplugins/automem",
-      "stats": {
-        "added": 2,
-        "deleted": 3,
-        "files": 1
-      },
-      "files": [
-        {
-          "file": "app.py",
-          "added": 2,
-          "deleted": 3
-        }
-      ]
-    },
-    {
-      "type": "commit",
-      "hash": "944168e8e00bcdc42af09944577e32475ce25119",
-      "shortHash": "944168e",
-      "date": "2026-01-06T14:10:01+01:00",
-      "headline": "feat: Add real-time observability with SSE streaming and TUI monitor",
-      "body": "- Add /stream SSE endpoint for real-time event streaming\n- Emit events for memory.store, memory.recall, enrichment.*, consolidation.run\n- Create automem_watch.py CLI tool with Rich TUI dashboard\n- Include garbage detector for suspicious patterns (test data, duplicates, bursts)\n- Track consolidation timing, affected counts, and next scheduled runs\n\nUsage: python scripts/automem_watch.py --url $URL --token $TOKEN\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>",
-      "repo": "automem",
-      "owner": "verygoodplugins",
-      "repoSlug": "automem",
-      "remoteUrl": "https://github.com/verygoodplugins/automem",
-      "stats": {
-        "added": 631,
-        "deleted": 1,
-        "files": 4
-      },
-      "files": [
-        {
-          "file": "app.py",
-          "added": 117,
-          "deleted": 1
-        },
-        {
-          "file": "automem/api/stream.py",
-          "added": 115,
-          "deleted": 0
-        },
-        {
-          "file": "requirements-dev.txt",
-          "added": 4,
-          "deleted": 0
-        },
-        {
-          "file": "scripts/automem_watch.py",
-          "added": 395,
-          "deleted": 0
-        }
-      ]
-    },
-    {
-      "type": "commit",
-      "hash": "85d1076f3b0544b4104abfce5139af7ee3f6f00c",
-      "shortHash": "85d1076",
-      "date": "2026-01-06T13:55:56+01:00",
-      "headline": "Add -y flag to npx mcp-automem commands",
-      "body": "Updated CLI and template code to include the '-y' flag when invoking 'npx @verygoodplugins/mcp-automem', ensuring non-interactive installation. This change affects both the runtime command and generated configuration snippets.",
-      "repo": "mcp-automem",
-      "owner": "verygoodplugins",
-      "repoSlug": "mcp-automem",
-      "remoteUrl": "https://github.com/verygoodplugins/mcp-automem",
-      "stats": {
-        "added": 19,
-        "deleted": 47,
-        "files": 16
-      },
-      "files": [
-        {
-          "file": "dist/cli/cursor.js",
-          "added": 1,
-          "deleted": 1
-        },
-        {
-          "file": "dist/cli/cursor.js.map",
-          "added": 1,
-          "deleted": 1
-        },
-        {
-          "file": "dist/cli/templates.js",
-          "added": 2,
-          "deleted": 2
-        },
-        {
-          "file": "dist/cli/templates.js.map",
-          "added": 1,
-          "deleted": 1
-        },
-        {
-          "file": "dist/index.js",
-          "added": 1,
-          "deleted": 26
-        },
-        {
-          "file": "dist/index.js.map",
-          "added": 1,
-          "deleted": 1
-        },
-        {
-          "file": "plugins/automem/hooks/hooks.json",
-          "added": 1,
-          "deleted": 1
-        },
-        {
-          "file": "release-please-config.json",
-          "added": 1,
-          "deleted": 4
-        },
-        {
-          "file": "server.json",
-          "added": 2,
-          "deleted": 2
-        },
-        {
-          "file": "src/cli/cursor.ts",
-          "added": 1,
-          "deleted": 1
-        },
-        {
-          "file": "src/cli/templates.ts",
-          "added": 2,
-          "deleted": 2
-        },
-        {
-          "file": "templates/CLAUDE_CODE_INTEGRATION.md",
-          "added": 1,
-          "deleted": 1
-        },
-        {
-          "file": "templates/claude-code/settings.json",
-          "added": 1,
-          "deleted": 1
-        },
-        {
-          "file": "templates/claude_desktop_config.json",
-          "added": 1,
-          "deleted": 1
-        },
-        {
-          "file": "templates/codex/config.toml",
-          "added": 1,
-          "deleted": 1
-        },
-        {
-          "file": "templates/cursor_mcp.json",
-          "added": 1,
-          "deleted": 1
-        }
-      ]
-    },
-    {
-      "type": "commit",
-      "hash": "e401c68a3b3636ed1f96d9f3db61c2c7dda5f1c4",
-      "shortHash": "e401c68",
-      "date": "2026-01-06T13:53:53+01:00",
-      "headline": "chore: add gitignore, remove .vite artifacts",
-      "body": "",
-      "repo": "activity-report",
-      "owner": "verygoodplugins",
-      "repoSlug": "activity-report",
-      "remoteUrl": "https://github.com/verygoodplugins/activity-report",
-      "stats": {
-        "added": 18,
-        "deleted": 12,
-        "files": 3
-      },
-      "files": [
-        {
-          "file": ".gitignore",
-          "added": 18,
-          "deleted": 1
-        },
-        {
-          "file": ".vite/deps/_metadata.json",
-          "added": 0,
-          "deleted": 8
-        },
-        {
-          "file": ".vite/deps/package.json",
-          "added": 0,
-          "deleted": 3
-        }
-      ]
-    },
-    {
-      "type": "commit",
-      "hash": "34dacfa68a22981f4cc0cdb27161e4f9c7dd8d53",
-      "shortHash": "34dacfa",
-      "date": "2026-01-06T13:53:21+01:00",
-      "headline": "chore: update activity data for 2026-01-06",
-      "body": "",
-      "repo": "activity-report",
-      "owner": "verygoodplugins",
-      "repoSlug": "activity-report",
-      "remoteUrl": "https://github.com/verygoodplugins/activity-report",
-      "stats": {
-        "added": 10021,
-        "deleted": 2813,
-        "files": 5
-      },
-      "files": [
-        {
-          "file": ".gitignore",
-          "added": 1,
-          "deleted": 0
-        },
-        {
-          "file": ".vite/deps/_metadata.json",
-          "added": 8,
-          "deleted": 0
-        },
-        {
-          "file": ".vite/deps/package.json",
-          "added": 3,
-          "deleted": 0
-        },
-        {
-          "file": "activity-data.json",
-          "added": 4496,
-          "deleted": 1385
-        },
-        {
-          "file": "index.html",
-          "added": 5513,
-          "deleted": 1428
-        }
-      ]
-    },
-    {
-      "type": "commit",
-      "hash": "8d35749aeb9151d9cac3e214c0c178cc7ffbdfe1",
-      "shortHash": "8d35749",
-      "date": "2026-01-06T11:03:48+01:00",
-      "headline": "fix: update smoke test to verify module import instead of runtime",
-      "body": "The previous smoke test expected the MCP server to stay running in CI,\nbut stdio-transport servers exit without client input. Now tests:\n1. Module can be imported\n2. Server object can be instantiated\n3. Entry point/package exists\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>",
-      "repo": "robinhood-mcp",
-      "owner": "verygoodplugins",
-      "repoSlug": "robinhood-mcp",
-      "remoteUrl": "https://github.com/verygoodplugins/robinhood-mcp",
-      "stats": {
-        "added": 17,
-        "deleted": 18,
-        "files": 1
-      },
-      "files": [
-        {
-          "file": "scripts/smoke.sh",
-          "added": 17,
-          "deleted": 18
-        }
-      ]
-    },
-    {
-      "type": "commit",
-      "hash": "b88ead87a3cd5cfa20a826baf44c18282f9c044c",
-      "shortHash": "b88ead8",
-      "date": "2026-01-06T11:02:01+01:00",
-      "headline": "chore: prepare for v0.1.0 release",
-      "body": "- Add MCP registry name comment to README\n- Finalize CHANGELOG for v0.1.0 (2026-01-06)\n- Add smoke test script for CI validation\n- Add FastMCP backward compatibility fix\n- Expand README with automation examples\n- Add uv.lock to gitignore\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>",
-      "repo": "robinhood-mcp",
-      "owner": "verygoodplugins",
-      "repoSlug": "robinhood-mcp",
-      "remoteUrl": "https://github.com/verygoodplugins/robinhood-mcp",
-      "stats": {
-        "added": 237,
-        "deleted": 65,
-        "files": 6
-      },
-      "files": [
-        {
-          "file": ".github/workflows/ci.yml",
-          "added": 4,
-          "deleted": 0
-        },
-        {
-          "file": ".gitignore",
-          "added": 3,
-          "deleted": 0
-        },
-        {
-          "file": "CHANGELOG.md",
-          "added": 3,
-          "deleted": 1
-        },
-        {
-          "file": "README.md",
-          "added": 194,
-          "deleted": 59
-        },
-        {
-          "file": "scripts/smoke.sh",
-          "added": 25,
-          "deleted": 0
-        },
-        {
-          "file": "src/robinhood_mcp/server.py",
-          "added": 8,
-          "deleted": 5
-        }
-      ]
-    },
-    {
-      "type": "commit",
-      "hash": "67a5a10a8ae416eeb6992c1ffaafe33aae881ff1",
-      "shortHash": "67a5a10",
-      "date": "2026-01-06T10:49:49+01:00",
-      "headline": "fix: Update test for POST /mcp Accept header error",
-      "body": "Test now expects a 400 status code for missing Accept header, reflecting behavior in SDK 1.20+.",
-      "repo": "automem",
-      "owner": "verygoodplugins",
-      "repoSlug": "automem",
-      "remoteUrl": "https://github.com/verygoodplugins/automem",
-      "stats": {
-        "added": 2,
-        "deleted": 6,
-        "files": 1
-      },
-      "files": [
-        {
-          "file": "mcp-sse-server/test/server.test.js",
-          "added": 2,
-          "deleted": 6
-        }
-      ]
     }
   ],
   "prs": [
@@ -15686,6 +14190,56 @@
     },
     {
       "type": "pr",
+      "number": 7,
+      "title": "fix: handle LID contacts + pushName",
+      "url": "https://github.com/verygoodplugins/whatsapp-mcp/pull/7",
+      "state": "OPEN",
+      "date": "2026-01-11T11:31:22Z",
+      "repo": "whatsapp-mcp",
+      "repoFull": "verygoodplugins/whatsapp-mcp",
+      "stats": {
+        "added": 187,
+        "deleted": 51,
+        "files": 4
+      },
+      "baseBranch": "main",
+      "headBranch": "fix/lid-contact-support",
+      "mergeable": "MERGEABLE",
+      "commits": 1,
+      "reviews": [
+        {
+          "author": "coderabbitai",
+          "state": "COMMENTED",
+          "submittedAt": "2026-01-11T11:37:48Z"
+        }
+      ],
+      "labels": [],
+      "files": [
+        {
+          "file": "README.md",
+          "added": 4,
+          "deleted": 2
+        },
+        {
+          "file": "whatsapp-bridge/main.go",
+          "added": 38,
+          "deleted": 28
+        },
+        {
+          "file": "whatsapp-mcp-server/main.py",
+          "added": 82,
+          "deleted": 21
+        },
+        {
+          "file": "whatsapp-mcp-server/tests/test_get_contact.py",
+          "added": 63,
+          "deleted": 0
+        }
+      ],
+      "body": "## Summary\n- Update `get_contact` to accept `identifier` (phone, LID, or full JID) with backward-compatible aliases.\n- Prefer chat-table name lookup and fall back from `@s.whatsapp.net` to `@lid` for ambiguous 15-digit numeric identifiers.\n- Update bridge message handling to use `PushName` when contact lookup yields only numeric IDs.\n\n## Testing\n- `cd whatsapp-mcp-server && uv run pytest -v`\n- `cd whatsapp-bridge && go test ./...`\n"
+    },
+    {
+      "type": "pr",
       "number": 6,
       "title": "Add MCP extension files and update docs",
       "url": "https://github.com/verygoodplugins/mcp-edd/pull/6",
@@ -16112,14 +14666,6 @@
       "owner": "verygoodplugins",
       "repoSlug": "streamdeck-ai"
     },
-    "robinhood-mcp": {
-      "commits": 2,
-      "additions": 254,
-      "deletions": 83,
-      "remoteUrl": "https://github.com/verygoodplugins/robinhood-mcp",
-      "owner": "verygoodplugins",
-      "repoSlug": "robinhood-mcp"
-    },
     "mcp-wp": {
       "commits": 1,
       "additions": 450,
@@ -16128,26 +14674,10 @@
       "owner": "verygoodplugins",
       "repoSlug": "mcp-wp"
     },
-    "mcp-toggl": {
-      "commits": 1,
-      "additions": 3,
-      "deletions": 3,
-      "remoteUrl": "https://github.com/verygoodplugins/mcp-toggl",
-      "owner": "verygoodplugins",
-      "repoSlug": "mcp-toggl"
-    },
-    "mcp-local-wp": {
-      "commits": 1,
-      "additions": 3,
-      "deletions": 3,
-      "remoteUrl": "https://github.com/verygoodplugins/mcp-local-wp",
-      "owner": "verygoodplugins",
-      "repoSlug": "mcp-local-wp"
-    },
     "mcp-evernote": {
-      "commits": 30,
-      "additions": 2986,
-      "deletions": 2683,
+      "commits": 29,
+      "additions": 2983,
+      "deletions": 2680,
       "remoteUrl": "https://github.com/verygoodplugins/mcp-evernote",
       "owner": "verygoodplugins",
       "repoSlug": "mcp-evernote"
@@ -16169,9 +14699,9 @@
       "repoSlug": "mcp-ecosystem"
     },
     "mcp-automem": {
-      "commits": 36,
-      "additions": 7325,
-      "deletions": 2906,
+      "commits": 20,
+      "additions": 6152,
+      "deletions": 2113,
       "remoteUrl": "https://github.com/verygoodplugins/mcp-automem",
       "owner": "verygoodplugins",
       "repoSlug": "mcp-automem"
@@ -16201,17 +14731,17 @@
       "repoSlug": "automem-website"
     },
     "automem": {
-      "commits": 16,
-      "additions": 2056,
-      "deletions": 300,
+      "commits": 11,
+      "additions": 1049,
+      "deletions": 270,
       "remoteUrl": "https://github.com/verygoodplugins/automem",
       "owner": "verygoodplugins",
       "repoSlug": "automem"
     },
     "autohub": {
-      "commits": 154,
-      "additions": 85817,
-      "deletions": 37539,
+      "commits": 146,
+      "additions": 78596,
+      "deletions": 32912,
       "remoteUrl": "https://github.com/verygoodplugins/autohub",
       "owner": "verygoodplugins",
       "repoSlug": "autohub"
@@ -16225,19 +14755,19 @@
       "repoSlug": "AutoApp"
     },
     "activity-report": {
-      "commits": 31,
-      "additions": 47325,
-      "deletions": 11829,
+      "commits": 27,
+      "additions": 37242,
+      "deletions": 8993,
       "remoteUrl": "https://github.com/verygoodplugins/activity-report",
       "owner": "verygoodplugins",
       "repoSlug": "activity-report"
     }
   },
   "stats": {
-    "additions": 194858,
-    "deletions": 68694,
-    "files": 1750,
-    "commits": 325,
-    "prs": 17
+    "additions": 175111,
+    "deletions": 60316,
+    "files": 1595,
+    "commits": 287,
+    "prs": 18
   }
 }
