@@ -1,7 +1,31 @@
 {
-  "generatedAt": "2026-02-07T09:50:08.776Z",
-  "periodStart": "2026-01-08T09:50:08.776Z",
+  "generatedAt": "2026-02-08T09:32:45.773Z",
+  "periodStart": "2026-01-09T09:32:45.772Z",
   "commits": [
+    {
+      "type": "commit",
+      "hash": "e251403039418710868c856ce39f4a8011b2e25b",
+      "shortHash": "e251403",
+      "date": "2026-02-07T17:06:59+05:30",
+      "headline": "fix(discord): prevent streaming race condition from truncating final responses",
+      "body": "Streaming heartbeat/pending timeouts could fire during sendResponse()'s\nasync operations, overwriting the final response embed with a truncated\nstreaming embed (1450 chars + \"...streaming...\"). Fix by neutralizing\nall streaming timers at the top of sendResponse() before any await points.\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>",
+      "repo": "autohub",
+      "owner": "verygoodplugins",
+      "repoSlug": "autohub",
+      "remoteUrl": "https://github.com/verygoodplugins/autohub",
+      "stats": {
+        "added": 35,
+        "deleted": 8,
+        "files": 1
+      },
+      "files": [
+        {
+          "file": "src/platforms/discord/adapter.js",
+          "added": 35,
+          "deleted": 8
+        }
+      ]
+    },
     {
       "type": "commit",
       "hash": "814f2093d2c4349eb4817adfcf49689cda6b7c94",
@@ -17120,90 +17144,6 @@
           "deleted": 247
         }
       ]
-    },
-    {
-      "type": "commit",
-      "hash": "d6c84c586c0377de908058dd6a828e0692f3ef71",
-      "shortHash": "d6c84c5",
-      "date": "2026-01-09T10:03:30+01:00",
-      "headline": "Add Pi autojack voice setup and enhance streaming TTS",
-      "body": "Introduces Pi-specific setup files for autojack voice client, including udev rules, systemd service, and install script. Improves voice client audio cue handling, adds streaming ElevenLabs TTS with real-time MP3→PCM transcoding, and updates hybrid-client to support ElevenLabs TTS. Enhances tool call metadata handling and content block streaming in chat server, and refines MCP client process management. Updates ChatInterface for robust SSE cleanup and streaming thinking block handling.",
-      "repo": "autohub",
-      "owner": "verygoodplugins",
-      "repoSlug": "autohub",
-      "remoteUrl": "https://github.com/verygoodplugins/autohub",
-      "stats": {
-        "added": 797,
-        "deleted": 165,
-        "files": 13
-      },
-      "files": [
-        {
-          "file": "config/pi/99-autojack-audio.rules",
-          "added": 4,
-          "deleted": 0
-        },
-        {
-          "file": "config/pi/autojack-voice.service",
-          "added": 19,
-          "deleted": 0
-        },
-        {
-          "file": "config/pi/setup-pi.sh",
-          "added": 58,
-          "deleted": 0
-        },
-        {
-          "file": "scripts/pi-voice-client-no-wake.js",
-          "added": 74,
-          "deleted": 5
-        },
-        {
-          "file": "src/chat-server/db.js",
-          "added": 18,
-          "deleted": 1
-        },
-        {
-          "file": "src/chat-server/routes/chat.js",
-          "added": 33,
-          "deleted": 2
-        },
-        {
-          "file": "src/claude/service.js",
-          "added": 5,
-          "deleted": 0
-        },
-        {
-          "file": "src/db/logger.js",
-          "added": 3,
-          "deleted": 0
-        },
-        {
-          "file": "src/services/mcp-client.js",
-          "added": 135,
-          "deleted": 65
-        },
-        {
-          "file": "src/voice/hybrid-client.js",
-          "added": 36,
-          "deleted": 10
-        },
-        {
-          "file": "src/voice/voice-server.js",
-          "added": 252,
-          "deleted": 3
-        },
-        {
-          "file": "web/src/components/ChatInterface.jsx",
-          "added": 148,
-          "deleted": 78
-        },
-        {
-          "file": "web/src/components/MessageList.jsx",
-          "added": 12,
-          "deleted": 1
-        }
-      ]
     }
   ],
   "prs": [
@@ -18453,8 +18393,8 @@
     },
     "autohub": {
       "commits": 223,
-      "additions": 92324,
-      "deletions": 44360,
+      "additions": 91562,
+      "deletions": 44203,
       "remoteUrl": "https://github.com/verygoodplugins/autohub",
       "owner": "verygoodplugins",
       "repoSlug": "autohub"
@@ -18477,9 +18417,9 @@
     }
   },
   "stats": {
-    "additions": 190688,
-    "deletions": 76230,
-    "files": 1984,
+    "additions": 189926,
+    "deletions": 76073,
+    "files": 1972,
     "commits": 382,
     "prs": 18
   }
