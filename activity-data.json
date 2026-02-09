@@ -1,7 +1,1090 @@
 {
-  "generatedAt": "2026-02-08T09:32:45.773Z",
-  "periodStart": "2026-01-09T09:32:45.772Z",
+  "generatedAt": "2026-02-09T10:05:24.710Z",
+  "periodStart": "2026-01-10T10:05:24.710Z",
   "commits": [
+    {
+      "type": "commit",
+      "hash": "421a8293a4e7b01e5cc8626887c7925c4e4aaaea",
+      "shortHash": "421a829",
+      "date": "2026-02-09T02:05:15+05:30",
+      "headline": "Watch: Action Button ‘Ask AutoJack’ + complications (#7)",
+      "body": "* Add watch Action Button shortcut and complications\n\n* fix: address CodeRabbit review comments\n\n- Guard refreshFromStore() to prevent overwriting URL-driven pendingAction on cold launch\n- Gate dictation on session readiness (fail with haptic if sessionId is nil after timeout)\n- Use WatchTheme design tokens in isPreparingAskLaunch overlay and Action Button settings card\n- Sort imports alphabetically in all widget extension files\n\n* Fix InboxView navigationDestination placement\n\n* Improve Ask launch dictation retry and shortcut setup copy\n\n* Update Action Button shortcut setup instructions\n\n* Add iOS Ask shortcut and autojack deep links\n\n* Handle iOS ask deep link on chat appear\n\n* Fix watch Ask launch on cold start\n\n* Make watch Ask shortcut start dictation\n\n* fix: address CodeRabbit review comments\n\n- Track and cancel ask-launch task on view disappearance to prevent stray dictation\n- Gate Ask deep link on view readiness and agent availability before clearing token\n- Sort imports alphabetically in WatchLaunchCoordinator.swift",
+      "repo": "autoapp",
+      "owner": "verygoodplugins",
+      "repoSlug": "AutoApp",
+      "remoteUrl": "https://github.com/verygoodplugins/AutoApp",
+      "prNumber": "7",
+      "stats": {
+        "added": 1289,
+        "deleted": 216,
+        "files": 26
+      },
+      "files": [
+        {
+          "file": "AutoHub.xcodeproj/project.pbxproj",
+          "added": 375,
+          "deleted": 204
+        },
+        {
+          "file": "AutoHub/AdaptiveContentView.swift",
+          "added": 10,
+          "deleted": 0
+        },
+        {
+          "file": "AutoHub/AutoHub-Info.plist",
+          "added": 13,
+          "deleted": 0
+        },
+        {
+          "file": "AutoHub/AutoHubApp.swift",
+          "added": 12,
+          "deleted": 0
+        },
+        {
+          "file": "AutoHub/Intents/AskAutoJackIntent.swift",
+          "added": 21,
+          "deleted": 0
+        },
+        {
+          "file": "AutoHub/Intents/AutoJackAppShortcuts.swift",
+          "added": 24,
+          "deleted": 0
+        },
+        {
+          "file": "AutoHub/Intents/IOSLaunchActionStore.swift",
+          "added": 45,
+          "deleted": 0
+        },
+        {
+          "file": "AutoHub/Services/WatchSessionManager.swift",
+          "added": 15,
+          "deleted": 1
+        },
+        {
+          "file": "AutoHub/Utilities/DeepLinkManager.swift",
+          "added": 54,
+          "deleted": 0
+        },
+        {
+          "file": "AutoHub/Views/InboxView.swift",
+          "added": 3,
+          "deleted": 3
+        },
+        {
+          "file": "AutoHub/Views/OrchestratorChatView.swift",
+          "added": 20,
+          "deleted": 1
+        },
+        {
+          "file": "AutoHubWatch Watch App/AutoHubWatch.entitlements",
+          "added": 4,
+          "deleted": 1
+        },
+        {
+          "file": "AutoHubWatch Watch App/AutoHubWatchApp.swift",
+          "added": 44,
+          "deleted": 1
+        },
+        {
+          "file": "AutoHubWatch Watch App/Intents/AskAutoJackIntent.swift",
+          "added": 23,
+          "deleted": 0
+        },
+        {
+          "file": "AutoHubWatch Watch App/Intents/AutoJackAppShortcuts.swift",
+          "added": 25,
+          "deleted": 0
+        },
+        {
+          "file": "AutoHubWatch Watch App/WatchConversationView.swift",
+          "added": 114,
+          "deleted": 3
+        },
+        {
+          "file": "AutoHubWatch Watch App/WatchLaunchCoordinator.swift",
+          "added": 47,
+          "deleted": 0
+        },
+        {
+          "file": "AutoHubWatch Watch App/WatchSessionManager.swift",
+          "added": 18,
+          "deleted": 0
+        },
+        {
+          "file": "AutoHubWatch Watch App/WatchSharedStore.swift",
+          "added": 72,
+          "deleted": 0
+        },
+        {
+          "file": "AutoHubWatch Watch AppTests/AutoHubWatch_Watch_AppTests.swift",
+          "added": 21,
+          "deleted": 2
+        },
+        {
+          "file": "AutoHubWatchWidgets/AutoJackAskComplication.swift",
+          "added": 113,
+          "deleted": 0
+        },
+        {
+          "file": "AutoHubWatchWidgets/AutoJackNeedsAttentionComplication.swift",
+          "added": 137,
+          "deleted": 0
+        },
+        {
+          "file": "AutoHubWatchWidgets/AutoJackWatchWidgets-Info.plist",
+          "added": 23,
+          "deleted": 0
+        },
+        {
+          "file": "AutoHubWatchWidgets/AutoJackWatchWidgets.entitlements",
+          "added": 11,
+          "deleted": 0
+        },
+        {
+          "file": "AutoHubWatchWidgets/AutoJackWidgetBundle.swift",
+          "added": 16,
+          "deleted": 0
+        },
+        {
+          "file": "AutoHubWatchWidgets/WatchSharedStore.swift",
+          "added": 29,
+          "deleted": 0
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "55b6826e4e9ace1ead302d8b3387eb609ef78674",
+      "shortHash": "55b6826",
+      "date": "2026-02-09T00:02:31+05:30",
+      "headline": "Improve voice TTS flow, logging, and timeouts",
+      "body": "Introduce a wake-word greeting toggle and better debug handling, tighten state transitions, and make streaming TTS more robust. Key changes:\n\n- scripts/realtime-mcp-agent.js: add VOICE_WAKEWORD_GREETING env flag, import dotenv early, centralize DEBUG_ENABLED, improve TTS debug logs, change delta handling to use lastFullText to avoid dropped/reset segments, avoid automatic stopPlayback in several interrupt paths (use abortActiveHybridTurn where appropriate), and gate initial greeting to avoid cutting off first user utterance.\n- src/services/voice/realtime-controller.js: handle input_audio_buffer.cleared event and ignore incremental transcription deltas to reduce log noise.\n- src/voice/audio-utils.js: suppress common EPIPE/EPIPE-like jitter-buffer errors unless DEBUG is enabled to avoid noisy logs during interrupts.\n- src/voice/session-manager.js: no-op when transitioning to the same session state to avoid redundant transitions.\n- src/voice/tts/cartesia-provider.js: redesign Cartesia streaming timeout to only arm after flush/start (so long tool calls don't prematurely timeout), expose flush/cancel wrappers that manage the timer, and ensure proper cancellation/cleanup on timeout.\n\nOverall these changes reduce log noise, avoid interrupting playback unnecessarily, improve streaming TTS reliability, and provide safer state handling.",
+      "repo": "autohub",
+      "owner": "verygoodplugins",
+      "repoSlug": "autohub",
+      "remoteUrl": "https://github.com/verygoodplugins/autohub",
+      "stats": {
+        "added": 254,
+        "deleted": 67,
+        "files": 5
+      },
+      "files": [
+        {
+          "file": "scripts/realtime-mcp-agent.js",
+          "added": 95,
+          "deleted": 31
+        },
+        {
+          "file": "src/services/voice/realtime-controller.js",
+          "added": 11,
+          "deleted": 0
+        },
+        {
+          "file": "src/voice/audio-utils.js",
+          "added": 16,
+          "deleted": 2
+        },
+        {
+          "file": "src/voice/session-manager.js",
+          "added": 80,
+          "deleted": 20
+        },
+        {
+          "file": "src/voice/tts/cartesia-provider.js",
+          "added": 52,
+          "deleted": 14
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "170c7a60af24054788b9ed38d428a34eb61e6c97",
+      "shortHash": "170c7a6",
+      "date": "2026-02-08T22:18:12+05:30",
+      "headline": "refactor(audit): change console.log to console.error for audit reporting",
+      "body": "- Updated the audit-unified-db script to use console.error instead of console.log for all output messages, enhancing visibility of audit results and errors.\n- Removed the cleanup-data-folder.js and migrate-databases.js scripts as part of a cleanup process, streamlining the codebase.\n- Deleted migrate-legacy-logs.js to eliminate unused migration scripts, improving maintainability.\n\nThese changes improve the clarity of audit outputs and reduce clutter in the scripts directory.",
+      "repo": "autohub",
+      "owner": "verygoodplugins",
+      "repoSlug": "autohub",
+      "remoteUrl": "https://github.com/verygoodplugins/autohub",
+      "stats": {
+        "added": 6,
+        "deleted": 1140,
+        "files": 4
+      },
+      "files": [
+        {
+          "file": "scripts/audit-unified-db.js",
+          "added": 6,
+          "deleted": 6
+        },
+        {
+          "file": "scripts/cleanup-data-folder.js",
+          "added": 0,
+          "deleted": 172
+        },
+        {
+          "file": "scripts/migrate-databases.js",
+          "added": 0,
+          "deleted": 705
+        },
+        {
+          "file": "scripts/migrate-legacy-logs.js",
+          "added": 0,
+          "deleted": 257
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "e195c3ad09a983a4856ece7c6e70084f9e88027c",
+      "shortHash": "e195c3a",
+      "date": "2026-02-08T21:55:51+05:30",
+      "headline": "fix(push): address second-round CodeRabbit review comments",
+      "body": "- Add error handler on shared HTTP/2 session in sendBatchAPNS\n- Add req error handler in parseBody to prevent unresolved promises\n- Await upsertToken to surface write failures to client\n- Fix default notification title AutoJack → AutoHub\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>",
+      "repo": "autohub",
+      "owner": "verygoodplugins",
+      "repoSlug": "autohub",
+      "remoteUrl": "https://github.com/verygoodplugins/autohub",
+      "stats": {
+        "added": 7,
+        "deleted": 1,
+        "files": 1
+      },
+      "files": [
+        {
+          "file": "src/push-gateway/index.cjs",
+          "added": 7,
+          "deleted": 1
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "d85f55f718b200813d4be705efebbcb5d7e42a5e",
+      "shortHash": "d85f55f",
+      "date": "2026-02-08T21:42:58+05:30",
+      "headline": "Add blog post: Financial Agents Need Memory, Not Just Market Data",
+      "body": "New post explaining why persistent memory matters more for financial agents than chat assistants. Covers Bankr integration with AutoMem via OpenClaw, including practical scenarios for portfolio management, risk assessment, and strategy evolution.\n\nKey points:\n- One-command integration via npx\n- Direct HTTP architecture (no middleware)\n- Semantic search vs file-based memory\n- Real-world use cases with trading scenarios\n\nCo-authored-by: Cursor <cursoragent@cursor.com>",
+      "repo": "automem-website",
+      "owner": "verygoodplugins",
+      "repoSlug": "automem-website",
+      "remoteUrl": "https://github.com/verygoodplugins/automem-website",
+      "stats": {
+        "added": 135,
+        "deleted": 0,
+        "files": 1
+      },
+      "files": [
+        {
+          "file": "src/content/blog/10-bankr-financial-memory/index.md",
+          "added": 135,
+          "deleted": 0
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "ce04fd86747a7fdba7e08d2ef9214153ceb96247",
+      "shortHash": "ce04fd8",
+      "date": "2026-02-08T21:36:26+05:30",
+      "headline": "fix(push): address CodeRabbit review comments",
+      "body": "- Serialize token mutations through a write queue to prevent race\n  conditions on concurrent read-modify-write operations\n- Add 30s timeout to HTTP/2 APNs requests to prevent hangs\n- Return ok:true for zero-recipient notify (successful no-op)\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>",
+      "repo": "autohub",
+      "owner": "verygoodplugins",
+      "repoSlug": "autohub",
+      "remoteUrl": "https://github.com/verygoodplugins/autohub",
+      "stats": {
+        "added": 46,
+        "deleted": 16,
+        "files": 1
+      },
+      "files": [
+        {
+          "file": "src/push-gateway/index.cjs",
+          "added": 46,
+          "deleted": 16
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "8a09b45e3e6775108df5ea8c58b83e59232d274c",
+      "shortHash": "8a09b45",
+      "date": "2026-02-08T21:32:34+05:30",
+      "headline": "fix(slack): return false from updateChatMessage on missing token",
+      "body": "Early return when bot token is missing now returns false instead of\nundefined, consistent with the new boolean return contract.\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>",
+      "repo": "autohub",
+      "owner": "verygoodplugins",
+      "repoSlug": "autohub",
+      "remoteUrl": "https://github.com/verygoodplugins/autohub",
+      "stats": {
+        "added": 1,
+        "deleted": 1,
+        "files": 1
+      },
+      "files": [
+        {
+          "file": "src/slack-server/messaging/messenger.js",
+          "added": 1,
+          "deleted": 1
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "066357eb9dd3606469e5e4d8b7512f06f68461c1",
+      "shortHash": "066357e",
+      "date": "2026-02-08T21:29:05+05:30",
+      "headline": "feat(push): add APNs push gateway server",
+      "body": "Standalone HTTP server (port 8776) that bridges AutoHub task events to\nApple Push Notification service. Includes device token registry, JWT\nsigning with caching, batched HTTP/2 sends that reuse connections per\nhost, body size limits, and crash handlers for Node 22+.\n\nAlso wires the service into npm dev/start scripts, gitignores the\nruntime token store, and documents env vars and port in CLAUDE.md.\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>",
+      "repo": "autohub",
+      "owner": "verygoodplugins",
+      "repoSlug": "autohub",
+      "remoteUrl": "https://github.com/verygoodplugins/autohub",
+      "stats": {
+        "added": 518,
+        "deleted": 2,
+        "files": 4
+      },
+      "files": [
+        {
+          "file": ".gitignore",
+          "added": 3,
+          "deleted": 0
+        },
+        {
+          "file": "CLAUDE.md",
+          "added": 6,
+          "deleted": 0
+        },
+        {
+          "file": "package.json",
+          "added": 4,
+          "deleted": 2
+        },
+        {
+          "file": "src/push-gateway/index.cjs",
+          "added": 505,
+          "deleted": 0
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "267901ac748959c052e0ffe286dc266d95ee3df5",
+      "shortHash": "267901a",
+      "date": "2026-02-08T21:11:58+05:30",
+      "headline": "fix(voice): use float32 encoding for Cartesia TTS to match native quality",
+      "body": "Cartesia's internal processing uses float32 — requesting pcm_s16le forced\nserver-side quantization that lost audio dynamics (sounded \"bottom of a well\").\nSwitch CLI path to pcm_f32le by default, add ffplay probesize/analyzeduration\nflags to reduce buffer underflows. Socket.IO/web path unchanged.\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>",
+      "repo": "autohub",
+      "owner": "verygoodplugins",
+      "repoSlug": "autohub",
+      "remoteUrl": "https://github.com/verygoodplugins/autohub",
+      "stats": {
+        "added": 60,
+        "deleted": 22,
+        "files": 4
+      },
+      "files": [
+        {
+          "file": "scripts/realtime-mcp-agent.js",
+          "added": 23,
+          "deleted": 8
+        },
+        {
+          "file": "src/services/cartesia-audio.js",
+          "added": 23,
+          "deleted": 11
+        },
+        {
+          "file": "src/voice/audio-utils.js",
+          "added": 10,
+          "deleted": 3
+        },
+        {
+          "file": "src/voice/tts/cartesia-provider.js",
+          "added": 4,
+          "deleted": 0
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "f9ca3869cdd8bdae703ef0a409e8e4dfec1868a7",
+      "shortHash": "f9ca386",
+      "date": "2026-02-08T21:10:01+05:30",
+      "headline": "fix(slack): return success boolean from updateChatMessage",
+      "body": "updateChatMessage previously swallowed errors and returned undefined on\nboth success and failure. Now returns true/false so callers can detect\nfailures. Threaded response handler updated to check return value instead\nof try/catch (which never triggered).\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>",
+      "repo": "autohub",
+      "owner": "verygoodplugins",
+      "repoSlug": "autohub",
+      "remoteUrl": "https://github.com/verygoodplugins/autohub",
+      "stats": {
+        "added": 32,
+        "deleted": 22,
+        "files": 2
+      },
+      "files": [
+        {
+          "file": "src/platforms/slack/messaging/threaded-response-handler.js",
+          "added": 12,
+          "deleted": 9
+        },
+        {
+          "file": "src/slack-server/messaging/messenger.js",
+          "added": 20,
+          "deleted": 13
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "bbafdddde68f63daf1bca5a039458a4f242d450b",
+      "shortHash": "bbafddd",
+      "date": "2026-02-08T21:00:57+05:30",
+      "headline": "fix(agents): enhance agent ID handling and improve database interactions",
+      "body": "- Added safety checks for agent IDs during migration to ensure only existing agents are referenced, preventing potential errors with legacy tasks.\n- Updated the import process for agent profiles to utilize Prisma for database interactions, replacing direct SQLite queries for better consistency and performance.\n- Improved error handling and logging during profile imports, ensuring clearer feedback on the import process.\n\nThese changes enhance the robustness of agent management and streamline database operations.",
+      "repo": "autohub",
+      "owner": "verygoodplugins",
+      "repoSlug": "autohub",
+      "remoteUrl": "https://github.com/verygoodplugins/autohub",
+      "stats": {
+        "added": 1250,
+        "deleted": 49,
+        "files": 5
+      },
+      "files": [
+        {
+          "file": "scripts/audit-unified-db.js",
+          "added": 770,
+          "deleted": 0
+        },
+        {
+          "file": "scripts/cleanup-data-folder.js",
+          "added": 172,
+          "deleted": 0
+        },
+        {
+          "file": "scripts/consolidate-databases.js",
+          "added": 16,
+          "deleted": 2
+        },
+        {
+          "file": "scripts/import-agent-profiles.js",
+          "added": 35,
+          "deleted": 47
+        },
+        {
+          "file": "scripts/migrate-legacy-logs.js",
+          "added": 257,
+          "deleted": 0
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "e507b8e60c5b9ccfd1bf4fdadc06172f5510aa36",
+      "shortHash": "e507b8e",
+      "date": "2026-02-08T20:57:55+05:30",
+      "headline": "fix(slack): handle interleaved thinking blocks and threaded overflow",
+      "body": "Thinking blocks from Claude can arrive interleaved with different indices.\nPreviously only the last block was shown. Now tracks blocks by index in a\nMap and consolidates them for display.\n\nThreaded response handler now reuses the existing streaming message\ninstead of posting a duplicate when overflow threading kicks in. Includes\ntry/catch fallback if the update fails.\n\nAlso fixes pre-existing lint errors (unused vars, promise executor return).\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>",
+      "repo": "autohub",
+      "owner": "verygoodplugins",
+      "repoSlug": "autohub",
+      "remoteUrl": "https://github.com/verygoodplugins/autohub",
+      "stats": {
+        "added": 140,
+        "deleted": 58,
+        "files": 2
+      },
+      "files": [
+        {
+          "file": "src/platforms/slack/adapter.js",
+          "added": 69,
+          "deleted": 30
+        },
+        {
+          "file": "src/platforms/slack/messaging/threaded-response-handler.js",
+          "added": 71,
+          "deleted": 28
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "184ecfa9a61daff8e4d5a2bbe4b2c01f3b98db50",
+      "shortHash": "184ecfa",
+      "date": "2026-02-08T19:16:04+05:30",
+      "headline": "fix(agents): compare pathnames to ignore cache-bust query in error.url",
+      "body": "error.url includes the ?t=... cache-bust query parameter from the\ndynamic import, but pathToFileURL().href does not. Comparing full\nURLs always failed, preventing the DB fallback from triggering.\nNow compares only .pathname from both URLs.\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>",
+      "repo": "autohub",
+      "owner": "verygoodplugins",
+      "repoSlug": "autohub",
+      "remoteUrl": "https://github.com/verygoodplugins/autohub",
+      "stats": {
+        "added": 3,
+        "deleted": 2,
+        "files": 1
+      },
+      "files": [
+        {
+          "file": "src/agents/executor.js",
+          "added": 3,
+          "deleted": 2
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "0f87beea8af0289a4d6c8153e36aa488ab559fcd",
+      "shortHash": "0f87bee",
+      "date": "2026-02-08T19:08:45+05:30",
+      "headline": "Improves hub integration and task management (#6)",
+      "body": "* Update README and enhance Core Data models for agent, session, and task management\n\n- Updated README to reflect changes in backend references and integration instructions.\n- Added remoteID property to Agent, Session, and Task models for better synchronization with backend.\n- Introduced effectiveRemoteID computed property to facilitate easier access to remote identifiers.\n- Enhanced HubSyncService to handle remoteID during data synchronization.\n- Improved task management by adding methods for fetching tasks by remoteID.\n- Updated PushNotifications and DeepLinkManager to support new remoteID structure.\n- Refactored UI components to utilize effectiveRemoteID for task and agent interactions.\n\n* fix: address CodeRabbit review comments\n\n- surface remote agent delete failures with retry/local fallback\n- use theme color + reset push gateway setting in Settings\n- inject HubSyncService into TaskDetailView and disable actions without remote ID\n- fix README integration plan link\n\n* fix: inject sync service into AgentCard",
+      "repo": "autoapp",
+      "owner": "verygoodplugins",
+      "repoSlug": "AutoApp",
+      "remoteUrl": "https://github.com/verygoodplugins/AutoApp",
+      "prNumber": "6",
+      "stats": {
+        "added": 2155,
+        "deleted": 263,
+        "files": 31
+      },
+      "files": [
+        {
+          "file": "AutoHub.xcodeproj/project.pbxproj",
+          "added": 24,
+          "deleted": 22
+        },
+        {
+          "file": "AutoHub/AutoHub-Info.plist",
+          "added": 71,
+          "deleted": 0
+        },
+        {
+          "file": "AutoHub/AutoHub.xcdatamodeld/.xccurrentversion",
+          "added": 1,
+          "deleted": 1
+        },
+        {
+          "file": "AutoHub/AutoHub.xcdatamodeld/AutoHub_v3.xcdatamodel/contents",
+          "added": 127,
+          "deleted": 0
+        },
+        {
+          "file": "AutoHub/AutoHubApp.swift",
+          "added": 10,
+          "deleted": 0
+        },
+        {
+          "file": "AutoHub/Models/Agent+CoreDataProperties.swift",
+          "added": 22,
+          "deleted": 0
+        },
+        {
+          "file": "AutoHub/Models/RemoteModels.swift",
+          "added": 254,
+          "deleted": 20
+        },
+        {
+          "file": "AutoHub/Models/Session+CoreDataProperties.swift",
+          "added": 11,
+          "deleted": 0
+        },
+        {
+          "file": "AutoHub/Models/Task+CoreDataProperties.swift",
+          "added": 12,
+          "deleted": 0
+        },
+        {
+          "file": "AutoHub/Services/HubAPIService.swift",
+          "added": 287,
+          "deleted": 1
+        },
+        {
+          "file": "AutoHub/Services/HubLiveUpdatesService.swift",
+          "added": 340,
+          "deleted": 40
+        },
+        {
+          "file": "AutoHub/Services/HubPresenceService.swift",
+          "added": 89,
+          "deleted": 0
+        },
+        {
+          "file": "AutoHub/Services/HubSyncService.swift",
+          "added": 186,
+          "deleted": 100
+        },
+        {
+          "file": "AutoHub/Utilities/DeepLinkManager.swift",
+          "added": 2,
+          "deleted": 3
+        },
+        {
+          "file": "AutoHub/Utilities/HubTaskStatusNormalization.swift",
+          "added": 21,
+          "deleted": 0
+        },
+        {
+          "file": "AutoHub/Utilities/PushNotifications.swift",
+          "added": 14,
+          "deleted": 4
+        },
+        {
+          "file": "AutoHub/Views/AgentsView.swift",
+          "added": 54,
+          "deleted": 13
+        },
+        {
+          "file": "AutoHub/Views/CreateAgentView.swift",
+          "added": 90,
+          "deleted": 19
+        },
+        {
+          "file": "AutoHub/Views/EditAgentView.swift",
+          "added": 82,
+          "deleted": 4
+        },
+        {
+          "file": "AutoHub/Views/InboxView.swift",
+          "added": 3,
+          "deleted": 3
+        },
+        {
+          "file": "AutoHub/Views/SettingsView.swift",
+          "added": 41,
+          "deleted": 2
+        },
+        {
+          "file": "AutoHub/Views/TaskDetailByIDView.swift",
+          "added": 9,
+          "deleted": 5
+        },
+        {
+          "file": "AutoHub/Views/TaskDetailView.swift",
+          "added": 61,
+          "deleted": 2
+        },
+        {
+          "file": "AutoHubCore/Sources/AutoHubCore/RemoteTask.swift",
+          "added": 157,
+          "deleted": 10
+        },
+        {
+          "file": "AutoHubCore/Sources/AutoHubCore/StatusNormalization.swift",
+          "added": 2,
+          "deleted": 1
+        },
+        {
+          "file": "AutoHubCore/Tests/AutoHubCoreTests/RemoteTaskDecodingTests.swift",
+          "added": 27,
+          "deleted": 1
+        },
+        {
+          "file": "AutoHubCore/Tests/AutoHubCoreTests/StatusNormalizationTests.swift",
+          "added": 1,
+          "deleted": 1
+        },
+        {
+          "file": "AutoHubTests/RemoteAgentSessionDecodingTests.swift",
+          "added": 30,
+          "deleted": 2
+        },
+        {
+          "file": "AutoHubTests/RemoteTaskDecodingTests.swift",
+          "added": 27,
+          "deleted": 0
+        },
+        {
+          "file": "README.md",
+          "added": 6,
+          "deleted": 9
+        },
+        {
+          "file": "docs/INTEGRATION_PLAN.md",
+          "added": 94,
+          "deleted": 0
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "a5e77e22798e1da1a7cb3de13e416765e7a5b985",
+      "shortHash": "a5e77e2",
+      "date": "2026-02-08T19:03:02+05:30",
+      "headline": "feat(agents): add allowedTools and excludedTools fields to Agent model",
+      "body": "- Introduced new fields `allowedTools` and `excludedTools` in the Agent model to manage tool permissions.\n- Updated AgentExecutor to handle parsing and defaulting of these fields.\n- Enhanced API routes to serialize and deserialize tool lists for agent creation and updates.\n\nThis change allows for more granular control over the tools that agents can use, improving flexibility and security in agent operations.",
+      "repo": "autohub",
+      "owner": "verygoodplugins",
+      "repoSlug": "autohub",
+      "remoteUrl": "https://github.com/verygoodplugins/autohub",
+      "stats": {
+        "added": 76,
+        "deleted": 3,
+        "files": 3
+      },
+      "files": [
+        {
+          "file": "prisma/schema.prisma",
+          "added": 2,
+          "deleted": 0
+        },
+        {
+          "file": "src/agents/executor.js",
+          "added": 39,
+          "deleted": 2
+        },
+        {
+          "file": "src/api/routes/v1.js",
+          "added": 35,
+          "deleted": 1
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "20958cafeed8f50f8868fd16fb7054b87ed06f60",
+      "shortHash": "20958ca",
+      "date": "2026-02-08T18:40:54+05:30",
+      "headline": "fix(agents): use error.url to disambiguate missing profile vs dependency errors",
+      "body": "ERR_MODULE_NOT_FOUND fires for both missing profile files and broken\ndependency imports within profiles. Using error.url to match against\nthe expected profile file URL ensures only truly missing profiles\ntrigger the DB fallback — dependency errors now propagate properly.\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>",
+      "repo": "autohub",
+      "owner": "verygoodplugins",
+      "repoSlug": "autohub",
+      "remoteUrl": "https://github.com/verygoodplugins/autohub",
+      "stats": {
+        "added": 7,
+        "deleted": 3,
+        "files": 1
+      },
+      "files": [
+        {
+          "file": "src/agents/executor.js",
+          "added": 7,
+          "deleted": 3
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "8a20efa7967d105a9bc80290d1a37e1ae5af4c12",
+      "shortHash": "8a20efa",
+      "date": "2026-02-08T18:33:58+05:30",
+      "headline": "fix: address CodeRabbit review comments",
+      "body": "- Route lint-changed.js status logs to stderr (MCP stdout reservation)\n- Cancel in-flight retries on timeout in retryAsyncWithTimeout using\n  timedOut flag and shouldRetry guard\n- Route test log helper to stderr\n- Guard selectThreadTweets against exceeding maxTweets when both root\n  and mention tweets are present\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>",
+      "repo": "autohub",
+      "owner": "verygoodplugins",
+      "repoSlug": "autohub",
+      "remoteUrl": "https://github.com/verygoodplugins/autohub",
+      "stats": {
+        "added": 41,
+        "deleted": 12,
+        "files": 4
+      },
+      "files": [
+        {
+          "file": "scripts/lint-changed.js",
+          "added": 2,
+          "deleted": 2
+        },
+        {
+          "file": "src/utils/retry-handler.js",
+          "added": 28,
+          "deleted": 9
+        },
+        {
+          "file": "test/retry-handler.test.js",
+          "added": 1,
+          "deleted": 1
+        },
+        {
+          "file": "tools/twitter-mentions-bot.js",
+          "added": 10,
+          "deleted": 0
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "455c435bd2d552fc1cc8cc25799da2e400bd8ba8",
+      "shortHash": "455c435",
+      "date": "2026-02-08T18:23:42+05:30",
+      "headline": "fix: guard against undefined args in slack_dm handler",
+      "body": "Co-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>",
+      "repo": "autohub",
+      "owner": "verygoodplugins",
+      "repoSlug": "autohub",
+      "remoteUrl": "https://github.com/verygoodplugins/autohub",
+      "stats": {
+        "added": 1,
+        "deleted": 1,
+        "files": 1
+      },
+      "files": [
+        {
+          "file": "tools/slack-dm-tool.js",
+          "added": 1,
+          "deleted": 1
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "2f07afed8ca7809772fba1944046831c0e076a1f",
+      "shortHash": "2f07afe",
+      "date": "2026-02-08T18:17:19+05:30",
+      "headline": "fix: address CodeRabbit review comments",
+      "body": "- Use resolved `mode` variable instead of `args.mode` in error message (run-workflow.js)\n- Align slack-dm-tool returns with {success, data} contract\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>",
+      "repo": "autohub",
+      "owner": "verygoodplugins",
+      "repoSlug": "autohub",
+      "remoteUrl": "https://github.com/verygoodplugins/autohub",
+      "stats": {
+        "added": 11,
+        "deleted": 9,
+        "files": 2
+      },
+      "files": [
+        {
+          "file": "tools/run-workflow.js",
+          "added": 1,
+          "deleted": 1
+        },
+        {
+          "file": "tools/slack-dm-tool.js",
+          "added": 10,
+          "deleted": 8
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "fd81fc237e63d0502a62c8896afc52aa6a4f0df4",
+      "shortHash": "fd81fc2",
+      "date": "2026-02-08T18:15:15+05:30",
+      "headline": "feat(twitter): enhance thread context handling and participant extraction",
+      "body": "- Introduces new configuration options for thread context and limits on tweets and participants.\n- Adds functions to normalize tweet text, extract user handles, and build user maps from fetched tweets.\n- Implements logic to fetch recent conversation tweets and select relevant tweets for context.\n- Enhances participant building by extracting handles from tweets and limiting the number of participants included in prompts.\n- Formats thread context for better readability in replies.\n\nThis update improves the bot's ability to manage and respond to Twitter threads more effectively.",
+      "repo": "autohub",
+      "owner": "verygoodplugins",
+      "repoSlug": "autohub",
+      "remoteUrl": "https://github.com/verygoodplugins/autohub",
+      "stats": {
+        "added": 1140,
+        "deleted": 93,
+        "files": 6
+      },
+      "files": [
+        {
+          "file": "eslint.config.js",
+          "added": 8,
+          "deleted": 0
+        },
+        {
+          "file": "package.json",
+          "added": 4,
+          "deleted": 0
+        },
+        {
+          "file": "scripts/lint-changed.js",
+          "added": 96,
+          "deleted": 0
+        },
+        {
+          "file": "src/utils/retry-handler.js",
+          "added": 119,
+          "deleted": 0
+        },
+        {
+          "file": "test/retry-handler.test.js",
+          "added": 279,
+          "deleted": 0
+        },
+        {
+          "file": "tools/twitter-mentions-bot.js",
+          "added": 634,
+          "deleted": 93
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "1d42a4dafd36dcef9cdc31a88e1f1dbab67e5d51",
+      "shortHash": "1d42a4d",
+      "date": "2026-02-08T17:27:45+05:30",
+      "headline": "Add agent mode, Moltbook & slack_dm tool",
+      "body": "Introduce autonomous agent support and Moltbook integrations plus a new slack_dm MCP tool. Key changes:\n\n- Add agent mode to run-workflow: uses Anthropic, streams responses, executes MCP tool calls, and returns summaries. Tools used by the agent are filtered from workflow frontmatter.\n- New tools/slack-dm-tool.js: send DM notifications via bot; added to mcp-tools registry and tool-filters.\n- CLI improvements: interactive workflow picker (scripts/run-workflow-cli.js) to select workflows when no name/path provided.\n- Server improvements: concurrent tool loading, stronger error logging, and a warning for registry drift if config/mcp-tools.json is out of sync with loaded tools.\n- Config tweaks: change toolFilterProfile to \"auto\" in services configs, reformat available models list, update defaults for twitter mention/reply limits and add twitter_send_to_discord/fetch workflows, and update clipboard tool description/schema in mcp-tools.json.\n- Workflow docs updated: add Moltbook steps and guidance across daily and heartbeat workflows (heartbeat interval changed to 3h, silent mode enabled, guidance to use slack_dm for important alerts).\n\nThese changes enable autonomous workflow execution, improve developer UX, and integrate Moltbook as a first-class source of activity/insights.",
+      "repo": "autohub",
+      "owner": "verygoodplugins",
+      "repoSlug": "autohub",
+      "remoteUrl": "https://github.com/verygoodplugins/autohub",
+      "stats": {
+        "added": 1536,
+        "deleted": 2996,
+        "files": 11
+      },
+      "files": [
+        {
+          "file": "config/mcp-tools.json",
+          "added": 809,
+          "deleted": 2882
+        },
+        {
+          "file": "config/services/api.json",
+          "added": 6,
+          "deleted": 2
+        },
+        {
+          "file": "config/services/chat.json",
+          "added": 3,
+          "deleted": 13
+        },
+        {
+          "file": "config/tool-filters.json",
+          "added": 61,
+          "deleted": 37
+        },
+        {
+          "file": "scripts/run-workflow-cli.js",
+          "added": 78,
+          "deleted": 5
+        },
+        {
+          "file": "server.js",
+          "added": 89,
+          "deleted": 25
+        },
+        {
+          "file": "tools/run-workflow.js",
+          "added": 292,
+          "deleted": 7
+        },
+        {
+          "file": "tools/slack-dm-tool.js",
+          "added": 95,
+          "deleted": 0
+        },
+        {
+          "file": "workflows/daily/daily-context-review.md",
+          "added": 11,
+          "deleted": 0
+        },
+        {
+          "file": "workflows/daily/morning-routine.md",
+          "added": 16,
+          "deleted": 1
+        },
+        {
+          "file": "workflows/heartbeat/moltbook-engagement.md",
+          "added": 76,
+          "deleted": 24
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "18bdcbe592d5dab5627120c2fe6b29bc8001bd79",
+      "shortHash": "18bdcbe",
+      "date": "2026-02-08T15:09:37+05:30",
+      "headline": "feat(twitter): advance draft_replies cursor and add filter breakdown diagnostics",
+      "body": "- twitter_draft_replies now advances lastMentionId after fetching (matches\n  autoreply and fetch_mentions behavior), preventing re-fetching same tweets\n- Adds filter_breakdown to response showing why mentions were filtered\n  (own_tweet, reply_to_bot, already_replied, already_rejected, already_pending)\n- Logs warning when all mentions are filtered out\n- Hardcodes discord_channel_id in workflow (was unresolved secrets placeholder)\n- Adds tests for cursor advancement and filter breakdown behavior\n\nNote: pre-existing eslint errors in twitter-mentions-bot.js (require-atomic-updates,\neqeqeq) are not introduced by this change.\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>",
+      "repo": "autohub",
+      "owner": "verygoodplugins",
+      "repoSlug": "autohub",
+      "remoteUrl": "https://github.com/verygoodplugins/autohub",
+      "stats": {
+        "added": 206,
+        "deleted": 12,
+        "files": 3
+      },
+      "files": [
+        {
+          "file": "test/twitter-mentions-workflow.test.js",
+          "added": 171,
+          "deleted": 4
+        },
+        {
+          "file": "tools/twitter-mentions-bot.js",
+          "added": 34,
+          "deleted": 7
+        },
+        {
+          "file": "workflows/heartbeat/twitter-mentions-review.md",
+          "added": 1,
+          "deleted": 1
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "c7f953ccaf4e8eee0b0186c47a926f85dfbe52ae",
+      "shortHash": "c7f953c",
+      "date": "2026-02-08T15:09:19+05:30",
+      "headline": "feat(tasks): iOS-compatible task dispatch with push notifications and presence auto-registration",
+      "body": "- POST /v1/tasks with dispatch=true now queues via agentTaskQueue directly\n  (avoids double-create race), forwards caller-supplied id and agentId\n- Push gateway client handles both camelCase (Prisma) and snake_case field\n  names, normalizes awaiting_input→needs_input, builds richer payloads\n- Task store fires push notifications on status transitions (complete, fail,\n  awaiting_input)\n- Heartbeat endpoint auto-registers unknown sessions so iOS clients don't\n  need a separate registration call\n- Task queue uses fresh Map lookups after async gaps to avoid stale refs\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>",
+      "repo": "autohub",
+      "owner": "verygoodplugins",
+      "repoSlug": "autohub",
+      "remoteUrl": "https://github.com/verygoodplugins/autohub",
+      "stats": {
+        "added": 445,
+        "deleted": 234,
+        "files": 5
+      },
+      "files": [
+        {
+          "file": "src/agents/task-queue.js",
+          "added": 269,
+          "deleted": 181
+        },
+        {
+          "file": "src/agents/task-store-prisma.js",
+          "added": 20,
+          "deleted": 2
+        },
+        {
+          "file": "src/api/routes/v1.js",
+          "added": 72,
+          "deleted": 31
+        },
+        {
+          "file": "src/services/push-gateway-client.js",
+          "added": 79,
+          "deleted": 20
+        },
+        {
+          "file": "src/services/user-presence.js",
+          "added": 5,
+          "deleted": 0
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "7962b39cb678f973192b4161b94e188ae329c908",
+      "shortHash": "7962b39",
+      "date": "2026-02-08T15:09:06+05:30",
+      "headline": "feat(agents): load agent profiles from database when file not found",
+      "body": "When a profile JS file doesn't exist on disk, fall back to loading the\nagent definition from the Prisma database (Agent table). This enables\nagents created via the iOS app to be executed without needing a file-\nbased profile. Also fixes lint issues (unused var prefixes, bare catch\nblocks).\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>",
+      "repo": "autohub",
+      "owner": "verygoodplugins",
+      "repoSlug": "autohub",
+      "remoteUrl": "https://github.com/verygoodplugins/autohub",
+      "stats": {
+        "added": 128,
+        "deleted": 38,
+        "files": 1
+      },
+      "files": [
+        {
+          "file": "src/agents/executor.js",
+          "added": 128,
+          "deleted": 38
+        }
+      ]
+    },
     {
       "type": "commit",
       "hash": "e251403039418710868c856ce39f4a8011b2e25b",
@@ -57,6 +1140,36 @@
           "file": "src/services/conversation-logger.js",
           "added": 1,
           "deleted": 1
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "f1d5b1d283e3b0e929697ceed97aa99755c9ca27",
+      "shortHash": "f1d5b1d",
+      "date": "2026-02-07T13:04:37+05:30",
+      "headline": "fix: skip temperature param for o-series and gpt-5 models (#65)",
+      "body": "## Summary\n- `gpt-5-nano` (and o-series) only support `temperature=1` — setting\n`0.3` returns a 400\n- Consolidates model-specific params into a single `extra_params` dict\n- Skips `temperature` entirely for o-series and gpt-5\n\n## Test plan\n- [x] 117 passed, 9 skipped\n- [ ] Deploy and verify classification works with `gpt-5-nano`",
+      "repo": "automem",
+      "owner": "verygoodplugins",
+      "repoSlug": "automem",
+      "remoteUrl": "https://github.com/verygoodplugins/automem",
+      "prNumber": "65",
+      "stats": {
+        "added": 16,
+        "deleted": 18,
+        "files": 2
+      },
+      "files": [
+        {
+          "file": "app.py",
+          "added": 8,
+          "deleted": 9
+        },
+        {
+          "file": "automem/utils/text.py",
+          "added": 8,
+          "deleted": 9
         }
       ]
     },
@@ -126,6 +1239,31 @@
           "file": "src/telemetry/sink-sqlite.js",
           "added": 14,
           "deleted": 7
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "d70b4cad663e779e3a3479869aeec381eb40e531",
+      "shortHash": "d70b4ca",
+      "date": "2026-02-07T12:54:20+05:30",
+      "headline": "ci: use PAT for release-please to trigger CI on its PRs (#64)",
+      "body": "## Summary\n- PRs created by the default `GITHUB_TOKEN` don't trigger other\nworkflows (GitHub's infinite loop prevention)\n- This is why release-please PRs always show \"Waiting for status to be\nreported\" and CI never runs\n- Using the org-wide `RELEASE_PLEASE_TOKEN` PAT so release-please PRs\ntrigger CI automatically\n\n## Test plan\n- [ ] Merge a fix PR to main, verify the release-please PR gets CI\nchecks triggered automatically",
+      "repo": "automem",
+      "owner": "verygoodplugins",
+      "repoSlug": "automem",
+      "remoteUrl": "https://github.com/verygoodplugins/automem",
+      "prNumber": "64",
+      "stats": {
+        "added": 1,
+        "deleted": 2,
+        "files": 1
+      },
+      "files": [
+        {
+          "file": ".github/workflows/release-please.yml",
+          "added": 1,
+          "deleted": 2
         }
       ]
     },
@@ -15454,1696 +16592,6 @@
           "deleted": 0
         }
       ]
-    },
-    {
-      "type": "commit",
-      "hash": "428605c7aac2d379ec8159a5e74a087db02f1ca1",
-      "shortHash": "428605c",
-      "date": "2026-01-10T09:41:53+01:00",
-      "headline": "feat(voice): add OpenWakeWord support with dual-engine architecture",
-      "body": "Add support for OpenWakeWord as an alternative to Porcupine for wake word\ndetection. This enables using custom-trained wake word models without\ncommercial licensing requirements.\n\nKey changes:\n- Add OpenWakeWord Python WebSocket service (src/wake-word/)\n- Implement dual-engine support in realtime-mcp-agent.js\n- Update deploy-pi.sh for OpenWakeWord deployment\n- Add systemd service for OpenWakeWord on Pi\n- Improve stop listening patterns and sleep control\n\nConfiguration:\n- WAKE_WORD_ENGINE=openwakeword|porcupine (default: porcupine)\n- OPENWAKEWORD_URL=ws://localhost:8772\n- WAKE_WORD_THRESHOLD=0.5\n\nUsage:\n1. Train custom model using OpenWakeWord Colab notebook\n2. Place .onnx model in config/wake-words/\n3. Run: WAKE_WORD_ENGINE=openwakeword npm run voice:realtime\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>",
-      "repo": "autohub",
-      "owner": "verygoodplugins",
-      "repoSlug": "autohub",
-      "remoteUrl": "https://github.com/verygoodplugins/autohub",
-      "stats": {
-        "added": 814,
-        "deleted": 44,
-        "files": 8
-      },
-      "files": [
-        {
-          "file": ".gitignore",
-          "added": 1,
-          "deleted": 0
-        },
-        {
-          "file": "config/mcp-tools.json",
-          "added": 17,
-          "deleted": 0
-        },
-        {
-          "file": "docs/OPEN-TERMINAL-TOOL.md",
-          "added": 264,
-          "deleted": 0
-        },
-        {
-          "file": "scripts/realtime-mcp-agent.js",
-          "added": 209,
-          "deleted": 42
-        },
-        {
-          "file": "src/chat-server/index.js",
-          "added": 43,
-          "deleted": 1
-        },
-        {
-          "file": "src/claude/service.js",
-          "added": 30,
-          "deleted": 0
-        },
-        {
-          "file": "src/memory/memory-prefetcher.js",
-          "added": 120,
-          "deleted": 0
-        },
-        {
-          "file": "src/services/mcp-executor.js",
-          "added": 130,
-          "deleted": 1
-        }
-      ]
-    },
-    {
-      "type": "commit",
-      "hash": "4da422547e720fb635945ee9ea4b0748ac82ee13",
-      "shortHash": "4da4225",
-      "date": "2026-01-10T05:09:50+01:00",
-      "headline": "Update package name to io.github.verygoodplugins/mcp-edd",
-      "body": "Changed the package name in manifest.json and src/index.ts to 'io.github.verygoodplugins/mcp-edd' for consistency and improved identification. Updated README to clarify download instructions.",
-      "repo": "mcp-edd",
-      "owner": "verygoodplugins",
-      "repoSlug": "mcp-edd",
-      "remoteUrl": "https://github.com/verygoodplugins/mcp-edd",
-      "stats": {
-        "added": 3,
-        "deleted": 3,
-        "files": 3
-      },
-      "files": [
-        {
-          "file": "README.md",
-          "added": 1,
-          "deleted": 1
-        },
-        {
-          "file": "manifest.json",
-          "added": 1,
-          "deleted": 1
-        },
-        {
-          "file": "src/index.ts",
-          "added": 1,
-          "deleted": 1
-        }
-      ]
-    },
-    {
-      "type": "commit",
-      "hash": "b57d1f6193cd14d65e57cf6e4e285af9ca24ef1c",
-      "shortHash": "b57d1f6",
-      "date": "2026-01-09T22:22:29+01:00",
-      "headline": "Add MCP extension files and update docs",
-      "body": "Added manifest.json and mcp-edd.mcpb for MCP extension packaging. Updated README with quick install instructions and new build:extension script in package.json. Added .mcpbignore for packaging exclusions.",
-      "repo": "mcp-edd",
-      "owner": "verygoodplugins",
-      "repoSlug": "mcp-edd",
-      "remoteUrl": "https://github.com/verygoodplugins/mcp-edd",
-      "stats": {
-        "added": 115,
-        "deleted": 1,
-        "files": 5
-      },
-      "files": [
-        {
-          "file": ".mcpbignore",
-          "added": 30,
-          "deleted": 0
-        },
-        {
-          "file": "README.md",
-          "added": 11,
-          "deleted": 1
-        },
-        {
-          "file": "manifest.json",
-          "added": 73,
-          "deleted": 0
-        },
-        {
-          "file": "mcp-edd.mcpb",
-          "added": 0,
-          "deleted": 0
-        },
-        {
-          "file": "package.json",
-          "added": 1,
-          "deleted": 0
-        }
-      ]
-    },
-    {
-      "type": "commit",
-      "hash": "f52bf7b84b910fd22fc936b8dbebf12cd2973957",
-      "shortHash": "f52bf7b",
-      "date": "2026-01-09T22:05:48+01:00",
-      "headline": "Integrate OpenWakeWord for wake word detection",
-      "body": "Replaces Picovoice Porcupine with OpenWakeWord for wake word detection in voice clients and agents. Adds OpenWakeWord Python service, setup/start scripts, and systemd unit for Raspberry Pi deployment. Updates Node.js and agent code to communicate with the OpenWakeWord WebSocket service, refactors configuration and detection logic, and adds contextual verbal cues for phone integration. Updates deployment and package scripts to support new service.",
-      "repo": "autohub",
-      "owner": "verygoodplugins",
-      "repoSlug": "autohub",
-      "remoteUrl": "https://github.com/verygoodplugins/autohub",
-      "stats": {
-        "added": 633,
-        "deleted": 143,
-        "files": 12
-      },
-      "files": [
-        {
-          "file": "config/pi/openwakeword.service",
-          "added": 18,
-          "deleted": 0
-        },
-        {
-          "file": "config/pi/package.json",
-          "added": 2,
-          "deleted": 2
-        },
-        {
-          "file": "package.json",
-          "added": 2,
-          "deleted": 0
-        },
-        {
-          "file": "scripts/deploy-pi.sh",
-          "added": 39,
-          "deleted": 8
-        },
-        {
-          "file": "scripts/pi-voice-client.js",
-          "added": 114,
-          "deleted": 80
-        },
-        {
-          "file": "scripts/realtime-mcp-agent.js",
-          "added": 117,
-          "deleted": 44
-        },
-        {
-          "file": "scripts/setup-openwakeword.sh",
-          "added": 40,
-          "deleted": 0
-        },
-        {
-          "file": "scripts/start-openwakeword.sh",
-          "added": 32,
-          "deleted": 0
-        },
-        {
-          "file": "src/chat-server/index.js",
-          "added": 3,
-          "deleted": 4
-        },
-        {
-          "file": "src/voice/audio-events.js",
-          "added": 57,
-          "deleted": 5
-        },
-        {
-          "file": "src/wake-word/openwakeword-service.py",
-          "added": 204,
-          "deleted": 0
-        },
-        {
-          "file": "src/wake-word/requirements.txt",
-          "added": 5,
-          "deleted": 0
-        }
-      ]
-    },
-    {
-      "type": "commit",
-      "hash": "0786705597493779ee16d64b6d111428336da7a7",
-      "shortHash": "0786705",
-      "date": "2026-01-09T21:55:22+01:00",
-      "headline": "fix: Correct token parameter for gpt-5 models (max_output_tokens)",
-      "body": "Per CodeRabbit review:\n- o-series (o1, o3, etc.): max_completion_tokens\n- gpt-5 family: max_output_tokens\n- Others (gpt-4o-mini, etc.): max_tokens\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>",
-      "repo": "automem",
-      "owner": "verygoodplugins",
-      "repoSlug": "automem",
-      "remoteUrl": "https://github.com/verygoodplugins/automem",
-      "stats": {
-        "added": 14,
-        "deleted": 12,
-        "files": 2
-      },
-      "files": [
-        {
-          "file": "app.py",
-          "added": 7,
-          "deleted": 6
-        },
-        {
-          "file": "automem/utils/text.py",
-          "added": 7,
-          "deleted": 6
-        }
-      ]
-    },
-    {
-      "type": "commit",
-      "hash": "07713600e3b5c13c9c3662b89a2baa6c1d1bb90b",
-      "shortHash": "0771360",
-      "date": "2026-01-09T21:30:26+01:00",
-      "headline": "fix: Production bugs - datetime tz, OpenAI tokens, Qdrant race",
-      "body": "Three critical bugs found in Railway production logs:\n\n1. **DateTime TypeError (500s)**\n   - `_parse_iso_datetime()` now assumes UTC for naive timestamps\n   - Fixes: \"can't compare offset-naive and offset-aware datetimes\"\n\n2. **OpenAI max_tokens 400 error**\n   - Use `max_completion_tokens` for o-series/gpt-5 models\n   - Use `max_tokens` for older models (gpt-4o-mini, etc.)\n\n3. **Qdrant 404 race condition**\n   - Handle UnexpectedResponse 404 gracefully (point not yet uploaded)\n   - Log as debug instead of error for expected race condition\n\nAdded test coverage for naive datetime handling.\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>",
-      "repo": "automem",
-      "owner": "verygoodplugins",
-      "repoSlug": "automem",
-      "remoteUrl": "https://github.com/verygoodplugins/automem",
-      "stats": {
-        "added": 87,
-        "deleted": 5,
-        "files": 4
-      },
-      "files": [
-        {
-          "file": "app.py",
-          "added": 20,
-          "deleted": 1
-        },
-        {
-          "file": "automem/utils/text.py",
-          "added": 9,
-          "deleted": 2
-        },
-        {
-          "file": "automem/utils/time.py",
-          "added": 6,
-          "deleted": 2
-        },
-        {
-          "file": "tests/test_app.py",
-          "added": 52,
-          "deleted": 0
-        }
-      ]
-    },
-    {
-      "type": "commit",
-      "hash": "947134ef531fcfc20b03f02f5d3a91126e4ca57a",
-      "shortHash": "947134e",
-      "date": "2026-01-09T21:12:40+01:00",
-      "headline": "Add Pi deployment script and audio status events",
-      "body": "Introduces scripts/deploy-pi.sh for streamlined Raspberry Pi voice client deployment and adds config/pi/package.json for minimal Pi dependencies. Updates chat-server and audio-events to emit SSE audio status events for voice clients, refines verbal cues, and extends web client API to handle these events. Also updates systemd service to use the correct Pi voice client script.",
-      "repo": "autohub",
-      "owner": "verygoodplugins",
-      "repoSlug": "autohub",
-      "remoteUrl": "https://github.com/verygoodplugins/autohub",
-      "stats": {
-        "added": 189,
-        "deleted": 10,
-        "files": 7
-      },
-      "files": [
-        {
-          "file": "config/pi/autojack-voice.service",
-          "added": 1,
-          "deleted": 1
-        },
-        {
-          "file": "config/pi/package.json",
-          "added": 15,
-          "deleted": 0
-        },
-        {
-          "file": "package.json",
-          "added": 1,
-          "deleted": 0
-        },
-        {
-          "file": "scripts/deploy-pi.sh",
-          "added": 91,
-          "deleted": 0
-        },
-        {
-          "file": "src/chat-server/index.js",
-          "added": 50,
-          "deleted": 9
-        },
-        {
-          "file": "src/voice/audio-events.js",
-          "added": 24,
-          "deleted": 0
-        },
-        {
-          "file": "web/src/api/client.js",
-          "added": 7,
-          "deleted": 0
-        }
-      ]
-    },
-    {
-      "type": "commit",
-      "hash": "f1a7deaf23f8a8229816c42962a00895bdb47aed",
-      "shortHash": "f1a7dea",
-      "date": "2026-01-09T20:53:14+01:00",
-      "headline": "Remove unused voice bridge and no-wake scripts",
-      "body": "Deleted scripts/desktop-voice-bridge.js, scripts/pi-voice-client-no-wake.js, and scripts/realtime-voice-bridge.js. Updated pi-voice-client.js to consolidate features and improve documentation. Updated package.json to remove the 'voice:bridge' script and add 'voice:supervisor'.",
-      "repo": "autohub",
-      "owner": "verygoodplugins",
-      "repoSlug": "autohub",
-      "remoteUrl": "https://github.com/verygoodplugins/autohub",
-      "stats": {
-        "added": 576,
-        "deleted": 2131,
-        "files": 7
-      },
-      "files": [
-        {
-          "file": "package.json",
-          "added": 1,
-          "deleted": 1
-        },
-        {
-          "file": "scripts/desktop-voice-bridge.js",
-          "added": 0,
-          "deleted": 215
-        },
-        {
-          "file": "scripts/pi-voice-client-no-wake.js",
-          "added": 0,
-          "deleted": 681
-        },
-        {
-          "file": "scripts/pi-voice-client.js",
-          "added": 571,
-          "deleted": 323
-        },
-        {
-          "file": "scripts/realtime-mcp-agent.js",
-          "added": 3,
-          "deleted": 3
-        },
-        {
-          "file": "scripts/realtime-voice-bridge.js",
-          "added": 0,
-          "deleted": 907
-        },
-        {
-          "file": "src/voice/audio-events.js",
-          "added": 1,
-          "deleted": 1
-        }
-      ]
-    },
-    {
-      "type": "commit",
-      "hash": "984e1d0efc86c23fc33521a330d9e58fe4a5e4a9",
-      "shortHash": "984e1d0",
-      "date": "2026-01-09T20:46:25+01:00",
-      "headline": "feat(email): add error handling and increase timeout",
-      "body": "- Add error handling step in email-received workflow to show\n  informative messages when agent times out or fails\n- Increase email-handler timeout to 180s (was 120s) to match workflow\n- Increase maxRounds to 10 (was 6) for dispatch + confirmation\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>",
-      "repo": "autohub",
-      "owner": "verygoodplugins",
-      "repoSlug": "autohub",
-      "remoteUrl": "https://github.com/verygoodplugins/autohub",
-      "stats": {
-        "added": 14,
-        "deleted": 3,
-        "files": 2
-      },
-      "files": [
-        {
-          "file": "src/agents/profiles/email-handler.js",
-          "added": 2,
-          "deleted": 2
-        },
-        {
-          "file": "workflows/webhooks/email-received.md",
-          "added": 12,
-          "deleted": 1
-        }
-      ]
-    },
-    {
-      "type": "commit",
-      "hash": "96e5a0386360a104459a649d90873f38a0b7f264",
-      "shortHash": "96e5a03",
-      "date": "2026-01-09T20:25:22+01:00",
-      "headline": "Improve VAD tuning and add hybrid turn rollback",
-      "body": "Increased VOICE_VAD_SILENCE_MS to 700ms and lowered VOICE_VAD_THRESHOLD to 0.55 for better latency tuning. VOICE_WAKEWORD_DURING_PLAYBACK now defaults to true in hybrid mode. Added turnId tracking to conversation history and implemented rollbackHistoryForTurn to remove user messages if a hybrid turn is interrupted before assistant response. Updated email-handler agent profile to act as a smart dispatcher, providing clearer instructions for handling and dispatching emails to specialist agents.",
-      "repo": "autohub",
-      "owner": "verygoodplugins",
-      "repoSlug": "autohub",
-      "remoteUrl": "https://github.com/verygoodplugins/autohub",
-      "stats": {
-        "added": 108,
-        "deleted": 23,
-        "files": 2
-      },
-      "files": [
-        {
-          "file": "scripts/realtime-mcp-agent.js",
-          "added": 37,
-          "deleted": 7
-        },
-        {
-          "file": "src/agents/profiles/email-handler.js",
-          "added": 71,
-          "deleted": 16
-        }
-      ]
-    },
-    {
-      "type": "commit",
-      "hash": "7c5987a206923f513377093abe973e94a0f03f4f",
-      "shortHash": "7c5987a",
-      "date": "2026-01-09T20:14:48+01:00",
-      "headline": "chore: remove wrangler config for simpler Pages deploy",
-      "body": "Switching to basic Cloudflare Pages Git integration - no build/deploy\ncommands needed for static site.\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>",
-      "repo": "activity-report",
-      "owner": "verygoodplugins",
-      "repoSlug": "activity-report",
-      "remoteUrl": "https://github.com/verygoodplugins/activity-report",
-      "stats": {
-        "added": 0,
-        "deleted": 41,
-        "files": 2
-      },
-      "files": [
-        {
-          "file": "deploy.sh",
-          "added": 0,
-          "deleted": 34
-        },
-        {
-          "file": "wrangler.toml",
-          "added": 0,
-          "deleted": 7
-        }
-      ]
-    },
-    {
-      "type": "commit",
-      "hash": "ca72a2a0b60af162a65ad3e24f7dcb42af2b891b",
-      "shortHash": "ca72a2a",
-      "date": "2026-01-09T20:00:43+01:00",
-      "headline": "Update wrangler.toml",
-      "body": "",
-      "repo": "activity-report",
-      "owner": "verygoodplugins",
-      "repoSlug": "activity-report",
-      "remoteUrl": "https://github.com/verygoodplugins/activity-report",
-      "stats": {
-        "added": 2,
-        "deleted": 4,
-        "files": 1
-      },
-      "files": [
-        {
-          "file": "wrangler.toml",
-          "added": 2,
-          "deleted": 4
-        }
-      ]
-    },
-    {
-      "type": "commit",
-      "hash": "c2aa31690f5321218003b69be947927b2f7dc7c7",
-      "shortHash": "c2aa316",
-      "date": "2026-01-09T19:35:23+01:00",
-      "headline": "chore: apply VGP standards - UTM links, footer, schema update",
-      "body": "- Add feature emojis and Support section to README\n- Add orange heart footer with UTM tracking links\n- Update server.json to 2025-12-11 schema format\n- Add files array to package.json\n- Add chmod +x to build script\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>",
-      "repo": "mcp-edd",
-      "owner": "verygoodplugins",
-      "repoSlug": "mcp-edd",
-      "remoteUrl": "https://github.com/verygoodplugins/mcp-edd",
-      "stats": {
-        "added": 43,
-        "deleted": 48,
-        "files": 3
-      },
-      "files": [
-        {
-          "file": "README.md",
-          "added": 21,
-          "deleted": 9
-        },
-        {
-          "file": "package.json",
-          "added": 6,
-          "deleted": 1
-        },
-        {
-          "file": "server.json",
-          "added": 16,
-          "deleted": 38
-        }
-      ]
-    },
-    {
-      "type": "commit",
-      "hash": "f2736b0651cc1c50d5b7efdb39c6549919e91707",
-      "shortHash": "f2736b0",
-      "date": "2026-01-09T19:35:23+01:00",
-      "headline": "docs: add README style guide with footer template and emojis",
-      "body": "Document VGP branding requirements:\n- Required footer section with Support links and orange heart\n- UTM tracking on all VGP links\n- Optional feature emojis reference table\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>",
-      "repo": "mcp-ecosystem",
-      "owner": "verygoodplugins",
-      "repoSlug": "mcp-ecosystem",
-      "remoteUrl": "https://github.com/verygoodplugins/mcp-ecosystem",
-      "stats": {
-        "added": 58,
-        "deleted": 5,
-        "files": 1
-      },
-      "files": [
-        {
-          "file": "STANDARDS.md",
-          "added": 58,
-          "deleted": 5
-        }
-      ]
-    },
-    {
-      "type": "commit",
-      "hash": "081e3d0e793032b6fcf026a795e4c57d2f1ed845",
-      "shortHash": "081e3d0",
-      "date": "2026-01-09T19:21:39+01:00",
-      "headline": "feat: initial release of mcp-edd",
-      "body": "MCP server for Easy Digital Downloads REST API with 12 tools:\n- Products: list_products, get_product\n- Sales: list_sales, get_sale\n- Customers: list_customers, get_customer\n- Stats: get_stats, get_stats_by_date, get_stats_by_product\n- Discounts: list_discounts, get_discount\n- Downloads: get_download_logs\n\nIncludes:\n- TypeScript with Zod validation\n- Unit tests (16) and integration tests (12)\n- GitHub Actions CI/CD with release-please\n- MCP Registry manifest (server.json)\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>",
-      "repo": "mcp-edd",
-      "owner": "verygoodplugins",
-      "repoSlug": "mcp-edd",
-      "remoteUrl": "https://github.com/verygoodplugins/mcp-edd",
-      "stats": {
-        "added": 9514,
-        "deleted": 0,
-        "files": 22
-      },
-      "files": [
-        {
-          "file": ".github/dependabot.yml",
-          "added": 24,
-          "deleted": 0
-        },
-        {
-          "file": ".github/workflows/ci.yml",
-          "added": 38,
-          "deleted": 0
-        },
-        {
-          "file": ".github/workflows/release-please.yml",
-          "added": 45,
-          "deleted": 0
-        },
-        {
-          "file": ".github/workflows/security.yml",
-          "added": 38,
-          "deleted": 0
-        },
-        {
-          "file": ".gitignore",
-          "added": 30,
-          "deleted": 0
-        },
-        {
-          "file": ".prettierrc",
-          "added": 7,
-          "deleted": 0
-        },
-        {
-          "file": "CHANGELOG.md",
-          "added": 29,
-          "deleted": 0
-        },
-        {
-          "file": "CLAUDE.md",
-          "added": 52,
-          "deleted": 0
-        },
-        {
-          "file": "LICENSE",
-          "added": 674,
-          "deleted": 0
-        },
-        {
-          "file": "README.md",
-          "added": 152,
-          "deleted": 0
-        },
-        {
-          "file": "eslint.config.mjs",
-          "added": 24,
-          "deleted": 0
-        },
-        {
-          "file": "jest.config.cjs",
-          "added": 33,
-          "deleted": 0
-        },
-        {
-          "file": "package-lock.json",
-          "added": 6579,
-          "deleted": 0
-        },
-        {
-          "file": "package.json",
-          "added": 65,
-          "deleted": 0
-        },
-        {
-          "file": "server.json",
-          "added": 94,
-          "deleted": 0
-        },
-        {
-          "file": "src/edd-client.ts",
-          "added": 313,
-          "deleted": 0
-        },
-        {
-          "file": "src/env.ts",
-          "added": 68,
-          "deleted": 0
-        },
-        {
-          "file": "src/index.ts",
-          "added": 446,
-          "deleted": 0
-        },
-        {
-          "file": "src/types.ts",
-          "added": 291,
-          "deleted": 0
-        },
-        {
-          "file": "tests/integration/api.test.ts",
-          "added": 175,
-          "deleted": 0
-        },
-        {
-          "file": "tests/unit/edd-client.test.ts",
-          "added": 316,
-          "deleted": 0
-        },
-        {
-          "file": "tsconfig.json",
-          "added": 21,
-          "deleted": 0
-        }
-      ]
-    },
-    {
-      "type": "commit",
-      "hash": "a361a4783b59107e63f99e30f393d1c8ef3d11fa",
-      "shortHash": "a361a47",
-      "date": "2026-01-09T18:53:03+01:00",
-      "headline": "Remove activity report scripts and quick response logic",
-      "body": "Deleted all scripts and documentation related to the activity report generation and deployment, including workflow and shell scripts. Removed quick response logic for simple messages from the chat server and voice context cache, centralizing all message handling through the main assistant. Updated voice client audio cues to align with new audio events, and improved periodic feedback for thinking/tool states. Refined email handler to return formatted summaries without direct Slack integration.",
-      "repo": "autohub",
-      "owner": "verygoodplugins",
-      "repoSlug": "autohub",
-      "remoteUrl": "https://github.com/verygoodplugins/autohub",
-      "stats": {
-        "added": 358,
-        "deleted": 1209,
-        "files": 17
-      },
-      "files": [
-        {
-          "file": "config/tool-filters.json",
-          "added": 0,
-          "deleted": 6
-        },
-        {
-          "file": "docs/ACTIVITY-REPORT-ARCHITECTURE.md",
-          "added": 0,
-          "deleted": 280
-        },
-        {
-          "file": "scripts/deploy-activity-report.sh",
-          "added": 0,
-          "deleted": 25
-        },
-        {
-          "file": "scripts/generate-rich-report.mjs",
-          "added": 0,
-          "deleted": 515
-        },
-        {
-          "file": "scripts/pi-voice-client-no-wake.js",
-          "added": 49,
-          "deleted": 7
-        },
-        {
-          "file": "scripts/realtime-mcp-agent.js",
-          "added": 44,
-          "deleted": 51
-        },
-        {
-          "file": "scripts/update-activity-report.sh",
-          "added": 0,
-          "deleted": 31
-        },
-        {
-          "file": "src/agents/profiles/email-handler.js",
-          "added": 8,
-          "deleted": 15
-        },
-        {
-          "file": "src/chat-server/index.js",
-          "added": 0,
-          "deleted": 93
-        },
-        {
-          "file": "src/chat-server/voice-context-cache.js",
-          "added": 0,
-          "deleted": 49
-        },
-        {
-          "file": "src/notifications/notification-manager.js",
-          "added": 10,
-          "deleted": 2
-        },
-        {
-          "file": "src/platforms/whatsapp/adapter.js",
-          "added": 76,
-          "deleted": 32
-        },
-        {
-          "file": "src/voice/audio-events.js",
-          "added": 139,
-          "deleted": 0
-        },
-        {
-          "file": "src/voice/voice-server.js",
-          "added": 7,
-          "deleted": 1
-        },
-        {
-          "file": "src/workflows/runner.js",
-          "added": 13,
-          "deleted": 7
-        },
-        {
-          "file": "workflows/webhooks/email-received.md",
-          "added": 12,
-          "deleted": 2
-        },
-        {
-          "file": "workflows/weekly/update-activity-report.md",
-          "added": 0,
-          "deleted": 93
-        }
-      ]
-    },
-    {
-      "type": "commit",
-      "hash": "7b42859e5a8d46b23b27711209b1171a2cc86d30",
-      "shortHash": "7b42859",
-      "date": "2026-01-09T18:50:13+01:00",
-      "headline": "Update wrangler.toml",
-      "body": "",
-      "repo": "activity-report",
-      "owner": "verygoodplugins",
-      "repoSlug": "activity-report",
-      "remoteUrl": "https://github.com/verygoodplugins/activity-report",
-      "stats": {
-        "added": 3,
-        "deleted": 1,
-        "files": 1
-      },
-      "files": [
-        {
-          "file": "wrangler.toml",
-          "added": 3,
-          "deleted": 1
-        }
-      ]
-    },
-    {
-      "type": "commit",
-      "hash": "2d6f0fc2942c9a40a01bbc0c37cfa99362ac7b68",
-      "shortHash": "2d6f0fc",
-      "date": "2026-01-09T18:31:27+01:00",
-      "headline": "revert: restore pages_build_output_dir for Pages deploy",
-      "body": "The Pages deploy command requires pages_build_output_dir.\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>",
-      "repo": "activity-report",
-      "owner": "verygoodplugins",
-      "repoSlug": "activity-report",
-      "remoteUrl": "https://github.com/verygoodplugins/activity-report",
-      "stats": {
-        "added": 1,
-        "deleted": 3,
-        "files": 1
-      },
-      "files": [
-        {
-          "file": "wrangler.toml",
-          "added": 1,
-          "deleted": 3
-        }
-      ]
-    },
-    {
-      "type": "commit",
-      "hash": "e124ff68d59b73652a9d8490f3f3d14ba25a9b5a",
-      "shortHash": "e124ff6",
-      "date": "2026-01-09T18:29:18+01:00",
-      "headline": "refactor: convert from Pages to Workers Assets format",
-      "body": "Switch from pages_build_output_dir to [assets] directory config\nto work with the new unified Cloudflare build system.\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>",
-      "repo": "activity-report",
-      "owner": "verygoodplugins",
-      "repoSlug": "activity-report",
-      "remoteUrl": "https://github.com/verygoodplugins/activity-report",
-      "stats": {
-        "added": 3,
-        "deleted": 1,
-        "files": 1
-      },
-      "files": [
-        {
-          "file": "wrangler.toml",
-          "added": 3,
-          "deleted": 1
-        }
-      ]
-    },
-    {
-      "type": "commit",
-      "hash": "9a7bb37964a90ef7dc9b4d3d47dffb961a663ecb",
-      "shortHash": "9a7bb37",
-      "date": "2026-01-09T18:14:44+01:00",
-      "headline": "feat: ecosystem audit updates - SDK v1.25.1, CodeQL v4, inventory fixes",
-      "body": "- Update MCP SDK requirement from ^0.5.0 to ^1.25.1 (all prod servers upgraded)\n- Add ESLint 9 flat config example with typescript-eslint and prettier\n- Add Tool Schema Best Practices section for external API handling\n- Update Python security.yml template to use CodeQL v4 (was v3)\n- Fix server-inventory.json:\n  - Add GitHub URLs for whatsapp-mcp and streamdeck-mcp\n  - Add mcp-wp (was missing from inventory)\n  - Fix mcp-pirsch type: typescript → javascript\n  - Remove local-only servers: telegram-mcp, mcp-ical\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>",
-      "repo": "mcp-ecosystem",
-      "owner": "verygoodplugins",
-      "repoSlug": "mcp-ecosystem",
-      "remoteUrl": "https://github.com/verygoodplugins/mcp-ecosystem",
-      "stats": {
-        "added": 130,
-        "deleted": 33,
-        "files": 3
-      },
-      "files": [
-        {
-          "file": "STANDARDS.md",
-          "added": 110,
-          "deleted": 1
-        },
-        {
-          "file": "server-inventory.json",
-          "added": 17,
-          "deleted": 29
-        },
-        {
-          "file": "templates/python/.github/workflows/security.yml",
-          "added": 3,
-          "deleted": 3
-        }
-      ]
-    },
-    {
-      "type": "commit",
-      "hash": "890b704adc152d9816c8d6473f239ddcfaf99022",
-      "shortHash": "890b704",
-      "date": "2026-01-09T16:50:59+01:00",
-      "headline": "Make activity-report standalone and portable",
-      "body": "",
-      "repo": "activity-report",
-      "owner": "verygoodplugins",
-      "repoSlug": "activity-report",
-      "remoteUrl": "https://github.com/verygoodplugins/activity-report",
-      "stats": {
-        "added": 9869,
-        "deleted": 5605,
-        "files": 10
-      },
-      "files": [
-        {
-          "file": ".github/workflows/daily-update.yml",
-          "added": 36,
-          "deleted": 0
-        },
-        {
-          "file": ".gitignore",
-          "added": 1,
-          "deleted": 0
-        },
-        {
-          "file": "AGENTS.md",
-          "added": 101,
-          "deleted": 0
-        },
-        {
-          "file": "README.md",
-          "added": 95,
-          "deleted": 30
-        },
-        {
-          "file": "activity-data.json",
-          "added": 5183,
-          "deleted": 3582
-        },
-        {
-          "file": "deploy.sh",
-          "added": 27,
-          "deleted": 9
-        },
-        {
-          "file": "generate-rich-report.mjs",
-          "added": 686,
-          "deleted": 0
-        },
-        {
-          "file": "index.html",
-          "added": 3689,
-          "deleted": 1984
-        },
-        {
-          "file": "package.json",
-          "added": 18,
-          "deleted": 0
-        },
-        {
-          "file": "scripts/smoke-test.mjs",
-          "added": 33,
-          "deleted": 0
-        }
-      ]
-    },
-    {
-      "type": "commit",
-      "hash": "3ac0482585e454300d527e554891bbcf47e2b9a7",
-      "shortHash": "3ac0482",
-      "date": "2026-01-09T16:35:19+01:00",
-      "headline": "docs: update to VGP standards with mermaid diagrams",
-      "body": "- README.md: Add mermaid architecture diagrams, detailed tool docs\n  with natural language examples, UTM tracking on links\n- CLAUDE.md: Restructure with mermaid diagram, common commands,\n  key files reference\n- server.json: Add MCP Registry manifest for publication\n- security.yml: Add weekly security scans (CodeQL, pip-audit, bandit,\n  govulncheck) for both Python and Go\n- dependabot.yml: Add automated dependency updates for pip, gomod,\n  and GitHub Actions\n- pyproject.toml: Add [tool.mcp] section for registry linking\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>",
-      "repo": "whatsapp-mcp",
-      "owner": "verygoodplugins",
-      "repoSlug": "whatsapp-mcp",
-      "remoteUrl": "https://github.com/verygoodplugins/whatsapp-mcp",
-      "stats": {
-        "added": 637,
-        "deleted": 113,
-        "files": 6
-      },
-      "files": [
-        {
-          "file": ".github/dependabot.yml",
-          "added": 39,
-          "deleted": 0
-        },
-        {
-          "file": ".github/workflows/security.yml",
-          "added": 111,
-          "deleted": 0
-        },
-        {
-          "file": "CLAUDE.md",
-          "added": 142,
-          "deleted": 68
-        },
-        {
-          "file": "README.md",
-          "added": 266,
-          "deleted": 45
-        },
-        {
-          "file": "server.json",
-          "added": 76,
-          "deleted": 0
-        },
-        {
-          "file": "whatsapp-mcp-server/pyproject.toml",
-          "added": 3,
-          "deleted": 0
-        }
-      ]
-    },
-    {
-      "type": "commit",
-      "hash": "a606b3e4ae160d0f3b7e390579ab7b0adac70947",
-      "shortHash": "a606b3e",
-      "date": "2026-01-09T13:45:23+01:00",
-      "headline": "fix: YAML indentation in backup workflow and update docs",
-      "body": "Corrected indentation in .github/workflows/backup.yml to conform to YAML standards, improving readability and reliability. Minor formatting improvements were made to docs/MONITORING_AND_BACKUPS.md for clarity in setup instructions.",
-      "repo": "automem",
-      "owner": "verygoodplugins",
-      "repoSlug": "automem",
-      "remoteUrl": "https://github.com/verygoodplugins/automem",
-      "stats": {
-        "added": 84,
-        "deleted": 80,
-        "files": 2
-      },
-      "files": [
-        {
-          "file": ".github/workflows/backup.yml",
-          "added": 80,
-          "deleted": 80
-        },
-        {
-          "file": "docs/MONITORING_AND_BACKUPS.md",
-          "added": 4,
-          "deleted": 0
-        }
-      ]
-    },
-    {
-      "type": "commit",
-      "hash": "a701c578340c90bb08456a066cdf1e304b11ddda",
-      "shortHash": "a701c57",
-      "date": "2026-01-09T13:43:55+01:00",
-      "headline": "fix: Address CodeRabbit security and lint issues",
-      "body": "Security fixes:\n- Remove secret values from workflow logs (FALKORDB_HOST/PORT)\n- Fix command injection vulnerability in TCP test by using single quotes\n\nMarkdown linting:\n- Add language specifier to code fence (bash)\n- Convert emphasis to proper heading (h4)\n- Add redis-cli installation instructions\n\nAddresses CodeRabbit review comments on PR #46.",
-      "repo": "automem",
-      "owner": "verygoodplugins",
-      "repoSlug": "automem",
-      "remoteUrl": "https://github.com/verygoodplugins/automem",
-      "stats": {
-        "added": 16,
-        "deleted": 9,
-        "files": 2
-      },
-      "files": [
-        {
-          "file": ".github/workflows/backup.yml",
-          "added": 6,
-          "deleted": 7
-        },
-        {
-          "file": "docs/MONITORING_AND_BACKUPS.md",
-          "added": 10,
-          "deleted": 2
-        }
-      ]
-    },
-    {
-      "type": "commit",
-      "hash": "bd55db16d27d182882d77e6355bd6725c70887f7",
-      "shortHash": "bd55db1",
-      "date": "2026-01-09T13:41:24+01:00",
-      "headline": "Remove assets and update MemoryHero demo content",
-      "body": "Deleted screenshot and attached asset files, as well as Replit configuration and documentation files. Updated .gitignore to exclude these assets and config files. Added CLAUDE.md for Claude Code guidance. Modified MemoryHero.astro to use a new user question and memory-based reply focused on user authentication, replacing the previous TypeError example.",
-      "repo": "automem-website",
-      "owner": "verygoodplugins",
-      "repoSlug": "automem-website",
-      "remoteUrl": "https://github.com/verygoodplugins/automem-website",
-      "stats": {
-        "added": 58,
-        "deleted": 613,
-        "files": 34
-      },
-      "files": [
-        {
-          "file": ".cursor/screenshots/chat-after-10-seconds.png",
-          "added": 0,
-          "deleted": 0
-        },
-        {
-          "file": ".cursor/screenshots/chat-after-5-seconds.png",
-          "added": 0,
-          "deleted": 0
-        },
-        {
-          "file": ".cursor/screenshots/chat-after-refresh.png",
-          "added": 0,
-          "deleted": 0
-        },
-        {
-          "file": ".cursor/screenshots/chat-after-waiting.png",
-          "added": 0,
-          "deleted": 0
-        },
-        {
-          "file": ".cursor/screenshots/chat-anchored-bottom-fix.png",
-          "added": 0,
-          "deleted": 0
-        },
-        {
-          "file": ".cursor/screenshots/chat-demo-fixed.png",
-          "added": 0,
-          "deleted": 0
-        },
-        {
-          "file": ".cursor/screenshots/chat-final-fix.png",
-          "added": 0,
-          "deleted": 0
-        },
-        {
-          "file": ".cursor/screenshots/chat-inline-important.png",
-          "added": 0,
-          "deleted": 0
-        },
-        {
-          "file": ".cursor/screenshots/chat-justify-end.png",
-          "added": 0,
-          "deleted": 0
-        },
-        {
-          "file": ".cursor/screenshots/chat-margin-auto-fix.png",
-          "added": 0,
-          "deleted": 0
-        },
-        {
-          "file": ".cursor/screenshots/chat-scrolled-bottom.png",
-          "added": 0,
-          "deleted": 0
-        },
-        {
-          "file": ".cursor/screenshots/chat-scrolled-down.png",
-          "added": 0,
-          "deleted": 0
-        },
-        {
-          "file": ".cursor/screenshots/chat-simplified-fix.png",
-          "added": 0,
-          "deleted": 0
-        },
-        {
-          "file": ".cursor/screenshots/chat-with-bottom-anchor.png",
-          "added": 0,
-          "deleted": 0
-        },
-        {
-          "file": ".cursor/screenshots/chat-with-flex-spacer.png",
-          "added": 0,
-          "deleted": 0
-        },
-        {
-          "file": ".cursor/screenshots/chat-with-messages-visible.png",
-          "added": 0,
-          "deleted": 0
-        },
-        {
-          "file": ".cursor/screenshots/chat-with-spacer-fix.png",
-          "added": 0,
-          "deleted": 0
-        },
-        {
-          "file": ".cursor/screenshots/full-page-view.png",
-          "added": 0,
-          "deleted": 0
-        },
-        {
-          "file": ".cursor/screenshots/homepage-chat-demo.png",
-          "added": 0,
-          "deleted": 0
-        },
-        {
-          "file": ".cursor/screenshots/page-scrolled-to-demo.png",
-          "added": 0,
-          "deleted": 0
-        },
-        {
-          "file": ".gitignore",
-          "added": 6,
-          "deleted": 1
-        },
-        {
-          "file": ".replit",
-          "added": 0,
-          "deleted": 43
-        },
-        {
-          "file": "CLAUDE.md",
-          "added": 46,
-          "deleted": 0
-        },
-        {
-          "file": "attached_assets/MASCOT_EXPORT_SPEC_1765430929232.md",
-          "added": 0,
-          "deleted": 446
-        },
-        {
-          "file": "attached_assets/Pasted-Originally-I-was-talking-about-editing-the-existing-ani_1765698014203.txt",
-          "added": 0,
-          "deleted": 14
-        },
-        {
-          "file": "attached_assets/Very_Good_Plugins_[Safari+ChatGPT]_2025-12-14_at_08.15.46@2x_1765696572379.jpg",
-          "added": 0,
-          "deleted": 0
-        },
-        {
-          "file": "attached_assets/Very_Good_Plugins_[Safari+ChatGPT]_2025-12-14_at_08.15.46@2x_1765698030847.jpg",
-          "added": 0,
-          "deleted": 0
-        },
-        {
-          "file": "attached_assets/generated_images/automem_og_share_image.png",
-          "added": 0,
-          "deleted": 0
-        },
-        {
-          "file": "attached_assets/image_1765417505984.png",
-          "added": 0,
-          "deleted": 0
-        },
-        {
-          "file": "attached_assets/image_1765773121715.png",
-          "added": 0,
-          "deleted": 0
-        },
-        {
-          "file": "attached_assets/image_1765773151432.png",
-          "added": 0,
-          "deleted": 0
-        },
-        {
-          "file": "attached_assets/image_1765844724633.png",
-          "added": 0,
-          "deleted": 0
-        },
-        {
-          "file": "replit.md",
-          "added": 0,
-          "deleted": 103
-        },
-        {
-          "file": "src/components/MemoryHero.astro",
-          "added": 6,
-          "deleted": 6
-        }
-      ]
-    },
-    {
-      "type": "commit",
-      "hash": "1b808ff4375cfcb2acfccf12d83700bce3f23b0a",
-      "shortHash": "1b808ff",
-      "date": "2026-01-09T13:03:10+01:00",
-      "headline": "Cleanup",
-      "body": "",
-      "repo": "automem-website",
-      "owner": "verygoodplugins",
-      "repoSlug": "automem-website",
-      "remoteUrl": "https://github.com/verygoodplugins/automem-website",
-      "stats": {
-        "added": 6,
-        "deleted": 698,
-        "files": 7
-      },
-      "files": [
-        {
-          "file": ".gitignore",
-          "added": 1,
-          "deleted": 0
-        },
-        {
-          "file": "WAITLIST_SETUP.md",
-          "added": 0,
-          "deleted": 304
-        },
-        {
-          "file": "convert-svg.js",
-          "added": 0,
-          "deleted": 1
-        },
-        {
-          "file": "logo_concepts.html",
-          "added": 0,
-          "deleted": 317
-        },
-        {
-          "file": "package-lock.json",
-          "added": 4,
-          "deleted": 3
-        },
-        {
-          "file": "package.json",
-          "added": 1,
-          "deleted": 0
-        },
-        {
-          "file": "waitlist.json",
-          "added": 0,
-          "deleted": 73
-        }
-      ]
-    },
-    {
-      "type": "commit",
-      "hash": "1f9112e297b127234dda3913f43fe1fbbd7b4691",
-      "shortHash": "1f9112e",
-      "date": "2026-01-09T12:39:28+01:00",
-      "headline": "fix: remove version property for golangci-lint v1.x compatibility",
-      "body": "Co-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>",
-      "repo": "whatsapp-mcp",
-      "owner": "verygoodplugins",
-      "repoSlug": "whatsapp-mcp",
-      "remoteUrl": "https://github.com/verygoodplugins/whatsapp-mcp",
-      "stats": {
-        "added": 0,
-        "deleted": 2,
-        "files": 1
-      },
-      "files": [
-        {
-          "file": "whatsapp-bridge/.golangci.yml",
-          "added": 0,
-          "deleted": 2
-        }
-      ]
-    },
-    {
-      "type": "commit",
-      "hash": "b22f566c9450aa14121c421cd7b8663b2a1c30cd",
-      "shortHash": "b22f566",
-      "date": "2026-01-09T12:37:55+01:00",
-      "headline": "fix: enable stricter Go linting (errcheck, unused, ineffassign)",
-      "body": "- Fix errcheck issues: add _ = to ignore Close() errors where appropriate\n- Fix errcheck issues: existing json.Encode returns were already fixed\n- Fix ineffassign: refactor timestamp variable assignments\n- Remove unused requestHistorySync function\n- Remove tracked binary from git\n- Update golangci.yml to enable errcheck, unused, ineffassign linters\n- Keep staticcheck disabled (requires whatsmeow library update)\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>",
-      "repo": "whatsapp-mcp",
-      "owner": "verygoodplugins",
-      "repoSlug": "whatsapp-mcp",
-      "remoteUrl": "https://github.com/verygoodplugins/whatsapp-mcp",
-      "stats": {
-        "added": 30,
-        "deleted": 66,
-        "files": 4
-      },
-      "files": [
-        {
-          "file": "whatsapp-bridge/.golangci.yml",
-          "added": 7,
-          "deleted": 5
-        },
-        {
-          "file": "whatsapp-bridge/main.go",
-          "added": 22,
-          "deleted": 60
-        },
-        {
-          "file": "whatsapp-bridge/webhook.go",
-          "added": 1,
-          "deleted": 1
-        },
-        {
-          "file": "whatsapp-bridge/whatsapp-client",
-          "added": 0,
-          "deleted": 0
-        }
-      ]
-    },
-    {
-      "type": "commit",
-      "hash": "82814d0fe7956061eb899a1b431f19e21705e82c",
-      "shortHash": "82814d0",
-      "date": "2026-01-09T12:29:49+01:00",
-      "headline": "Delete whatsapp-bridge/store directory",
-      "body": "",
-      "repo": "whatsapp-mcp",
-      "owner": "verygoodplugins",
-      "repoSlug": "whatsapp-mcp",
-      "remoteUrl": "https://github.com/verygoodplugins/whatsapp-mcp",
-      "stats": {
-        "added": 0,
-        "deleted": 0,
-        "files": 5
-      },
-      "files": [
-        {
-          "file": "whatsapp-bridge/store/12183162315@s.whatsapp.net/image_20250906_105625.jpg",
-          "added": 0,
-          "deleted": 0
-        },
-        {
-          "file": "whatsapp-bridge/store/12183162315@s.whatsapp.net/image_20250906_105631.jpg",
-          "added": 0,
-          "deleted": 0
-        },
-        {
-          "file": "whatsapp-bridge/store/18455129079@s.whatsapp.net/image_20250906_172257.jpg",
-          "added": 0,
-          "deleted": 0
-        },
-        {
-          "file": "whatsapp-bridge/store/18455461147@s.whatsapp.net/image_20250906_143216.jpg",
-          "added": 0,
-          "deleted": 0
-        },
-        {
-          "file": "whatsapp-bridge/store/18455461147@s.whatsapp.net/image_20250906_232023.jpg",
-          "added": 0,
-          "deleted": 0
-        }
-      ]
-    },
-    {
-      "type": "commit",
-      "hash": "cef89a4a92bc33f36d939510b8e19933cf907d66",
-      "shortHash": "cef89a4",
-      "date": "2026-01-09T12:29:38+01:00",
-      "headline": "Update CHANGELOG and README with comprehensive fork changes",
-      "body": "Document all differences from original lharries/whatsapp-mcp:\n- Typing indicators endpoint\n- Health check endpoint\n- Webhook system with reply context\n- Auto-download media\n- get_contact tool\n- sender_display format\n- And more\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>",
-      "repo": "whatsapp-mcp",
-      "owner": "verygoodplugins",
-      "repoSlug": "whatsapp-mcp",
-      "remoteUrl": "https://github.com/verygoodplugins/whatsapp-mcp",
-      "stats": {
-        "added": 41,
-        "deleted": 14,
-        "files": 2
-      },
-      "files": [
-        {
-          "file": "CHANGELOG.md",
-          "added": 32,
-          "deleted": 9
-        },
-        {
-          "file": "README.md",
-          "added": 9,
-          "deleted": 5
-        }
-      ]
-    },
-    {
-      "type": "commit",
-      "hash": "10b37d0f92273dbaf29bad4cb32d95ff80df5e81",
-      "shortHash": "10b37d0",
-      "date": "2026-01-09T12:22:55+01:00",
-      "headline": "fix(backup): Fix GitHub Actions backup failing with connection error",
-      "body": "Updated the GitHub Actions backup workflow to use actions/setup-python@v5 and added a pre-flight check to verify FalkorDB connectivity via Railway's TCP Proxy, with clear error messages and troubleshooting guidance. Expanded documentation in MONITORING_AND_BACKUPS.md to include TCP Proxy setup instructions, a network diagram, and a troubleshooting section for common backup failures. Updated CHANGELOG.md to reflect these changes and document the fixes for backup workflow failures due to inaccessible internal hostnames.",
-      "repo": "automem",
-      "owner": "verygoodplugins",
-      "repoSlug": "automem",
-      "remoteUrl": "https://github.com/verygoodplugins/automem",
-      "stats": {
-        "added": 209,
-        "deleted": 15,
-        "files": 3
-      },
-      "files": [
-        {
-          "file": ".github/workflows/backup.yml",
-          "added": 49,
-          "deleted": 1
-        },
-        {
-          "file": "CHANGELOG.md",
-          "added": 101,
-          "deleted": 7
-        },
-        {
-          "file": "docs/MONITORING_AND_BACKUPS.md",
-          "added": 59,
-          "deleted": 7
-        }
-      ]
-    },
-    {
-      "type": "commit",
-      "hash": "c9ef9a70936bda6e4c84ad5ace15fae13c076438",
-      "shortHash": "c9ef9a7",
-      "date": "2026-01-09T12:08:37+01:00",
-      "headline": "Relax golangci-lint config for initial fork",
-      "body": "Disable strict linters that catch preexisting issues:\n- errcheck: Many unchecked json.Encode returns\n- staticcheck: Deprecated whatsmeow imports\n- unused: Some unused functions\n- ineffassign: Some ineffectual assignments\n\nTODO: Enable stricter linting and fix issues over time\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>",
-      "repo": "whatsapp-mcp",
-      "owner": "verygoodplugins",
-      "repoSlug": "whatsapp-mcp",
-      "remoteUrl": "https://github.com/verygoodplugins/whatsapp-mcp",
-      "stats": {
-        "added": 8,
-        "deleted": 4,
-        "files": 1
-      },
-      "files": [
-        {
-          "file": "whatsapp-bridge/.golangci.yml",
-          "added": 8,
-          "deleted": 4
-        }
-      ]
-    },
-    {
-      "type": "commit",
-      "hash": "b75c067fb0eacbda9ba9c81bae66b282d018a5fb",
-      "shortHash": "b75c067",
-      "date": "2026-01-09T12:06:35+01:00",
-      "headline": "Fix CI configuration issues",
-      "body": "- Fix pyproject.toml structure (dependencies in correct section)\n- Remove version property from golangci.yml (not allowed in v1.64+)\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>",
-      "repo": "whatsapp-mcp",
-      "owner": "verygoodplugins",
-      "repoSlug": "whatsapp-mcp",
-      "remoteUrl": "https://github.com/verygoodplugins/whatsapp-mcp",
-      "stats": {
-        "added": 3,
-        "deleted": 6,
-        "files": 2
-      },
-      "files": [
-        {
-          "file": "whatsapp-bridge/.golangci.yml",
-          "added": 0,
-          "deleted": 2
-        },
-        {
-          "file": "whatsapp-mcp-server/pyproject.toml",
-          "added": 3,
-          "deleted": 4
-        }
-      ]
-    },
-    {
-      "type": "commit",
-      "hash": "772af986d09578e6bd25d6aaf301f0b36c9d5c78",
-      "shortHash": "772af98",
-      "date": "2026-01-09T12:04:45+01:00",
-      "headline": "Fix pyproject.toml for CI compatibility",
-      "body": "- Remove readme reference (not in server directory)\n- Use SPDX license string instead of table\n- Explicitly set py-modules for setuptools\n- Remove deprecated license classifier\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>",
-      "repo": "whatsapp-mcp",
-      "owner": "verygoodplugins",
-      "repoSlug": "whatsapp-mcp",
-      "remoteUrl": "https://github.com/verygoodplugins/whatsapp-mcp",
-      "stats": {
-        "added": 4,
-        "deleted": 3,
-        "files": 1
-      },
-      "files": [
-        {
-          "file": "whatsapp-mcp-server/pyproject.toml",
-          "added": 4,
-          "deleted": 3
-        }
-      ]
-    },
-    {
-      "type": "commit",
-      "hash": "12412059a4ccdedc454bc44b0b97883a486525eb",
-      "shortHash": "1241205",
-      "date": "2026-01-09T12:02:14+01:00",
-      "headline": "Fork and improve WhatsApp MCP for verygoodplugins",
-      "body": "This is a maintained fork of lharries/whatsapp-mcp with bug fixes,\nimprovements, and continued development.\n\n## Fixed\n- Go compilation errors from whatsmeow API changes (context.Background())\n- golangci.yml configuration (removed deprecated linters)\n- Python linting issues (185 errors fixed)\n\n## Added\n- Contact names in message responses (sender_display: \"Name (phone)\")\n- Increased default limits (50 messages, 50 chats)\n- Max limits for large queries (500 messages, 200 chats)\n- CI/CD pipeline with GitHub Actions\n- Test suite with pytest\n- Comprehensive documentation\n\n## Changed\n- Upgraded whatsmeow to latest version\n- Improved docstrings with date format examples\n- Removed unused npm dependencies from Go bridge\n\n## Removed\n- Compiled binary from git tracking\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>",
-      "repo": "whatsapp-mcp",
-      "owner": "verygoodplugins",
-      "repoSlug": "whatsapp-mcp",
-      "remoteUrl": "https://github.com/verygoodplugins/whatsapp-mcp",
-      "stats": {
-        "added": 1492,
-        "deleted": 2238,
-        "files": 21
-      },
-      "files": [
-        {
-          "file": ".env.example",
-          "added": 23,
-          "deleted": 0
-        },
-        {
-          "file": ".github/workflows/ci.yml",
-          "added": 70,
-          "deleted": 0
-        },
-        {
-          "file": ".gitignore",
-          "added": 49,
-          "deleted": 4
-        },
-        {
-          "file": "CHANGELOG.md",
-          "added": 43,
-          "deleted": 0
-        },
-        {
-          "file": "CLAUDE.md",
-          "added": 109,
-          "deleted": 0
-        },
-        {
-          "file": "LICENSE",
-          "added": 4,
-          "deleted": 2
-        },
-        {
-          "file": "README.md",
-          "added": 119,
-          "deleted": 108
-        },
-        {
-          "file": "whatsapp-bridge/.golangci.yml",
-          "added": 12,
-          "deleted": 0
-        },
-        {
-          "file": "whatsapp-bridge/go.mod",
-          "added": 14,
-          "deleted": 11
-        },
-        {
-          "file": "whatsapp-bridge/go.sum",
-          "added": 38,
-          "deleted": 26
-        },
-        {
-          "file": "whatsapp-bridge/main.go",
-          "added": 2,
-          "deleted": 2
-        },
-        {
-          "file": "whatsapp-bridge/package-lock.json",
-          "added": 0,
-          "deleted": 1544
-        },
-        {
-          "file": "whatsapp-bridge/package.json",
-          "added": 0,
-          "deleted": 5
-        },
-        {
-          "file": "whatsapp-bridge/whatsapp-bridge",
-          "added": 0,
-          "deleted": 0
-        },
-        {
-          "file": "whatsapp-mcp-server/audio.py",
-          "added": 34,
-          "deleted": 31
-        },
-        {
-          "file": "whatsapp-mcp-server/main.py",
-          "added": 167,
-          "deleted": 102
-        },
-        {
-          "file": "whatsapp-mcp-server/pyproject.toml",
-          "added": 52,
-          "deleted": 1
-        },
-        {
-          "file": "whatsapp-mcp-server/tests/__init__.py",
-          "added": 1,
-          "deleted": 0
-        },
-        {
-          "file": "whatsapp-mcp-server/tests/test_whatsapp.py",
-          "added": 144,
-          "deleted": 0
-        },
-        {
-          "file": "whatsapp-mcp-server/uv.lock",
-          "added": 248,
-          "deleted": 155
-        },
-        {
-          "file": "whatsapp-mcp-server/whatsapp.py",
-          "added": 363,
-          "deleted": 247
-        }
-      ]
     }
   ],
   "prs": [
@@ -18232,66 +17680,6 @@
         }
       ],
       "body": "## Summary\n- Update `get_contact` to accept `identifier` (phone, LID, or full JID) with backward-compatible aliases.\n- Prefer chat-table name lookup and fall back from `@s.whatsapp.net` to `@lid` for ambiguous 15-digit numeric identifiers.\n- Update bridge message handling to use `PushName` when contact lookup yields only numeric IDs.\n\n## Testing\n- `cd whatsapp-mcp-server && uv run pytest -v`\n- `cd whatsapp-bridge && go test ./...`\n"
-    },
-    {
-      "type": "pr",
-      "number": 6,
-      "title": "Add MCP extension files and update docs",
-      "url": "https://github.com/verygoodplugins/mcp-edd/pull/6",
-      "state": "MERGED",
-      "date": "2026-01-09T21:38:48Z",
-      "repo": "mcp-edd",
-      "repoFull": "verygoodplugins/mcp-edd",
-      "stats": {
-        "added": 116,
-        "deleted": 2,
-        "files": 6
-      },
-      "baseBranch": "main",
-      "headBranch": "feat/mcpb-support",
-      "mergeable": "UNKNOWN",
-      "commits": 2,
-      "reviews": [
-        {
-          "author": "coderabbitai",
-          "state": "COMMENTED",
-          "submittedAt": "2026-01-09T21:45:19Z"
-        }
-      ],
-      "labels": [],
-      "files": [
-        {
-          "file": ".mcpbignore",
-          "added": 30,
-          "deleted": 0
-        },
-        {
-          "file": "README.md",
-          "added": 11,
-          "deleted": 1
-        },
-        {
-          "file": "manifest.json",
-          "added": 73,
-          "deleted": 0
-        },
-        {
-          "file": "mcp-edd.mcpb",
-          "added": 0,
-          "deleted": 0
-        },
-        {
-          "file": "package.json",
-          "added": 1,
-          "deleted": 0
-        },
-        {
-          "file": "src/index.ts",
-          "added": 1,
-          "deleted": 1
-        }
-      ],
-      "body": "Added manifest.json and mcp-edd.mcpb for MCP extension packaging. Updated README with quick install instructions and new build:extension script in package.json. Added .mcpbignore for packaging exclusions."
     }
   ],
   "repos": {
@@ -18304,9 +17692,9 @@
       "repoSlug": "uncensored-voice-server"
     },
     "whatsapp-mcp": {
-      "commits": 10,
-      "additions": 2402,
-      "deletions": 2497,
+      "commits": 1,
+      "additions": 187,
+      "deletions": 51,
       "remoteUrl": "https://github.com/verygoodplugins/whatsapp-mcp",
       "owner": "verygoodplugins",
       "repoSlug": "whatsapp-mcp"
@@ -18336,17 +17724,17 @@
       "repoSlug": "mcp-evernote"
     },
     "mcp-edd": {
-      "commits": 5,
-      "additions": 10210,
-      "deletions": 79,
+      "commits": 1,
+      "additions": 535,
+      "deletions": 27,
       "remoteUrl": "https://github.com/verygoodplugins/mcp-edd",
       "owner": "verygoodplugins",
       "repoSlug": "mcp-edd"
     },
     "mcp-ecosystem": {
-      "commits": 6,
-      "additions": 2890,
-      "deletions": 615,
+      "commits": 4,
+      "additions": 2702,
+      "deletions": 577,
       "remoteUrl": "https://github.com/verygoodplugins/mcp-ecosystem",
       "owner": "verygoodplugins",
       "repoSlug": "mcp-ecosystem"
@@ -18376,51 +17764,51 @@
       "repoSlug": "claude-plugins"
     },
     "automem-website": {
-      "commits": 11,
-      "additions": 1669,
-      "deletions": 1587,
+      "commits": 10,
+      "additions": 1740,
+      "deletions": 276,
       "remoteUrl": "https://github.com/verygoodplugins/automem-website",
       "owner": "verygoodplugins",
       "repoSlug": "automem-website"
     },
     "automem": {
-      "commits": 16,
-      "additions": 762,
-      "deletions": 282,
+      "commits": 13,
+      "additions": 369,
+      "deletions": 181,
       "remoteUrl": "https://github.com/verygoodplugins/automem",
       "owner": "verygoodplugins",
       "repoSlug": "automem"
     },
     "autohub": {
-      "commits": 223,
-      "additions": 91562,
-      "deletions": 44203,
+      "commits": 237,
+      "additions": 94778,
+      "deletions": 45421,
       "remoteUrl": "https://github.com/verygoodplugins/autohub",
       "owner": "verygoodplugins",
       "repoSlug": "autohub"
     },
     "autoapp": {
-      "commits": 17,
-      "additions": 4796,
-      "deletions": 8015,
+      "commits": 19,
+      "additions": 8240,
+      "deletions": 8494,
       "remoteUrl": "https://github.com/verygoodplugins/AutoApp",
       "owner": "verygoodplugins",
       "repoSlug": "AutoApp"
     },
     "activity-report": {
-      "commits": 27,
-      "additions": 37242,
-      "deletions": 8993,
+      "commits": 21,
+      "additions": 27364,
+      "deletions": 3338,
       "remoteUrl": "https://github.com/verygoodplugins/activity-report",
       "owner": "verygoodplugins",
       "repoSlug": "activity-report"
     }
   },
   "stats": {
-    "additions": 189926,
-    "deletions": 76073,
-    "files": 1972,
-    "commits": 382,
-    "prs": 18
+    "additions": 174308,
+    "deletions": 68167,
+    "files": 1895,
+    "commits": 373,
+    "prs": 17
   }
 }
