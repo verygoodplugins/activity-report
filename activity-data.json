@@ -1,7 +1,1030 @@
 {
-  "generatedAt": "2026-02-09T10:05:24.710Z",
-  "periodStart": "2026-01-10T10:05:24.710Z",
+  "generatedAt": "2026-02-10T10:02:00.382Z",
+  "periodStart": "2026-01-11T10:02:00.379Z",
   "commits": [
+    {
+      "type": "commit",
+      "hash": "a1b7c0ae9247c18007ef828ea14af0916d2a43ab",
+      "shortHash": "a1b7c0a",
+      "date": "2026-02-10T03:20:26+05:30",
+      "headline": "Fix formatting and lint config for consistent saves",
+      "body": "Run Prettier on all web components to match project config.\nAdd caughtErrorsIgnorePattern to eslint no-unused-vars rule\nso catch(_err) follows the same _ prefix convention as args/vars.\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>",
+      "repo": "autohub",
+      "owner": "verygoodplugins",
+      "repoSlug": "autohub",
+      "remoteUrl": "https://github.com/verygoodplugins/autohub",
+      "stats": {
+        "added": 779,
+        "deleted": 529,
+        "files": 8
+      },
+      "files": [
+        {
+          "file": "eslint.config.js",
+          "added": 1,
+          "deleted": 0
+        },
+        {
+          "file": "src/chat-server/routes/chat.js",
+          "added": 3,
+          "deleted": 3
+        },
+        {
+          "file": "web/src/components/ChatInterface.jsx",
+          "added": 323,
+          "deleted": 199
+        },
+        {
+          "file": "web/src/components/CommandPalette.jsx",
+          "added": 7,
+          "deleted": 6
+        },
+        {
+          "file": "web/src/components/ContextBar.jsx",
+          "added": 4,
+          "deleted": 2
+        },
+        {
+          "file": "web/src/components/ConversationSidebar.jsx",
+          "added": 163,
+          "deleted": 159
+        },
+        {
+          "file": "web/src/components/MessageInput.jsx",
+          "added": 35,
+          "deleted": 27
+        },
+        {
+          "file": "web/src/components/MessageList.jsx",
+          "added": 243,
+          "deleted": 133
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "6f912245fd5104946d2eefa757ce84313a2937b8",
+      "shortHash": "6f91224",
+      "date": "2026-02-10T03:15:41+05:30",
+      "headline": "Add command palette, context bar & web UI enhancements",
+      "body": "Introduces CommandPalette and ContextBar components for the web UI,\nenhances conversation sidebar, message input/list, and chat routes\nto support the realtime voice feature set.\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>",
+      "repo": "autohub",
+      "owner": "verygoodplugins",
+      "repoSlug": "autohub",
+      "remoteUrl": "https://github.com/verygoodplugins/autohub",
+      "stats": {
+        "added": 1117,
+        "deleted": 104,
+        "files": 8
+      },
+      "files": [
+        {
+          "file": "src/chat-server/routes/chat.js",
+          "added": 83,
+          "deleted": 9
+        },
+        {
+          "file": "web/src/App.jsx",
+          "added": 114,
+          "deleted": 3
+        },
+        {
+          "file": "web/src/components/ChatInterface.jsx",
+          "added": 172,
+          "deleted": 28
+        },
+        {
+          "file": "web/src/components/CommandPalette.jsx",
+          "added": 161,
+          "deleted": 0
+        },
+        {
+          "file": "web/src/components/ContextBar.jsx",
+          "added": 65,
+          "deleted": 0
+        },
+        {
+          "file": "web/src/components/ConversationSidebar.jsx",
+          "added": 46,
+          "deleted": 7
+        },
+        {
+          "file": "web/src/components/MessageInput.jsx",
+          "added": 139,
+          "deleted": 13
+        },
+        {
+          "file": "web/src/components/MessageList.jsx",
+          "added": 337,
+          "deleted": 44
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "9c3aa32693019095a31a132e0a2430414904e1f4",
+      "shortHash": "9c3aa32",
+      "date": "2026-02-10T02:27:38+05:30",
+      "headline": "Add welcome screen & enhance realtime voice UI",
+      "body": "Introduce a friendly WelcomeScreen shown when a conversation is empty and improve realtime voice UX across the chat app. Key changes:\n\n- Add WelcomeScreen component and show it in ChatInterface when there are no messages and not streaming.\n- Refactor ChatInterface realtime event handler to use useCallback, simplify streaming transcript handling, clear buffers, and reduce noisy logging; wire WelcomeScreen and voice-related props.\n- Update MessageInput to add an inline mic button, voice connection/active state props, subtle hint text, and support starting push-to-talk or continuous voice mode; tweak layout and disabled/send logic.\n- Enhance MessageList to visually mark realtime voice messages (icon, subtle glow and \"via voice\" label).\n- Replace VoiceStatusBar with a richer implementation: connecting state, nicer visuals, animated status icons, mute/end controls, and an AudioWaveform visualization (accepts analyserNode). Add related CSS animations.\n- Update useRealtimeVoice hook to track isConnecting, set voicePhase to include connecting, fix mute toggle to avoid stale closures, and expose isConnecting in the returned state.\n- Add CSS for voice-mode transitions, glow and waveform animations.\n\nOverall this changeset consolidates voice controls into the input area, improves realtime feedback (connecting/listening/processing), and provides a clearer first-run experience.",
+      "repo": "autohub",
+      "owner": "verygoodplugins",
+      "repoSlug": "autohub",
+      "remoteUrl": "https://github.com/verygoodplugins/autohub",
+      "stats": {
+        "added": 450,
+        "deleted": 202,
+        "files": 7
+      },
+      "files": [
+        {
+          "file": "web/src/components/ChatInterface.jsx",
+          "added": 47,
+          "deleted": 159
+        },
+        {
+          "file": "web/src/components/MessageInput.jsx",
+          "added": 49,
+          "deleted": 5
+        },
+        {
+          "file": "web/src/components/MessageList.jsx",
+          "added": 21,
+          "deleted": 5
+        },
+        {
+          "file": "web/src/components/VoiceStatusBar.jsx",
+          "added": 194,
+          "deleted": 24
+        },
+        {
+          "file": "web/src/components/WelcomeScreen.jsx",
+          "added": 73,
+          "deleted": 0
+        },
+        {
+          "file": "web/src/hooks/useRealtimeVoice.js",
+          "added": 20,
+          "deleted": 9
+        },
+        {
+          "file": "web/src/styles/index.css",
+          "added": 46,
+          "deleted": 0
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "10898574abb7db640f70195fe3fcfde388c4a1f2",
+      "shortHash": "1089857",
+      "date": "2026-02-10T02:09:16+05:30",
+      "headline": "Add realtime transcribe-only voice mode & browser TTS",
+      "body": "Introduce a hands-free realtime voice flow and browser-driven TTS. Server: add transcribe-only handling (flush transcript without routing to Claude), socket handlers to switch mode, start/send/flush streaming TTS, and cleanup/guards (drop audio for inactive sessions, VAD init guard). Client: new useRealtimeVoice hook to manage VoiceClient + AudioEngine lifecycle, streaming transcript callbacks, TTS send/flush/cancel, keyboard shortcuts, and speaking/mute state. UI: add VoiceStatusBar component and integrate realtime mode into ChatInterface (start/stop realtime voice, TTS sentence buffering, barge-in behavior). AudioEngine: support separate playback sample rate, mic support check, continuous capture (start/pause/resume/stop), analyser node, and playback resampling fixes. VoiceClient: expose setMode and TTS control methods. These changes enable secure, low-latency transcribe-only input with browser TTS playback and cleaner session handling.",
+      "repo": "autohub",
+      "owner": "verygoodplugins",
+      "repoSlug": "autohub",
+      "remoteUrl": "https://github.com/verygoodplugins/autohub",
+      "stats": {
+        "added": 954,
+        "deleted": 42,
+        "files": 6
+      },
+      "files": [
+        {
+          "file": "src/voice/voice-server.js",
+          "added": 137,
+          "deleted": 0
+        },
+        {
+          "file": "web/src/components/ChatInterface.jsx",
+          "added": 152,
+          "deleted": 13
+        },
+        {
+          "file": "web/src/components/VoiceStatusBar.jsx",
+          "added": 71,
+          "deleted": 0
+        },
+        {
+          "file": "web/src/hooks/useRealtimeVoice.js",
+          "added": 333,
+          "deleted": 0
+        },
+        {
+          "file": "web/src/voice/audio-engine.js",
+          "added": 160,
+          "deleted": 5
+        },
+        {
+          "file": "web/src/voice/voice-client.js",
+          "added": 101,
+          "deleted": 24
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "038180c1b751a0741b54cbd5c7f3a83d20c3a6bf",
+      "shortHash": "038180c",
+      "date": "2026-02-09T23:30:51+05:30",
+      "headline": "fix: address code review issues for push/Live Activity alignment",
+      "body": "- Remove duplicate PBXBuildFile entries for 3 Swift files that were\n  incorrectly in Frameworks phase (already compiled via fileSystemSynchronizedGroups)\n- Wrap setBadgeCount(0) in #if os(iOS) since it's unavailable on macOS\n- Add CodingKeys to AppSummary.Presence and AppSummary.PushStatus for\n  snake_case JSON decoding (active_platform, active_sessions, last_push_at)\n- Clamp elapsed seconds to non-negative in LiveActivityManager",
+      "repo": "autoapp",
+      "owner": "verygoodplugins",
+      "repoSlug": "AutoApp",
+      "remoteUrl": "https://github.com/verygoodplugins/AutoApp",
+      "stats": {
+        "added": 13,
+        "deleted": 7,
+        "files": 4
+      },
+      "files": [
+        {
+          "file": "AutoHub.xcodeproj/project.pbxproj",
+          "added": 0,
+          "deleted": 6
+        },
+        {
+          "file": "AutoHub/AutoHubApp.swift",
+          "added": 2,
+          "deleted": 0
+        },
+        {
+          "file": "AutoHub/Services/HubAPIService.swift",
+          "added": 10,
+          "deleted": 0
+        },
+        {
+          "file": "AutoHub/Utilities/LiveActivityManager.swift",
+          "added": 1,
+          "deleted": 1
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "da35cf1f53b6eaf107fdc2150868ef7ddb4cdae1",
+      "shortHash": "da35cf1",
+      "date": "2026-02-09T23:22:26+05:30",
+      "headline": "feat: app-enabled push + live activity integration",
+      "body": "",
+      "repo": "autohub",
+      "owner": "verygoodplugins",
+      "repoSlug": "autohub",
+      "remoteUrl": "https://github.com/verygoodplugins/autohub",
+      "stats": {
+        "added": 948,
+        "deleted": 41,
+        "files": 7
+      },
+      "files": [
+        {
+          "file": ".gitignore",
+          "added": 1,
+          "deleted": 0
+        },
+        {
+          "file": "CLAUDE.md",
+          "added": 8,
+          "deleted": 1
+        },
+        {
+          "file": "src/api/routes/v1.js",
+          "added": 151,
+          "deleted": 0
+        },
+        {
+          "file": "src/events/validation.js",
+          "added": 24,
+          "deleted": 10
+        },
+        {
+          "file": "src/push-gateway/index.cjs",
+          "added": 217,
+          "deleted": 8
+        },
+        {
+          "file": "src/services/mobile-event-coordinator.js",
+          "added": 386,
+          "deleted": 0
+        },
+        {
+          "file": "src/services/push-gateway-client.js",
+          "added": 161,
+          "deleted": 22
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "4af39e222a2b21b7906f22aab39c89dbd886cfd7",
+      "shortHash": "4af39e2",
+      "date": "2026-02-09T23:20:38+05:30",
+      "headline": "Add app summary fetching and notification badge reset",
+      "body": "- Introduced AppSummary struct in HubAPIService to encapsulate app state information.\n- Implemented fetchAppSummary method for retrieving app summary data from the server.\n- Updated HubSyncService to fetch and store app summary during synchronization.\n- Reset notification badge count to zero upon app foregrounding in AutoHubApp.\n- Enhanced LiveActivityManager to pass the current environment when registering activity tokens.",
+      "repo": "autoapp",
+      "owner": "verygoodplugins",
+      "repoSlug": "AutoApp",
+      "remoteUrl": "https://github.com/verygoodplugins/AutoApp",
+      "stats": {
+        "added": 78,
+        "deleted": 2,
+        "files": 4
+      },
+      "files": [
+        {
+          "file": "AutoHub/AutoHubApp.swift",
+          "added": 2,
+          "deleted": 0
+        },
+        {
+          "file": "AutoHub/Services/HubAPIService.swift",
+          "added": 57,
+          "deleted": 1
+        },
+        {
+          "file": "AutoHub/Services/HubSyncService.swift",
+          "added": 9,
+          "deleted": 0
+        },
+        {
+          "file": "AutoHub/Utilities/LiveActivityManager.swift",
+          "added": 10,
+          "deleted": 1
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "6ac59a9fab58c2dff8d29c40492c010faacc71f8",
+      "shortHash": "6ac59a9",
+      "date": "2026-02-09T22:25:27+05:30",
+      "headline": "Add AutoHubWidgets target and Live Activity",
+      "body": "Register a new AutoHubWidgets app-extension target and add widget sources. Adds AgentActivityAttributes, AgentActivityWidget, AutoHubWidgetBundle and LiveActivityManager, integrates them into the Xcode project (file refs, groups, build phases, target, product, and dependencies), and links Foundation for the iOS group. Also updates HubAPIService, HubSyncService, PushNotifications, AutoHub-Info.plist and user scheme metadata to support widgets/live activities and push handling.",
+      "repo": "autoapp",
+      "owner": "verygoodplugins",
+      "repoSlug": "AutoApp",
+      "remoteUrl": "https://github.com/verygoodplugins/AutoApp",
+      "stats": {
+        "added": 1096,
+        "deleted": 377,
+        "files": 10
+      },
+      "files": [
+        {
+          "file": "AutoHub.xcodeproj/project.pbxproj",
+          "added": 516,
+          "deleted": 362
+        },
+        {
+          "file": "AutoHub.xcodeproj/xcuserdata/jgarturo.xcuserdatad/xcschemes/xcschememanagement.plist",
+          "added": 10,
+          "deleted": 0
+        },
+        {
+          "file": "AutoHub/AutoHub-Info.plist",
+          "added": 2,
+          "deleted": 0
+        },
+        {
+          "file": "AutoHub/Models/AgentActivityAttributes.swift",
+          "added": 29,
+          "deleted": 0
+        },
+        {
+          "file": "AutoHub/Services/HubAPIService.swift",
+          "added": 52,
+          "deleted": 0
+        },
+        {
+          "file": "AutoHub/Services/HubSyncService.swift",
+          "added": 35,
+          "deleted": 0
+        },
+        {
+          "file": "AutoHub/Utilities/LiveActivityManager.swift",
+          "added": 139,
+          "deleted": 0
+        },
+        {
+          "file": "AutoHub/Utilities/PushNotifications.swift",
+          "added": 110,
+          "deleted": 15
+        },
+        {
+          "file": "AutoHubWidgets/AgentActivityWidget.swift",
+          "added": 189,
+          "deleted": 0
+        },
+        {
+          "file": "AutoHubWidgets/AutoHubWidgetBundle.swift",
+          "added": 14,
+          "deleted": 0
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "30497acb91901171ec74aee393e0a332e1f7ab6c",
+      "shortHash": "30497ac",
+      "date": "2026-02-09T22:20:12+05:30",
+      "headline": "fix: address CodeRabbit review comments on PR #121 (round 2)",
+      "body": "- Swap mismatched scheduler notify comments in .env.example\n- Honor Retry-After header in moltbook-mcp client (sleep + retry)\n- Scan link URLs for secrets in create_link_post handler\n- Align twitter_create_tweet with { success, data } tool contract\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>",
+      "repo": "autohub",
+      "owner": "verygoodplugins",
+      "repoSlug": "autohub",
+      "remoteUrl": "https://github.com/verygoodplugins/autohub",
+      "stats": {
+        "added": 42,
+        "deleted": 32,
+        "files": 4
+      },
+      "files": [
+        {
+          "file": ".env.example",
+          "added": 2,
+          "deleted": 2
+        },
+        {
+          "file": "servers/moltbook-mcp/client.js",
+          "added": 15,
+          "deleted": 3
+        },
+        {
+          "file": "servers/moltbook-mcp/server.js",
+          "added": 2,
+          "deleted": 2
+        },
+        {
+          "file": "tools/twitter-mentions-bot.js",
+          "added": 23,
+          "deleted": 25
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "d55294dd429889f4c107a98a5776f4b4e810760f",
+      "shortHash": "d55294d",
+      "date": "2026-02-09T21:59:32+05:30",
+      "headline": "fix: address CodeRabbit review comments on PR #121",
+      "body": "- .env.example: fix dotenv-linter key order/quoting, add Moltbook env var docs\n- moltbook-mcp/server.js: remove double-wrapping in wrapUserContent, use\n  Promise.allSettled for thread_diff, separate seen vs low-score filtering\n- moltbook-mcp/state.js: add env-var header, fix _dirty flag cleared before\n  successful write\n- workflows/runner.js: document env vars, use WORKFLOW_STEP_TIMEOUT_MS,\n  replace bodyPreview with bodyBytes in error log\n- twitter-mentions-bot.js: persist refreshed OAuth tokens before posting\n- twitter-engagement.md: fix example memory entry with tweet text and ID\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>",
+      "repo": "autohub",
+      "owner": "verygoodplugins",
+      "repoSlug": "autohub",
+      "remoteUrl": "https://github.com/verygoodplugins/autohub",
+      "stats": {
+        "added": 72,
+        "deleted": 70,
+        "files": 6
+      },
+      "files": [
+        {
+          "file": ".env.example",
+          "added": 8,
+          "deleted": 6
+        },
+        {
+          "file": "servers/moltbook-mcp/server.js",
+          "added": 46,
+          "deleted": 54
+        },
+        {
+          "file": "servers/moltbook-mcp/state.js",
+          "added": 7,
+          "deleted": 3
+        },
+        {
+          "file": "src/workflows/runner.js",
+          "added": 7,
+          "deleted": 4
+        },
+        {
+          "file": "tools/twitter-mentions-bot.js",
+          "added": 2,
+          "deleted": 1
+        },
+        {
+          "file": "workflows/heartbeat/twitter-engagement.md",
+          "added": 2,
+          "deleted": 2
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "f361eda40ba9d73eeb89234874211eb6689331ca",
+      "shortHash": "f361eda",
+      "date": "2026-02-09T21:50:47+05:30",
+      "headline": "fix: address CodeRabbit review comments on PR #118",
+      "body": "- Route CLI lifecycle/barge-in logs to stderr (stdout reserved for MCP protocol)\n- Replace console.warn with ContextLogger in CartesiaAudio service\n- Route process-level errors through ContextLogger in voice-server\n- Fix hardcoded 'OpenWakeWord' in startup log to reflect actual engine config\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>",
+      "repo": "autohub",
+      "owner": "verygoodplugins",
+      "repoSlug": "autohub",
+      "remoteUrl": "https://github.com/verygoodplugins/autohub",
+      "stats": {
+        "added": 23,
+        "deleted": 19,
+        "files": 3
+      },
+      "files": [
+        {
+          "file": "scripts/realtime-mcp-agent.js",
+          "added": 13,
+          "deleted": 9
+        },
+        {
+          "file": "src/services/cartesia-audio.js",
+          "added": 8,
+          "deleted": 8
+        },
+        {
+          "file": "src/voice/voice-server.js",
+          "added": 2,
+          "deleted": 2
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "a8a929d01940a08f057d92c59dfa5757542a8608",
+      "shortHash": "a8a929d",
+      "date": "2026-02-09T21:44:17+05:30",
+      "headline": "feat(social): add proactive Twitter posting and improve Moltbook engagement",
+      "body": "Add twitter_create_tweet tool for autonomous original tweet posting with\nsecret scanning, daily rate limiting (3/day), and dry-run support. Refactor\npostReply → postTweet with optional inReplyToId to share posting logic.\n\nNew twitter-engagement workflow runs every 6 hours, recalls moltbook-intel\nand recent experiences from memory, evaluates tweet-worthiness, and posts\n0-2 tweets directly. Includes voice/style guidelines for AutoJack's persona.\n\nImprove Moltbook MCP server with extracted engagement state module and\nenhanced workflow prompt for better community interaction.\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>",
+      "repo": "autohub",
+      "owner": "verygoodplugins",
+      "repoSlug": "autohub",
+      "remoteUrl": "https://github.com/verygoodplugins/autohub",
+      "stats": {
+        "added": 1312,
+        "deleted": 98,
+        "files": 6
+      },
+      "files": [
+        {
+          "file": "servers/moltbook-mcp/client.js",
+          "added": 87,
+          "deleted": 51
+        },
+        {
+          "file": "servers/moltbook-mcp/server.js",
+          "added": 409,
+          "deleted": 23
+        },
+        {
+          "file": "servers/moltbook-mcp/state.js",
+          "added": 441,
+          "deleted": 0
+        },
+        {
+          "file": "tools/twitter-mentions-bot.js",
+          "added": 255,
+          "deleted": 13
+        },
+        {
+          "file": "workflows/heartbeat/moltbook-engagement.md",
+          "added": 19,
+          "deleted": 11
+        },
+        {
+          "file": "workflows/heartbeat/twitter-engagement.md",
+          "added": 101,
+          "deleted": 0
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "90027775834e8293b55a1ca9954c6ef6822dd2b5",
+      "shortHash": "9002777",
+      "date": "2026-02-09T21:31:22+05:30",
+      "headline": "fix(scheduler): make Slack notifications opt-in and fix workflow secrets loading",
+      "body": "Scheduler Slack notifications were opt-out (sent by default), spamming Slack\nfor all 13 workflows without explicit config. Flipped to opt-in: only\nworkflows with `notifications.slack: true` (or global SCHEDULER_NOTIFY_SLACK\nenv override) now send. Added `slack: true` to morning-routine to preserve\nits existing behavior.\n\nAlso fixed a bug where workflow HTTP steps couldn't access secrets\n(GITHUB_PERSONAL_ACCESS_TOKEN, etc.) because ALLOWED_ENV_KEYS was evaluated\nat ES module load time — before dotenv.config() populated process.env.\nChanged to a lazy getter so secrets resolve correctly at runtime. Added\nlogging to HTTP steps for visibility into failures.\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>",
+      "repo": "autohub",
+      "owner": "verygoodplugins",
+      "repoSlug": "autohub",
+      "remoteUrl": "https://github.com/verygoodplugins/autohub",
+      "stats": {
+        "added": 100,
+        "deleted": 27,
+        "files": 4
+      },
+      "files": [
+        {
+          "file": ".env.example",
+          "added": 10,
+          "deleted": 2
+        },
+        {
+          "file": "src/scheduler/workflow-scheduler.js",
+          "added": 14,
+          "deleted": 17
+        },
+        {
+          "file": "src/workflows/runner.js",
+          "added": 74,
+          "deleted": 8
+        },
+        {
+          "file": "workflows/daily/morning-routine.md",
+          "added": 2,
+          "deleted": 0
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "972757488779db2e0d76389ba85fe3b8724c1673",
+      "shortHash": "9727574",
+      "date": "2026-02-09T19:20:31+05:30",
+      "headline": "fix(claude): sanitize system prompt Unicode before API calls",
+      "body": "The system parameter in Claude API requests was not being sanitized\nfor Unicode, while messages were. This caused \"no low surrogate in\nstring\" errors when iOS chat messages or memory context contained\ncurly apostrophes or other problematic Unicode characters.\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>",
+      "repo": "autohub",
+      "owner": "verygoodplugins",
+      "repoSlug": "autohub",
+      "remoteUrl": "https://github.com/verygoodplugins/autohub",
+      "stats": {
+        "added": 1,
+        "deleted": 1,
+        "files": 1
+      },
+      "files": [
+        {
+          "file": "src/claude/service.js",
+          "added": 1,
+          "deleted": 1
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "1449ef631aba25208c79f33123e834449fed269f",
+      "shortHash": "1449ef6",
+      "date": "2026-02-09T19:18:13+05:30",
+      "headline": "Update settings.json",
+      "body": "",
+      "repo": "autohub",
+      "owner": "verygoodplugins",
+      "repoSlug": "autohub",
+      "remoteUrl": "https://github.com/verygoodplugins/autohub",
+      "stats": {
+        "added": 10,
+        "deleted": 12,
+        "files": 1
+      },
+      "files": [
+        {
+          "file": ".claude/settings.json",
+          "added": 10,
+          "deleted": 12
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "b3e55a97e47d01a0343a8b61fbea913c6c023014",
+      "shortHash": "b3e55a9",
+      "date": "2026-02-09T19:17:21+05:30",
+      "headline": "feat(voice): add audio:clear event to web voice client",
+      "body": "Register audio:clear in SERVER_EVENTS so the web client can flush\nits playback queue on server-side barge-in.\n\nNote: --no-verify used because voice-client.js has pre-existing ESLint\nerrors (browser globals, unused vars) unrelated to this change.\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>",
+      "repo": "autohub",
+      "owner": "verygoodplugins",
+      "repoSlug": "autohub",
+      "remoteUrl": "https://github.com/verygoodplugins/autohub",
+      "stats": {
+        "added": 6,
+        "deleted": 5,
+        "files": 1
+      },
+      "files": [
+        {
+          "file": "web/src/voice/voice-client.js",
+          "added": 6,
+          "deleted": 5
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "64c30b0eeda9fe533b749772e74c8b62a9242315",
+      "shortHash": "64c30b0",
+      "date": "2026-02-09T19:17:14+05:30",
+      "headline": "fix(voice): harden TTS reliability and add barge-in support",
+      "body": "- Fix Cartesia WebSocket going stale after idle/interrupt cycles by adding\n  health check in _ensureWs() (checks readyState before reusing) and\n  one-shot retry with fresh WebSocket on send failure\n- Fix isConnected getter to check actual socket state, not just object existence\n- Add CLI barge-in detection: cancel TTS when mic amplitude exceeds echo\n  threshold during playback, with echo cooldown to prevent false VAD triggers\n- Add server-side barge-in for Socket.IO clients: cancelSession() on TTS\n  orchestrator, audio:clear event to flush client playback queue\n- Track cumulative TTS bytes for accurate playback duration estimation\n  instead of fixed grace window (fixes premature speaking-state expiry)\n- Play mic-ready audio cue after barge-in echo cooldown\n- Update voice-config.js env reference to match current pipeline\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>",
+      "repo": "autohub",
+      "owner": "verygoodplugins",
+      "repoSlug": "autohub",
+      "remoteUrl": "https://github.com/verygoodplugins/autohub",
+      "stats": {
+        "added": 197,
+        "deleted": 59,
+        "files": 6
+      },
+      "files": [
+        {
+          "file": "scripts/realtime-mcp-agent.js",
+          "added": 40,
+          "deleted": 6
+        },
+        {
+          "file": "src/services/cartesia-audio.js",
+          "added": 32,
+          "deleted": 3
+        },
+        {
+          "file": "src/voice/tts-orchestrator.js",
+          "added": 56,
+          "deleted": 5
+        },
+        {
+          "file": "src/voice/voice-config.js",
+          "added": 40,
+          "deleted": 34
+        },
+        {
+          "file": "src/voice/voice-server.js",
+          "added": 21,
+          "deleted": 11
+        },
+        {
+          "file": "web/src/components/VoiceChat.jsx",
+          "added": 8,
+          "deleted": 0
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "63d96f2d2e6a1ae6f01ab30c655277e564752712",
+      "shortHash": "63d96f2",
+      "date": "2026-02-09T15:51:34+05:30",
+      "headline": "Update parakeet-stt.js",
+      "body": "",
+      "repo": "autohub",
+      "owner": "verygoodplugins",
+      "repoSlug": "autohub",
+      "remoteUrl": "https://github.com/verygoodplugins/autohub",
+      "stats": {
+        "added": 1,
+        "deleted": 0,
+        "files": 1
+      },
+      "files": [
+        {
+          "file": "src/voice/stt/parakeet-stt.js",
+          "added": 1,
+          "deleted": 0
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "d5ff5abd8b88bb7e52d3402cd70f88f9804b601c",
+      "shortHash": "d5ff5ab",
+      "date": "2026-02-09T15:45:20+05:30",
+      "headline": "Gitignore pycache",
+      "body": "",
+      "repo": "autohub",
+      "owner": "verygoodplugins",
+      "repoSlug": "autohub",
+      "remoteUrl": "https://github.com/verygoodplugins/autohub",
+      "stats": {
+        "added": 22,
+        "deleted": 0,
+        "files": 2
+      },
+      "files": [
+        {
+          "file": ".gitignore",
+          "added": 1,
+          "deleted": 0
+        },
+        {
+          "file": "workflows/daily/wpf-support-dashboard.md",
+          "added": 21,
+          "deleted": 0
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "6b1e46fa6d43766c67f99a397eb653d89c1cfff8",
+      "shortHash": "6b1e46f",
+      "date": "2026-02-09T15:43:50+05:30",
+      "headline": "fix: prevent unhandled promise rejections in conversation logger",
+      "body": "The conversation logger methods (logMessage, logToolCall, updateToolCall,\nupdateMetrics, endConversation) were catching errors, logging them, then\nre-throwing. When the agent executor called these with fire-and-forget\npatterns, rejected promises became unhandled rejections that crashed the\nscheduler process.\n\nChanges:\n- conversation-logger: Return null on errors instead of re-throwing\n- conversation-logger: Warn instead of throw when conversation not found\n- conversation-logger: Clean up activeConversations in endConversation error path\n- executor: Replace void calls with .catch(() => {}) for defense-in-depth\n- executor: Add null check on toolCallId before updateToolCall\n\nFixes workflow execution crashes with \"Conversation not found in active conversations\"\n\nCo-authored-by: Cursor <cursoragent@cursor.com>",
+      "repo": "autohub",
+      "owner": "verygoodplugins",
+      "repoSlug": "autohub",
+      "remoteUrl": "https://github.com/verygoodplugins/autohub",
+      "stats": {
+        "added": 156,
+        "deleted": 115,
+        "files": 2
+      },
+      "files": [
+        {
+          "file": "src/agents/executor.js",
+          "added": 50,
+          "deleted": 41
+        },
+        {
+          "file": "src/services/conversation-logger.js",
+          "added": 106,
+          "deleted": 74
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "1bdfe25d44681d246129d17a8f61850e91256fec",
+      "shortHash": "1bdfe25",
+      "date": "2026-02-09T02:18:13+05:30",
+      "headline": "fix: address CodeRabbit review comments on PR #118",
+      "body": "- parakeet server.py: add main() function for pyproject.toml entry point\n- parakeet server.py: add threading lock to prevent download race condition\n- local-voice-controller.js: await async stt.start() in speech-start handler\n- deepgram-stt.js: fix race condition with deferred Promise resolver pattern\n- deepgram-stt.js: null connection before requestClose() to prevent stop/start race\n- parakeet-launcher.js: wrap URL parsing in try/catch for malformed PARAKEET_URL\n- parakeet-stt.js: add formData.getHeaders() for correct multipart boundary\n- realtime-mcp-agent.js: use actual wake word engine name in disconnect log\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>",
+      "repo": "autohub",
+      "owner": "verygoodplugins",
+      "repoSlug": "autohub",
+      "remoteUrl": "https://github.com/verygoodplugins/autohub",
+      "stats": {
+        "added": 51,
+        "deleted": 30,
+        "files": 6
+      },
+      "files": [
+        {
+          "file": "scripts/realtime-mcp-agent.js",
+          "added": 6,
+          "deleted": 2
+        },
+        {
+          "file": "services/parakeet-server/server.py",
+          "added": 14,
+          "deleted": 5
+        },
+        {
+          "file": "src/voice/local-voice-controller.js",
+          "added": 2,
+          "deleted": 2
+        },
+        {
+          "file": "src/voice/stt/deepgram-stt.js",
+          "added": 21,
+          "deleted": 20
+        },
+        {
+          "file": "src/voice/stt/parakeet-launcher.js",
+          "added": 7,
+          "deleted": 1
+        },
+        {
+          "file": "src/voice/stt/parakeet-stt.js",
+          "added": 1,
+          "deleted": 0
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "8d6747246ecd66e2ae6923a3a76d17f14001ac87",
+      "shortHash": "8d67472",
+      "date": "2026-02-09T02:06:00+05:30",
+      "headline": "refactor(voice): transition to local voice pipeline with Silero VAD and STT",
+      "body": "- **Replace OpenAI Realtime API with a local voice pipeline** — integrates Silero VAD, Parakeet/Deepgram for STT, and Cartesia for TTS, enhancing performance and reducing dependency on external services.\n- **Update environment variables** — introduces `STT_PROVIDER` for selecting STT backend and `DEEPGRAM_API_KEY` for Deepgram integration.\n- **Revise voice server and client architecture** — removes legacy OpenAI components, streamlines voice processing, and improves logging for better debugging.\n- **Enhance documentation** — updates README and configuration files to reflect new voice processing flow and environment variable requirements.\n\n## Files Changed\n- `.env.example`, `.gitignore`, `CLAUDE.md`, `package-lock.json`, `package.json`, `scripts/realtime-mcp-agent.js`, `src/services/voice/realtime-controller.js`, `src/voice/hybrid-client.js`, `src/voice/openai-realtime.js`, `src/voice/voice-config.js`, `src/voice/voice-server.js`\n\n## Test Plan\n- [ ] Verify local voice pipeline functionality with `npm run voice:realtime`.\n- [ ] Test STT and TTS integration with various audio inputs.\n- [ ] Ensure logging captures relevant events without excessive noise.",
+      "repo": "autohub",
+      "owner": "verygoodplugins",
+      "repoSlug": "autohub",
+      "remoteUrl": "https://github.com/verygoodplugins/autohub",
+      "stats": {
+        "added": 4177,
+        "deleted": 3246,
+        "files": 24
+      },
+      "files": [
+        {
+          "file": ".env.example",
+          "added": 0,
+          "deleted": 1
+        },
+        {
+          "file": ".gitignore",
+          "added": 4,
+          "deleted": 0
+        },
+        {
+          "file": "CLAUDE.md",
+          "added": 6,
+          "deleted": 5
+        },
+        {
+          "file": "claude-symphony.md",
+          "added": 46,
+          "deleted": 0
+        },
+        {
+          "file": "package-lock.json",
+          "added": 296,
+          "deleted": 17
+        },
+        {
+          "file": "package.json",
+          "added": 5,
+          "deleted": 0
+        },
+        {
+          "file": "scripts/realtime-mcp-agent.js",
+          "added": 36,
+          "deleted": 50
+        },
+        {
+          "file": "services/parakeet-server/pyproject.toml",
+          "added": 14,
+          "deleted": 0
+        },
+        {
+          "file": "services/parakeet-server/server.py",
+          "added": 182,
+          "deleted": 0
+        },
+        {
+          "file": "services/parakeet-server/uv.lock",
+          "added": 1893,
+          "deleted": 0
+        },
+        {
+          "file": "src/services/voice/realtime-controller.js",
+          "added": 0,
+          "deleted": 1047
+        },
+        {
+          "file": "src/voice/README.md",
+          "added": 3,
+          "deleted": 1
+        },
+        {
+          "file": "src/voice/hybrid-client.js",
+          "added": 0,
+          "deleted": 172
+        },
+        {
+          "file": "src/voice/local-voice-controller.js",
+          "added": 379,
+          "deleted": 0
+        },
+        {
+          "file": "src/voice/openai-realtime.js",
+          "added": 0,
+          "deleted": 600
+        },
+        {
+          "file": "src/voice/stt/deepgram-stt.js",
+          "added": 212,
+          "deleted": 0
+        },
+        {
+          "file": "src/voice/stt/parakeet-launcher.js",
+          "added": 199,
+          "deleted": 0
+        },
+        {
+          "file": "src/voice/stt/parakeet-stt.js",
+          "added": 203,
+          "deleted": 0
+        },
+        {
+          "file": "src/voice/stt/stt-provider.js",
+          "added": 91,
+          "deleted": 0
+        },
+        {
+          "file": "src/voice/stt/whisper-local-stt.js",
+          "added": 82,
+          "deleted": 0
+        },
+        {
+          "file": "src/voice/vad-config.js",
+          "added": 1,
+          "deleted": 2
+        },
+        {
+          "file": "src/voice/vad/silero-vad.js",
+          "added": 267,
+          "deleted": 0
+        },
+        {
+          "file": "src/voice/voice-config.js",
+          "added": 24,
+          "deleted": 72
+        },
+        {
+          "file": "src/voice/voice-server.js",
+          "added": 234,
+          "deleted": 1279
+        }
+      ]
+    },
     {
       "type": "commit",
       "hash": "421a8293a4e7b01e5cc8626887c7925c4e4aaaea",
@@ -15989,612 +17012,76 @@
           "deleted": 0
         }
       ]
-    },
-    {
-      "type": "commit",
-      "hash": "f41202c0b61cf6bd1d0498cbb8a98756fd6d84bb",
-      "shortHash": "f41202c",
-      "date": "2026-01-11T07:49:14+01:00",
-      "headline": "Update slack-work-object-validator.js",
-      "body": "",
-      "repo": "autohub",
-      "owner": "verygoodplugins",
-      "repoSlug": "autohub",
-      "remoteUrl": "https://github.com/verygoodplugins/autohub",
-      "stats": {
-        "added": 41,
-        "deleted": 16,
-        "files": 1
-      },
-      "files": [
-        {
-          "file": "test/slack-work-object-validator.js",
-          "added": 41,
-          "deleted": 16
-        }
-      ]
-    },
-    {
-      "type": "commit",
-      "hash": "c40ce6032e21760d2efcf3e24e052540d120dbfc",
-      "shortHash": "c40ce60",
-      "date": "2026-01-11T05:36:14+01:00",
-      "headline": "Add connection validation, stdio safety, and improved error handling",
-      "body": "Introduces a new tool for validating EDD API connection, enforces MCP stdio protocol safety by redirecting console output to stderr, and adds detailed HTTP error diagnostics with actionable hints. Updates manifest and server metadata, normalizes EDD API URLs, and expands tests for error handling and stdio cleanliness. Also adds brand assets and screenshots.",
-      "repo": "mcp-edd",
-      "owner": "verygoodplugins",
-      "repoSlug": "mcp-edd",
-      "remoteUrl": "https://github.com/verygoodplugins/mcp-edd",
-      "stats": {
-        "added": 535,
-        "deleted": 27,
-        "files": 13
-      },
-      "files": [
-        {
-          "file": "assets/README.md",
-          "added": 49,
-          "deleted": 0
-        },
-        {
-          "file": "assets/screenshots/mcp-edd-setup.jpg",
-          "added": 0,
-          "deleted": 0
-        },
-        {
-          "file": "eslint.config.mjs",
-          "added": 3,
-          "deleted": 0
-        },
-        {
-          "file": "manifest.json",
-          "added": 81,
-          "deleted": 17
-        },
-        {
-          "file": "mcp-edd.mcpb",
-          "added": 0,
-          "deleted": 0
-        },
-        {
-          "file": "server.json",
-          "added": 4,
-          "deleted": 0
-        },
-        {
-          "file": "src/edd-client.ts",
-          "added": 105,
-          "deleted": 1
-        },
-        {
-          "file": "src/env.ts",
-          "added": 57,
-          "deleted": 4
-        },
-        {
-          "file": "src/index.ts",
-          "added": 64,
-          "deleted": 1
-        },
-        {
-          "file": "src/stdio.ts",
-          "added": 26,
-          "deleted": 0
-        },
-        {
-          "file": "tests/unit/edd-client.test.ts",
-          "added": 62,
-          "deleted": 4
-        },
-        {
-          "file": "tests/unit/env.test.ts",
-          "added": 33,
-          "deleted": 0
-        },
-        {
-          "file": "tests/unit/stdio-clean.test.ts",
-          "added": 51,
-          "deleted": 0
-        }
-      ]
-    },
-    {
-      "type": "commit",
-      "hash": "e1e50b7fa03ff29d865ac19578fb78c82f3ff060",
-      "shortHash": "e1e50b7",
-      "date": "2026-01-11T05:34:24+01:00",
-      "headline": "Add Slack modal for viewing work object details",
-      "body": "Introduces a 'View details' button in work object unfurls, opening a Slack modal with fetched details for GitHub issues and PRs. Updates interactive handler to support the new modal, including chunking long text and error handling. Also updates wake-word requirements and deployment script to install openwakeword with --no-deps and adds several Python dependencies.",
-      "repo": "autohub",
-      "owner": "verygoodplugins",
-      "repoSlug": "autohub",
-      "remoteUrl": "https://github.com/verygoodplugins/autohub",
-      "stats": {
-        "added": 186,
-        "deleted": 2,
-        "files": 4
-      },
-      "files": [
-        {
-          "file": "scripts/deploy-pi.sh",
-          "added": 2,
-          "deleted": 1
-        },
-        {
-          "file": "src/slack-server/handlers/interactive.js",
-          "added": 151,
-          "deleted": 0
-        },
-        {
-          "file": "src/slack-server/work-objects/unfurl-service.js",
-          "added": 28,
-          "deleted": 0
-        },
-        {
-          "file": "src/wake-word/requirements.txt",
-          "added": 5,
-          "deleted": 1
-        }
-      ]
-    },
-    {
-      "type": "commit",
-      "hash": "48f9dd084fe5d6d08c7773d777f6c94855f7d555",
-      "shortHash": "48f9dd0",
-      "date": "2026-01-11T04:57:53+01:00",
-      "headline": "Add Evernote auto-formatter integration and docs",
-      "body": "Introduces Evernote note auto-formatting via polling and webhook workflow. Adds environment variables, setup and quick start documentation, polling service script, and related test harnesses. Updates tool filters, package scripts, and improves code consistency in several scripts. Also adds a wake word sample recorder script and updates documentation for open application tools.",
-      "repo": "autohub",
-      "owner": "verygoodplugins",
-      "repoSlug": "autohub",
-      "remoteUrl": "https://github.com/verygoodplugins/autohub",
-      "stats": {
-        "added": 4305,
-        "deleted": 587,
-        "files": 48
-      },
-      "files": [
-        {
-          "file": ".env.example",
-          "added": 17,
-          "deleted": 1
-        },
-        {
-          "file": "config/tool-filters.json",
-          "added": 7,
-          "deleted": 2
-        },
-        {
-          "file": "docs/EVERNOTE-FORMATTER-SETUP.md",
-          "added": 479,
-          "deleted": 0
-        },
-        {
-          "file": "docs/EVERNOTE-QUICK-START.md",
-          "added": 397,
-          "deleted": 0
-        },
-        {
-          "file": "docs/OPEN-APPLICATION-TOOL.md",
-          "added": 1,
-          "deleted": 0
-        },
-        {
-          "file": "package.json",
-          "added": 3,
-          "deleted": 1
-        },
-        {
-          "file": "scripts/add-open-tools.js",
-          "added": 1,
-          "deleted": 1
-        },
-        {
-          "file": "scripts/deploy-pi.sh",
-          "added": 1,
-          "deleted": 0
-        },
-        {
-          "file": "scripts/migrate-databases.js",
-          "added": 8,
-          "deleted": 8
-        },
-        {
-          "file": "scripts/pi-voice-client.js",
-          "added": 10,
-          "deleted": 10
-        },
-        {
-          "file": "scripts/realtime-mcp-agent.js",
-          "added": 111,
-          "deleted": 36
-        },
-        {
-          "file": "scripts/record-wake-samples.sh",
-          "added": 185,
-          "deleted": 0
-        },
-        {
-          "file": "scripts/start-evernote-formatter.js",
-          "added": 221,
-          "deleted": 0
-        },
-        {
-          "file": "scripts/test-agent-scenarios.js",
-          "added": 3,
-          "deleted": 3
-        },
-        {
-          "file": "scripts/test-celebrity-research.js",
-          "added": 65,
-          "deleted": 65
-        },
-        {
-          "file": "scripts/test-flight-search.js",
-          "added": 0,
-          "deleted": 5
-        },
-        {
-          "file": "scripts/voice-supervisor.js",
-          "added": 1,
-          "deleted": 1
-        },
-        {
-          "file": "src/chat-server/db.js",
-          "added": 6,
-          "deleted": 6
-        },
-        {
-          "file": "src/chat-server/index.js",
-          "added": 1,
-          "deleted": 1
-        },
-        {
-          "file": "src/chat-server/routes/chat.js",
-          "added": 2,
-          "deleted": 2
-        },
-        {
-          "file": "src/chat-server/voice-context-cache.js",
-          "added": 2,
-          "deleted": 2
-        },
-        {
-          "file": "src/claude/service.js",
-          "added": 7,
-          "deleted": 5
-        },
-        {
-          "file": "src/claude/tools/memory-recall-tool.js",
-          "added": 0,
-          "deleted": 5
-        },
-        {
-          "file": "src/db/logger.js",
-          "added": 3,
-          "deleted": 3
-        },
-        {
-          "file": "src/evernote-polling-service.js",
-          "added": 93,
-          "deleted": 0
-        },
-        {
-          "file": "src/memory/conversation-extractor.js",
-          "added": 1,
-          "deleted": 1
-        },
-        {
-          "file": "src/memory/memory-prefetcher.js",
-          "added": 1,
-          "deleted": 1
-        },
-        {
-          "file": "src/services/evernote-poller.js",
-          "added": 396,
-          "deleted": 0
-        },
-        {
-          "file": "src/services/mcp-executor.js",
-          "added": 43,
-          "deleted": 24
-        },
-        {
-          "file": "src/services/restart-manager.js",
-          "added": 1,
-          "deleted": 1
-        },
-        {
-          "file": "src/services/whatsapp-enricher.js",
-          "added": 11,
-          "deleted": 11
-        },
-        {
-          "file": "src/slack-server/format/blocks.js",
-          "added": 3,
-          "deleted": 2
-        },
-        {
-          "file": "src/slack-server/index.js",
-          "added": 314,
-          "deleted": 226
-        },
-        {
-          "file": "src/slack-server/work-objects/agent-entity-builder.js",
-          "added": 5,
-          "deleted": 5
-        },
-        {
-          "file": "src/slack-server/work-objects/entity-types.js",
-          "added": 69,
-          "deleted": 24
-        },
-        {
-          "file": "src/slack-server/work-objects/flexpane-handler.js",
-          "added": 1,
-          "deleted": 1
-        },
-        {
-          "file": "src/slack-server/work-objects/unfurl-service.js",
-          "added": 90,
-          "deleted": 50
-        },
-        {
-          "file": "src/voice/voice-server.js",
-          "added": 3,
-          "deleted": 3
-        },
-        {
-          "file": "test/open-tools.test.js",
-          "added": 1,
-          "deleted": 1
-        },
-        {
-          "file": "test/restart-manager.test.js",
-          "added": 1,
-          "deleted": 1
-        },
-        {
-          "file": "test/slack-api-test.js",
-          "added": 377,
-          "deleted": 0
-        },
-        {
-          "file": "test/slack-unfurl-harness.js",
-          "added": 463,
-          "deleted": 0
-        },
-        {
-          "file": "test/slack-work-object-validator.js",
-          "added": 317,
-          "deleted": 0
-        },
-        {
-          "file": "test/slack-work-objects-test.js",
-          "added": 94,
-          "deleted": 36
-        },
-        {
-          "file": "tools/developer-activity-report.js",
-          "added": 15,
-          "deleted": 15
-        },
-        {
-          "file": "web/src/api/client.js",
-          "added": 3,
-          "deleted": 3
-        },
-        {
-          "file": "web/src/components/ConversationSidebar.jsx",
-          "added": 35,
-          "deleted": 25
-        },
-        {
-          "file": "workflows/webhooks/evernote-note-formatter.md",
-          "added": 437,
-          "deleted": 0
-        }
-      ]
-    },
-    {
-      "type": "commit",
-      "hash": "2133b4b8b1cc04758d25dfcc229b88b6dd8bb9de",
-      "shortHash": "2133b4b",
-      "date": "2026-01-11T00:48:53+01:00",
-      "headline": "Adjust voice client timing and thresholds",
-      "body": "Reduced default silence duration from 1s to 0.5s and interrupt arm delay from 500ms to 250ms in scripts/voice-client.js for faster and more responsive voice interactions. Improved code formatting for argument parsing and latency logging. Also deleted blog-update.md and updated demo.mp4 asset.",
-      "repo": "uncensored-voice-server",
-      "owner": "verygoodplugins",
-      "repoSlug": "uncensored-voice-server",
-      "remoteUrl": "https://github.com/verygoodplugins/uncensored-voice-server",
-      "stats": {
-        "added": 13,
-        "deleted": 245,
-        "files": 3
-      },
-      "files": [
-        {
-          "file": "assets/demo.mp4",
-          "added": 0,
-          "deleted": 0
-        },
-        {
-          "file": "blog-update.md",
-          "added": 0,
-          "deleted": 239
-        },
-        {
-          "file": "scripts/voice-client.js",
-          "added": 13,
-          "deleted": 6
-        }
-      ]
-    },
-    {
-      "type": "commit",
-      "hash": "46ae3abb7091ce06047b7b46e93dcbb97d9f90f3",
-      "shortHash": "46ae3ab",
-      "date": "2026-01-11T00:26:20+01:00",
-      "headline": "Add unified voice launcher, image description tool, and update docs",
-      "body": "Introduces `bin/voice.js` for unified voice server/client launching and `bin/describe-image.js` for uncensored image descriptions using Qwen2.5-VL. Updates `.env.example` with new defaults and tuning options, adds demo assets, and significantly expands the README with new setup instructions, architecture diagrams, and detailed personality and session management documentation. Also updates scripts and package.json to support new commands, and adds a technical blog post on voice AI latency optimization.",
-      "repo": "uncensored-voice-server",
-      "owner": "verygoodplugins",
-      "repoSlug": "uncensored-voice-server",
-      "remoteUrl": "https://github.com/verygoodplugins/uncensored-voice-server",
-      "stats": {
-        "added": 1586,
-        "deleted": 227,
-        "files": 18
-      },
-      "files": [
-        {
-          "file": ".env.example",
-          "added": 23,
-          "deleted": 4
-        },
-        {
-          "file": ".gitignore",
-          "added": 1,
-          "deleted": 0
-        },
-        {
-          "file": ".npmignore",
-          "added": 33,
-          "deleted": 0
-        },
-        {
-          "file": "README.md",
-          "added": 224,
-          "deleted": 144
-        },
-        {
-          "file": "assets/demo.gif",
-          "added": 0,
-          "deleted": 0
-        },
-        {
-          "file": "assets/demo.mp4",
-          "added": 0,
-          "deleted": 0
-        },
-        {
-          "file": "bin/describe-image.js",
-          "added": 242,
-          "deleted": 0
-        },
-        {
-          "file": "bin/voice.js",
-          "added": 348,
-          "deleted": 0
-        },
-        {
-          "file": "bin/whisper-server",
-          "added": 0,
-          "deleted": 0
-        },
-        {
-          "file": "blog-update.md",
-          "added": 239,
-          "deleted": 0
-        },
-        {
-          "file": "package.json",
-          "added": 8,
-          "deleted": 0
-        },
-        {
-          "file": "scripts/ai-conversation.js",
-          "added": 3,
-          "deleted": 3
-        },
-        {
-          "file": "scripts/voice-client.js",
-          "added": 65,
-          "deleted": 10
-        },
-        {
-          "file": "scripts/whisper-server.sh",
-          "added": 61,
-          "deleted": 0
-        },
-        {
-          "file": "src/config.js",
-          "added": 6,
-          "deleted": 4
-        },
-        {
-          "file": "src/personality.js",
-          "added": 197,
-          "deleted": 41
-        },
-        {
-          "file": "src/server.js",
-          "added": 74,
-          "deleted": 21
-        },
-        {
-          "file": "src/voice-io.js",
-          "added": 62,
-          "deleted": 0
-        }
-      ]
-    },
-    {
-      "type": "commit",
-      "hash": "7db8e4d3dd2011af6b13cfdb9e9ee153b2b4c4fe",
-      "shortHash": "7db8e4d",
-      "date": "2026-01-10T15:35:47+01:00",
-      "headline": "Fix Slack Work Objects rich card expansion and re-enable AI feedback",
-      "body": "### Work Object Unfurls (Rich Cards)\n\n**Problem**: Rich cards were showing as flat Block Kit cards, not expanding\nin Slack sidebar. Content was truncated.\n\n**Root Cause**: unfurl-service.js was using Block Kit fallback due to\n`cannot_parse_attachment` errors from malformed Work Object metadata.\n\n**Fix**:\n- Updated entity metadata format to match Slack's 2024 spec\n- Added missing `url` field to entity attributes (required)\n- Added `label` fields to all entity fields for proper display\n- Increased description limit to 1000 chars (Slack limit)\n- Removed unsupported `format: 'markdown'` field\n- Added intelligent Block Kit fallback with automatic retry\n- Added `SLACK_USE_WORK_OBJECTS` env flag (default: true)\n\n**Impact**: GitHub issues, FreeScout tickets, agent tasks now unfurl as\nproper expandable rich cards.\n\n### AI Feedback Blocks\n\n**Fix**:\n- Re-enabled feedback buttons (👍👎) with `SLACK_AI_FEEDBACK_ENABLED` flag\n- Added error handling so failures don't break responses\n- Default: disabled (safe until app is configured)\n\n### Documentation & Tests\n\n- Added comprehensive audit: docs/slack-bot-audit-2025.md\n- Added fix guide: docs/slack-work-objects-fix.md\n- Added summary: docs/slack-bot-improvements-summary.md\n- Added test suite: test/slack-work-objects-test.js (all passing ✅)\n\n### Files Changed\n\n- src/slack-server/work-objects/unfurl-service.js - Fix metadata format\n- src/slack-server/work-objects/entity-types.js - Add url, labels, limits\n- src/slack-server/format/blocks.js - Re-enable feedback blocks\n- docs/ - Comprehensive documentation suite\n- test/ - Automated validation tests\n\n### Testing\n\nRun: `node test/slack-work-objects-test.js` (all passing)\nThen: Post GitHub URL in Slack, click card → should expand in sidebar\n\nSee docs/slack-work-objects-fix.md for detailed testing instructions.\n\nFixes rich card expansion issue. No breaking changes (feature-flagged).",
-      "repo": "autohub",
-      "owner": "verygoodplugins",
-      "repoSlug": "autohub",
-      "remoteUrl": "https://github.com/verygoodplugins/autohub",
-      "stats": {
-        "added": 1595,
-        "deleted": 55,
-        "files": 7
-      },
-      "files": [
-        {
-          "file": "docs/slack-bot-audit-2025.md",
-          "added": 496,
-          "deleted": 0
-        },
-        {
-          "file": "docs/slack-bot-improvements-summary.md",
-          "added": 262,
-          "deleted": 0
-        },
-        {
-          "file": "docs/slack-work-objects-fix.md",
-          "added": 265,
-          "deleted": 0
-        },
-        {
-          "file": "src/slack-server/format/blocks.js",
-          "added": 19,
-          "deleted": 13
-        },
-        {
-          "file": "src/slack-server/work-objects/entity-types.js",
-          "added": 52,
-          "deleted": 33
-        },
-        {
-          "file": "src/slack-server/work-objects/unfurl-service.js",
-          "added": 67,
-          "deleted": 9
-        },
-        {
-          "file": "test/slack-work-objects-test.js",
-          "added": 434,
-          "deleted": 0
-        }
-      ]
     }
   ],
   "prs": [
+    {
+      "type": "pr",
+      "number": 66,
+      "title": "feat: add LongMemEval benchmark harness (ICLR 2025)",
+      "url": "https://github.com/verygoodplugins/automem/pull/66",
+      "state": "OPEN",
+      "date": "2026-02-10T08:10:32Z",
+      "repo": "automem",
+      "repoFull": "verygoodplugins/automem",
+      "stats": {
+        "added": 1472,
+        "deleted": 3,
+        "files": 7
+      },
+      "baseBranch": "main",
+      "headBranch": "claude/longmemeval-benchmark-5vzWE",
+      "mergeable": "MERGEABLE",
+      "commits": 1,
+      "reviews": [
+        {
+          "author": "coderabbitai",
+          "state": "COMMENTED",
+          "submittedAt": "2026-02-10T08:20:02Z"
+        }
+      ],
+      "labels": [
+        "enhancement"
+      ],
+      "files": [
+        {
+          "file": ".gitignore",
+          "added": 2,
+          "deleted": 0
+        },
+        {
+          "file": "Makefile",
+          "added": 13,
+          "deleted": 3
+        },
+        {
+          "file": "test-longmemeval-benchmark.sh",
+          "added": 240,
+          "deleted": 0
+        },
+        {
+          "file": "tests/benchmarks/longmemeval/__init__.py",
+          "added": 0,
+          "deleted": 0
+        },
+        {
+          "file": "tests/benchmarks/longmemeval/configs.py",
+          "added": 138,
+          "deleted": 0
+        },
+        {
+          "file": "tests/benchmarks/longmemeval/evaluator.py",
+          "added": 333,
+          "deleted": 0
+        },
+        {
+          "file": "tests/benchmarks/longmemeval/test_longmemeval.py",
+          "added": 746,
+          "deleted": 0
+        }
+      ],
+      "body": "Implement a complete benchmark harness for evaluating AutoMem against the\nLongMemEval benchmark (500 questions, 6 types, ~40 sessions each). Follows\nthe same patterns as the existing LoCoMo benchmark.\n\nKey components:\n- configs.py: 7 preset configurations (baseline, per-turn, expand-entities,\n  expand-relations, high-k, temporal, full-graph)\n- evaluator.py: Quick local scoring (exact/substring/F1) and GPT-4o-based\n  evaluation with abstention detection\n- test_longmemeval.py: Main harness - ingest sessions, recall, generate\n  answers via LLM with chain-of-note prompting, score, report\n- test-longmemeval-benchmark.sh: Shell runner with local/Railway support\n- Makefile targets: test-longmemeval, test-longmemeval-live\n\nhttps://claude.ai/code/session_01CM7dQiYNPtYj8byyuwckMi"
+    },
     {
       "type": "pr",
       "number": 65,
@@ -16725,35 +17212,6 @@
         }
       ],
       "body": "## Summary\n- Fixes `LLM classification failed: Completions.create() got an unexpected keyword argument 'max_output_tokens'` errors in production\n- `max_output_tokens` is an Anthropic parameter — OpenAI's SDK uses `max_completion_tokens` for gpt-5 models (same as o-series)\n- Affects both `app.py` (classification) and `automem/utils/text.py` (summarization)\n\n## Test plan\n- [x] `pytest tests/test_app.py` — 15/15 passing\n- [x] Deploy and verify classification works with `gpt-5-nano`"
-    },
-    {
-      "type": "pr",
-      "number": 60,
-      "title": "ci: add push trigger to release-please workflow",
-      "url": "https://github.com/verygoodplugins/automem/pull/60",
-      "state": "MERGED",
-      "date": "2026-02-06T19:41:47Z",
-      "repo": "automem",
-      "repoFull": "verygoodplugins/automem",
-      "stats": {
-        "added": 2,
-        "deleted": 1,
-        "files": 1
-      },
-      "baseBranch": "main",
-      "headBranch": "ci/release-please-push-trigger",
-      "mergeable": "UNKNOWN",
-      "commits": 1,
-      "reviews": [],
-      "labels": [],
-      "files": [
-        {
-          "file": ".github/workflows/release-please.yml",
-          "added": 2,
-          "deleted": 1
-        }
-      ],
-      "body": "## Summary\n- Adds `push` trigger to release-please workflow so it auto-updates on every merge to main\n- Previously only ran on `workflow_dispatch`, causing PR #52 to go stale since Jan 21\n\n## Context\nPR #52 (release 0.10.0) has been stuck because release-please wasn't picking up new commits (2 feats, 1 fix since Jan 21)."
     },
     {
       "type": "pr",
@@ -17683,14 +18141,6 @@
     }
   ],
   "repos": {
-    "uncensored-voice-server": {
-      "commits": 2,
-      "additions": 1599,
-      "deletions": 472,
-      "remoteUrl": "https://github.com/verygoodplugins/uncensored-voice-server",
-      "owner": "verygoodplugins",
-      "repoSlug": "uncensored-voice-server"
-    },
     "whatsapp-mcp": {
       "commits": 1,
       "additions": 187,
@@ -17722,14 +18172,6 @@
       "remoteUrl": "https://github.com/verygoodplugins/mcp-evernote",
       "owner": "verygoodplugins",
       "repoSlug": "mcp-evernote"
-    },
-    "mcp-edd": {
-      "commits": 1,
-      "additions": 535,
-      "deletions": 27,
-      "remoteUrl": "https://github.com/verygoodplugins/mcp-edd",
-      "owner": "verygoodplugins",
-      "repoSlug": "mcp-edd"
     },
     "mcp-ecosystem": {
       "commits": 4,
@@ -17780,17 +18222,17 @@
       "repoSlug": "automem"
     },
     "autohub": {
-      "commits": 237,
-      "additions": 94778,
-      "deletions": 45421,
+      "commits": 252,
+      "additions": 99069,
+      "deletions": 49393,
       "remoteUrl": "https://github.com/verygoodplugins/autohub",
       "owner": "verygoodplugins",
       "repoSlug": "autohub"
     },
     "autoapp": {
-      "commits": 19,
-      "additions": 8240,
-      "deletions": 8494,
+      "commits": 22,
+      "additions": 9427,
+      "deletions": 8880,
       "remoteUrl": "https://github.com/verygoodplugins/AutoApp",
       "owner": "verygoodplugins",
       "repoSlug": "AutoApp"
@@ -17805,10 +18247,10 @@
     }
   },
   "stats": {
-    "additions": 174308,
-    "deletions": 68167,
-    "files": 1895,
-    "commits": 373,
+    "additions": 177652,
+    "deletions": 72026,
+    "files": 1922,
+    "commits": 388,
     "prs": 17
   }
 }
