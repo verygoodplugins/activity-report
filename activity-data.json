@@ -1,7 +1,427 @@
 {
-  "generatedAt": "2026-02-12T09:53:09.019Z",
-  "periodStart": "2026-01-13T09:53:09.018Z",
+  "generatedAt": "2026-02-13T01:48:53.752Z",
+  "periodStart": "2026-01-14T01:48:53.751Z",
   "commits": [
+    {
+      "type": "commit",
+      "hash": "625ef825fae10169017c1731264d41a115f9536c",
+      "shortHash": "625ef82",
+      "date": "2026-02-13T07:18:25+05:30",
+      "headline": "fix(workflow): add resilience to daily activity report",
+      "body": "- Add cleanup step to abort stuck rebase/merge from prior failed runs\n- Push with 3-attempt retry loop and auto-conflict resolution (-X theirs)\n- Fallback: full regeneration from latest if rebase still fails\n- Deploy runs even if commit/push fails (if: always()) so site stays fresh\n- Pass GH_TOKEN to commit step for regeneration in retry loop",
+      "repo": "activity-report",
+      "owner": "verygoodplugins",
+      "repoSlug": "activity-report",
+      "remoteUrl": "https://github.com/verygoodplugins/activity-report",
+      "stats": {
+        "added": 57,
+        "deleted": 4,
+        "files": 1
+      },
+      "files": [
+        {
+          "file": ".github/workflows/daily-update.yml",
+          "added": 57,
+          "deleted": 4
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "cf3e9248101a9d455ee93bbc681c502a5c64cdb4",
+      "shortHash": "cf3e924",
+      "date": "2026-02-13T06:43:31+05:30",
+      "headline": "fix: handle clipboard rejection, remove unused icon imports",
+      "body": "- MessageList.jsx: async/try-catch on clipboard.writeText\n- VoiceStatusBar.jsx: remove unused Radio/Headphones imports\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>",
+      "repo": "autohub",
+      "owner": "verygoodplugins",
+      "repoSlug": "autohub",
+      "remoteUrl": "https://github.com/verygoodplugins/autohub",
+      "stats": {
+        "added": 7,
+        "deleted": 4,
+        "files": 2
+      },
+      "files": [
+        {
+          "file": "web/src/components/MessageList.jsx",
+          "added": 6,
+          "deleted": 3
+        },
+        {
+          "file": "web/src/components/VoiceStatusBar.jsx",
+          "added": 1,
+          "deleted": 1
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "ec63ebf60fb60a16cc547ae9c198f62d207916d1",
+      "shortHash": "ec63ebf",
+      "date": "2026-02-13T06:34:10+05:30",
+      "headline": "fix: address CodeRabbit review comments on PR #125",
+      "body": "- chat.js: async fs, response schema { success, result }, file count/size limits\n- App.jsx: conversation commands navigate to chat view first\n- CommandPalette.jsx: guard ArrowUp/Down against empty list (NaN prevention)\n- ContextBar.jsx: strict equality checks for eqeqeq lint rule\n- MessageInput.jsx: validate drag-dropped file types, prevent duplicate submits\n- MessageList.jsx: guard citation links against non-http(s) schemes (XSS)\n- VoiceStatusBar.jsx: static Tailwind class map, remove unused isConnecting prop\n- useRealtimeVoice.js: mute-aware resume prevents mic reactivation when muted\n- index.css: modern rgb() color notation for Stylelint compliance\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>",
+      "repo": "autohub",
+      "owner": "verygoodplugins",
+      "repoSlug": "autohub",
+      "remoteUrl": "https://github.com/verygoodplugins/autohub",
+      "stats": {
+        "added": 92,
+        "deleted": 52,
+        "files": 10
+      },
+      "files": [
+        {
+          "file": "src/chat-server/routes/chat.js",
+          "added": 47,
+          "deleted": 37
+        },
+        {
+          "file": "web/src/App.jsx",
+          "added": 2,
+          "deleted": 0
+        },
+        {
+          "file": "web/src/components/ChatInterface.jsx",
+          "added": 0,
+          "deleted": 1
+        },
+        {
+          "file": "web/src/components/CommandPalette.jsx",
+          "added": 2,
+          "deleted": 2
+        },
+        {
+          "file": "web/src/components/ContextBar.jsx",
+          "added": 1,
+          "deleted": 1
+        },
+        {
+          "file": "web/src/components/MessageInput.jsx",
+          "added": 11,
+          "deleted": 1
+        },
+        {
+          "file": "web/src/components/MessageList.jsx",
+          "added": 10,
+          "deleted": 1
+        },
+        {
+          "file": "web/src/components/VoiceStatusBar.jsx",
+          "added": 3,
+          "deleted": 2
+        },
+        {
+          "file": "web/src/hooks/useRealtimeVoice.js",
+          "added": 14,
+          "deleted": 5
+        },
+        {
+          "file": "web/src/styles/index.css",
+          "added": 2,
+          "deleted": 2
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "2fc904872c3b163a13167a7edc603fcd1d7207a7",
+      "shortHash": "2fc9048",
+      "date": "2026-02-13T05:38:08+05:30",
+      "headline": "Support client-side STT transcripts and hybrid mode",
+      "body": "Accept on-device transcripts from clients and bypass server VAD/STT when appropriate. Adds a socket handler for 'transcript:user' (accepts string or {text}), logs the transcript, emits a 'transcript:delta' event and queues a hybrid user turn. initializeVoiceProvider now detects session.metadata.client.localSTT and, unless forced, skips VAD/STT initialization: marks the session ready, sets provider to 'client-local-stt', stubs voiceConnection, and emits 'openai:connected' with client-side STT/VAD info (using _hybridTtsProvider() or fallback). This enables clients (e.g. iOS Speech.framework) to perform STT locally and route text directly to the assistant.",
+      "repo": "autohub",
+      "owner": "verygoodplugins",
+      "repoSlug": "autohub",
+      "remoteUrl": "https://github.com/verygoodplugins/autohub",
+      "stats": {
+        "added": 44,
+        "deleted": 0,
+        "files": 1
+      },
+      "files": [
+        {
+          "file": "src/voice/voice-server.js",
+          "added": 44,
+          "deleted": 0
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "5319d4aeccec54101ed0c32a6a2be5787594c88d",
+      "shortHash": "5319d4a",
+      "date": "2026-02-13T04:15:43+05:30",
+      "headline": "fix(voice): correct sample rate mismatch and emit assistant transcript",
+      "body": "getEffectiveSampleRate() returned hardcoded 16kHz but all TTS providers\noutput 24kHz. Clients interpreted audio at wrong rate → deep voice + cutoff.\n\nServer:\n- Split audio.sampleRate into inputSampleRate (16kHz) + outputSampleRate (24kHz)\n- getEffectiveSampleRate() now returns 24kHz (matches Cartesia/ElevenLabs)\n- session:ready includes inputSampleRate for mic capture\n- Emit transcript:done with role:assistant after Claude response completes\n\nWeb:\n- VoiceInput.jsx: decouple mic (16kHz) from playback (24kHz) rate\n- audio-engine.js: same decoupling for newer AudioEngine class",
+      "repo": "autohub",
+      "owner": "verygoodplugins",
+      "repoSlug": "autohub",
+      "remoteUrl": "https://github.com/verygoodplugins/autohub",
+      "stats": {
+        "added": 39,
+        "deleted": 25,
+        "files": 4
+      },
+      "files": [
+        {
+          "file": "src/voice/voice-config.js",
+          "added": 3,
+          "deleted": 3
+        },
+        {
+          "file": "src/voice/voice-server.js",
+          "added": 12,
+          "deleted": 4
+        },
+        {
+          "file": "web/src/components/VoiceInput.jsx",
+          "added": 12,
+          "deleted": 9
+        },
+        {
+          "file": "web/src/voice/audio-engine.js",
+          "added": 12,
+          "deleted": 9
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "4c0188a6c7c5433587516dddc5208ebb49b0ab85",
+      "shortHash": "4c0188a",
+      "date": "2026-02-13T04:15:35+05:30",
+      "headline": "fix(voice): correct sample rate mismatch causing deep/cut-off audio",
+      "body": "Server TTS (Cartesia/ElevenLabs) outputs 24kHz PCM but session:ready\nreported 16kHz. Client interpreted 24kHz as 16kHz → 2/3 speed playback\n(deep voice) and buffer overflow (audio cutoff).\n\n- Default targetRate to 24kHz (matches actual TTS output)\n- Add dedicated micRate (16kHz) for mic capture, decoupled from playback\n- processInputBuffer() now uses fixed 16kHz mic format\n- Increase maxPlaybackBufferedSeconds from 0.75s to 2.0s\n- Bump prebuffer threshold from 0.15s to 0.20s",
+      "repo": "autoapp",
+      "owner": "verygoodplugins",
+      "repoSlug": "AutoApp",
+      "remoteUrl": "https://github.com/verygoodplugins/AutoApp",
+      "stats": {
+        "added": 26,
+        "deleted": 17,
+        "files": 1
+      },
+      "files": [
+        {
+          "file": "AutoHub/Services/VoiceService.swift",
+          "added": 26,
+          "deleted": 17
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "ba317933543f462beb61c40dce073b93a139a351",
+      "shortHash": "ba31793",
+      "date": "2026-02-13T03:49:18+05:30",
+      "headline": "feat: Live Activity widget + push notification alignment (#8)",
+      "body": "* Add AutoHubWidgets target and Live Activity\n\nRegister a new AutoHubWidgets app-extension target and add widget sources. Adds AgentActivityAttributes, AgentActivityWidget, AutoHubWidgetBundle and LiveActivityManager, integrates them into the Xcode project (file refs, groups, build phases, target, product, and dependencies), and links Foundation for the iOS group. Also updates HubAPIService, HubSyncService, PushNotifications, AutoHub-Info.plist and user scheme metadata to support widgets/live activities and push handling.\n\n* Add app summary fetching and notification badge reset\n\n- Introduced AppSummary struct in HubAPIService to encapsulate app state information.\n- Implemented fetchAppSummary method for retrieving app summary data from the server.\n- Updated HubSyncService to fetch and store app summary during synchronization.\n- Reset notification badge count to zero upon app foregrounding in AutoHubApp.\n- Enhanced LiveActivityManager to pass the current environment when registering activity tokens.\n\n* fix: address code review issues for push/Live Activity alignment\n\n- Remove duplicate PBXBuildFile entries for 3 Swift files that were\n  incorrectly in Frameworks phase (already compiled via fileSystemSynchronizedGroups)\n- Wrap setBadgeCount(0) in #if os(iOS) since it's unavailable on macOS\n- Add CodingKeys to AppSummary.Presence and AppSummary.PushStatus for\n  snake_case JSON decoding (active_platform, active_sessions, last_push_at)\n- Clamp elapsed seconds to non-negative in LiveActivityManager\n\n* fix: address CodeRabbit review comments for push/Live Activity\n\n- Enable APPLICATION_EXTENSION_API_ONLY for AutoHubWidgets (Debug+Release)\n- Wrap setBadgeCount in async Task to fix concurrency requirement\n- Fix activity token registration to use snake_case task_id key\n- Call updateActivity immediately after startActivity for new activities\n- Replace hardcoded Color(hex:) with WidgetTheme design tokens\n\n* fix: add CodeSignOnCopy for AutoHubWidgets.appex embed\n\nMatches AutoJackWatchWidgets.appex pattern to prevent unsigned\nextension in app bundle during App Store validation.",
+      "repo": "autoapp",
+      "owner": "verygoodplugins",
+      "repoSlug": "AutoApp",
+      "remoteUrl": "https://github.com/verygoodplugins/AutoApp",
+      "prNumber": "8",
+      "stats": {
+        "added": 1194,
+        "deleted": 380,
+        "files": 11
+      },
+      "files": [
+        {
+          "file": "AutoHub.xcodeproj/project.pbxproj",
+          "added": 515,
+          "deleted": 365
+        },
+        {
+          "file": "AutoHub.xcodeproj/xcuserdata/jgarturo.xcuserdatad/xcschemes/xcschememanagement.plist",
+          "added": 10,
+          "deleted": 0
+        },
+        {
+          "file": "AutoHub/AutoHub-Info.plist",
+          "added": 2,
+          "deleted": 0
+        },
+        {
+          "file": "AutoHub/AutoHubApp.swift",
+          "added": 4,
+          "deleted": 0
+        },
+        {
+          "file": "AutoHub/Models/AgentActivityAttributes.swift",
+          "added": 29,
+          "deleted": 0
+        },
+        {
+          "file": "AutoHub/Services/HubAPIService.swift",
+          "added": 118,
+          "deleted": 0
+        },
+        {
+          "file": "AutoHub/Services/HubSyncService.swift",
+          "added": 44,
+          "deleted": 0
+        },
+        {
+          "file": "AutoHub/Utilities/LiveActivityManager.swift",
+          "added": 149,
+          "deleted": 0
+        },
+        {
+          "file": "AutoHub/Utilities/PushNotifications.swift",
+          "added": 110,
+          "deleted": 15
+        },
+        {
+          "file": "AutoHubWidgets/AgentActivityWidget.swift",
+          "added": 199,
+          "deleted": 0
+        },
+        {
+          "file": "AutoHubWidgets/AutoHubWidgetBundle.swift",
+          "added": 14,
+          "deleted": 0
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "4162a0408db4eee08dca9fcaf783a786ba424eba",
+      "shortHash": "4162a04",
+      "date": "2026-02-13T01:27:51+05:30",
+      "headline": "feat: register twitter_create_tweet tool in MCP registry",
+      "body": "- twitter_create_tweet tool was already implemented in tools/twitter-mentions-bot.js but not discoverable\n- Ran 'npm run mcp:scan automation-hub' to discover and register the tool\n- Tool now appears in config/mcp-tools.json and is available for use\n- Allows posting new tweets directly to X/Twitter without approval gate\n- Includes secret scanning and daily tweet limit enforcement (3 tweets/day)",
+      "repo": "autohub",
+      "owner": "verygoodplugins",
+      "repoSlug": "autohub",
+      "remoteUrl": "https://github.com/verygoodplugins/autohub",
+      "stats": {
+        "added": 172,
+        "deleted": 79,
+        "files": 1
+      },
+      "files": [
+        {
+          "file": "config/mcp-tools.json",
+          "added": 172,
+          "deleted": 79
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "58efd1ba5132a71c74ed5177d0644d154b4e73e8",
+      "shortHash": "58efd1b",
+      "date": "2026-02-13T00:54:37+05:30",
+      "headline": "chore: replace console.error with ContextLogger in agent code",
+      "body": "Address CodeRabbit minor feedback — use ContextLogger instead of\nconsole.error/console.log in src/ files per coding guidelines.\n\nCo-authored-by: Cursor <cursoragent@cursor.com>",
+      "repo": "autohub",
+      "owner": "verygoodplugins",
+      "repoSlug": "autohub",
+      "remoteUrl": "https://github.com/verygoodplugins/autohub",
+      "stats": {
+        "added": 8,
+        "deleted": 3,
+        "files": 2
+      },
+      "files": [
+        {
+          "file": "src/agents/task-queue.js",
+          "added": 3,
+          "deleted": 1
+        },
+        {
+          "file": "src/claude/server-tools/agent-delegation.js",
+          "added": 5,
+          "deleted": 2
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "e9d1b43b5e5a0b73f182e47a11192012ef92195f",
+      "shortHash": "e9d1b43",
+      "date": "2026-02-13T00:47:20+05:30",
+      "headline": "fix: address CodeRabbit review feedback",
+      "body": "- Set AbortError name on timeout errors so _handleTaskFailure classifies\n  them as cancelled instead of failed\n- Refactor _reapStaleTasks to collect DB updates and Promise.all() them\n  instead of await-in-loop\n- Include needs_input tasks in recovery alongside awaiting_input so\n  pending prompts are re-emitted after restart\n- Add expiredInput/stalePendingCancelled to all return paths in\n  recoverOrphanedTasks for consistent shape\n- Return {success, data} from agent_status_query handler per tools contract\n\nCo-authored-by: Cursor <cursoragent@cursor.com>",
+      "repo": "autohub",
+      "owner": "verygoodplugins",
+      "repoSlug": "autohub",
+      "remoteUrl": "https://github.com/verygoodplugins/autohub",
+      "stats": {
+        "added": 33,
+        "deleted": 16,
+        "files": 3
+      },
+      "files": [
+        {
+          "file": "src/agents/task-queue.js",
+          "added": 25,
+          "deleted": 13
+        },
+        {
+          "file": "src/agents/task-store-prisma.js",
+          "added": 6,
+          "deleted": 2
+        },
+        {
+          "file": "tools/agent-status.js",
+          "added": 2,
+          "deleted": 1
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "8582403e3c18e99f20dda41039d933539bf9ceec",
+      "shortHash": "8582403",
+      "date": "2026-02-13T00:30:23+05:30",
+      "headline": "fix: agent lifecycle hardening — stale detection, Slack notifications, status alignment",
+      "body": "Three interconnected problems fixed:\n\n1. Slack context never reached agents: service.js passed platform context as\n   `platformContext` but agent-delegation.js read `callContext.slack`. Added\n   `slack: ctx` to both delegation callsites so completion messages, questions,\n   and progress updates can route back to Slack threads.\n\n2. Agent questions/progress only posted to web, not Slack: sendStatusUpdate()\n   only had `isChat` handlers. Added parallel Slack handlers for questions\n   (thread reply with options), progress updates (every 5 rounds), and\n   progress notes — following the existing present_plan Slack pattern.\n\n3. Zombie running tasks with no detection:\n   - Added stale reaper (5-min interval) that transitions stale running tasks\n     (>15 min no activity) to interrupted and expires awaiting_input tasks\n     (>4 hours) to cancelled.\n   - Added execution timeout via AbortController (AGENT_TIMEOUT_MS, default 5m).\n   - Enhanced recoverOrphanedTasks to also clean ancient pending/awaiting_input.\n   - Fixed VALID_STATUSES in agent_status_query tool (was missing interrupted,\n     awaiting_input, needs_input, queued).\n   - Added stale flag, cancel_stale action, and proper thresholds.\n   - Added explicit checkAgentStatus handlers for needs_input, pending,\n     cancelled with staleness indicator for running tasks.\n\nAlso fixed pre-existing lint errors in touched files (catch(_) → catch,\nunused var prefixing, empty block comments).\n\nNew files:\n- tools/agent-status.js: MCP tool for querying agent status with stale detection\n- src/db/agent-queries.js: Safe parameterized query layer for agent_runs\n\nEnv vars:\n- AGENT_STALE_THRESHOLD_MS (default 900000 = 15 min)\n- AGENT_INPUT_TIMEOUT_MS (default 14400000 = 4 hours)\n- AGENT_STALE_REAPER_INTERVAL_MS (default 300000 = 5 min)\n- AGENT_TIMEOUT_MS (default 300000 = 5 min, was documented but not wired)\n\nCo-authored-by: Cursor <cursoragent@cursor.com>",
+      "repo": "autohub",
+      "owner": "verygoodplugins",
+      "repoSlug": "autohub",
+      "remoteUrl": "https://github.com/verygoodplugins/autohub",
+      "stats": {
+        "added": 1486,
+        "deleted": 241,
+        "files": 6
+      },
+      "files": [
+        {
+          "file": "src/agents/task-queue.js",
+          "added": 197,
+          "deleted": 30
+        },
+        {
+          "file": "src/agents/task-store-prisma.js",
+          "added": 63,
+          "deleted": 4
+        },
+        {
+          "file": "src/claude/server-tools/agent-delegation.js",
+          "added": 254,
+          "deleted": 66
+        },
+        {
+          "file": "src/claude/service.js",
+          "added": 337,
+          "deleted": 141
+        },
+        {
+          "file": "src/db/agent-queries.js",
+          "added": 205,
+          "deleted": 0
+        },
+        {
+          "file": "tools/agent-status.js",
+          "added": 430,
+          "deleted": 0
+        }
+      ]
+    },
     {
       "type": "commit",
       "hash": "a1b7c0ae9247c18007ef828ea14af0916d2a43ab",
@@ -225,45 +645,6 @@
     },
     {
       "type": "commit",
-      "hash": "038180c1b751a0741b54cbd5c7f3a83d20c3a6bf",
-      "shortHash": "038180c",
-      "date": "2026-02-09T23:30:51+05:30",
-      "headline": "fix: address code review issues for push/Live Activity alignment",
-      "body": "- Remove duplicate PBXBuildFile entries for 3 Swift files that were\n  incorrectly in Frameworks phase (already compiled via fileSystemSynchronizedGroups)\n- Wrap setBadgeCount(0) in #if os(iOS) since it's unavailable on macOS\n- Add CodingKeys to AppSummary.Presence and AppSummary.PushStatus for\n  snake_case JSON decoding (active_platform, active_sessions, last_push_at)\n- Clamp elapsed seconds to non-negative in LiveActivityManager",
-      "repo": "autoapp",
-      "owner": "verygoodplugins",
-      "repoSlug": "AutoApp",
-      "remoteUrl": "https://github.com/verygoodplugins/AutoApp",
-      "stats": {
-        "added": 13,
-        "deleted": 7,
-        "files": 4
-      },
-      "files": [
-        {
-          "file": "AutoHub.xcodeproj/project.pbxproj",
-          "added": 0,
-          "deleted": 6
-        },
-        {
-          "file": "AutoHub/AutoHubApp.swift",
-          "added": 2,
-          "deleted": 0
-        },
-        {
-          "file": "AutoHub/Services/HubAPIService.swift",
-          "added": 10,
-          "deleted": 0
-        },
-        {
-          "file": "AutoHub/Utilities/LiveActivityManager.swift",
-          "added": 1,
-          "deleted": 1
-        }
-      ]
-    },
-    {
-      "type": "commit",
       "hash": "da35cf1f53b6eaf107fdc2150868ef7ddb4cdae1",
       "shortHash": "da35cf1",
       "date": "2026-02-09T23:22:26+05:30",
@@ -313,114 +694,6 @@
           "file": "src/services/push-gateway-client.js",
           "added": 161,
           "deleted": 22
-        }
-      ]
-    },
-    {
-      "type": "commit",
-      "hash": "4af39e222a2b21b7906f22aab39c89dbd886cfd7",
-      "shortHash": "4af39e2",
-      "date": "2026-02-09T23:20:38+05:30",
-      "headline": "Add app summary fetching and notification badge reset",
-      "body": "- Introduced AppSummary struct in HubAPIService to encapsulate app state information.\n- Implemented fetchAppSummary method for retrieving app summary data from the server.\n- Updated HubSyncService to fetch and store app summary during synchronization.\n- Reset notification badge count to zero upon app foregrounding in AutoHubApp.\n- Enhanced LiveActivityManager to pass the current environment when registering activity tokens.",
-      "repo": "autoapp",
-      "owner": "verygoodplugins",
-      "repoSlug": "AutoApp",
-      "remoteUrl": "https://github.com/verygoodplugins/AutoApp",
-      "stats": {
-        "added": 78,
-        "deleted": 2,
-        "files": 4
-      },
-      "files": [
-        {
-          "file": "AutoHub/AutoHubApp.swift",
-          "added": 2,
-          "deleted": 0
-        },
-        {
-          "file": "AutoHub/Services/HubAPIService.swift",
-          "added": 57,
-          "deleted": 1
-        },
-        {
-          "file": "AutoHub/Services/HubSyncService.swift",
-          "added": 9,
-          "deleted": 0
-        },
-        {
-          "file": "AutoHub/Utilities/LiveActivityManager.swift",
-          "added": 10,
-          "deleted": 1
-        }
-      ]
-    },
-    {
-      "type": "commit",
-      "hash": "6ac59a9fab58c2dff8d29c40492c010faacc71f8",
-      "shortHash": "6ac59a9",
-      "date": "2026-02-09T22:25:27+05:30",
-      "headline": "Add AutoHubWidgets target and Live Activity",
-      "body": "Register a new AutoHubWidgets app-extension target and add widget sources. Adds AgentActivityAttributes, AgentActivityWidget, AutoHubWidgetBundle and LiveActivityManager, integrates them into the Xcode project (file refs, groups, build phases, target, product, and dependencies), and links Foundation for the iOS group. Also updates HubAPIService, HubSyncService, PushNotifications, AutoHub-Info.plist and user scheme metadata to support widgets/live activities and push handling.",
-      "repo": "autoapp",
-      "owner": "verygoodplugins",
-      "repoSlug": "AutoApp",
-      "remoteUrl": "https://github.com/verygoodplugins/AutoApp",
-      "stats": {
-        "added": 1096,
-        "deleted": 377,
-        "files": 10
-      },
-      "files": [
-        {
-          "file": "AutoHub.xcodeproj/project.pbxproj",
-          "added": 516,
-          "deleted": 362
-        },
-        {
-          "file": "AutoHub.xcodeproj/xcuserdata/jgarturo.xcuserdatad/xcschemes/xcschememanagement.plist",
-          "added": 10,
-          "deleted": 0
-        },
-        {
-          "file": "AutoHub/AutoHub-Info.plist",
-          "added": 2,
-          "deleted": 0
-        },
-        {
-          "file": "AutoHub/Models/AgentActivityAttributes.swift",
-          "added": 29,
-          "deleted": 0
-        },
-        {
-          "file": "AutoHub/Services/HubAPIService.swift",
-          "added": 52,
-          "deleted": 0
-        },
-        {
-          "file": "AutoHub/Services/HubSyncService.swift",
-          "added": 35,
-          "deleted": 0
-        },
-        {
-          "file": "AutoHub/Utilities/LiveActivityManager.swift",
-          "added": 139,
-          "deleted": 0
-        },
-        {
-          "file": "AutoHub/Utilities/PushNotifications.swift",
-          "added": 110,
-          "deleted": 15
-        },
-        {
-          "file": "AutoHubWidgets/AgentActivityWidget.swift",
-          "added": 189,
-          "deleted": 0
-        },
-        {
-          "file": "AutoHubWidgets/AutoHubWidgetBundle.swift",
-          "added": 14,
-          "deleted": 0
         }
       ]
     },
@@ -15590,769 +15863,6 @@
           "deleted": 36
         }
       ]
-    },
-    {
-      "type": "commit",
-      "hash": "dc8ef7a539018b1819e212d6fcde4b0d9e880574",
-      "shortHash": "dc8ef7a",
-      "date": "2026-01-14T02:37:13+01:00",
-      "headline": "Improve thinking and inline tool handling in chat view",
-      "body": "Refactors OrchestratorChatView to better manage streaming 'thinking' content and inline tool call expansion state, including new bindings for tool expansion and improved logic for displaying and storing thinking text. Updates HubAPIService to emit structured thinking blocks before deltas for more accurate real-time display. Updates AGENTS.md to reflect new simulator device IDs and test instructions.",
-      "repo": "autoapp",
-      "owner": "verygoodplugins",
-      "repoSlug": "AutoApp",
-      "remoteUrl": "https://github.com/verygoodplugins/AutoApp",
-      "stats": {
-        "added": 128,
-        "deleted": 26,
-        "files": 4
-      },
-      "files": [
-        {
-          "file": "AGENTS.md",
-          "added": 9,
-          "deleted": 3
-        },
-        {
-          "file": "AutoHub.xcodeproj/xcuserdata/jgarturo.xcuserdatad/xcdebugger/Breakpoints_v2.xcbkptlist",
-          "added": 30,
-          "deleted": 0
-        },
-        {
-          "file": "AutoHub/Services/HubAPIService.swift",
-          "added": 9,
-          "deleted": 10
-        },
-        {
-          "file": "AutoHub/Views/OrchestratorChatView.swift",
-          "added": 80,
-          "deleted": 13
-        }
-      ]
-    },
-    {
-      "type": "commit",
-      "hash": "9ae3b1ab871a1832efef6a8ada7865523abfacd4",
-      "shortHash": "9ae3b1a",
-      "date": "2026-01-14T02:03:08+01:00",
-      "headline": "Fix UI state synchronization and duplicate thinking display",
-      "body": "1. AdaptiveContentView: Consolidated selectedView and selectedTabIndex into\n   single source of truth using computed binding to prevent state desync\n   when switching between sidebar (iPad/Mac) and tab (iPhone) layouts.\n\n2. SidebarView: Replaced random Int.random(in: 0...5) badge count with\n   stable value (0) to prevent nondeterministic UI flicker on re-renders.\n   TODO comment added for future integration with actual agent count.\n\n3. HubAPIService: Fixed duplicate thinking display by emitting structured\n   thinking blocks only to onContentBlock callback, not both onThinking\n   and onContentBlock. Streaming deltas still use onThinking for real-time\n   display.\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>",
-      "repo": "autoapp",
-      "owner": "verygoodplugins",
-      "repoSlug": "AutoApp",
-      "remoteUrl": "https://github.com/verygoodplugins/AutoApp",
-      "stats": {
-        "added": 22,
-        "deleted": 6,
-        "files": 3
-      },
-      "files": [
-        {
-          "file": "AutoHub/AdaptiveContentView.swift",
-          "added": 16,
-          "deleted": 2
-        },
-        {
-          "file": "AutoHub/Services/HubAPIService.swift",
-          "added": 4,
-          "deleted": 3
-        },
-        {
-          "file": "AutoHub/Views/SidebarView.swift",
-          "added": 2,
-          "deleted": 1
-        }
-      ]
-    },
-    {
-      "type": "commit",
-      "hash": "7ea8ce46c75e164b4a34a96379ca92317205742b",
-      "shortHash": "7ea8ce4",
-      "date": "2026-01-14T01:45:42+01:00",
-      "headline": "Fix display cache not refreshing after streaming completes",
-      "body": "The cachedDisplayData was only refreshed when messages.count changed via\n.onChange(of: messages.count), but streaming updates message content\nwithout changing the count. This caused text responses to not appear\nafter streaming even though the content was saved to Core Data.\n\nAdded refreshCachedData() calls to both onComplete and onError callbacks\nto ensure the display updates after streaming finishes.\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>",
-      "repo": "autoapp",
-      "owner": "verygoodplugins",
-      "repoSlug": "AutoApp",
-      "remoteUrl": "https://github.com/verygoodplugins/AutoApp",
-      "stats": {
-        "added": 4,
-        "deleted": 0,
-        "files": 1
-      },
-      "files": [
-        {
-          "file": "AutoHub/Views/OrchestratorChatView.swift",
-          "added": 4,
-          "deleted": 0
-        }
-      ]
-    },
-    {
-      "type": "commit",
-      "hash": "58a3316cc375b256a00a222919af9dd58869fe05",
-      "shortHash": "58a3316",
-      "date": "2026-01-14T01:33:38+01:00",
-      "headline": "Add support for v3 tool events and text reset in chat",
-      "body": "Introduces parsing for v3 normalized 'tool_use' and 'tool_result' events in HubAPIService, enabling flat structure handling. Adds 'onTextReset' callback to handle full text replacement after tool execution, updating OrchestratorChatView to use this callback for accurate assistant content updates.",
-      "repo": "autoapp",
-      "owner": "verygoodplugins",
-      "repoSlug": "AutoApp",
-      "remoteUrl": "https://github.com/verygoodplugins/AutoApp",
-      "stats": {
-        "added": 60,
-        "deleted": 1,
-        "files": 2
-      },
-      "files": [
-        {
-          "file": "AutoHub/Services/HubAPIService.swift",
-          "added": 52,
-          "deleted": 1
-        },
-        {
-          "file": "AutoHub/Views/OrchestratorChatView.swift",
-          "added": 8,
-          "deleted": 0
-        }
-      ]
-    },
-    {
-      "type": "commit",
-      "hash": "404ca0cf62040d12cc79c81647966ad81dd6e8ee",
-      "shortHash": "404ca0c",
-      "date": "2026-01-14T01:19:32+01:00",
-      "headline": "Add AutoHub Chat Stream v3 protocol and schema",
-      "body": "Introduces documentation and JSON schema for the new AutoHub Chat Stream v3 SSE protocol, detailing event types and payload structure. Updates CLAUDE.md to describe the v3 protocol and its events. Refactors chat.js to emit normalized 'tool_use' and 'tool_result' events with stable indices, supporting the new protocol for richer, structured SSE streaming.",
-      "repo": "autohub",
-      "owner": "verygoodplugins",
-      "repoSlug": "autohub",
-      "remoteUrl": "https://github.com/verygoodplugins/autohub",
-      "stats": {
-        "added": 784,
-        "deleted": 8,
-        "files": 4
-      },
-      "files": [
-        {
-          "file": "docs/chat-stream-v3.md",
-          "added": 223,
-          "deleted": 0
-        },
-        {
-          "file": "docs/schemas/chat-stream-v3.schema.json",
-          "added": 477,
-          "deleted": 0
-        },
-        {
-          "file": "src/chat-server/CLAUDE.md",
-          "added": 29,
-          "deleted": 8
-        },
-        {
-          "file": "src/chat-server/routes/chat.js",
-          "added": 55,
-          "deleted": 0
-        }
-      ]
-    },
-    {
-      "type": "commit",
-      "hash": "8cb7fb29222cff801050503285d740bb1154d5f3",
-      "shortHash": "8cb7fb2",
-      "date": "2026-01-14T00:29:56+01:00",
-      "headline": "Improve chat API streaming, persistence, and process cleanup",
-      "body": "Adds a chat API smoke test script and exposes a new 'test:chat-api' npm script. Refactors chat server endpoints to ensure user messages are persisted for all clients, improves context handling for iOS, and enhances OpenAI message mapping. Updates Claude service to support extra system prompts. Refines MCP client process cleanup logic to use process tags for safe orphan termination. Fixes session message ordering in logger. Updates web client to use the correct chat stream endpoint and handle SSE event types more robustly. Removes redundant user message persistence from the web UI.",
-      "repo": "autohub",
-      "owner": "verygoodplugins",
-      "repoSlug": "autohub",
-      "remoteUrl": "https://github.com/verygoodplugins/autohub",
-      "stats": {
-        "added": 342,
-        "deleted": 119,
-        "files": 10
-      },
-      "files": [
-        {
-          "file": "package.json",
-          "added": 1,
-          "deleted": 0
-        },
-        {
-          "file": "scripts/chat-api-smoke-test.sh",
-          "added": 45,
-          "deleted": 0
-        },
-        {
-          "file": "src/chat-server/index.js",
-          "added": 90,
-          "deleted": 59
-        },
-        {
-          "file": "src/chat-server/middleware/rate-limiter.js",
-          "added": 9,
-          "deleted": 5
-        },
-        {
-          "file": "src/chat-server/routes/chat.js",
-          "added": 60,
-          "deleted": 18
-        },
-        {
-          "file": "src/claude/service.js",
-          "added": 7,
-          "deleted": 1
-        },
-        {
-          "file": "src/db/logger.js",
-          "added": 4,
-          "deleted": 2
-        },
-        {
-          "file": "src/services/mcp-client.js",
-          "added": 109,
-          "deleted": 15
-        },
-        {
-          "file": "web/src/api/client.js",
-          "added": 17,
-          "deleted": 8
-        },
-        {
-          "file": "web/src/components/ChatInterface.jsx",
-          "added": 0,
-          "deleted": 11
-        }
-      ]
-    },
-    {
-      "type": "commit",
-      "hash": "b3c2b7d6ab4341cae1dfc840ad1f154f0732a8e4",
-      "shortHash": "b3c2b7d",
-      "date": "2026-01-13T23:47:57+01:00",
-      "headline": "Enhance InlineToolCallView and HubAPIService for improved tool event handling",
-      "body": "Added a new statusBadgeIcon view in InlineToolCallView to support iOS 17 features. Updated HubAPIService to handle multiple identifiers for tool calls, ensuring robust event management. Refined OrchestratorChatView to match tool events with their respective identifiers, improving the accuracy of displayed tool statuses.",
-      "repo": "autoapp",
-      "owner": "verygoodplugins",
-      "repoSlug": "AutoApp",
-      "remoteUrl": "https://github.com/verygoodplugins/AutoApp",
-      "stats": {
-        "added": 40,
-        "deleted": 9,
-        "files": 4
-      },
-      "files": [
-        {
-          "file": "AutoHub/Components/InlineToolCallView.swift",
-          "added": 13,
-          "deleted": 3
-        },
-        {
-          "file": "AutoHub/Services/HubAPIService.swift",
-          "added": 10,
-          "deleted": 2
-        },
-        {
-          "file": "AutoHub/Views/DashboardView.swift",
-          "added": 3,
-          "deleted": 2
-        },
-        {
-          "file": "AutoHub/Views/OrchestratorChatView.swift",
-          "added": 14,
-          "deleted": 2
-        }
-      ]
-    },
-    {
-      "type": "commit",
-      "hash": "97ff8a669192814560457a49aeb8a6d0d54eecf5",
-      "shortHash": "97ff8a6",
-      "date": "2026-01-13T23:10:52+01:00",
-      "headline": "Refactor AdaptiveContentView and HubAPIService for enhanced streaming support",
-      "body": "Updated AdaptiveContentView to replace the dashboard with a home view and reorganized navigation items. Enhanced HubAPIService with new structures for content blocks and tool call events, improving streaming capabilities. Adjusted WatchRelayHandler and OrchestratorChatView to utilize conversation IDs for better message handling and added support for interleaved content display. Refined sidebar navigation for a more streamlined user experience.",
-      "repo": "autoapp",
-      "owner": "verygoodplugins",
-      "repoSlug": "AutoApp",
-      "remoteUrl": "https://github.com/verygoodplugins/AutoApp",
-      "stats": {
-        "added": 863,
-        "deleted": 228,
-        "files": 10
-      },
-      "files": [
-        {
-          "file": "AutoHub.xcodeproj/xcuserdata/jgarturo.xcuserdatad/xcdebugger/Breakpoints_v2.xcbkptlist",
-          "added": 1,
-          "deleted": 1
-        },
-        {
-          "file": "AutoHub/AdaptiveContentView.swift",
-          "added": 24,
-          "deleted": 66
-        },
-        {
-          "file": "AutoHub/Components/InlineToolCallView.swift",
-          "added": 257,
-          "deleted": 0
-        },
-        {
-          "file": "AutoHub/Services/HubAPIService.swift",
-          "added": 298,
-          "deleted": 42
-        },
-        {
-          "file": "AutoHub/Services/HubSyncService.swift",
-          "added": 6,
-          "deleted": 5
-        },
-        {
-          "file": "AutoHub/Services/WatchRelayHandler.swift",
-          "added": 30,
-          "deleted": 0
-        },
-        {
-          "file": "AutoHub/Views/DashboardView.swift",
-          "added": 57,
-          "deleted": 5
-        },
-        {
-          "file": "AutoHub/Views/InteractiveSessionView.swift",
-          "added": 2,
-          "deleted": 0
-        },
-        {
-          "file": "AutoHub/Views/OrchestratorChatView.swift",
-          "added": 174,
-          "deleted": 16
-        },
-        {
-          "file": "AutoHub/Views/SidebarView.swift",
-          "added": 14,
-          "deleted": 93
-        }
-      ]
-    },
-    {
-      "type": "commit",
-      "hash": "c98d207ddd228ef9174b6f6369e6736ef862501c",
-      "shortHash": "c98d207",
-      "date": "2026-01-13T21:39:20+01:00",
-      "headline": "revert: Remove AI feedback blocks from Slack assistant responses",
-      "body": "Eliminated all code and documentation related to AI feedback buttons (thumbs up/down) in Slack assistant responses. Removed the feedback block implementation, environment variable, and related interactive handlers, as well as all references in documentation. This simplifies the Slack bot UI and reduces configuration complexity.",
-      "repo": "autohub",
-      "owner": "verygoodplugins",
-      "repoSlug": "autohub",
-      "remoteUrl": "https://github.com/verygoodplugins/autohub",
-      "stats": {
-        "added": 9,
-        "deleted": 384,
-        "files": 10
-      },
-      "files": [
-        {
-          "file": "docs/slack-bot-audit-2025.md",
-          "added": 1,
-          "deleted": 35
-        },
-        {
-          "file": "docs/slack-bot-improvements-summary.md",
-          "added": 4,
-          "deleted": 32
-        },
-        {
-          "file": "docs/slack-work-objects-fix.md",
-          "added": 1,
-          "deleted": 66
-        },
-        {
-          "file": "scripts/review-and-fix.sh",
-          "added": 1,
-          "deleted": 1
-        },
-        {
-          "file": "src/platforms/slack/adapter.js",
-          "added": 1,
-          "deleted": 8
-        },
-        {
-          "file": "src/slack-server/CLAUDE.md",
-          "added": 0,
-          "deleted": 1
-        },
-        {
-          "file": "src/slack-server/assistant/feedback-blocks.js",
-          "added": 0,
-          "deleted": 154
-        },
-        {
-          "file": "src/slack-server/format/blocks.js",
-          "added": 0,
-          "deleted": 25
-        },
-        {
-          "file": "src/slack-server/handlers/interactive.js",
-          "added": 0,
-          "deleted": 61
-        },
-        {
-          "file": "web/src/components/ChatInterface.jsx",
-          "added": 1,
-          "deleted": 1
-        }
-      ]
-    },
-    {
-      "type": "commit",
-      "hash": "ae8d461453f73b1f3810e44d48d2f2be3b604ca0",
-      "shortHash": "ae8d461",
-      "date": "2026-01-13T17:07:25+01:00",
-      "headline": "refactor: enhance PR fetching logic in report generation",
-      "body": "- Improved fetching of pull requests by querying multiple repositories based on commit activity.\n- Added logic to limit the number of repositories and pull requests retrieved to optimize performance.\n- Updated the daily update workflow to remove unnecessary environment variable for GitHub token.",
-      "repo": "activity-report",
-      "owner": "verygoodplugins",
-      "repoSlug": "activity-report",
-      "remoteUrl": "https://github.com/verygoodplugins/activity-report",
-      "stats": {
-        "added": 39,
-        "deleted": 8,
-        "files": 2
-      },
-      "files": [
-        {
-          "file": ".github/workflows/daily-update.yml",
-          "added": 0,
-          "deleted": 2
-        },
-        {
-          "file": "generate-rich-report.mjs",
-          "added": 39,
-          "deleted": 6
-        }
-      ]
-    },
-    {
-      "type": "commit",
-      "hash": "75ced019403a35e9996a2a988ededa73a4cfe64b",
-      "shortHash": "75ced01",
-      "date": "2026-01-13T16:11:20+01:00",
-      "headline": "Update daily update workflow to add permissions",
-      "body": "",
-      "repo": "activity-report",
-      "owner": "verygoodplugins",
-      "repoSlug": "activity-report",
-      "remoteUrl": "https://github.com/verygoodplugins/activity-report",
-      "stats": {
-        "added": 3,
-        "deleted": 0,
-        "files": 1
-      },
-      "files": [
-        {
-          "file": ".github/workflows/daily-update.yml",
-          "added": 3,
-          "deleted": 0
-        }
-      ]
-    },
-    {
-      "type": "commit",
-      "hash": "372fc0424e28897306b18140e5c6ebe2c03f5d77",
-      "shortHash": "372fc04",
-      "date": "2026-01-13T14:31:33+01:00",
-      "headline": "Refactor workflow sync and update workflow management",
-      "body": "Replaces the legacy workflow seeding logic with a new filesystem-driven sync approach. Removes seed-workflows.js and adds sync-workflows.js, updating the workflow executor to auto-sync workflows from the filesystem on startup. Updates documentation to reflect the new architecture, cleans up related code, and deletes several example and on-demand workflow markdown files.",
-      "repo": "autohub",
-      "owner": "verygoodplugins",
-      "repoSlug": "autohub",
-      "remoteUrl": "https://github.com/verygoodplugins/autohub",
-      "stats": {
-        "added": 615,
-        "deleted": 1988,
-        "files": 15
-      },
-      "files": [
-        {
-          "file": "package.json",
-          "added": 3,
-          "deleted": 0
-        },
-        {
-          "file": "scripts/review-and-fix.sh",
-          "added": 260,
-          "deleted": 0
-        },
-        {
-          "file": "src/slack-server/index.js",
-          "added": 1,
-          "deleted": 12
-        },
-        {
-          "file": "src/workflows/CLAUDE.md",
-          "added": 18,
-          "deleted": 1
-        },
-        {
-          "file": "src/workflows/seed-workflows.js",
-          "added": 0,
-          "deleted": 43
-        },
-        {
-          "file": "src/workflows/sync-workflows.js",
-          "added": 54,
-          "deleted": 0
-        },
-        {
-          "file": "src/workflows/workflow-executor.js",
-          "added": 279,
-          "deleted": 164
-        },
-        {
-          "file": "workflows/daily/todoist-ai-orchestrator.md",
-          "added": 0,
-          "deleted": 484
-        },
-        {
-          "file": "workflows/examples/automem-graph-demo.md",
-          "added": 0,
-          "deleted": 377
-        },
-        {
-          "file": "workflows/on-demand/celebrity-comprehensive-research.md",
-          "added": 0,
-          "deleted": 275
-        },
-        {
-          "file": "workflows/on-demand/celebrity-contact-research.md",
-          "added": 0,
-          "deleted": 161
-        },
-        {
-          "file": "workflows/on-demand/morning-sanity.md",
-          "added": 0,
-          "deleted": 31
-        },
-        {
-          "file": "workflows/on-demand/narrative-smoke.md",
-          "added": 0,
-          "deleted": 16
-        },
-        {
-          "file": "workflows/on-demand/wpf-support-dashboard-agent-test.md",
-          "added": 0,
-          "deleted": 354
-        },
-        {
-          "file": "workflows/on-demand/wpf-ticket-investigation-dry-run.md",
-          "added": 0,
-          "deleted": 70
-        }
-      ]
-    },
-    {
-      "type": "commit",
-      "hash": "195515dc5cdb1c5f27bcd5411b42f105f86f0f9a",
-      "shortHash": "195515d",
-      "date": "2026-01-13T13:52:53+01:00",
-      "headline": "chore: remove Codex auto-fix functionality",
-      "body": "- Remove auto-fix.yml workflow templates\n- Remove .github/codex/prompts/fix-ci.md templates\n- Remove Codex documentation from CLAUDE.md\n- Update scripts to no longer include Codex files\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>",
-      "repo": "mcp-ecosystem",
-      "owner": "verygoodplugins",
-      "repoSlug": "mcp-ecosystem",
-      "remoteUrl": "https://github.com/verygoodplugins/mcp-ecosystem",
-      "stats": {
-        "added": 2,
-        "deleted": 492,
-        "files": 8
-      },
-      "files": [
-        {
-          "file": "CLAUDE.md",
-          "added": 0,
-          "deleted": 25
-        },
-        {
-          "file": "scripts/apply-templates.sh",
-          "added": 0,
-          "deleted": 21
-        },
-        {
-          "file": "scripts/create-server.sh",
-          "added": 2,
-          "deleted": 20
-        },
-        {
-          "file": "templates/python/.github/codex/prompts/fix-ci.md",
-          "added": 0,
-          "deleted": 36
-        },
-        {
-          "file": "templates/python/.github/workflows/auto-fix.yml",
-          "added": 0,
-          "deleted": 177
-        },
-        {
-          "file": "templates/python/CLAUDE.md.template",
-          "added": 0,
-          "deleted": 1
-        },
-        {
-          "file": "templates/typescript/.github/codex/prompts/fix-ci.md",
-          "added": 0,
-          "deleted": 35
-        },
-        {
-          "file": "templates/typescript/.github/workflows/auto-fix.yml",
-          "added": 0,
-          "deleted": 177
-        }
-      ]
-    },
-    {
-      "type": "commit",
-      "hash": "9491fcb252a0ca99b56547363a87d154fa04505b",
-      "shortHash": "9491fcb",
-      "date": "2026-01-13T12:54:18+01:00",
-      "headline": "Update .gitignore",
-      "body": "",
-      "repo": "autohub",
-      "owner": "verygoodplugins",
-      "repoSlug": "autohub",
-      "remoteUrl": "https://github.com/verygoodplugins/autohub",
-      "stats": {
-        "added": 0,
-        "deleted": 5,
-        "files": 1
-      },
-      "files": [
-        {
-          "file": ".gitignore",
-          "added": 0,
-          "deleted": 5
-        }
-      ]
-    },
-    {
-      "type": "commit",
-      "hash": "85004837bc09394cbfc2350030df74d969934fac",
-      "shortHash": "8500483",
-      "date": "2026-01-13T12:49:10+01:00",
-      "headline": "Update web dev port and remove problem workflow",
-      "body": "Changed the web:dev script and Vite config to use port 5000 with strict port enforcement. Deleted the obsolete problem-workflow.md from workflows.",
-      "repo": "autohub",
-      "owner": "verygoodplugins",
-      "repoSlug": "autohub",
-      "remoteUrl": "https://github.com/verygoodplugins/autohub",
-      "stats": {
-        "added": 2,
-        "deleted": 49,
-        "files": 3
-      },
-      "files": [
-        {
-          "file": "package.json",
-          "added": 1,
-          "deleted": 1
-        },
-        {
-          "file": "web/vite.config.js",
-          "added": 1,
-          "deleted": 0
-        },
-        {
-          "file": "workflows/on-demand/problem-workflow.md",
-          "added": 0,
-          "deleted": 48
-        }
-      ]
-    },
-    {
-      "type": "commit",
-      "hash": "a01f2d4bd22a1ea266c4e2f30b1152db292aa3e8",
-      "shortHash": "a01f2d4",
-      "date": "2026-01-13T12:18:21+01:00",
-      "headline": "Add Claude integration docs and streaming protocol v3",
-      "body": "Added detailed CLAUDE.md documentation for agents, chat-server, Claude integration, memory, and services directories. Refactored chat streaming in chat.js and index.js to support new 'hub' protocol (v3) with text deltas, richer SSE events, and improved latency/usage reporting. Legacy protocol remains for backward compatibility.",
-      "repo": "autohub",
-      "owner": "verygoodplugins",
-      "repoSlug": "autohub",
-      "remoteUrl": "https://github.com/verygoodplugins/autohub",
-      "stats": {
-        "added": 2140,
-        "deleted": 95,
-        "files": 9
-      },
-      "files": [
-        {
-          "file": "src/agents/CLAUDE.md",
-          "added": 257,
-          "deleted": 0
-        },
-        {
-          "file": "src/chat-server/CLAUDE.md",
-          "added": 351,
-          "deleted": 0
-        },
-        {
-          "file": "src/chat-server/index.js",
-          "added": 28,
-          "deleted": 7
-        },
-        {
-          "file": "src/chat-server/routes/chat.js",
-          "added": 238,
-          "deleted": 88
-        },
-        {
-          "file": "src/claude/CLAUDE.md",
-          "added": 234,
-          "deleted": 0
-        },
-        {
-          "file": "src/memory/CLAUDE.md",
-          "added": 297,
-          "deleted": 0
-        },
-        {
-          "file": "src/services/CLAUDE.md",
-          "added": 140,
-          "deleted": 0
-        },
-        {
-          "file": "src/slack-server/CLAUDE.md",
-          "added": 270,
-          "deleted": 0
-        },
-        {
-          "file": "src/workflows/CLAUDE.md",
-          "added": 325,
-          "deleted": 0
-        }
-      ]
-    },
-    {
-      "type": "commit",
-      "hash": "98b13d35fb83d2373c01b0869c6f3948a5c844fd",
-      "shortHash": "98b13d3",
-      "date": "2026-01-13T12:09:35+01:00",
-      "headline": "Update .gitignore",
-      "body": "",
-      "repo": "autohub",
-      "owner": "verygoodplugins",
-      "repoSlug": "autohub",
-      "remoteUrl": "https://github.com/verygoodplugins/autohub",
-      "stats": {
-        "added": 1,
-        "deleted": 0,
-        "files": 1
-      },
-      "files": [
-        {
-          "file": ".gitignore",
-          "added": 1,
-          "deleted": 0
-        }
-      ]
     }
   ],
   "prs": [
@@ -17408,9 +16918,9 @@
       "repoSlug": "mcp-evernote"
     },
     "mcp-ecosystem": {
-      "commits": 2,
-      "additions": 24,
-      "deletions": 503,
+      "commits": 1,
+      "additions": 22,
+      "deletions": 11,
       "remoteUrl": "https://github.com/verygoodplugins/mcp-ecosystem",
       "owner": "verygoodplugins",
       "repoSlug": "mcp-ecosystem"
@@ -17457,34 +16967,34 @@
     },
     "autohub": {
       "commits": 249,
-      "additions": 98051,
-      "deletions": 32770,
+      "additions": 96039,
+      "deletions": 30542,
       "remoteUrl": "https://github.com/verygoodplugins/autohub",
       "owner": "verygoodplugins",
       "repoSlug": "autohub"
     },
     "autoapp": {
-      "commits": 22,
-      "additions": 9427,
-      "deletions": 8880,
+      "commits": 15,
+      "additions": 8343,
+      "deletions": 8621,
       "remoteUrl": "https://github.com/verygoodplugins/AutoApp",
       "owner": "verygoodplugins",
       "repoSlug": "AutoApp"
     },
     "activity-report": {
-      "commits": 21,
-      "additions": 27364,
-      "deletions": 3338,
+      "commits": 20,
+      "additions": 27379,
+      "deletions": 3334,
       "remoteUrl": "https://github.com/verygoodplugins/activity-report",
       "owner": "verygoodplugins",
       "repoSlug": "activity-report"
     }
   },
   "stats": {
-    "additions": 173769,
-    "deletions": 55278,
-    "files": 1813,
-    "commits": 382,
+    "additions": 170686,
+    "deletions": 52295,
+    "files": 1749,
+    "commits": 373,
     "prs": 15
   }
 }
