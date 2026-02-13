@@ -12,7 +12,20 @@ jobs:
   generate:
     runs-on: self-hosted # Uses your Mac with access to local repos
     steps:
+      - name: Clean runner state
+        run: |
+          cd "$GITHUB_WORKSPACE" 2>/dev/null || true
+          # Abort any stuck rebase/merge from a previous failed run
+          git rebase --abort 2>/dev/null || true
+          git merge --abort 2>/dev/null || true
+          # Discard any uncommitted changes to generated files
+          git checkout -- . 2>/dev/null || true
+          git clean -fd 2>/dev/null || true
+
       - uses: actions/checkout@v4
+        with:
+          # Ensure we start clean even if runner has diverged
+          clean: true
 
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -24,16 +37,56 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Commit if changed
+      - name: Commit and push
+        id: commit
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git config user.email "jack@autojack.ai"
           git config user.name "AutoJack"
           git add index.html activity-data.json
-          git diff --cached --quiet || git commit -m "chore: daily activity update"
-          git pull --rebase
-          git push
+
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+            echo "committed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          git commit -m "chore: daily activity update"
+          echo "committed=true" >> "$GITHUB_OUTPUT"
+
+          # Push with retry + auto-resolve conflicts on generated files
+          for attempt in 1 2 3; do
+            if git push; then
+              echo "Push succeeded on attempt $attempt"
+              exit 0
+            fi
+
+            echo "Push failed (attempt $attempt), rebasing on latest..."
+            git fetch origin main
+
+            # Use -X theirs to prefer our freshly generated files on conflict
+            if git rebase -X theirs origin/main; then
+              echo "Rebase succeeded, retrying push..."
+              continue
+            fi
+
+            # If rebase still fails, abort and force-regenerate
+            echo "Rebase failed, regenerating from latest..."
+            git rebase --abort
+            git reset --soft HEAD~1
+            git checkout -- .
+            git pull origin main
+            node generate-rich-report.mjs "--paths=/Users/jgarturo/Projects,/Users/jgarturo/Local Sites" --gh-author=jack-arturo
+            git add index.html activity-data.json
+            git diff --cached --quiet || git commit -m "chore: daily activity update"
+          done
+
+          echo "::warning::All push attempts failed"
+          exit 1
 
       - name: Deploy to Cloudflare
+        if: always() && steps.commit.outcome != 'skipped'
         run: npx wrangler pages deploy . --project-name=activity-report
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
