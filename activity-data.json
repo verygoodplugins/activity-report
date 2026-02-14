@@ -1,7 +1,109 @@
 {
-  "generatedAt": "2026-02-13T01:48:53.752Z",
-  "periodStart": "2026-01-14T01:48:53.751Z",
+  "generatedAt": "2026-02-14T07:48:59.190Z",
+  "periodStart": "2026-01-15T07:48:59.190Z",
   "commits": [
+    {
+      "type": "commit",
+      "hash": "dd969d224a22364f1b23559ed132eedf78d31f8d",
+      "shortHash": "dd969d2",
+      "date": "2026-02-13T08:15:51+05:30",
+      "headline": "feat(voice): add on-device speech recognition support",
+      "body": "- Introduced NSSpeechRecognitionUsageDescription in Info.plist for speech recognition permissions.\n- Implemented on-device speech recognition in VoiceService, replacing server-side VAD/STT.\n- Added thread-safe handling for agent speaking state and local STT flag.\n- Updated recording logic to utilize local STT when authorized, with appropriate logging.\n- Enhanced audio processing to support local STT while managing agent audio playback interruptions.",
+      "repo": "autoapp",
+      "owner": "verygoodplugins",
+      "repoSlug": "AutoApp",
+      "remoteUrl": "https://github.com/verygoodplugins/AutoApp",
+      "stats": {
+        "added": 366,
+        "deleted": 44,
+        "files": 6
+      },
+      "files": [
+        {
+          "file": "AutoHub.xcodeproj/project.pbxproj",
+          "added": 7,
+          "deleted": 19
+        },
+        {
+          "file": "AutoHub.xcodeproj/xcuserdata/jgarturo.xcuserdatad/xcschemes/xcschememanagement.plist",
+          "added": 3,
+          "deleted": 3
+        },
+        {
+          "file": "AutoHub/AutoHub-Info.plist",
+          "added": 2,
+          "deleted": 0
+        },
+        {
+          "file": "AutoHub/Services/SpeechRecognitionService.swift",
+          "added": 237,
+          "deleted": 0
+        },
+        {
+          "file": "AutoHub/Services/VoiceService.swift",
+          "added": 94,
+          "deleted": 22
+        },
+        {
+          "file": "AutoHubWidgets/AutoHubWidgets-Info.plist",
+          "added": 23,
+          "deleted": 0
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "d23a3de1e7acc366bc8ac96e128f5ddf99d2b9b5",
+      "shortHash": "d23a3de",
+      "date": "2026-02-13T07:43:58+05:30",
+      "headline": "refactor: address CodeRabbit review feedback on notify logging",
+      "body": "- Extract wfName variable to DRY repeated name resolution\n- Downgrade happy-path logs (starting/sending/success) to debug level\n- Remove hasToken field that coupled to NotificationManager internals\n- Add originalError to retry log for self-contained diagnostics\n- Use nullish coalescing for blockCount to distinguish undefined vs empty\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>",
+      "repo": "autohub",
+      "owner": "verygoodplugins",
+      "repoSlug": "autohub",
+      "remoteUrl": "https://github.com/verygoodplugins/autohub",
+      "stats": {
+        "added": 11,
+        "deleted": 10,
+        "files": 1
+      },
+      "files": [
+        {
+          "file": "src/workflows/runner.js",
+          "added": 11,
+          "deleted": 10
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "f8943ee067fe1b7b488a9c207496fa8ccb07016d",
+      "shortHash": "f8943ee",
+      "date": "2026-02-13T07:34:00+05:30",
+      "headline": "fix(workflows): restore WPF dashboard failure visibility and add notify step logging",
+      "body": "The scheduler opt-in change (90027775) silenced sendFailureNotification for\nworkflows with notifications.slack: false but no slack_on_error setting. The\nWPF Support Dashboard was relying on the old opt-out behavior for failure\nalerts. Adding slack_on_error: true restores error visibility.\n\nAlso adds diagnostic logging to the notify step handler in the workflow runner\n(start, send, success/failure) to surface issues immediately rather than\nfailing silently.\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>",
+      "repo": "autohub",
+      "owner": "verygoodplugins",
+      "repoSlug": "autohub",
+      "remoteUrl": "https://github.com/verygoodplugins/autohub",
+      "stats": {
+        "added": 32,
+        "deleted": 0,
+        "files": 2
+      },
+      "files": [
+        {
+          "file": "src/workflows/runner.js",
+          "added": 31,
+          "deleted": 0
+        },
+        {
+          "file": "workflows/daily/wpf-support-dashboard.md",
+          "added": 1,
+          "deleted": 0
+        }
+      ]
+    },
     {
       "type": "commit",
       "hash": "625ef825fae10169017c1731264d41a115f9536c",
@@ -15810,59 +15912,6 @@
           "deleted": 4
         }
       ]
-    },
-    {
-      "type": "commit",
-      "hash": "20885806093ee03f1b0d134c5bbfb4e862d6d102",
-      "shortHash": "2088580",
-      "date": "2026-01-14T03:04:33+01:00",
-      "headline": "Disable agent pruning in HubSyncService",
-      "body": "Commented out the pruning of agents during sync to prevent accidental deletion of local chat history, as agent deletion cascades to sessions and messages. Added a note explaining the rationale for this change.",
-      "repo": "autoapp",
-      "owner": "verygoodplugins",
-      "repoSlug": "AutoApp",
-      "remoteUrl": "https://github.com/verygoodplugins/AutoApp",
-      "stats": {
-        "added": 2,
-        "deleted": 32,
-        "files": 2
-      },
-      "files": [
-        {
-          "file": "AutoHub.xcodeproj/xcuserdata/jgarturo.xcuserdatad/xcdebugger/Breakpoints_v2.xcbkptlist",
-          "added": 0,
-          "deleted": 30
-        },
-        {
-          "file": "AutoHub/Services/HubSyncService.swift",
-          "added": 2,
-          "deleted": 2
-        }
-      ]
-    },
-    {
-      "type": "commit",
-      "hash": "fa4d218b5eac1fa75f920e2cad2e2f9db493985f",
-      "shortHash": "fa4d218",
-      "date": "2026-01-14T03:03:33+01:00",
-      "headline": "Revise memory management strategy and recall guidance",
-      "body": "Updated the memory management section to clarify AutoMem/AutoHub behavior, provide more precise recall and storage instructions, and emphasize correct tagging practices. Added guidance on using update and association APIs, and removed outdated examples and over-tagging recommendations to prevent missing memory issues.",
-      "repo": "autohub",
-      "owner": "verygoodplugins",
-      "repoSlug": "autohub",
-      "remoteUrl": "https://github.com/verygoodplugins/autohub",
-      "stats": {
-        "added": 23,
-        "deleted": 36,
-        "files": 1
-      },
-      "files": [
-        {
-          "file": "src/claude/prompt/system-prompt.js",
-          "added": 23,
-          "deleted": 36
-        }
-      ]
     }
   ],
   "prs": [
@@ -16966,17 +17015,17 @@
       "repoSlug": "automem"
     },
     "autohub": {
-      "commits": 249,
-      "additions": 96039,
-      "deletions": 30542,
+      "commits": 250,
+      "additions": 96059,
+      "deletions": 30516,
       "remoteUrl": "https://github.com/verygoodplugins/autohub",
       "owner": "verygoodplugins",
       "repoSlug": "autohub"
     },
     "autoapp": {
       "commits": 15,
-      "additions": 8343,
-      "deletions": 8621,
+      "additions": 8707,
+      "deletions": 8633,
       "remoteUrl": "https://github.com/verygoodplugins/AutoApp",
       "owner": "verygoodplugins",
       "repoSlug": "AutoApp"
@@ -16991,10 +17040,10 @@
     }
   },
   "stats": {
-    "additions": 170686,
-    "deletions": 52295,
-    "files": 1749,
-    "commits": 373,
+    "additions": 171070,
+    "deletions": 52281,
+    "files": 1755,
+    "commits": 374,
     "prs": 15
   }
 }
