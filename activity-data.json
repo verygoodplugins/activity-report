@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-02-14T07:48:59.190Z",
-  "periodStart": "2026-01-15T07:48:59.190Z",
+  "generatedAt": "2026-02-15T06:13:01.795Z",
+  "periodStart": "2026-01-16T06:13:01.794Z",
   "commits": [
     {
       "type": "commit",
@@ -15686,232 +15686,6 @@
           "deleted": 3
         }
       ]
-    },
-    {
-      "type": "commit",
-      "hash": "055e143042fbef715f5f10e9851525bde12c0ab2",
-      "shortHash": "055e143",
-      "date": "2026-01-16T03:37:34+01:00",
-      "headline": "Create BUILD_SUMMARY.md",
-      "body": "",
-      "repo": "echodash",
-      "owner": "verygoodplugins",
-      "repoSlug": "echodashv2",
-      "remoteUrl": "https://github.com/verygoodplugins/echodashv2",
-      "stats": {
-        "added": 239,
-        "deleted": 0,
-        "files": 1
-      },
-      "files": [
-        {
-          "file": "BUILD_SUMMARY.md",
-          "added": 239,
-          "deleted": 0
-        }
-      ]
-    },
-    {
-      "type": "commit",
-      "hash": "2ed6b7e7303552a1fceedfd7eacde5d9843b34a3",
-      "shortHash": "2ed6b7e",
-      "date": "2026-01-16T03:31:43+01:00",
-      "headline": "Add quickstart guide, auth routes, and deploy script",
-      "body": "Introduces QUICKSTART.md for setup instructions, sign-in and sign-up routes using Clerk for authentication, and a deploy.sh script to automate deployment and database initialization for EchoDash.",
-      "repo": "echodash",
-      "owner": "verygoodplugins",
-      "repoSlug": "echodashv2",
-      "remoteUrl": "https://github.com/verygoodplugins/echodashv2",
-      "stats": {
-        "added": 143,
-        "deleted": 0,
-        "files": 4
-      },
-      "files": [
-        {
-          "file": "QUICKSTART.md",
-          "added": 57,
-          "deleted": 0
-        },
-        {
-          "file": "app/routes/sign-in.tsx",
-          "added": 20,
-          "deleted": 0
-        },
-        {
-          "file": "app/routes/sign-up.tsx",
-          "added": 20,
-          "deleted": 0
-        },
-        {
-          "file": "deploy.sh",
-          "added": 46,
-          "deleted": 0
-        }
-      ]
-    },
-    {
-      "type": "commit",
-      "hash": "b785972ba31cee2a2f5f450ab0cf14ab3c943921",
-      "shortHash": "b785972",
-      "date": "2026-01-16T03:30:42+01:00",
-      "headline": "Initial project setup for EchoDash MVP",
-      "body": "Add core files for EchoDash webhook aggregation platform, including environment example, gitignore, documentation, database schema, Cloudflare and Remix configuration, and initial app source code (components, routes, utilities, and styles). Implements Clerk authentication, Stripe billing, D1 database integration, and basic dashboard/settings UI.",
-      "repo": "echodash",
-      "owner": "verygoodplugins",
-      "repoSlug": "echodashv2",
-      "remoteUrl": "https://github.com/verygoodplugins/echodashv2",
-      "stats": {
-        "added": 1445,
-        "deleted": 0,
-        "files": 24
-      },
-      "files": [
-        {
-          "file": ".env.example",
-          "added": 12,
-          "deleted": 0
-        },
-        {
-          "file": ".gitignore",
-          "added": 8,
-          "deleted": 0
-        },
-        {
-          "file": "DEPLOYMENT.md",
-          "added": 136,
-          "deleted": 0
-        },
-        {
-          "file": "README.md",
-          "added": 328,
-          "deleted": 0
-        },
-        {
-          "file": "app/components/Layout.tsx",
-          "added": 49,
-          "deleted": 0
-        },
-        {
-          "file": "app/lib/clerk.server.ts",
-          "added": 18,
-          "deleted": 0
-        },
-        {
-          "file": "app/lib/db.server.ts",
-          "added": 165,
-          "deleted": 0
-        },
-        {
-          "file": "app/lib/stripe.server.ts",
-          "added": 63,
-          "deleted": 0
-        },
-        {
-          "file": "app/lib/utils.ts",
-          "added": 28,
-          "deleted": 0
-        },
-        {
-          "file": "app/root.tsx",
-          "added": 46,
-          "deleted": 0
-        },
-        {
-          "file": "app/routes/_index.tsx",
-          "added": 108,
-          "deleted": 0
-        },
-        {
-          "file": "app/routes/api.events.tsx",
-          "added": 28,
-          "deleted": 0
-        },
-        {
-          "file": "app/routes/api.integrations.tsx",
-          "added": 19,
-          "deleted": 0
-        },
-        {
-          "file": "app/routes/api.stripe.webhook.tsx",
-          "added": 40,
-          "deleted": 0
-        },
-        {
-          "file": "app/routes/api.webhooks.$integrationId.tsx",
-          "added": 47,
-          "deleted": 0
-        },
-        {
-          "file": "app/routes/settings.tsx",
-          "added": 145,
-          "deleted": 0
-        },
-        {
-          "file": "app/styles/globals.css",
-          "added": 29,
-          "deleted": 0
-        },
-        {
-          "file": "package.json",
-          "added": 23,
-          "deleted": 0
-        },
-        {
-          "file": "remix.config.js",
-          "added": 11,
-          "deleted": 0
-        },
-        {
-          "file": "schema.sql",
-          "added": 84,
-          "deleted": 0
-        },
-        {
-          "file": "server.ts",
-          "added": 10,
-          "deleted": 0
-        },
-        {
-          "file": "tsconfig.json",
-          "added": 23,
-          "deleted": 0
-        },
-        {
-          "file": "vite.config.ts",
-          "added": 14,
-          "deleted": 0
-        },
-        {
-          "file": "wrangler.toml",
-          "added": 11,
-          "deleted": 0
-        }
-      ]
-    },
-    {
-      "type": "commit",
-      "hash": "a5cdc7a1b03d5090dded13e8aa5ece2e40d6d4ea",
-      "shortHash": "a5cdc7a",
-      "date": "2026-01-16T03:02:02+01:00",
-      "headline": "Improve SSEClient error handling and event parsing",
-      "body": "Adds HTTP status code tracking and response body buffering to SSEClient for better error reporting on non-2xx responses. Enhances event packet splitting to support both LF and CRLF delimiters, and trims whitespace from event lines for more robust parsing.",
-      "repo": "autoapp",
-      "owner": "verygoodplugins",
-      "repoSlug": "AutoApp",
-      "remoteUrl": "https://github.com/verygoodplugins/AutoApp",
-      "stats": {
-        "added": 38,
-        "deleted": 4,
-        "files": 1
-      },
-      "files": [
-        {
-          "file": "AutoHub/Services/HubAPIService.swift",
-          "added": 38,
-          "deleted": 4
-        }
-      ]
     }
   ],
   "prs": [
@@ -16983,8 +16757,8 @@
       "repoSlug": "mcp-automem"
     },
     "echodash": {
-      "commits": 4,
-      "additions": 12550,
+      "commits": 1,
+      "additions": 10723,
       "deletions": 99,
       "remoteUrl": "https://github.com/verygoodplugins/echodashv2",
       "owner": "verygoodplugins",
@@ -17023,9 +16797,9 @@
       "repoSlug": "autohub"
     },
     "autoapp": {
-      "commits": 15,
-      "additions": 8707,
-      "deletions": 8633,
+      "commits": 14,
+      "additions": 8669,
+      "deletions": 8629,
       "remoteUrl": "https://github.com/verygoodplugins/AutoApp",
       "owner": "verygoodplugins",
       "repoSlug": "AutoApp"
@@ -17040,10 +16814,10 @@
     }
   },
   "stats": {
-    "additions": 171070,
-    "deletions": 52281,
-    "files": 1755,
-    "commits": 374,
+    "additions": 169205,
+    "deletions": 52277,
+    "files": 1725,
+    "commits": 370,
     "prs": 15
   }
 }
