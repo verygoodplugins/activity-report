@@ -1,7 +1,60 @@
 {
-  "generatedAt": "2026-02-15T06:13:01.795Z",
-  "periodStart": "2026-01-16T06:13:01.794Z",
+  "generatedAt": "2026-02-16T09:56:40.500Z",
+  "periodStart": "2026-01-17T09:56:40.499Z",
   "commits": [
+    {
+      "type": "commit",
+      "hash": "53a3711dabc941be2dd827064072f8dfba53f83d",
+      "shortHash": "53a3711",
+      "date": "2026-02-16T13:32:32+05:30",
+      "headline": "fix: use immutable state updates to resolve require-atomic-updates violation",
+      "body": "Replace in-place mutation of state._posting and state.messageId across\nawait with immutable spread patterns, addressing CodeRabbit review feedback.\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>",
+      "repo": "autohub",
+      "owner": "verygoodplugins",
+      "repoSlug": "autohub",
+      "remoteUrl": "https://github.com/verygoodplugins/autohub",
+      "stats": {
+        "added": 12,
+        "deleted": 4,
+        "files": 1
+      },
+      "files": [
+        {
+          "file": "src/platforms/slack/adapter.js",
+          "added": 12,
+          "deleted": 4
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "edcec144d87ab1df1ba9cf34cf027b24df9ac070",
+      "shortHash": "edcec14",
+      "date": "2026-02-16T13:04:41+05:30",
+      "headline": "refactor: update parameter names in PlatformAdapter methods for clarity",
+      "body": "- Renamed parameters in several methods of the PlatformAdapter class to use underscores, improving readability and consistency.\n- Adjusted comments and logic in the SlackAdapter class to enhance handling of message states and thinking indicators.\n- Improved message cleaning logic to preserve user mentions while replacing bot mentions with a readable name.\n\nThese changes aim to enhance code clarity and maintainability across the platform adapters.",
+      "repo": "autohub",
+      "owner": "verygoodplugins",
+      "repoSlug": "autohub",
+      "remoteUrl": "https://github.com/verygoodplugins/autohub",
+      "stats": {
+        "added": 145,
+        "deleted": 99,
+        "files": 2
+      },
+      "files": [
+        {
+          "file": "src/core/platform-adapter.js",
+          "added": 104,
+          "deleted": 65
+        },
+        {
+          "file": "src/platforms/slack/adapter.js",
+          "added": 41,
+          "deleted": 34
+        }
+      ]
+    },
     {
       "type": "commit",
       "hash": "dd969d224a22364f1b23559ed132eedf78d31f8d",
@@ -16789,9 +16842,9 @@
       "repoSlug": "automem"
     },
     "autohub": {
-      "commits": 250,
-      "additions": 96059,
-      "deletions": 30516,
+      "commits": 252,
+      "additions": 96216,
+      "deletions": 30619,
       "remoteUrl": "https://github.com/verygoodplugins/autohub",
       "owner": "verygoodplugins",
       "repoSlug": "autohub"
@@ -16814,10 +16867,10 @@
     }
   },
   "stats": {
-    "additions": 169205,
-    "deletions": 52277,
-    "files": 1725,
-    "commits": 370,
+    "additions": 169362,
+    "deletions": 52380,
+    "files": 1728,
+    "commits": 372,
     "prs": 15
   }
 }
