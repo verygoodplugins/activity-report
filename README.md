@@ -2,7 +2,7 @@
 
 Developer activity transparency report (defaults to last 7 days).
 
-**Live at:** https://activity.drunk.support
+**Live at:** https://pulse.automem.ai/
 
 ## What's Included
 
