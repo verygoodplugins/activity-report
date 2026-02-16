@@ -1432,7 +1432,12 @@
       // Custom logo (replaces h1 text with image)
       if (SITE_CONFIG.logo) {
         const h1 = document.querySelector('.hero-left h1');
-        h1.innerHTML = '<img src="' + SITE_CONFIG.logo + '" alt="' + (SITE_CONFIG.title || 'Dev Pulse') + '" style="height: 2em; vertical-align: middle;">';
+        h1.textContent = '';
+        const img = document.createElement('img');
+        img.src = SITE_CONFIG.logo;
+        img.alt = SITE_CONFIG.title || 'Dev Pulse';
+        img.style.cssText = 'height: 2em; vertical-align: middle;';
+        h1.appendChild(img);
       }
     }
 
