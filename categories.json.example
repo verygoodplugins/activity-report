@@ -1,0 +1,17 @@
+{
+  "Frontend": {
+    "icon": "🖥️",
+    "class": "frontend",
+    "repos": ["my-website", "my-app", "design-system"]
+  },
+  "Backend": {
+    "icon": "⚙️",
+    "class": "backend",
+    "repos": ["api-server", "worker", "auth-service"]
+  },
+  "Tools & Scripts": {
+    "icon": "🔧",
+    "class": "tools",
+    "repos": ["cli-tool", "scripts", "dotfiles"]
+  }
+}

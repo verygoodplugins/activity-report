@@ -9,15 +9,22 @@ import os from "os";
 import path from "path";
 import fs from "fs";
 
-// Repos to exclude from report (focus on AI/automation work)
-const EXCLUDE_PATTERNS = [
-  /wp-fusion/i,
-  /wpfusion/i,
-  /dana/i,
-];
+// Repo exclusion patterns (populated from --exclude flag or config.json)
+let EXCLUDE_PATTERNS = [];
 
 function shouldExcludeRepo(repoName) {
   return EXCLUDE_PATTERNS.some((p) => p.test(repoName));
+}
+
+function loadConfigFile() {
+  const configPath = path.join(process.cwd(), "config.json");
+  if (!fs.existsSync(configPath)) return {};
+  try {
+    return JSON.parse(fs.readFileSync(configPath, "utf-8"));
+  } catch (e) {
+    console.warn("Warning: could not parse config.json:", e.message);
+    return {};
+  }
 }
 
 function expandHome(inputPath) {
@@ -151,33 +158,50 @@ function safeExec(command, options) {
 
 async function main() {
   const args = parseArgs(process.argv.slice(2));
+  const config = loadConfigFile();
 
-  const hoursBack = parseNumber(args.hours, 720);
-  const maxDepth = parseNumber(args["max-depth"], 4);
+  const hoursBack = parseNumber(args.hours, config.hours || 168);
+  const maxDepth = parseNumber(args["max-depth"], config.maxDepth || 4);
   const cacheFile = args["cache-file"] || "activity-data.json";
   const outputFile = args["output-file"] || "index.html";
   const useCache = Boolean(args.cached);
   const writeCache = args.cacheWrite !== false;
   const includePrs = args.prs !== false;
 
+  // Build exclude patterns from --exclude flag or config.json
+  const excludeArg = splitCommaList(args.exclude);
+  const excludeConfig = config.exclude || [];
+  const excludeList = excludeArg.length > 0 ? excludeArg : excludeConfig;
+  EXCLUDE_PATTERNS = excludeList.map((p) => new RegExp(p, "i"));
+
   const authorEmail =
     args.author ||
     process.env.ACTIVITY_REPORT_AUTHOR_EMAIL ||
+    config.author ||
     readGitConfigValue("user.email");
 
   const repoPathsFromArgs = splitCommaList(args.paths);
+  const configPaths = config.paths || [];
   const repoRoots =
     repoPathsFromArgs.length > 0
       ? repoPathsFromArgs
-      : [
-          path.join(os.homedir(), "Projects"),
-          path.join(os.homedir(), "Local Sites"),
-        ];
+      : configPaths.length > 0
+        ? configPaths
+        : [
+            path.join(os.homedir(), "Projects"),
+            path.join(os.homedir(), "Local Sites"),
+          ];
 
   const repoRootsResolved = repoRoots
     .map((p) => expandHome(p))
     .map((p) => path.resolve(process.cwd(), p))
     .filter((p) => fs.existsSync(p));
+
+  if (repoRootsResolved.length === 0) {
+    console.warn(
+      "Warning: No scan paths found. Use --paths or create a config.json with a \"paths\" array."
+    );
+  }
 
   let data;
 
@@ -193,7 +217,7 @@ async function main() {
       maxDepth,
       includePrs,
       ghAuthor:
-        args["gh-author"] || process.env.ACTIVITY_REPORT_GH_AUTHOR || "@me",
+        args["gh-author"] || process.env.ACTIVITY_REPORT_GH_AUTHOR || config.ghAuthor || "@me",
     });
     if (writeCache) {
       fs.mkdirSync(path.dirname(cacheFile), { recursive: true });
@@ -231,7 +255,6 @@ async function fetchData({
     for (const repoPath of findGitReposUnder(basePath, maxDepth)) {
       const repoName = path.basename(repoPath);
 
-      // Skip excluded repos (WP Fusion, personal/private repos)
       if (shouldExcludeRepo(repoName)) continue;
 
       let remoteUrl = "";

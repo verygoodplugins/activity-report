@@ -8,9 +8,21 @@ on:
     - cron: "0 9 * * *" # Daily at 9 AM UTC
   workflow_dispatch: # Manual trigger
 
+# Configure these in your repo's Settings > Variables and Secrets:
+#   Variables (vars):
+#     SCAN_PATHS       - Comma-separated paths to scan (e.g. "~/Projects,~/code")
+#     GH_AUTHOR        - GitHub username for PR fetching (default: @me)
+#     GIT_EMAIL        - Email for git commits (default: activity-bot@users.noreply.github.com)
+#     GIT_NAME         - Name for git commits (default: Activity Bot)
+#     SITE_CONFIG      - JSON for dashboard branding (optional, see site-config.json.example)
+#     CATEGORIES_CONFIG - JSON for repo grouping (optional, see categories.json.example)
+#   Secrets:
+#     CLOUDFLARE_API_TOKEN  - For Cloudflare Pages deploy (optional)
+#     CLOUDFLARE_ACCOUNT_ID - For Cloudflare Pages deploy (optional)
+
 jobs:
   generate:
-    runs-on: self-hosted # Uses your Mac with access to local repos
+    runs-on: self-hosted # Uses your machine with access to local repos
     steps:
       - name: Clean runner state
         run: |
@@ -24,7 +36,6 @@ jobs:
 
       - uses: actions/checkout@v4
         with:
-          # Ensure we start clean even if runner has diverged
           clean: true
 
       - name: Setup Node
@@ -33,7 +44,7 @@ jobs:
           node-version: 20
 
       - name: Generate report
-        run: node generate-rich-report.mjs "--paths=/Users/jgarturo/Projects,/Users/jgarturo/Local Sites" --gh-author=jack-arturo
+        run: node generate-rich-report.mjs "--paths=${{ vars.SCAN_PATHS || '~/Projects' }}" --gh-author=${{ vars.GH_AUTHOR || '@me' }}
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -42,9 +53,9 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          git config user.email "jack@autojack.ai"
-          git config user.name "AutoJack"
-          git add index.html activity-data.json
+          git config user.email "${{ vars.GIT_EMAIL || 'activity-bot@users.noreply.github.com' }}"
+          git config user.name "${{ vars.GIT_NAME || 'Activity Bot' }}"
+          git add activity-data.json
 
           if git diff --cached --quiet; then
             echo "No changes to commit"
@@ -77,17 +88,25 @@ jobs:
             git reset --soft HEAD~1
             git checkout -- .
             git pull origin main
-            node generate-rich-report.mjs "--paths=/Users/jgarturo/Projects,/Users/jgarturo/Local Sites" --gh-author=jack-arturo
-            git add index.html activity-data.json
+            node generate-rich-report.mjs "--paths=${{ vars.SCAN_PATHS || '~/Projects' }}" --gh-author=${{ vars.GH_AUTHOR || '@me' }}
+            git add activity-data.json
             git diff --cached --quiet || git commit -m "chore: daily activity update"
           done
 
           echo "::warning::All push attempts failed"
           exit 1
 
+      - name: Write site customizations
+        run: |
+          [ -n "$SITE_CONFIG" ] && echo "$SITE_CONFIG" > site-config.json || true
+          [ -n "$CATEGORIES" ] && echo "$CATEGORIES" > categories.json || true
+        env:
+          SITE_CONFIG: ${{ vars.SITE_CONFIG }}
+          CATEGORIES: ${{ vars.CATEGORIES_CONFIG }}
+
       - name: Deploy to Cloudflare
-        if: always() && steps.commit.outcome != 'skipped'
-        run: npx wrangler pages deploy . --project-name=activity-report
+        if: always() && steps.commit.outcome != 'skipped' && vars.CLOUDFLARE_DEPLOY == 'true'
+        run: npx wrangler pages deploy . --project-name=${{ vars.CLOUDFLARE_PROJECT || 'activity-report' }}
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}

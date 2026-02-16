@@ -1,127 +1,140 @@
 # Activity Report
 
-Developer activity transparency report (defaults to last 7 days).
+A developer activity dashboard that scans your local git repos and displays commits, PRs, and stats as a static site. Run it locally, deploy to GitHub Pages, or host on Cloudflare Pages.
 
-**Live at:** https://activity.drunk.support
-
-## What's Included
-
-- Commit history from local git repos (last 7 days by default)
-- Optional: PRs + review status via GitHub CLI (`gh`)
-- File changes with lines added/removed
-- Timeline visualization
-
-## Local Development
-
-### Prerequisites
-
-- Node.js (v18+ recommended)
-- `git`
-- Optional: `gh` (GitHub CLI) for PR details (`brew install gh`)
-
-### Quickstart (local)
-
-Generate the report (scans default roots `~/Projects` and `~/Local Sites`):
+## Quick Start
 
 ```bash
-node generate-rich-report.mjs
+# Generate the report (scans ~/Projects and ~/Local Sites by default)
+node generate-rich-report.mjs --paths ~/Projects --no-prs
+
+# View it
+npx http-server -p 8080
+# Open http://localhost:8080
 ```
 
-Open the output:
+That's it. You should see your commit activity for the last 7 days.
 
-- macOS: `open index.html`
-- Any OS: `python3 -m http.server 8080` then visit `http://localhost:8080`
+## Prerequisites
 
-Run the smoke test (generates into a temp dir and cleans up; doesn’t touch your repo):
+- **Node.js** v18+
+- **git**
+- Optional: [GitHub CLI](https://cli.github.com/) (`gh`) for PR details
+
+## Configuration
+
+### CLI Flags
 
 ```bash
-npm test
+node generate-rich-report.mjs \
+  --paths ~/Projects,~/code \    # Comma-separated scan roots
+  --hours 48 \                   # Time window (default: 168 = 7 days)
+  --max-depth 4 \                # Repo scan depth
+  --author you@example.com \     # Filter commits by email
+  --gh-author someuser \         # GitHub PR author filter
+  --exclude "vendor,archive" \   # Exclude repos matching patterns
+  --no-prs                       # Skip PR fetching (no gh CLI needed)
 ```
 
-Use cached data for faster re-renders (skips scanning local repos):
+### config.json (Optional)
+
+Create a `config.json` in the repo root for persistent settings (see [config.json.example](config.json.example)):
+
+```json
+{
+  "paths": ["~/Projects", "~/code"],
+  "author": "you@example.com",
+  "ghAuthor": "your-github-username",
+  "exclude": ["node_modules", "vendor"],
+  "hours": 168
+}
+```
+
+CLI flags override config.json values.
+
+### Environment Variables
+
+These also work as alternatives to CLI flags:
+
+- `ACTIVITY_REPORT_AUTHOR_EMAIL` — commit author filter
+- `ACTIVITY_REPORT_GH_AUTHOR` — GitHub PR author filter
+- `GH_TOKEN` — GitHub token for PR fetching
+
+If no author is specified, it falls back to your `git config user.email`.
+
+### Categories (Optional)
+
+Create a `categories.json` to group repos in the dashboard (see [categories.json.example](categories.json.example)):
+
+```json
+{
+  "Frontend": { "icon": "🖥️", "class": "frontend", "repos": ["my-app", "website"] },
+  "Backend": { "icon": "⚙️", "class": "backend", "repos": ["api", "worker"] }
+}
+```
+
+Repos not in any category appear in an "Other" group. If no `categories.json` exists, all repos are shown ungrouped.
+
+### PR Fetching
+
+If you want PRs included in the report:
+
+1. Install [GitHub CLI](https://cli.github.com/): `brew install gh`
+2. Authenticate: `gh auth login` (or set `GH_TOKEN`)
+3. Run without `--no-prs`
+
+By default it searches PRs authored by `@me`. Override with `--gh-author yourname`.
+
+## Hosting Options
+
+### Local Only
 
 ```bash
-node generate-rich-report.mjs --cached
+npm run generate     # Generate the report
+npm start            # Serve at http://localhost:8080
 ```
 
-### Make it portable (recommended)
+Use `npm run generate:cached` for faster re-renders from cached data.
 
-By default, the generator scans `~/Projects` and `~/Local Sites` and filters commits by your git email.
-For someone cloning this repo, these flags/env vars make it work in any environment:
+### GitHub Pages (Free)
 
-- Set the author email (commit filter):
-  - `ACTIVITY_REPORT_AUTHOR_EMAIL="you@example.com"`
-  - or pass `--author you@example.com`
-- Limit scan roots: `--paths ~/Projects,~/code` (comma-separated)
-- Change time window: `--hours 48` (default: `168` / 7 days)
-- Control repo scan depth: `--max-depth 4` (default: `4`)
-- Skip PR fetching (no `gh` needed): `--no-prs`
+The included `.github/workflows/github-pages.yml` workflow deploys to GitHub Pages. It runs on GitHub-hosted runners (no self-hosted runner needed), but can only scan commits in the repo itself.
 
-Example (works on GitHub-hosted runners too; only scans this repo):
+1. Go to repo **Settings > Pages > Source: GitHub Actions**
+2. Run the workflow manually (Actions > Activity Report (GitHub Pages) > Run workflow)
+3. To automate: uncomment the `schedule` trigger in the workflow file
+
+### Cloudflare Pages (with Self-Hosted Runner)
+
+For scanning local repos on your machine, use `.github/workflows/daily-update.yml` with a self-hosted runner.
+
+1. Set up a [self-hosted runner](https://docs.github.com/en/actions/hosting-your-own-runners) on your machine
+2. Configure repository variables (Settings > Variables):
+   - `SCAN_PATHS` — paths to scan (e.g. `~/Projects,~/code`)
+   - `GH_AUTHOR` — your GitHub username
+   - `GIT_EMAIL` — email for automated commits
+   - `GIT_NAME` — name for automated commits
+   - `CLOUDFLARE_DEPLOY` — set to `true` to enable Cloudflare deployment
+   - `CLOUDFLARE_PROJECT` — Cloudflare Pages project name
+3. Add secrets: `CLOUDFLARE_API_TOKEN`, `CLOUDFLARE_ACCOUNT_ID`
+
+## How It Works
+
+1. `generate-rich-report.mjs` recursively scans directories for `.git` repos
+2. Extracts commits via `git log` with author filtering
+3. Optionally fetches PR details via `gh` CLI
+4. Outputs `activity-data.json` (cached data)
+5. `index.html` loads `activity-data.json` at runtime — it's a static vanilla JS dashboard, no build step
+
+## Scripts
 
 ```bash
-ACTIVITY_REPORT_AUTHOR_EMAIL="you@example.com" node generate-rich-report.mjs --paths . --hours 48 --no-prs
+npm run generate         # Generate fresh report
+npm run generate:cached  # Use cached activity-data.json
+npm start                # Serve locally on port 8080
+npm test                 # Smoke test (generates into temp dir, cleans up)
 ```
 
-### PR fetching (optional)
+## License
 
-If you want PRs included:
-
-- Authenticate `gh` (`gh auth login`) or set `GH_TOKEN` in your environment.
-- By default it searches PRs authored by `@me`. Override with:
-  - `ACTIVITY_REPORT_GH_AUTHOR="someuser"` or `--gh-author someuser`
-
-## Automated Updates
-
-This repo uses GitHub Actions with a self-hosted runner for daily updates.
-The runner runs on the local Mac to access local git repositories.
-
-Schedule: Daily at 9 AM UTC (via `.github/workflows/daily-update.yml`)
-
-### Setting Up the Runner
-
-1. Go to GitHub repo → Settings → Actions → Runners → New self-hosted runner
-2. Follow macOS setup instructions
-3. Install as a service: `./svc.sh install && ./svc.sh start`
-
-### Required Secrets
-
-- `CLOUDFLARE_API_TOKEN`: For wrangler deploy
-- `CLOUDFLARE_ACCOUNT_ID`: Your Cloudflare account ID
-
-## Manual Deploy
-
-Set Cloudflare env vars (or configure wrangler auth), then run:
-
-```bash
-export CLOUDFLARE_ACCOUNT_ID="..."
-export CLOUDFLARE_API_TOKEN="..."
-./deploy.sh
-```
-
-Or via wrangler directly:
-
-```bash
-npx wrangler pages deploy . --project-name=activity-report
-```
-
-## Structure
-
-```
-activity-report/
-├── .github/
-│   └── workflows/
-│       └── daily-update.yml   # GitHub Actions workflow
-├── generate-rich-report.mjs   # Report generator
-├── index.html                 # The report (generated)
-├── activity-data.json         # Raw data (generated)
-├── wrangler.toml              # Cloudflare Pages config
-├── deploy.sh                  # Deploy script
-├── package.json
-└── README.md
-```
-
-## Cloudflare Pages
-
-- **Project:** activity-report
-- **Domain:** activity.drunk.support
+MIT
