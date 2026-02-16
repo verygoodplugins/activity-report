@@ -55,7 +55,7 @@ jobs:
         run: |
           git config user.email "${{ vars.GIT_EMAIL || 'activity-bot@users.noreply.github.com' }}"
           git config user.name "${{ vars.GIT_NAME || 'Activity Bot' }}"
-          git add activity-data.json
+          git add -f activity-data.json
 
           if git diff --cached --quiet; then
             echo "No changes to commit"
@@ -89,7 +89,7 @@ jobs:
             git checkout -- .
             git pull origin main
             node generate-rich-report.mjs "--paths=${{ vars.SCAN_PATHS || '~/Projects' }}" --gh-author=${{ vars.GH_AUTHOR || '@me' }}
-            git add activity-data.json
+            git add -f activity-data.json
             git diff --cached --quiet || git commit -m "chore: daily activity update"
           done
 
