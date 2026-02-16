@@ -5,6 +5,18 @@ node_modules/
 .vite/
 dist/
 
+# Generated data (run `npm run generate` to create)
+activity-data.json
+
+# User config (see *.example files)
+config.json
+categories.json
+site-config.json
+
+# Environment
+.env
+.env.local
+
 # OS files
 .DS_Store
 Thumbs.db
@@ -13,7 +25,10 @@ Thumbs.db
 .idea/
 *.swp
 *.swo
+*.code-workspace
 
 # Logs
 *.log
+
+# Tool configs
 /.cursor

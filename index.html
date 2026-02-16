@@ -691,10 +691,7 @@
       font-size: 1.25rem;
     }
 
-    .category-icon.wp-fusion { background: rgba(180, 165, 199, 0.3); }
-    .category-icon.mcp-servers { background: rgba(232, 196, 154, 0.3); }
-    .category-icon.personal { background: rgba(148, 180, 159, 0.3); }
-    .category-icon.other { background: rgba(200, 200, 200, 0.3); }
+    .category-icon { background: rgba(200, 200, 200, 0.2); }
 
     .category-name {
       font-size: 1rem;
@@ -1268,12 +1265,6 @@
   <div class="noise"></div>
   
   <div class="container">
-    <!-- Back Links -->
-    <nav class="back-links">
-      <a href="https://automem.ai" class="back-link">← automem.ai</a>
-      <a href="https://drunk.support" class="back-link">← drunk.support</a>
-    </nav>
-
     <!-- Hero Section -->
     <header class="hero">
       <div class="hero-content">
@@ -1281,7 +1272,7 @@
           <h1>Dev Pulse</h1>
           <div class="hero-tagline">
             <span class="live-dot"></span>
-            <span id="period-label">Jack's engineering velocity this week</span>
+            <span id="period-label">Engineering velocity this week</span>
           </div>
           <div class="time-toggle">
             <button class="toggle-btn" data-period="day">Day</button>
@@ -1394,6 +1385,14 @@
   </div>
 
   <script>
+    // Site configuration (overridden by site-config.json if present)
+    let SITE_CONFIG = {
+      title: 'Dev Pulse',
+      tagline: 'Engineering velocity',
+      accentColor: null,
+      logo: null
+    };
+
     // Load and render activity data
     let rawData = null;
     let currentPeriod = 'week';
@@ -1401,90 +1400,64 @@
     let viewTransitioning = false;
     let selectedDate = null; // When set, filters to specific day
 
-    const PERIOD_CONFIG = {
-      'day': { hours: 24, label: 'Jack\'s engineering velocity last 24 hours' },
-      'week': { hours: 168, label: 'Jack\'s engineering velocity this week' },
-      'month': { hours: 720, label: 'Jack\'s engineering velocity this month' }
+    const PERIOD_LABELS = {
+      'day': 'last 24 hours',
+      'week': 'this week',
+      'month': 'this month'
     };
 
-    // AutoJack logo SVG for AutoMem-related items
-    const AUTOJACK_LOGO = `<svg viewBox="0 0 100 100" style="width: 24px; height: 24px;">
-      <defs>
-        <linearGradient id="goldGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-          <stop offset="0%" style="stop-color:#FFE082"/>
-          <stop offset="50%" style="stop-color:#F9D857"/>
-          <stop offset="100%" style="stop-color:#DAA520"/>
-        </linearGradient>
-      </defs>
-      <g class="disk-body">
-        <rect x="10" y="10" width="80" height="80" rx="8" fill="url(#goldGradient)" stroke="#1a1a1a" stroke-width="3"/>
-        <rect x="30" y="15" width="40" height="25" rx="3" fill="#e5e5e5" stroke="#1a1a1a" stroke-width="2"/>
-        <rect x="55" y="20" width="12" height="15" rx="2" fill="#1a1a1a"/>
-      </g>
-      <g class="face">
-        <circle cx="38" cy="60" r="5" fill="#1a1a1a"/>
-        <circle cx="62" cy="60" r="5" fill="#1a1a1a"/>
-        <path d="M42 72 Q50 80 58 72" stroke="#1a1a1a" stroke-width="3" fill="none" stroke-linecap="round"/>
-      </g>
-    </svg>`;
-
-    // Small inline logo for PRs and timeline
-    const AUTOJACK_SMALL = `<svg viewBox="0 0 100 100" style="width: 14px; height: 14px; vertical-align: -2px; margin-right: 3px;">
-      <defs><linearGradient id="goldGradientSmall" x1="0%" y1="0%" x2="0%" y2="100%">
-        <stop offset="0%" style="stop-color:#FFE082"/><stop offset="50%" style="stop-color:#F9D857"/><stop offset="100%" style="stop-color:#DAA520"/>
-      </linearGradient></defs>
-      <rect x="10" y="10" width="80" height="80" rx="8" fill="url(#goldGradientSmall)" stroke="#1a1a1a" stroke-width="3"/>
-      <rect x="30" y="15" width="40" height="25" rx="3" fill="#e5e5e5" stroke="#1a1a1a" stroke-width="2"/>
-      <rect x="55" y="20" width="12" height="15" rx="2" fill="#1a1a1a"/>
-      <circle cx="38" cy="60" r="5" fill="#1a1a1a"/><circle cx="62" cy="60" r="5" fill="#1a1a1a"/>
-      <path d="M42 72 Q50 80 58 72" stroke="#1a1a1a" stroke-width="3" fill="none" stroke-linecap="round"/>
-    </svg>`;
-
-    // Repos that get the AutoJack logo
-    const AUTOMEM_REPOS = ['automem', 'automem-website', 'mcp-automem'];
+    const PERIOD_CONFIG = {
+      'day': { hours: 24, get label() { return SITE_CONFIG.tagline + ' ' + PERIOD_LABELS.day; } },
+      'week': { hours: 168, get label() { return SITE_CONFIG.tagline + ' ' + PERIOD_LABELS.week; } },
+      'month': { hours: 720, get label() { return SITE_CONFIG.tagline + ' ' + PERIOD_LABELS.month; } }
+    };
 
     function getRepoLabel(repoName) {
-      if (AUTOMEM_REPOS.includes(repoName)) {
-        return AUTOJACK_SMALL + repoName;
-      }
       return repoName;
     }
 
-    const CATEGORY_CONFIG = {
-      'MCP Servers': {
-        icon: '🔌',
-        class: 'mcp-servers',
-        repos: ['mcp-freescout', 'mcp-automem', 'mcp-ecosystem', 'mcp-evernote', 'mcp-local-wp', 'mcp-edd', 'mcp-toggl']
-      },
-      'AutoMem & Memory': {
-        icon: AUTOJACK_LOGO,
-        class: 'wp-fusion',
-        repos: ['automem', 'automem-website', 'mcp-automem']
-      },
-      'Apps & Labs': {
-        icon: '🧪',
-        class: 'personal',
-        repos: ['autohub', 'sunset-voyages', 'activity-report', 'haven', 'uncensored-voice-server', 'autoapp']
+    function applySiteConfig() {
+      // Title
+      if (SITE_CONFIG.title) {
+        document.querySelector('.hero-left h1').textContent = SITE_CONFIG.title;
+        document.title = SITE_CONFIG.title + ' | Activity Dashboard';
       }
-    };
+      // Period label (tagline + period suffix)
+      document.getElementById('period-label').textContent = PERIOD_CONFIG[currentPeriod].label;
+      // Accent color override
+      if (SITE_CONFIG.accentColor) {
+        document.documentElement.style.setProperty('--accent', SITE_CONFIG.accentColor);
+        document.documentElement.style.setProperty('--accent-light', SITE_CONFIG.accentColor + '26');
+      }
+      // Custom logo (replaces h1 text with image)
+      if (SITE_CONFIG.logo) {
+        const h1 = document.querySelector('.hero-left h1');
+        h1.textContent = '';
+        const img = document.createElement('img');
+        img.src = SITE_CONFIG.logo;
+        img.alt = SITE_CONFIG.title || 'Dev Pulse';
+        img.style.cssText = 'height: 2em; vertical-align: middle;';
+        h1.appendChild(img);
+      }
+    }
 
-    const REPO_COLORS = {
-      'autohub': '#B4A5C7',
-      'automem': '#A8C5E8',
-      'automem-website': '#B4C5E8',
-      'autoapp': '#C4A5E8',
-      'mcp-freescout': '#E8C49A',
-      'mcp-automem': '#E8A598',
-      'mcp-evernote': '#E8B4A5',
-      'mcp-local-wp': '#D4A598',
-      'mcp-edd': '#E8C4A5',
-      'mcp-toggl': '#E8D4A5',
-      'mcp-ecosystem': '#E8B4C4',
-      'sunset-voyages': '#94B49F',
-      'activity-report': '#A8D8D4',
-      'uncensored-voice-server': '#A8D8C8',
-      'haven': '#98D4D8'
-    };
+    // Categories loaded from categories.json (optional)
+    // If no categories.json exists, repos are shown ungrouped.
+    let CATEGORY_CONFIG = {};
+
+    // Generate deterministic colors from repo names
+    function hashColor(str) {
+      let hash = 0;
+      for (let i = 0; i < str.length; i++) {
+        hash = str.charCodeAt(i) + ((hash << 5) - hash);
+      }
+      const hue = Math.abs(hash) % 360;
+      return `hsl(${hue}, 55%, 65%)`;
+    }
+
+    const REPO_COLORS = new Proxy({}, {
+      get: (target, prop) => target[prop] || hashColor(String(prop))
+    });
 
     function formatNumber(num) {
       if (num >= 1000) {
@@ -1582,6 +1555,30 @@
       try {
         const response = await fetch('activity-data.json');
         rawData = await response.json();
+
+        // Load optional site config (title, tagline, branding)
+        try {
+          const siteResponse = await fetch('site-config.json');
+          if (siteResponse.ok) {
+            Object.assign(SITE_CONFIG, await siteResponse.json());
+          }
+        } catch (e) {
+          // No site-config.json — using defaults
+        }
+
+        // Load optional categories config
+        try {
+          const catResponse = await fetch('categories.json');
+          if (catResponse.ok) {
+            CATEGORY_CONFIG = await catResponse.json();
+          }
+        } catch (e) {
+          // No categories.json — repos will be shown ungrouped
+        }
+
+        // Apply site config to the page
+        applySiteConfig();
+
         renderDashboard();
         setupToggleButtons();
       } catch (error) {

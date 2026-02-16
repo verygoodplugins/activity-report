@@ -1,0 +1,52 @@
+name: Activity Report (GitHub Pages)
+
+# This workflow generates an activity report from this repo's commits
+# and deploys it to GitHub Pages. No self-hosted runner needed.
+#
+# To enable:
+# 1. Go to repo Settings > Pages > Source: GitHub Actions
+# 2. Uncomment the schedule below (or use workflow_dispatch to run manually)
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+on:
+  # Uncomment to run on a schedule:
+  # schedule:
+  #   - cron: "0 9 * * *"
+  workflow_dispatch:
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Full history for accurate commit scanning
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Generate report
+        run: node generate-rich-report.mjs --paths . --no-prs --hours 168
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+
+  deploy:
+    needs: generate
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
