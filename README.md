@@ -2,6 +2,8 @@
 
 A developer activity dashboard that scans your local git repos and displays commits, PRs, and stats as a static site. Run it locally, deploy to GitHub Pages, or host on Cloudflare Pages.
 
+Preview: [https://pulse.automem.ai](https://pulse.automem.ai)
+
 ## Quick Start
 
 ```bash
