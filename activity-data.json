@@ -1,7 +1,488 @@
 {
-  "generatedAt": "2026-02-16T16:36:04.943Z",
-  "periodStart": "2026-02-09T16:36:04.942Z",
+  "generatedAt": "2026-02-17T09:52:27.599Z",
+  "periodStart": "2026-02-10T09:52:27.599Z",
   "commits": [
+    {
+      "type": "commit",
+      "hash": "6bdac4ecd810c7081a50664f483e1190ab415c4e",
+      "shortHash": "6bdac4e",
+      "date": "2026-02-17T13:58:33+05:30",
+      "headline": "Fix CodeRabbit comments for D1 sync scripts and daemon",
+      "body": "",
+      "repo": "autohub",
+      "owner": "verygoodplugins",
+      "repoSlug": "autohub",
+      "remoteUrl": "https://github.com/verygoodplugins/autohub",
+      "stats": {
+        "added": 51,
+        "deleted": 28,
+        "files": 6
+      },
+      "files": [
+        {
+          "file": ".env.example",
+          "added": 1,
+          "deleted": 0
+        },
+        {
+          "file": "scripts/d1-backfill.js",
+          "added": 9,
+          "deleted": 9
+        },
+        {
+          "file": "scripts/d1-parity-check.js",
+          "added": 2,
+          "deleted": 2
+        },
+        {
+          "file": "scripts/run-d1-sync-daemon.js",
+          "added": 2,
+          "deleted": 2
+        },
+        {
+          "file": "src/chat-server/routes/logs.js",
+          "added": 5,
+          "deleted": 3
+        },
+        {
+          "file": "src/db/sync/daemon.js",
+          "added": 32,
+          "deleted": 12
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "7decaf9e4ffa1efa918898fdfad9f34d992dcdbc",
+      "shortHash": "7decaf9",
+      "date": "2026-02-17T01:48:54+05:30",
+      "headline": "Implement Prisma-first D1 sync migration foundation",
+      "body": "",
+      "repo": "autohub",
+      "owner": "verygoodplugins",
+      "repoSlug": "autohub",
+      "remoteUrl": "https://github.com/verygoodplugins/autohub",
+      "stats": {
+        "added": 3852,
+        "deleted": 1334,
+        "files": 29
+      },
+      "files": [
+        {
+          "file": ".env.cloudflare",
+          "added": 0,
+          "deleted": 2
+        },
+        {
+          "file": ".env.cloudflare.example",
+          "added": 17,
+          "deleted": 0
+        },
+        {
+          "file": ".env.example",
+          "added": 23,
+          "deleted": 0
+        },
+        {
+          "file": "docs/D1-MIGRATION-PLAN.md",
+          "added": 139,
+          "deleted": 0
+        },
+        {
+          "file": "docs/D1-QUICK-REFERENCE.md",
+          "added": 18,
+          "deleted": 296
+        },
+        {
+          "file": "docs/D1-SETUP.md",
+          "added": 20,
+          "deleted": 464
+        },
+        {
+          "file": "docs/distributed-autojack-plan.md",
+          "added": 9,
+          "deleted": 364
+        },
+        {
+          "file": "migrations/d1/002-prisma-mirror.sql",
+          "added": 300,
+          "deleted": 0
+        },
+        {
+          "file": "migrations/d1/003-sync-metadata.sql",
+          "added": 28,
+          "deleted": 0
+        },
+        {
+          "file": "migrations/sqlite/001-sync-outbox.sql",
+          "added": 573,
+          "deleted": 0
+        },
+        {
+          "file": "package.json",
+          "added": 5,
+          "deleted": 0
+        },
+        {
+          "file": "scripts/d1-backfill.js",
+          "added": 183,
+          "deleted": 0
+        },
+        {
+          "file": "scripts/d1-parity-check.js",
+          "added": 239,
+          "deleted": 0
+        },
+        {
+          "file": "scripts/run-d1-migrations.ts",
+          "added": 222,
+          "deleted": 186
+        },
+        {
+          "file": "scripts/run-d1-sync-daemon.js",
+          "added": 34,
+          "deleted": 0
+        },
+        {
+          "file": "scripts/setup-cloudflare-d1.sh",
+          "added": 33,
+          "deleted": 13
+        },
+        {
+          "file": "src/chat-server/routes/logs.js",
+          "added": 38,
+          "deleted": 7
+        },
+        {
+          "file": "src/db/client.js",
+          "added": 14,
+          "deleted": 2
+        },
+        {
+          "file": "src/db/sync/bootstrap.js",
+          "added": 117,
+          "deleted": 0
+        },
+        {
+          "file": "src/db/sync/daemon.js",
+          "added": 304,
+          "deleted": 0
+        },
+        {
+          "file": "src/db/sync/queue-store.js",
+          "added": 188,
+          "deleted": 0
+        },
+        {
+          "file": "src/db/sync/sql-builders.js",
+          "added": 409,
+          "deleted": 0
+        },
+        {
+          "file": "test/d1-sync/backfill-parity.test.js",
+          "added": 101,
+          "deleted": 0
+        },
+        {
+          "file": "test/d1-sync/outbox-triggers.test.js",
+          "added": 121,
+          "deleted": 0
+        },
+        {
+          "file": "test/d1-sync/sync-daemon-retry.test.js",
+          "added": 129,
+          "deleted": 0
+        },
+        {
+          "file": "test/d1-sync/worker-auth.test.js",
+          "added": 179,
+          "deleted": 0
+        },
+        {
+          "file": "workers/d1-sync-proxy/package.json",
+          "added": 10,
+          "deleted": 0
+        },
+        {
+          "file": "workers/d1-sync-proxy/src/index.js",
+          "added": 370,
+          "deleted": 0
+        },
+        {
+          "file": "workers/d1-sync-proxy/wrangler.toml",
+          "added": 29,
+          "deleted": 0
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "5fee1e8484e00ad7933d28ec78c24503d7c03219",
+      "shortHash": "5fee1e8",
+      "date": "2026-02-17T01:36:15+05:30",
+      "headline": "fix(lab): address CodeRabbit review — type hints, f-strings, validation",
+      "body": "- Add return type annotations to all functions\n- Remove placeholder-free f-strings (F541)\n- Remove unused env_args variable (F841)\n- Validate --restore-only requires explicit snapshot name",
+      "repo": "automem",
+      "owner": "verygoodplugins",
+      "repoSlug": "automem",
+      "remoteUrl": "https://github.com/verygoodplugins/automem",
+      "stats": {
+        "added": 17,
+        "deleted": 13,
+        "files": 3
+      },
+      "files": [
+        {
+          "file": "scripts/lab/clone_production.sh",
+          "added": 6,
+          "deleted": 0
+        },
+        {
+          "file": "scripts/lab/create_test_queries.py",
+          "added": 2,
+          "deleted": 2
+        },
+        {
+          "file": "scripts/lab/run_recall_test.py",
+          "added": 9,
+          "deleted": 11
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "55e381b76265c7bb4e88c35a84e251b1de012dbf",
+      "shortHash": "55e381b",
+      "date": "2026-02-17T00:57:37+05:30",
+      "headline": "fix(recall): sync relevance_score to Qdrant payload for vector search",
+      "body": "Root cause: relevance_score was only stored in FalkorDB graph nodes but\nnever included in Qdrant point payloads. Since ~90% of recall results\ncome from vector search (Qdrant), the scoring component was invisible.\n\nChanges:\n- Add relevance_score to Qdrant upsert payload (app.py)\n- Sync relevance_score to Qdrant during consolidation decay (consolidation.py)\n- Sync relevance_score to Qdrant during forgetting phase (consolidation.py)\n- Fix clone_production.sh to use FALKORDB_TCP_PROXY env var\n- Fix create_test_queries.py prompt for 0-based memory indexing\n\nLab testing with 100 real-world queries shows zero regression at any\nrelevance weight (0.0-0.50), confirming the change is safe to deploy.\nThe lack of differentiation confirms issue #78: decay crushes all\nrelevance scores to near-zero (~0.069 avg), making the signal uniform.",
+      "repo": "automem",
+      "owner": "verygoodplugins",
+      "repoSlug": "automem",
+      "remoteUrl": "https://github.com/verygoodplugins/automem",
+      "stats": {
+        "added": 56,
+        "deleted": 10,
+        "files": 4
+      },
+      "files": [
+        {
+          "file": "app.py",
+          "added": 1,
+          "deleted": 0
+        },
+        {
+          "file": "consolidation.py",
+          "added": 38,
+          "deleted": 0
+        },
+        {
+          "file": "scripts/lab/clone_production.sh",
+          "added": 14,
+          "deleted": 6
+        },
+        {
+          "file": "scripts/lab/create_test_queries.py",
+          "added": 3,
+          "deleted": 4
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "c121341e6106c5c3a6da5162df575b8f0b39f510",
+      "shortHash": "c121341",
+      "date": "2026-02-16T23:46:07+05:30",
+      "headline": "fix(lab): address CodeRabbit review findings",
+      "body": "- Handle empty dirname when output path has no directory component\n- Require --config when using --compare flag (was silently using None)",
+      "repo": "automem",
+      "owner": "verygoodplugins",
+      "repoSlug": "automem",
+      "remoteUrl": "https://github.com/verygoodplugins/automem",
+      "stats": {
+        "added": 7,
+        "deleted": 2,
+        "files": 2
+      },
+      "files": [
+        {
+          "file": "scripts/lab/create_test_queries.py",
+          "added": 3,
+          "deleted": 1
+        },
+        {
+          "file": "scripts/lab/run_recall_test.py",
+          "added": 4,
+          "deleted": 1
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "d53dfdd7a365b9bf99a5001550c1fb4ff8d851e4",
+      "shortHash": "d53dfdd",
+      "date": "2026-02-16T23:41:54+05:30",
+      "headline": "feat(lab): add Recall Quality Lab for data-driven recall optimization",
+      "body": "Adds a testing framework to clone production data, generate real-world\ntest queries, and compare recall algorithm variants with statistical rigor.\n\n- scripts/lab/clone_production.sh: one-command Railway → local Docker snapshot\n- scripts/lab/create_test_queries.py: stratified sampling + GPT-4o-mini question gen\n- scripts/lab/run_recall_test.py: IR metrics (Recall@K, MRR, NDCG) with paired t-test\n- 4 test configs for issue #78 hypotheses (baseline, relevance weight, archive filter, combined)\n- SEARCH_WEIGHT_RELEVANCE env var wires consolidation relevance_score into recall scoring (default 0.0, no behavior change)\n- Makefile targets: lab-clone, lab-queries, lab-test, lab-compare, lab-sweep\n\nCloses #75 (partial — provides the regression test infrastructure)\nRelated: #78 (decay not affecting recall)",
+      "repo": "automem",
+      "owner": "verygoodplugins",
+      "repoSlug": "automem",
+      "remoteUrl": "https://github.com/verygoodplugins/automem",
+      "stats": {
+        "added": 1116,
+        "deleted": 0,
+        "files": 11
+      },
+      "files": [
+        {
+          "file": ".gitignore",
+          "added": 5,
+          "deleted": 0
+        },
+        {
+          "file": "Makefile",
+          "added": 21,
+          "deleted": 0
+        },
+        {
+          "file": "automem/config.py",
+          "added": 1,
+          "deleted": 0
+        },
+        {
+          "file": "automem/utils/scoring.py",
+          "added": 8,
+          "deleted": 0
+        },
+        {
+          "file": "scripts/lab/clone_production.sh",
+          "added": 199,
+          "deleted": 0
+        },
+        {
+          "file": "scripts/lab/configs/baseline.json",
+          "added": 13,
+          "deleted": 0
+        },
+        {
+          "file": "scripts/lab/configs/issue78_archive_filter.json",
+          "added": 14,
+          "deleted": 0
+        },
+        {
+          "file": "scripts/lab/configs/issue78_combined.json",
+          "added": 14,
+          "deleted": 0
+        },
+        {
+          "file": "scripts/lab/configs/issue78_relevance_weight.json",
+          "added": 14,
+          "deleted": 0
+        },
+        {
+          "file": "scripts/lab/create_test_queries.py",
+          "added": 291,
+          "deleted": 0
+        },
+        {
+          "file": "scripts/lab/run_recall_test.py",
+          "added": 536,
+          "deleted": 0
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "0fbd8e121dbd6f436fecd968a43cd61ca06bf0c4",
+      "shortHash": "0fbd8e1",
+      "date": "2026-02-16T22:49:32+05:30",
+      "headline": "fix(slack): fix bold regex failing on text containing asterisks",
+      "body": "The [^*]+ character class in bold/italic/strikethrough regexes rejected\nany content containing * characters, so patterns like **bold *with*\nemphasis** passed through completely unconverted. Switch to non-greedy\n.+? matching, add ***bold-italic*** handling, and clean up leftover **\nfrom mixed markdown/Slack formatting.\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>",
+      "repo": "autohub",
+      "owner": "verygoodplugins",
+      "repoSlug": "autohub",
+      "remoteUrl": "https://github.com/verygoodplugins/autohub",
+      "stats": {
+        "added": 47,
+        "deleted": 25,
+        "files": 2
+      },
+      "files": [
+        {
+          "file": "src/claude/markdown/slack-blocks.js",
+          "added": 17,
+          "deleted": 9
+        },
+        {
+          "file": "src/claude/markdown/slack.js",
+          "added": 30,
+          "deleted": 16
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "9747e23fc40b7c86b84a6057651134ea0a9eafe3",
+      "shortHash": "9747e23",
+      "date": "2026-02-16T22:27:57+05:30",
+      "headline": "fix: guard against Slack's 50-block limit when appending extras",
+      "body": "Collect tool summary, progress, and truncation blocks into an extras\narray and trim primary blocks if total would exceed SLACK_MAX_BLOCKS.\nApplied to both buildFinalBlocks() and formatOutgoingMessage() paths.\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>",
+      "repo": "autohub",
+      "owner": "verygoodplugins",
+      "repoSlug": "autohub",
+      "remoteUrl": "https://github.com/verygoodplugins/autohub",
+      "stats": {
+        "added": 22,
+        "deleted": 9,
+        "files": 1
+      },
+      "files": [
+        {
+          "file": "src/platforms/slack/adapter.js",
+          "added": 22,
+          "deleted": 9
+        }
+      ]
+    },
+    {
+      "type": "commit",
+      "hash": "7e8cb4d17a1479fff7f547e73838984fde2205c3",
+      "shortHash": "7e8cb4d",
+      "date": "2026-02-16T22:15:07+05:30",
+      "headline": "fix(slack): wire rich Block Kit formatting into message pipeline",
+      "body": "markdownToBlocks() already existed in slack-blocks.js but was never\ncalled from the send path. Responses were sent as a single flat\nsection block, losing structural formatting (headers, dividers).\n\n- Add rawText (original markdown) to service response for per-platform\n  formatting\n- Forward rawText + integrationBlocks through PlatformAdapter\n- Add buildFinalBlocks() to SlackAdapter using markdownToBlocks() with\n  graceful fallback to buildStreamingBlocks()\n- Wire rich blocks into all 3 sendResponse() paths + formatOutgoingMessage()\n- Add per-chunk blocks to threaded response handler\n\nStreaming updates remain unchanged (fast, lightweight).\nOther platforms (Discord, WhatsApp) unaffected.\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>",
+      "repo": "autohub",
+      "owner": "verygoodplugins",
+      "repoSlug": "autohub",
+      "remoteUrl": "https://github.com/verygoodplugins/autohub",
+      "stats": {
+        "added": 132,
+        "deleted": 28,
+        "files": 4
+      },
+      "files": [
+        {
+          "file": "src/claude/service.js",
+          "added": 1,
+          "deleted": 0
+        },
+        {
+          "file": "src/core/platform-adapter.js",
+          "added": 3,
+          "deleted": 1
+        },
+        {
+          "file": "src/platforms/slack/adapter.js",
+          "added": 93,
+          "deleted": 11
+        },
+        {
+          "file": "src/platforms/slack/messaging/threaded-response-handler.js",
+          "added": 35,
+          "deleted": 16
+        }
+      ]
+    },
     {
       "type": "commit",
       "hash": "694801e8a2d8d6bede13f6ea45c750aa02108b88",
@@ -893,336 +1374,22 @@
           "deleted": 0
         }
       ]
-    },
-    {
-      "type": "commit",
-      "hash": "a1b7c0ae9247c18007ef828ea14af0916d2a43ab",
-      "shortHash": "a1b7c0a",
-      "date": "2026-02-10T03:20:26+05:30",
-      "headline": "Fix formatting and lint config for consistent saves",
-      "body": "Run Prettier on all web components to match project config.\nAdd caughtErrorsIgnorePattern to eslint no-unused-vars rule\nso catch(_err) follows the same _ prefix convention as args/vars.\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>",
-      "repo": "autohub",
-      "owner": "verygoodplugins",
-      "repoSlug": "autohub",
-      "remoteUrl": "https://github.com/verygoodplugins/autohub",
-      "stats": {
-        "added": 779,
-        "deleted": 529,
-        "files": 8
-      },
-      "files": [
-        {
-          "file": "eslint.config.js",
-          "added": 1,
-          "deleted": 0
-        },
-        {
-          "file": "src/chat-server/routes/chat.js",
-          "added": 3,
-          "deleted": 3
-        },
-        {
-          "file": "web/src/components/ChatInterface.jsx",
-          "added": 323,
-          "deleted": 199
-        },
-        {
-          "file": "web/src/components/CommandPalette.jsx",
-          "added": 7,
-          "deleted": 6
-        },
-        {
-          "file": "web/src/components/ContextBar.jsx",
-          "added": 4,
-          "deleted": 2
-        },
-        {
-          "file": "web/src/components/ConversationSidebar.jsx",
-          "added": 163,
-          "deleted": 159
-        },
-        {
-          "file": "web/src/components/MessageInput.jsx",
-          "added": 35,
-          "deleted": 27
-        },
-        {
-          "file": "web/src/components/MessageList.jsx",
-          "added": 243,
-          "deleted": 133
-        }
-      ]
-    },
-    {
-      "type": "commit",
-      "hash": "6f912245fd5104946d2eefa757ce84313a2937b8",
-      "shortHash": "6f91224",
-      "date": "2026-02-10T03:15:41+05:30",
-      "headline": "Add command palette, context bar & web UI enhancements",
-      "body": "Introduces CommandPalette and ContextBar components for the web UI,\nenhances conversation sidebar, message input/list, and chat routes\nto support the realtime voice feature set.\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>",
-      "repo": "autohub",
-      "owner": "verygoodplugins",
-      "repoSlug": "autohub",
-      "remoteUrl": "https://github.com/verygoodplugins/autohub",
-      "stats": {
-        "added": 1117,
-        "deleted": 104,
-        "files": 8
-      },
-      "files": [
-        {
-          "file": "src/chat-server/routes/chat.js",
-          "added": 83,
-          "deleted": 9
-        },
-        {
-          "file": "web/src/App.jsx",
-          "added": 114,
-          "deleted": 3
-        },
-        {
-          "file": "web/src/components/ChatInterface.jsx",
-          "added": 172,
-          "deleted": 28
-        },
-        {
-          "file": "web/src/components/CommandPalette.jsx",
-          "added": 161,
-          "deleted": 0
-        },
-        {
-          "file": "web/src/components/ContextBar.jsx",
-          "added": 65,
-          "deleted": 0
-        },
-        {
-          "file": "web/src/components/ConversationSidebar.jsx",
-          "added": 46,
-          "deleted": 7
-        },
-        {
-          "file": "web/src/components/MessageInput.jsx",
-          "added": 139,
-          "deleted": 13
-        },
-        {
-          "file": "web/src/components/MessageList.jsx",
-          "added": 337,
-          "deleted": 44
-        }
-      ]
-    },
-    {
-      "type": "commit",
-      "hash": "9c3aa32693019095a31a132e0a2430414904e1f4",
-      "shortHash": "9c3aa32",
-      "date": "2026-02-10T02:27:38+05:30",
-      "headline": "Add welcome screen & enhance realtime voice UI",
-      "body": "Introduce a friendly WelcomeScreen shown when a conversation is empty and improve realtime voice UX across the chat app. Key changes:\n\n- Add WelcomeScreen component and show it in ChatInterface when there are no messages and not streaming.\n- Refactor ChatInterface realtime event handler to use useCallback, simplify streaming transcript handling, clear buffers, and reduce noisy logging; wire WelcomeScreen and voice-related props.\n- Update MessageInput to add an inline mic button, voice connection/active state props, subtle hint text, and support starting push-to-talk or continuous voice mode; tweak layout and disabled/send logic.\n- Enhance MessageList to visually mark realtime voice messages (icon, subtle glow and \"via voice\" label).\n- Replace VoiceStatusBar with a richer implementation: connecting state, nicer visuals, animated status icons, mute/end controls, and an AudioWaveform visualization (accepts analyserNode). Add related CSS animations.\n- Update useRealtimeVoice hook to track isConnecting, set voicePhase to include connecting, fix mute toggle to avoid stale closures, and expose isConnecting in the returned state.\n- Add CSS for voice-mode transitions, glow and waveform animations.\n\nOverall this changeset consolidates voice controls into the input area, improves realtime feedback (connecting/listening/processing), and provides a clearer first-run experience.",
-      "repo": "autohub",
-      "owner": "verygoodplugins",
-      "repoSlug": "autohub",
-      "remoteUrl": "https://github.com/verygoodplugins/autohub",
-      "stats": {
-        "added": 450,
-        "deleted": 202,
-        "files": 7
-      },
-      "files": [
-        {
-          "file": "web/src/components/ChatInterface.jsx",
-          "added": 47,
-          "deleted": 159
-        },
-        {
-          "file": "web/src/components/MessageInput.jsx",
-          "added": 49,
-          "deleted": 5
-        },
-        {
-          "file": "web/src/components/MessageList.jsx",
-          "added": 21,
-          "deleted": 5
-        },
-        {
-          "file": "web/src/components/VoiceStatusBar.jsx",
-          "added": 194,
-          "deleted": 24
-        },
-        {
-          "file": "web/src/components/WelcomeScreen.jsx",
-          "added": 73,
-          "deleted": 0
-        },
-        {
-          "file": "web/src/hooks/useRealtimeVoice.js",
-          "added": 20,
-          "deleted": 9
-        },
-        {
-          "file": "web/src/styles/index.css",
-          "added": 46,
-          "deleted": 0
-        }
-      ]
-    },
-    {
-      "type": "commit",
-      "hash": "10898574abb7db640f70195fe3fcfde388c4a1f2",
-      "shortHash": "1089857",
-      "date": "2026-02-10T02:09:16+05:30",
-      "headline": "Add realtime transcribe-only voice mode & browser TTS",
-      "body": "Introduce a hands-free realtime voice flow and browser-driven TTS. Server: add transcribe-only handling (flush transcript without routing to Claude), socket handlers to switch mode, start/send/flush streaming TTS, and cleanup/guards (drop audio for inactive sessions, VAD init guard). Client: new useRealtimeVoice hook to manage VoiceClient + AudioEngine lifecycle, streaming transcript callbacks, TTS send/flush/cancel, keyboard shortcuts, and speaking/mute state. UI: add VoiceStatusBar component and integrate realtime mode into ChatInterface (start/stop realtime voice, TTS sentence buffering, barge-in behavior). AudioEngine: support separate playback sample rate, mic support check, continuous capture (start/pause/resume/stop), analyser node, and playback resampling fixes. VoiceClient: expose setMode and TTS control methods. These changes enable secure, low-latency transcribe-only input with browser TTS playback and cleaner session handling.",
-      "repo": "autohub",
-      "owner": "verygoodplugins",
-      "repoSlug": "autohub",
-      "remoteUrl": "https://github.com/verygoodplugins/autohub",
-      "stats": {
-        "added": 954,
-        "deleted": 42,
-        "files": 6
-      },
-      "files": [
-        {
-          "file": "src/voice/voice-server.js",
-          "added": 137,
-          "deleted": 0
-        },
-        {
-          "file": "web/src/components/ChatInterface.jsx",
-          "added": 152,
-          "deleted": 13
-        },
-        {
-          "file": "web/src/components/VoiceStatusBar.jsx",
-          "added": 71,
-          "deleted": 0
-        },
-        {
-          "file": "web/src/hooks/useRealtimeVoice.js",
-          "added": 333,
-          "deleted": 0
-        },
-        {
-          "file": "web/src/voice/audio-engine.js",
-          "added": 160,
-          "deleted": 5
-        },
-        {
-          "file": "web/src/voice/voice-client.js",
-          "added": 101,
-          "deleted": 24
-        }
-      ]
-    },
-    {
-      "type": "commit",
-      "hash": "da35cf1f53b6eaf107fdc2150868ef7ddb4cdae1",
-      "shortHash": "da35cf1",
-      "date": "2026-02-09T23:22:26+05:30",
-      "headline": "feat: app-enabled push + live activity integration",
-      "body": "",
-      "repo": "autohub",
-      "owner": "verygoodplugins",
-      "repoSlug": "autohub",
-      "remoteUrl": "https://github.com/verygoodplugins/autohub",
-      "stats": {
-        "added": 948,
-        "deleted": 41,
-        "files": 7
-      },
-      "files": [
-        {
-          "file": ".gitignore",
-          "added": 1,
-          "deleted": 0
-        },
-        {
-          "file": "CLAUDE.md",
-          "added": 8,
-          "deleted": 1
-        },
-        {
-          "file": "src/api/routes/v1.js",
-          "added": 151,
-          "deleted": 0
-        },
-        {
-          "file": "src/events/validation.js",
-          "added": 24,
-          "deleted": 10
-        },
-        {
-          "file": "src/push-gateway/index.cjs",
-          "added": 217,
-          "deleted": 8
-        },
-        {
-          "file": "src/services/mobile-event-coordinator.js",
-          "added": 386,
-          "deleted": 0
-        },
-        {
-          "file": "src/services/push-gateway-client.js",
-          "added": 161,
-          "deleted": 22
-        }
-      ]
-    },
-    {
-      "type": "commit",
-      "hash": "30497acb91901171ec74aee393e0a332e1f7ab6c",
-      "shortHash": "30497ac",
-      "date": "2026-02-09T22:20:12+05:30",
-      "headline": "fix: address CodeRabbit review comments on PR #121 (round 2)",
-      "body": "- Swap mismatched scheduler notify comments in .env.example\n- Honor Retry-After header in moltbook-mcp client (sleep + retry)\n- Scan link URLs for secrets in create_link_post handler\n- Align twitter_create_tweet with { success, data } tool contract\n\nCo-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>",
-      "repo": "autohub",
-      "owner": "verygoodplugins",
-      "repoSlug": "autohub",
-      "remoteUrl": "https://github.com/verygoodplugins/autohub",
-      "stats": {
-        "added": 42,
-        "deleted": 32,
-        "files": 4
-      },
-      "files": [
-        {
-          "file": ".env.example",
-          "added": 2,
-          "deleted": 2
-        },
-        {
-          "file": "servers/moltbook-mcp/client.js",
-          "added": 15,
-          "deleted": 3
-        },
-        {
-          "file": "servers/moltbook-mcp/server.js",
-          "added": 2,
-          "deleted": 2
-        },
-        {
-          "file": "tools/twitter-mentions-bot.js",
-          "added": 23,
-          "deleted": 25
-        }
-      ]
     }
   ],
   "prs": [],
   "repos": {
     "automem": {
-      "commits": 5,
-      "additions": 644,
-      "deletions": 113,
+      "commits": 9,
+      "additions": 1840,
+      "deletions": 138,
       "remoteUrl": "https://github.com/verygoodplugins/automem",
       "owner": "verygoodplugins",
       "repoSlug": "automem"
     },
     "autohub": {
-      "commits": 23,
-      "additions": 15581,
-      "deletions": 17126,
+      "commits": 22,
+      "additions": 15395,
+      "deletions": 17600,
       "remoteUrl": "https://github.com/verygoodplugins/autohub",
       "owner": "verygoodplugins",
       "repoSlug": "autohub"
@@ -1237,10 +1404,10 @@
     }
   },
   "stats": {
-    "additions": 17811,
-    "deletions": 17680,
-    "files": 123,
-    "commits": 31,
+    "additions": 18821,
+    "deletions": 18179,
+    "files": 145,
+    "commits": 34,
     "prs": 0
   }
 }
