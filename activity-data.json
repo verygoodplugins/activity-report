@@ -1,7 +1,36 @@
 {
-  "generatedAt": "2026-02-17T10:58:41.779Z",
-  "periodStart": "2026-02-10T10:58:41.778Z",
+  "generatedAt": "2026-02-17T11:16:14.470Z",
+  "periodStart": "2026-02-10T11:16:14.470Z",
   "commits": [
+    {
+      "type": "commit",
+      "hash": "08e612695395cf623f50ecc5697103778332b554",
+      "shortHash": "08e6126",
+      "date": "2026-02-17T16:31:01+05:30",
+      "headline": "docs: Update environment variables",
+      "body": "",
+      "repo": "automem",
+      "owner": "verygoodplugins",
+      "repoSlug": "automem",
+      "remoteUrl": "https://github.com/verygoodplugins/automem",
+      "stats": {
+        "added": 81,
+        "deleted": 6,
+        "files": 2
+      },
+      "files": [
+        {
+          "file": "CLAUDE.md",
+          "added": 34,
+          "deleted": 0
+        },
+        {
+          "file": "docs/ENVIRONMENT_VARIABLES.md",
+          "added": 47,
+          "deleted": 6
+        }
+      ]
+    },
     {
       "type": "commit",
       "hash": "164b432624f32ecf62f4d8579932b9c0e58586ff",
@@ -1471,9 +1500,9 @@
       "repoSlug": "mcp-edd"
     },
     "automem": {
-      "commits": 9,
-      "additions": 1840,
-      "deletions": 138,
+      "commits": 10,
+      "additions": 1921,
+      "deletions": 144,
       "remoteUrl": "https://github.com/verygoodplugins/automem",
       "owner": "verygoodplugins",
       "repoSlug": "automem"
@@ -1496,10 +1525,10 @@
     }
   },
   "stats": {
-    "additions": 19160,
-    "deletions": 18232,
-    "files": 158,
-    "commits": 35,
+    "additions": 19241,
+    "deletions": 18238,
+    "files": 160,
+    "commits": 36,
     "prs": 0
   }
 }
