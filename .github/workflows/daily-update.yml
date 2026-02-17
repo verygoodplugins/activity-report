@@ -97,6 +97,7 @@ jobs:
           exit 1
 
       - name: Write site customizations
+        if: always()
         run: |
           [ -n "$SITE_CONFIG" ] && echo "$SITE_CONFIG" > site-config.json || true
           [ -n "$CATEGORIES" ] && echo "$CATEGORIES" > categories.json || true
