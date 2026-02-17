@@ -160,7 +160,7 @@ async function main() {
   const args = parseArgs(process.argv.slice(2));
   const config = loadConfigFile();
 
-  const hoursBack = parseNumber(args.hours, config.hours || 168);
+  const hoursBack = parseNumber(args.hours, config.hours || 840);
   const maxDepth = parseNumber(args["max-depth"], config.maxDepth || 4);
   const cacheFile = args["cache-file"] || "activity-data.json";
   const outputFile = args["output-file"] || "index.html";

@@ -1553,7 +1553,7 @@
 
     async function loadData() {
       try {
-        const response = await fetch('activity-data.json');
+        const response = await fetch('activity-data.json?v=' + Date.now());
         rawData = await response.json();
 
         // Load optional site config (title, tagline, branding)
@@ -1601,7 +1601,12 @@
 
           // Map period to view: day/week periods use week view, month uses month view
           const newView = newPeriod === 'month' ? 'month' : 'week';
-          transitionToView(newView);
+          if (newView === currentView) {
+            // View unchanged but period changed — re-render stats
+            renderDashboard();
+          } else {
+            transitionToView(newView);
+          }
         });
       });
     }
