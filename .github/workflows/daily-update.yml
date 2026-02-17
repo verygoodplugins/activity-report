@@ -96,18 +96,20 @@ jobs:
           echo "::warning::All push attempts failed"
           exit 1
 
-      - name: Write site customizations
-        if: always()
+      - name: Prepare deploy directory
+        if: always() && vars.CLOUDFLARE_DEPLOY == 'true'
         run: |
-          [ -n "$SITE_CONFIG" ] && echo "$SITE_CONFIG" > site-config.json || true
-          [ -n "$CATEGORIES" ] && echo "$CATEGORIES" > categories.json || true
+          mkdir -p _deploy
+          cp index.html activity-data.json _deploy/
+          [ -n "$SITE_CONFIG" ] && echo "$SITE_CONFIG" > _deploy/site-config.json || true
+          [ -n "$CATEGORIES" ] && echo "$CATEGORIES" > _deploy/categories.json || true
         env:
           SITE_CONFIG: ${{ vars.SITE_CONFIG }}
           CATEGORIES: ${{ vars.CATEGORIES_CONFIG }}
 
       - name: Deploy to Cloudflare
         if: always() && steps.commit.outcome != 'skipped' && vars.CLOUDFLARE_DEPLOY == 'true'
-        run: npx wrangler pages deploy . --project-name=${{ vars.CLOUDFLARE_PROJECT || 'activity-report' }}
+        run: npx wrangler pages deploy _deploy --project-name=${{ vars.CLOUDFLARE_PROJECT || 'activity-report' }}
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
