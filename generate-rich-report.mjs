@@ -221,7 +221,7 @@ async function main() {
     });
     if (writeCache) {
       fs.mkdirSync(path.dirname(cacheFile), { recursive: true });
-      fs.writeFileSync(cacheFile, JSON.stringify(data, null, 2));
+      fs.writeFileSync(cacheFile, JSON.stringify(data));
       console.log("Cached to", cacheFile);
     }
   }
@@ -333,7 +333,7 @@ async function fetchData({
           shortHash: hash.substring(0, 7),
           date: dateStr,
           headline,
-          body: body || "",
+          body: (body || "").split(/\n\n|\r\n\r\n/)[0].slice(0, 500),
           repo: repoName,
           owner,
           repoSlug,
@@ -449,7 +449,7 @@ async function fetchData({
               added: f.additions,
               deleted: f.deletions,
             })),
-            body: detail.body || '',
+            body: (detail.body || '').split(/\n\n|\r\n\r\n/)[0].slice(0, 500),
           });
           data.stats.prs++;
         } catch {}
