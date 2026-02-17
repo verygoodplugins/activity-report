@@ -1,7 +1,91 @@
 {
-  "generatedAt": "2026-02-17T09:52:27.599Z",
-  "periodStart": "2026-02-10T09:52:27.599Z",
+  "generatedAt": "2026-02-17T10:58:41.779Z",
+  "periodStart": "2026-02-10T10:58:41.778Z",
   "commits": [
+    {
+      "type": "commit",
+      "hash": "164b432624f32ecf62f4d8579932b9c0e58586ff",
+      "shortHash": "164b432",
+      "date": "2026-02-17T16:24:37+05:30",
+      "headline": "feat: harden API client, align with mcp-ecosystem standards",
+      "body": "- Customer ID fallback logic (tries customer, id, user_id, user params)\n- Robust stats date-range parsing with value coercion and range filtering\n- Discount code normalization across list/get sale responses\n- Add edd_validate_connection tool to README\n- 3 new unit tests (26 total, all passing)\n\nStandards alignment:\n- Add eslint-config-prettier integration\n- Add tsconfig strict flags (noUnusedLocals, noUnusedParameters, noImplicitReturns)\n- Fix prepublishOnly to run tests before publish\n- Fix ESLint errors in stdio.ts console patching\n- Fix manifest.json screenshots to reference actual asset\n- npm audit fix (0 vulnerabilities)\n\nRelease infrastructure:\n- Release-please manifest mode with config files\n- OIDC Trusted Publishing (no NPM_TOKEN needed, Node 24)\n- Auto-build .mcpb Desktop Extension on release\n- Slack announce job\n\nCo-authored-by: Cursor <cursoragent@cursor.com>",
+      "repo": "mcp-edd",
+      "owner": "verygoodplugins",
+      "repoSlug": "mcp-edd",
+      "remoteUrl": "https://github.com/verygoodplugins/mcp-edd",
+      "stats": {
+        "added": 339,
+        "deleted": 53,
+        "files": 13
+      },
+      "files": [
+        {
+          "file": ".github/workflows/release-please.yml",
+          "added": 75,
+          "deleted": 13
+        },
+        {
+          "file": ".release-please-manifest.json",
+          "added": 3,
+          "deleted": 0
+        },
+        {
+          "file": "README.md",
+          "added": 8,
+          "deleted": 0
+        },
+        {
+          "file": "eslint.config.mjs",
+          "added": 3,
+          "deleted": 1
+        },
+        {
+          "file": "manifest.json",
+          "added": 1,
+          "deleted": 1
+        },
+        {
+          "file": "package-lock.json",
+          "added": 50,
+          "deleted": 21
+        },
+        {
+          "file": "package.json",
+          "added": 2,
+          "deleted": 1
+        },
+        {
+          "file": "release-please-config.json",
+          "added": 15,
+          "deleted": 0
+        },
+        {
+          "file": "src/edd-client.ts",
+          "added": 80,
+          "deleted": 11
+        },
+        {
+          "file": "src/index.ts",
+          "added": 27,
+          "deleted": 4
+        },
+        {
+          "file": "src/stdio.ts",
+          "added": 3,
+          "deleted": 0
+        },
+        {
+          "file": "tests/unit/edd-client.test.ts",
+          "added": 68,
+          "deleted": 0
+        },
+        {
+          "file": "tsconfig.json",
+          "added": 4,
+          "deleted": 1
+        }
+      ]
+    },
     {
       "type": "commit",
       "hash": "6bdac4ecd810c7081a50664f483e1190ab415c4e",
@@ -1378,6 +1462,14 @@
   ],
   "prs": [],
   "repos": {
+    "mcp-edd": {
+      "commits": 1,
+      "additions": 339,
+      "deletions": 53,
+      "remoteUrl": "https://github.com/verygoodplugins/mcp-edd",
+      "owner": "verygoodplugins",
+      "repoSlug": "mcp-edd"
+    },
     "automem": {
       "commits": 9,
       "additions": 1840,
@@ -1404,10 +1496,10 @@
     }
   },
   "stats": {
-    "additions": 18821,
-    "deletions": 18179,
-    "files": 145,
-    "commits": 34,
+    "additions": 19160,
+    "deletions": 18232,
+    "files": 158,
+    "commits": 35,
     "prs": 0
   }
 }
