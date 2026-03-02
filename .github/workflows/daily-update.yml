@@ -109,7 +109,7 @@ jobs:
 
       - name: Deploy to Cloudflare
         if: always() && steps.commit.outcome != 'skipped' && vars.CLOUDFLARE_DEPLOY == 'true'
-        run: npx wrangler pages deploy _deploy --project-name=${{ vars.CLOUDFLARE_PROJECT || 'activity-report' }}
+        run: npx wrangler@3 pages deploy _deploy --project-name=${{ vars.CLOUDFLARE_PROJECT || 'activity-report' }}
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
