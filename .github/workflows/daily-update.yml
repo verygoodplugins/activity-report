@@ -43,10 +43,15 @@ jobs:
         with:
           node-version: 20
 
+      - name: Write categories config
+        if: vars.CATEGORIES_CONFIG != ''
+        run: echo '${{ vars.CATEGORIES_CONFIG }}' > categories.json
+
       - name: Generate report
         run: node generate-rich-report.mjs "--paths=${{ vars.SCAN_PATHS || '~/Projects' }}" --gh-author=${{ vars.GH_AUTHOR || '@me' }}
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CATEGORIES_CONFIG: ${{ vars.CATEGORIES_CONFIG }}
 
       - name: Commit and push
         id: commit

@@ -27,6 +27,39 @@ function loadConfigFile() {
   }
 }
 
+function loadCategories(config) {
+  // Priority: categories.json file > CATEGORIES_CONFIG env var > config.json categories key
+  const catPath = path.join(process.cwd(), "categories.json");
+  if (fs.existsSync(catPath)) {
+    try {
+      const cats = JSON.parse(fs.readFileSync(catPath, "utf-8"));
+      console.log(`   Categories: loaded from categories.json (${Object.keys(cats).length} categories)`);
+      return cats;
+    } catch (e) {
+      console.warn("Warning: could not parse categories.json:", e.message);
+    }
+  }
+
+  const envCats = process.env.CATEGORIES_CONFIG;
+  if (envCats) {
+    try {
+      const cats = JSON.parse(envCats);
+      console.log(`   Categories: loaded from CATEGORIES_CONFIG env (${Object.keys(cats).length} categories)`);
+      return cats;
+    } catch (e) {
+      console.warn("Warning: could not parse CATEGORIES_CONFIG env:", e.message);
+    }
+  }
+
+  if (config.categories && typeof config.categories === "object") {
+    console.log(`   Categories: loaded from config.json (${Object.keys(config.categories).length} categories)`);
+    return config.categories;
+  }
+
+  console.log("   Categories: none configured (repos will be ungrouped)");
+  return null;
+}
+
 function expandHome(inputPath) {
   if (!inputPath) return inputPath;
   if (inputPath === "~") return os.homedir();
@@ -203,6 +236,8 @@ async function main() {
     );
   }
 
+  const categories = loadCategories(config);
+
   let data;
 
   if (useCache && fs.existsSync(cacheFile)) {
@@ -219,11 +254,17 @@ async function main() {
       ghAuthor:
         args["gh-author"] || process.env.ACTIVITY_REPORT_GH_AUTHOR || config.ghAuthor || "@me",
     });
-    if (writeCache) {
-      fs.mkdirSync(path.dirname(cacheFile), { recursive: true });
-      fs.writeFileSync(cacheFile, JSON.stringify(data));
-      console.log("Cached to", cacheFile);
-    }
+  }
+
+  // Embed categories in the data so they travel with the output
+  if (categories) {
+    data.categories = categories;
+  }
+
+  if (writeCache) {
+    fs.mkdirSync(path.dirname(cacheFile), { recursive: true });
+    fs.writeFileSync(cacheFile, JSON.stringify(data));
+    console.log("Cached to", cacheFile);
   }
   // HTML generation disabled - using static index.html that loads activity-data.json
   // generateHtml(data, { outputFile, hoursBack });

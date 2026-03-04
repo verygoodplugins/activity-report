@@ -66,7 +66,13 @@ If no author is specified, it falls back to your `git config user.email`.
 
 ### Categories (Optional)
 
-Create a `categories.json` to group repos in the dashboard (see [categories.json.example](categories.json.example)):
+Group repos into named categories in the Project Breakdown section. Categories are resolved at generation time and embedded in `activity-data.json`, so they persist through deploys without needing a separate file at runtime.
+
+Three ways to configure (checked in this order):
+
+1. **`categories.json` file** — standalone file in repo root (gitignored, see [categories.json.example](categories.json.example))
+2. **`CATEGORIES_CONFIG` env var** — JSON string, useful in CI (set as a repo variable for the workflow)
+3. **`categories` key in `config.json`** — inline in your config (see [config.json.example](config.json.example))
 
 ```json
 {
@@ -75,7 +81,7 @@ Create a `categories.json` to group repos in the dashboard (see [categories.json
 }
 ```
 
-Repos not in any category appear in an "Other" group. If no `categories.json` exists, all repos are shown ungrouped.
+Repos not in any category appear in an "Other" group. If no categories are configured, all repos are shown ungrouped.
 
 ### PR Fetching
 
@@ -125,8 +131,9 @@ For scanning local repos on your machine, use `.github/workflows/daily-update.ym
 1. `generate-rich-report.mjs` recursively scans directories for `.git` repos
 2. Extracts commits via `git log` with author filtering
 3. Optionally fetches PR details via `gh` CLI
-4. Outputs `activity-data.json` (cached data)
-5. `index.html` loads `activity-data.json` at runtime — it's a static vanilla JS dashboard, no build step
+4. Loads categories config (if any) and embeds them in the output
+5. Outputs `activity-data.json` (self-contained: data + categories)
+6. `index.html` loads `activity-data.json` at runtime — it's a static vanilla JS dashboard, no build step
 
 ## Scripts
 

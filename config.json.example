@@ -4,5 +4,17 @@
   "ghAuthor": "your-github-username",
   "exclude": ["node_modules", "vendor"],
   "hours": 168,
-  "maxDepth": 4
+  "maxDepth": 4,
+  "categories": {
+    "Frontend": {
+      "icon": "🖥️",
+      "class": "frontend",
+      "repos": ["my-website", "my-app"]
+    },
+    "Backend": {
+      "icon": "⚙️",
+      "class": "backend",
+      "repos": ["api-server", "worker"]
+    }
+  }
 }

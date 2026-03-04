@@ -45,8 +45,9 @@ Environment variables: `ACTIVITY_REPORT_AUTHOR_EMAIL`, `ACTIVITY_REPORT_GH_AUTHO
 1. `generate-rich-report.mjs` recursively scans repo roots for `.git` directories
 2. Extracts commits using `git log` with author filtering
 3. Optionally fetches PRs via `gh` CLI (requires authentication)
-4. Outputs `activity-data.json` (cached data)
-5. `index.html` loads `activity-data.json` (and optional `categories.json`) at runtime
+4. Loads categories from `categories.json` / `CATEGORIES_CONFIG` env / `config.json`
+5. Outputs `activity-data.json` with embedded categories (self-contained)
+6. `index.html` reads categories from the data file (falls back to separate `categories.json`)
 
 **Key Files:**
 - `generate-rich-report.mjs` - Node.js generator script (ES modules), reads `config.json` for defaults
@@ -60,7 +61,12 @@ Environment variables: `ACTIVITY_REPORT_AUTHOR_EMAIL`, `ACTIVITY_REPORT_GH_AUTHO
 Configured via `--exclude` flag or `config.json` `exclude` array. No hardcoded exclusions.
 
 **Category Configuration:**
-The dashboard loads categories from `categories.json` at runtime. If the file doesn't exist, repos are shown ungrouped. See `categories.json.example` for the format.
+Categories are resolved at generation time and embedded in `activity-data.json`. Priority order:
+1. `categories.json` file (standalone, gitignored)
+2. `CATEGORIES_CONFIG` environment variable (JSON string, used in CI)
+3. `categories` key in `config.json` (inline)
+
+The frontend reads embedded categories from the data. Falls back to fetching `categories.json` separately for backward compat. See `categories.json.example` for the format.
 
 ## Deployment
 

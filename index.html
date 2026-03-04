@@ -1566,14 +1566,18 @@
           // No site-config.json — using defaults
         }
 
-        // Load optional categories config
-        try {
-          const catResponse = await fetch('categories.json');
-          if (catResponse.ok) {
-            CATEGORY_CONFIG = await catResponse.json();
+        // Load categories: prefer embedded in data, then separate file
+        if (rawData.categories && Object.keys(rawData.categories).length > 0) {
+          CATEGORY_CONFIG = rawData.categories;
+        } else {
+          try {
+            const catResponse = await fetch('categories.json');
+            if (catResponse.ok) {
+              CATEGORY_CONFIG = await catResponse.json();
+            }
+          } catch (e) {
+            // No categories — repos will be shown ungrouped
           }
-        } catch (e) {
-          // No categories.json — repos will be shown ungrouped
         }
 
         // Apply site config to the page
