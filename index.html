@@ -1441,9 +1441,9 @@
       }
     }
 
-    // Categories loaded from categories.json (optional)
-    // If no categories.json exists, repos are shown ungrouped.
-    let CATEGORY_CONFIG = {};
+    // Categories loaded from data or categories.json (optional)
+    // null = no categories configured, repos shown ungrouped (flat list)
+    let CATEGORY_CONFIG = null;
 
     // Generate deterministic colors from repo names
     function hashColor(str) {
@@ -1567,13 +1567,17 @@
         }
 
         // Load categories: prefer embedded in data, then separate file
+        CATEGORY_CONFIG = null;
         if (rawData.categories && Object.keys(rawData.categories).length > 0) {
           CATEGORY_CONFIG = rawData.categories;
         } else {
           try {
             const catResponse = await fetch('categories.json');
             if (catResponse.ok) {
-              CATEGORY_CONFIG = await catResponse.json();
+              const fetched = await catResponse.json();
+              if (fetched && Object.keys(fetched).length > 0) {
+                CATEGORY_CONFIG = fetched;
+              }
             }
           } catch (e) {
             // No categories — repos will be shown ungrouped
@@ -2045,6 +2049,27 @@
         repoStats[repo].added += c.stats?.added || 0;
         repoStats[repo].deleted += c.stats?.deleted || 0;
       });
+
+      // No categories configured — render all repos flat (no "Other" bucket)
+      if (!CATEGORY_CONFIG || Object.keys(CATEGORY_CONFIG).length === 0) {
+        const repoItems = Object.entries(repoStats)
+          .sort((a, b) => b[1].commits - a[1].commits)
+          .map(([name, stats]) => `
+            <a href="${stats.url}" target="_blank" class="repo-item">
+              <span class="repo-dot" style="background: ${REPO_COLORS[name] || '#6366f1'}"></span>
+              <span class="repo-name">${name}</span>
+              <div class="repo-stats">
+                <span class="repo-commits">${stats.commits}c</span>
+                <span class="repo-added">+${formatNumber(stats.added)}</span>
+                <span class="repo-deleted">-${formatNumber(stats.deleted)}</span>
+              </div>
+            </a>
+          `).join('');
+        container.innerHTML = repoItems
+          ? `<div class="category-card"><div class="repo-list">${repoItems}</div></div>`
+          : '';
+        return;
+      }
 
       // Categorize repos
       const categorized = {};

@@ -259,6 +259,8 @@ async function main() {
   // Embed categories in the data so they travel with the output
   if (categories) {
     data.categories = categories;
+  } else {
+    delete data.categories;
   }
 
   if (writeCache) {
