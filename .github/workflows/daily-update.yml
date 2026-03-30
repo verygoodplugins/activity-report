@@ -53,6 +53,7 @@ jobs:
         run: echo '${{ vars.CATEGORIES_CONFIG }}' > categories.json
 
       - name: Generate report
+        shell: bash
         run: |
           EXTRA_ARGS=()
           [ -n "${REPORT_EXCLUDE_REPOS}" ] && EXTRA_ARGS+=("--exclude=${REPORT_EXCLUDE_REPOS}")
@@ -63,6 +64,7 @@ jobs:
 
       - name: Commit and push
         id: commit
+        shell: bash
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
