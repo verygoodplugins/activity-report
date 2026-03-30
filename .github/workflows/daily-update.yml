@@ -11,6 +11,7 @@ on:
 # Configure these in your repo's Settings > Variables and Secrets:
 #   Variables (vars):
 #     SCAN_PATHS       - Comma-separated paths to scan (e.g. "~/Projects,~/code")
+#     EXCLUDE_REPOS    - Comma-separated repo name patterns to exclude (e.g. "archive,understanding-dana")
 #     GH_AUTHOR        - GitHub username for PR fetching (default: @me)
 #     GIT_EMAIL        - Email for git commits (default: activity-bot@users.noreply.github.com)
 #     GIT_NAME         - Name for git commits (default: Activity Bot)
@@ -25,6 +26,7 @@ jobs:
     runs-on: self-hosted # Uses your machine with access to local repos
     env:
       REPORT_SCAN_PATHS: ${{ vars.SCAN_PATHS || '~/Projects,~/Local Sites' }}
+      REPORT_EXCLUDE_REPOS: ${{ vars.EXCLUDE_REPOS || '' }}
       REPORT_GH_AUTHOR: ${{ vars.GH_AUTHOR || '@me' }}
     steps:
       - name: Clean runner state
@@ -51,13 +53,18 @@ jobs:
         run: echo '${{ vars.CATEGORIES_CONFIG }}' > categories.json
 
       - name: Generate report
-        run: node generate-rich-report.mjs "--paths=${REPORT_SCAN_PATHS}" --gh-author="${REPORT_GH_AUTHOR}"
+        shell: bash
+        run: |
+          EXTRA_ARGS=()
+          [ -n "${REPORT_EXCLUDE_REPOS}" ] && EXTRA_ARGS+=("--exclude=${REPORT_EXCLUDE_REPOS}")
+          node generate-rich-report.mjs "--paths=${REPORT_SCAN_PATHS}" --gh-author="${REPORT_GH_AUTHOR}" "${EXTRA_ARGS[@]}"
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           CATEGORIES_CONFIG: ${{ vars.CATEGORIES_CONFIG }}
 
       - name: Commit and push
         id: commit
+        shell: bash
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
@@ -96,7 +103,9 @@ jobs:
             git reset --soft HEAD~1
             git checkout -- .
             git pull origin main
-            node generate-rich-report.mjs "--paths=${REPORT_SCAN_PATHS}" --gh-author="${REPORT_GH_AUTHOR}"
+            EXTRA_ARGS=()
+            [ -n "${REPORT_EXCLUDE_REPOS}" ] && EXTRA_ARGS+=("--exclude=${REPORT_EXCLUDE_REPOS}")
+            node generate-rich-report.mjs "--paths=${REPORT_SCAN_PATHS}" --gh-author="${REPORT_GH_AUTHOR}" "${EXTRA_ARGS[@]}"
             git add -f activity-data.json
             git diff --cached --quiet || git commit -m "chore: daily activity update"
           done
