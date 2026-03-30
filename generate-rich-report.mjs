@@ -73,6 +73,13 @@ function expandHome(inputPath) {
   return inputPath;
 }
 
+function collapseHome(inputPath) {
+  const home = os.homedir();
+  if (inputPath === home) return "~";
+  if (inputPath.startsWith(home + path.sep)) return "~" + inputPath.slice(home.length);
+  return inputPath;
+}
+
 function readGitConfigValue(key) {
   try {
     // Try global first (user's actual config), then fall back to local
@@ -324,10 +331,11 @@ async function fetchData({
       excludePatterns,
       scan: {
         configuredRoots: configuredRepoRoots,
-        resolvedRoots: repoRoots,
+        resolvedRoots: repoRoots.map(collapseHome),
         missingRoots: configuredRepoRoots
           .map((p) => path.resolve(process.cwd(), expandHome(p)))
-          .filter((p) => !fs.existsSync(p)),
+          .filter((p) => !fs.existsSync(p))
+          .map(collapseHome),
         discoveredRepos: 0,
         excludedRepos: 0,
         reposWithCommits: 0,

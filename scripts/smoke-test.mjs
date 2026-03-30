@@ -2,6 +2,7 @@ import { spawnSync } from 'child_process';
 import fs from 'fs';
 import os from 'os';
 import path from 'path';
+import { fileURLToPath } from 'url';
 
 function assert(condition, message) {
   if (!condition) throw new Error(message);
@@ -34,12 +35,13 @@ function initRepo(repoPath, repoName, authorEmail) {
 
   fs.writeFileSync(path.join(repoPath, 'README.md'), `# ${repoName}\n`);
   run('git', ['add', 'README.md'], { cwd: repoPath });
+  const commitDate = new Date(Date.now() - 60 * 60 * 1000).toISOString();
   run('git', ['commit', '-m', `feat: seed ${repoName}`], {
     cwd: repoPath,
     env: {
       ...process.env,
-      GIT_AUTHOR_DATE: '2026-03-30T09:00:00Z',
-      GIT_COMMITTER_DATE: '2026-03-30T09:00:00Z',
+      GIT_AUTHOR_DATE: commitDate,
+      GIT_COMMITTER_DATE: commitDate,
     },
   });
 }
@@ -106,6 +108,7 @@ process.exit(1);
   fs.chmodSync(ghPath, 0o755);
 }
 
+const generatorScript = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', 'generate-rich-report.mjs');
 const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'activity-report-'));
 try {
   const authorEmail = 'smoke@example.com';
@@ -127,7 +130,7 @@ try {
   run(
     process.execPath,
     [
-      path.join(process.cwd(), 'generate-rich-report.mjs'),
+      generatorScript,
       '--paths',
       `${rootA},${rootB}`,
       '--hours',
@@ -140,7 +143,7 @@ try {
       '--cache-file',
       cacheFile,
     ],
-    { cwd: process.cwd() }
+    { cwd: tempDir }
   );
 
   const data = JSON.parse(fs.readFileSync(cacheFile, 'utf-8'));
@@ -157,7 +160,7 @@ try {
   run(
     process.execPath,
     [
-      path.join(process.cwd(), 'generate-rich-report.mjs'),
+      generatorScript,
       '--paths',
       `${rootA},${rootB}`,
       '--hours',
@@ -172,7 +175,7 @@ try {
       prCacheFile,
     ],
     {
-      cwd: process.cwd(),
+      cwd: tempDir,
       env: {
         ...process.env,
         PATH: `${fakeBin}${path.delimiter}${process.env.PATH}`,
