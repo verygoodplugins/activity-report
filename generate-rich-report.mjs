@@ -9,6 +9,11 @@ import os from "os";
 import path from "path";
 import fs from "fs";
 
+const DEFAULT_SCAN_PATHS = [
+  path.join(os.homedir(), "Projects"),
+  path.join(os.homedir(), "Local Sites"),
+];
+
 // Repo exclusion patterns (populated from --exclude flag or config.json)
 let EXCLUDE_PATTERNS = [];
 
@@ -132,6 +137,15 @@ function splitCommaList(value) {
     .filter(Boolean);
 }
 
+function firstDefined(...values) {
+  for (const value of values) {
+    if (value !== undefined && value !== null && value !== "") {
+      return value;
+    }
+  }
+  return undefined;
+}
+
 function shouldSkipDir(name) {
   return (
     name === "node_modules" ||
@@ -196,10 +210,19 @@ async function main() {
   const hoursBack = parseNumber(args.hours, config.hours || 840);
   const maxDepth = parseNumber(args["max-depth"], config.maxDepth || 4);
   const cacheFile = args["cache-file"] || "activity-data.json";
-  const outputFile = args["output-file"] || "index.html";
   const useCache = Boolean(args.cached);
   const writeCache = args.cacheWrite !== false;
   const includePrs = args.prs !== false;
+  const ghAuthor =
+    args["gh-author"] || process.env.ACTIVITY_REPORT_GH_AUTHOR || config.ghAuthor || "@me";
+  const prPerRepoLimit = parseNumber(
+    firstDefined(
+      args["pr-per-repo-limit"],
+      process.env.ACTIVITY_REPORT_PR_PER_REPO_LIMIT,
+      config.prPerRepoLimit
+    ),
+    100
+  );
 
   // Build exclude patterns from --exclude flag or config.json
   const excludeArg = splitCommaList(args.exclude);
@@ -220,10 +243,7 @@ async function main() {
       ? repoPathsFromArgs
       : configPaths.length > 0
         ? configPaths
-        : [
-            path.join(os.homedir(), "Projects"),
-            path.join(os.homedir(), "Local Sites"),
-          ];
+        : DEFAULT_SCAN_PATHS;
 
   const repoRootsResolved = repoRoots
     .map((p) => expandHome(p))
@@ -248,11 +268,13 @@ async function main() {
     data = await fetchData({
       hoursBack,
       authorEmail,
+      configuredRepoRoots: repoRoots,
       repoRoots: repoRootsResolved,
       maxDepth,
       includePrs,
-      ghAuthor:
-        args["gh-author"] || process.env.ACTIVITY_REPORT_GH_AUTHOR || config.ghAuthor || "@me",
+      ghAuthor,
+      prPerRepoLimit,
+      excludePatterns: excludeList,
     });
   }
 
@@ -275,10 +297,13 @@ async function main() {
 async function fetchData({
   hoursBack,
   authorEmail,
+  configuredRepoRoots,
   repoRoots,
   maxDepth,
   includePrs,
   ghAuthor,
+  prPerRepoLimit,
+  excludePatterns,
 }) {
   const sinceDate = new Date(Date.now() - hoursBack * 60 * 60 * 1000);
   const sinceIso = sinceDate.toISOString();
@@ -291,14 +316,49 @@ async function fetchData({
     prs: [],
     repos: {},
     stats: { additions: 0, deletions: 0, files: 0, commits: 0, prs: 0 },
+    diagnostics: {
+      authorEmail: authorEmail || null,
+      ghAuthor: includePrs ? ghAuthor : null,
+      includePrs,
+      maxDepth,
+      excludePatterns,
+      scan: {
+        configuredRoots: configuredRepoRoots,
+        resolvedRoots: repoRoots,
+        missingRoots: configuredRepoRoots
+          .map((p) => path.resolve(process.cwd(), expandHome(p)))
+          .filter((p) => !fs.existsSync(p)),
+        discoveredRepos: 0,
+        excludedRepos: 0,
+        reposWithCommits: 0,
+        githubReposWithCommits: 0,
+      },
+      prs: {
+        enabled: includePrs,
+        perRepoLimit: includePrs ? prPerRepoLimit : 0,
+        repoQueries: 0,
+        candidatePullRequests: 0,
+        dedupedPullRequests: 0,
+        detailLookups: 0,
+        detailFailures: 0,
+        searchFailures: 0,
+        possiblyTruncatedRepos: [],
+      },
+    },
   };
 
   // 1. Local Repos
   for (const basePath of repoRoots) {
-    for (const repoPath of findGitReposUnder(basePath, maxDepth)) {
+    const reposUnderRoot = findGitReposUnder(basePath, maxDepth);
+    data.diagnostics.scan.discoveredRepos += reposUnderRoot.length;
+
+    for (const repoPath of reposUnderRoot) {
       const repoName = path.basename(repoPath);
 
-      if (shouldExcludeRepo(repoName)) continue;
+      if (shouldExcludeRepo(repoName)) {
+        data.diagnostics.scan.excludedRepos++;
+        continue;
+      }
 
       let remoteUrl = "";
       let owner = "",
@@ -404,6 +464,10 @@ async function fetchData({
           repoSlug,
         };
         data.stats.commits += repoCommits;
+        data.diagnostics.scan.reposWithCommits++;
+        if (owner && repoSlug) {
+          data.diagnostics.scan.githubReposWithCommits++;
+        }
       }
     }
   }
@@ -412,91 +476,107 @@ async function fetchData({
   if (includePrs) {
     console.log("   Fetching PRs...");
     const dateFilter = sinceDate.toISOString().split("T")[0];
-      const reposWithGitHubRemote = Object.values(data.repos)
-        .filter((r) => r?.owner && r?.repoSlug)
-        .sort((a, b) => (b.commits || 0) - (a.commits || 0));
+    const reposWithGitHubRemote = Object.values(data.repos)
+      .filter((r) => r?.owner && r?.repoSlug)
+      .sort((a, b) => (b.commits || 0) - (a.commits || 0));
 
-      const maxReposToQuery = 12;
-      const perRepoLimit = 5;
-      let prList = [];
+    let prList = [];
 
-      if (reposWithGitHubRemote.length > 0) {
-        const candidateRepos = reposWithGitHubRemote.slice(0, maxReposToQuery);
-        const seen = new Set();
+    if (reposWithGitHubRemote.length > 0) {
+      const seen = new Set();
 
-        for (const repo of candidateRepos) {
-          const repoFull = `${repo.owner}/${repo.repoSlug}`;
-          const search = safeExec(
-            `gh search prs --author="${ghAuthor}" --created=">=${dateFilter}" --repo="${repoFull}" --limit ${perRepoLimit} --json number,repository,url,createdAt 2>/dev/null`,
-            { encoding: "utf-8" }
-          );
-          if (!search) continue;
-          for (const pr of JSON.parse(search)) {
-            const key = pr?.url || `${pr?.repository?.nameWithOwner}#${pr?.number}`;
-            if (!key || seen.has(key)) continue;
-            seen.add(key);
-            prList.push(pr);
-          }
-        }
-
-        prList.sort(
-          (a, b) => new Date(b.createdAt || 0) - new Date(a.createdAt || 0)
-        );
-        prList = prList.slice(0, 20);
-      } else {
+      for (const repo of reposWithGitHubRemote) {
+        const repoFull = `${repo.owner}/${repo.repoSlug}`;
+        data.diagnostics.prs.repoQueries++;
         const search = safeExec(
-          `gh search prs --author="${ghAuthor}" --created=">=${dateFilter}" --limit 20 --json number,repository,url,createdAt 2>/dev/null`,
+          `gh search prs --author="${ghAuthor}" --created=">=${dateFilter}" --repo="${repoFull}" --limit ${prPerRepoLimit} --json number,repository,url,createdAt 2>/dev/null`,
           { encoding: "utf-8" }
         );
         if (!search) {
-          console.error("ERROR: gh CLI not available or not authenticated. Set GH_TOKEN environment variable.");
-          process.exit(1);
+          data.diagnostics.prs.searchFailures++;
+          continue;
         }
-        prList = JSON.parse(search);
+
+        const repoPrs = JSON.parse(search);
+        data.diagnostics.prs.candidatePullRequests += repoPrs.length;
+        if (repoPrs.length === prPerRepoLimit) {
+          data.diagnostics.prs.possiblyTruncatedRepos.push(repoFull);
+        }
+
+        for (const pr of repoPrs) {
+          const key = pr?.url || `${pr?.repository?.nameWithOwner}#${pr?.number}`;
+          if (!key || seen.has(key)) continue;
+          seen.add(key);
+          prList.push(pr);
+        }
       }
 
-      for (const pr of prList) {
-        try {
-          const detailRaw = safeExec(
-            `gh pr view ${pr.number} --repo ${pr.repository.nameWithOwner} --json number,title,url,state,createdAt,additions,deletions,changedFiles,commits,baseRefName,headRefName,mergeable,reviews,labels,files,body`,
-            { encoding: "utf-8" }
-          );
-          if (!detailRaw) continue;
-          const detail = JSON.parse(detailRaw);
-          data.prs.push({
-            type: "pr",
-            number: detail.number,
-            title: detail.title,
-            url: detail.url,
-            state: detail.state,
-            date: detail.createdAt,
-            repo: pr.repository.name,
-            repoFull: pr.repository.nameWithOwner,
-            stats: {
-              added: detail.additions,
-              deleted: detail.deletions,
-              files: detail.changedFiles,
-            },
-            baseBranch: detail.baseRefName,
-            headBranch: detail.headRefName,
-            mergeable: detail.mergeable,
-            commits: detail.commits?.length || 0,
-            reviews: (detail.reviews || []).map((r) => ({
-              author: r.author?.login,
-              state: r.state,
-              submittedAt: r.submittedAt,
-            })),
-            labels: (detail.labels || []).map((l) => l.name),
-            files: (detail.files || []).map((f) => ({
-              file: f.path,
-              added: f.additions,
-              deleted: f.deletions,
-            })),
-            body: (detail.body || '').split(/\n\n|\r\n\r\n/)[0].slice(0, 500),
-          });
-          data.stats.prs++;
-        } catch {}
+      prList.sort(
+        (a, b) => new Date(b.createdAt || 0) - new Date(a.createdAt || 0)
+      );
+      data.diagnostics.prs.dedupedPullRequests = prList.length;
+    } else {
+      const search = safeExec(
+        `gh search prs --author="${ghAuthor}" --created=">=${dateFilter}" --limit ${prPerRepoLimit} --json number,repository,url,createdAt 2>/dev/null`,
+        { encoding: "utf-8" }
+      );
+      if (!search) {
+        console.error("ERROR: gh CLI not available or not authenticated. Set GH_TOKEN environment variable.");
+        process.exit(1);
       }
+      prList = JSON.parse(search);
+      data.diagnostics.prs.candidatePullRequests = prList.length;
+      data.diagnostics.prs.dedupedPullRequests = prList.length;
+    }
+
+    for (const pr of prList) {
+      try {
+        data.diagnostics.prs.detailLookups++;
+        const detailRaw = safeExec(
+          `gh pr view ${pr.number} --repo ${pr.repository.nameWithOwner} --json number,title,url,state,createdAt,additions,deletions,changedFiles,commits,baseRefName,headRefName,mergeable,reviews,labels,files,body`,
+          { encoding: "utf-8" }
+        );
+        if (!detailRaw) {
+          data.diagnostics.prs.detailFailures++;
+          continue;
+        }
+        const detail = JSON.parse(detailRaw);
+        data.prs.push({
+          type: "pr",
+          number: detail.number,
+          title: detail.title,
+          url: detail.url,
+          state: detail.state,
+          date: detail.createdAt,
+          repo: pr.repository.name,
+          repoFull: pr.repository.nameWithOwner,
+          stats: {
+            added: detail.additions,
+            deleted: detail.deletions,
+            files: detail.changedFiles,
+          },
+          baseBranch: detail.baseRefName,
+          headBranch: detail.headRefName,
+          mergeable: detail.mergeable,
+          commits: detail.commits?.length || 0,
+          reviews: (detail.reviews || []).map((r) => ({
+            author: r.author?.login,
+            state: r.state,
+            submittedAt: r.submittedAt,
+          })),
+          labels: (detail.labels || []).map((l) => l.name),
+          files: (detail.files || []).map((f) => ({
+            file: f.path,
+            added: f.additions,
+            deleted: f.deletions,
+          })),
+          body: (detail.body || "").split(/\n\n|\r\n\r\n/)[0].slice(0, 500),
+        });
+        data.stats.prs++;
+      } catch {
+        data.diagnostics.prs.detailFailures++;
+      }
+    }
   }
 
   // Sort

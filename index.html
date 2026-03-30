@@ -1166,6 +1166,91 @@
       margin-right: 1rem;
     }
 
+    .diagnostics-panel {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 1rem;
+      margin-top: 2rem;
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+    }
+
+    .diagnostics-panel summary {
+      cursor: pointer;
+      padding: 1rem 1.25rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      list-style: none;
+    }
+
+    .diagnostics-panel summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .diagnostics-panel summary::after {
+      content: '+';
+      float: right;
+      color: var(--accent);
+      font-size: 1rem;
+    }
+
+    .diagnostics-panel[open] summary::after {
+      content: '−';
+    }
+
+    .diagnostics-content {
+      border-top: 1px solid var(--border);
+      padding: 1rem 1.25rem 1.25rem;
+    }
+
+    .diagnostics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 0.75rem;
+    }
+
+    .diagnostics-item {
+      background: var(--surface-elevated);
+      border: 1px solid var(--border);
+      border-radius: 0.75rem;
+      padding: 0.85rem 1rem;
+    }
+
+    .diagnostics-label {
+      display: block;
+      font-size: 0.7rem;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.35rem;
+    }
+
+    .diagnostics-value {
+      font-size: 0.85rem;
+      line-height: 1.5;
+      word-break: break-word;
+    }
+
+    .diagnostics-value code {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+    }
+
+    .diagnostics-warnings {
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px dashed var(--border);
+      color: var(--text-secondary);
+      font-size: 0.8rem;
+    }
+
+    .diagnostics-warning {
+      margin-top: 0.35rem;
+    }
+
     /* Footer */
     .footer {
       text-align: center;
@@ -1360,6 +1445,11 @@
       </div>
     </section>
 
+    <details class="diagnostics-panel" id="diagnostics-panel" hidden>
+      <summary>Dataset Diagnostics</summary>
+      <div class="diagnostics-content" id="diagnostics-content"></div>
+    </details>
+
     <footer class="footer">
       <p>Auto-generated daily by
         <a href="https://github.com/verygoodplugins/autohub" target="_blank" style="display: inline-flex; align-items: center; gap: 0.35rem;">
@@ -1467,11 +1557,105 @@
     }
 
     function escapeHtml(text) {
-      return text
+      return String(text ?? '')
         .replace(/&/g, '&amp;')
         .replace(/</g, '&lt;')
         .replace(/>/g, '&gt;')
         .replace(/"/g, '&quot;');
+    }
+
+    function formatTimestamp(value) {
+      if (!value) return 'n/a';
+      const date = new Date(value);
+      if (Number.isNaN(date.getTime())) return value;
+      return date.toLocaleString();
+    }
+
+    function formatDiagnosticList(items) {
+      if (!items || items.length === 0) return 'None';
+      return items.map(item => `<code>${escapeHtml(item)}</code>`).join('<br>');
+    }
+
+    function renderDiagnostics() {
+      const panel = document.getElementById('diagnostics-panel');
+      const content = document.getElementById('diagnostics-content');
+      const diagnostics = rawData?.diagnostics;
+
+      if (!panel || !content) return;
+
+      if (!rawData?.generatedAt && !rawData?.periodStart && !diagnostics) {
+        panel.hidden = true;
+        return;
+      }
+
+      const scan = diagnostics?.scan || {};
+      const prs = diagnostics?.prs || {};
+      const warnings = [];
+
+      if ((scan.missingRoots || []).length > 0) {
+        warnings.push(`Missing scan roots: ${scan.missingRoots.join(', ')}`);
+      }
+      if ((prs.possiblyTruncatedRepos || []).length > 0) {
+        warnings.push(`PR search hit the per-repo limit for: ${prs.possiblyTruncatedRepos.join(', ')}`);
+      }
+      if ((prs.searchFailures || 0) > 0) {
+        warnings.push(`PR search failed for ${prs.searchFailures} repo query${prs.searchFailures === 1 ? '' : 'ies'}.`);
+      }
+      if ((prs.detailFailures || 0) > 0) {
+        warnings.push(`PR detail fetch failed for ${prs.detailFailures} result${prs.detailFailures === 1 ? '' : 's'}.`);
+      }
+
+      content.innerHTML = `
+        <div class="diagnostics-grid">
+          <div class="diagnostics-item">
+            <span class="diagnostics-label">Generated</span>
+            <div class="diagnostics-value">${escapeHtml(formatTimestamp(rawData.generatedAt))}</div>
+          </div>
+          <div class="diagnostics-item">
+            <span class="diagnostics-label">Period Start</span>
+            <div class="diagnostics-value">${escapeHtml(formatTimestamp(rawData.periodStart))}</div>
+          </div>
+          <div class="diagnostics-item">
+            <span class="diagnostics-label">Author Filter</span>
+            <div class="diagnostics-value"><code>${escapeHtml(diagnostics?.authorEmail || 'none')}</code></div>
+          </div>
+          <div class="diagnostics-item">
+            <span class="diagnostics-label">GitHub PR Author</span>
+            <div class="diagnostics-value"><code>${escapeHtml(diagnostics?.ghAuthor || 'disabled')}</code></div>
+          </div>
+          <div class="diagnostics-item">
+            <span class="diagnostics-label">Configured Scan Roots</span>
+            <div class="diagnostics-value">${formatDiagnosticList(scan.configuredRoots)}</div>
+          </div>
+          <div class="diagnostics-item">
+            <span class="diagnostics-label">Resolved Scan Roots</span>
+            <div class="diagnostics-value">${formatDiagnosticList(scan.resolvedRoots)}</div>
+          </div>
+          <div class="diagnostics-item">
+            <span class="diagnostics-label">Repo Discovery</span>
+            <div class="diagnostics-value">${scan.discoveredRepos || 0} discovered, ${scan.reposWithCommits || 0} with commits, ${scan.excludedRepos || 0} excluded</div>
+          </div>
+          <div class="diagnostics-item">
+            <span class="diagnostics-label">GitHub Remotes</span>
+            <div class="diagnostics-value">${scan.githubReposWithCommits || 0} repos eligible for PR lookups</div>
+          </div>
+          <div class="diagnostics-item">
+            <span class="diagnostics-label">PR Collection</span>
+            <div class="diagnostics-value">${prs.dedupedPullRequests || 0} candidates, ${rawData.prs?.length || 0} hydrated, ${prs.repoQueries || 0} repo queries</div>
+          </div>
+          <div class="diagnostics-item">
+            <span class="diagnostics-label">PR Per-Repo Limit</span>
+            <div class="diagnostics-value">${prs.enabled ? prs.perRepoLimit || 0 : 'Disabled'}</div>
+          </div>
+        </div>
+        ${warnings.length ? `
+          <div class="diagnostics-warnings">
+            ${warnings.map(warning => `<div class="diagnostics-warning">${escapeHtml(warning)}</div>`).join('')}
+          </div>
+        ` : ''}
+      `;
+
+      panel.hidden = false;
     }
 
     // Simple markdown renderer for PR/commit descriptions
@@ -1586,6 +1770,7 @@
 
         // Apply site config to the page
         applySiteConfig();
+        renderDiagnostics();
 
         renderDashboard();
         setupToggleButtons();

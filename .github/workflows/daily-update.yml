@@ -23,6 +23,9 @@ on:
 jobs:
   generate:
     runs-on: self-hosted # Uses your machine with access to local repos
+    env:
+      REPORT_SCAN_PATHS: ${{ vars.SCAN_PATHS || '~/Projects,~/Local Sites' }}
+      REPORT_GH_AUTHOR: ${{ vars.GH_AUTHOR || '@me' }}
     steps:
       - name: Clean runner state
         run: |
@@ -48,7 +51,7 @@ jobs:
         run: echo '${{ vars.CATEGORIES_CONFIG }}' > categories.json
 
       - name: Generate report
-        run: node generate-rich-report.mjs "--paths=${{ vars.SCAN_PATHS || '~/Projects' }}" --gh-author=${{ vars.GH_AUTHOR || '@me' }}
+        run: node generate-rich-report.mjs "--paths=${REPORT_SCAN_PATHS}" --gh-author="${REPORT_GH_AUTHOR}"
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           CATEGORIES_CONFIG: ${{ vars.CATEGORIES_CONFIG }}
@@ -93,7 +96,7 @@ jobs:
             git reset --soft HEAD~1
             git checkout -- .
             git pull origin main
-            node generate-rich-report.mjs "--paths=${{ vars.SCAN_PATHS || '~/Projects' }}" --gh-author=${{ vars.GH_AUTHOR || '@me' }}
+            node generate-rich-report.mjs "--paths=${REPORT_SCAN_PATHS}" --gh-author="${REPORT_GH_AUTHOR}"
             git add -f activity-data.json
             git diff --cached --quiet || git commit -m "chore: daily activity update"
           done
