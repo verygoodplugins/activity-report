@@ -39,14 +39,14 @@ jobs:
           git checkout -- . 2>/dev/null || true
           git clean -fd 2>/dev/null || true
 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           clean: true
 
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
-          node-version: 20
+          node-version: 24
 
       - name: Write categories config
         if: vars.CATEGORIES_CONFIG != ''
@@ -126,7 +126,7 @@ jobs:
 
       - name: Deploy to Cloudflare
         if: always() && steps.commit.outcome != 'skipped' && vars.CLOUDFLARE_DEPLOY == 'true'
-        run: npx wrangler@3 pages deploy _deploy --project-name=${{ vars.CLOUDFLARE_PROJECT || 'activity-report' }}
+        run: npx wrangler@4 pages deploy _deploy --project-name=${{ vars.CLOUDFLARE_PROJECT || 'activity-report' }}
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
