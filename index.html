@@ -74,6 +74,73 @@
       color: var(--accent);
     }
 
+    /* Top Bar (mirrors footer links so they're reachable without scrolling) */
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      padding-top: 0.5rem;
+      margin-bottom: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .top-bar-repo {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.4rem 0.85rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 2rem;
+      color: var(--text);
+      font-size: 0.8rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .top-bar-repo:hover {
+      border-color: var(--accent);
+      color: var(--text);
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .top-bar-repo svg {
+      width: 14px;
+      height: 14px;
+      flex-shrink: 0;
+    }
+
+    .top-bar-links {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .top-bar-links a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      color: var(--text-secondary);
+      font-size: 0.8rem;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .top-bar-links a:hover { color: var(--accent); }
+
+    .top-bar-links svg {
+      width: 13px;
+      height: 13px;
+      opacity: 0.7;
+    }
+
+    .top-bar-links a:hover svg { opacity: 1; }
+
     /* Hero Section */
     .hero {
       position: relative;
@@ -1379,7 +1446,11 @@
     @media (max-width: 768px) {
       .container { padding: 1rem; }
       .back-links { gap: 1rem; flex-wrap: wrap; }
-      .hero { padding: 1.5rem 0; margin-bottom: 1.5rem; }
+      .top-bar { gap: 0.6rem 1rem; padding-top: 0.25rem; }
+      .top-bar-repo { font-size: 0.75rem; padding: 0.35rem 0.7rem; }
+      .top-bar-links { gap: 0.55rem 0.85rem; }
+      .top-bar-links a { font-size: 0.72rem; }
+      .hero { padding: 1.25rem 0 1.5rem; margin-bottom: 1.5rem; }
       .hero-content { flex-wrap: wrap; gap: 1.5rem; }
       .hero-left { width: 100%; }
       .hero-left h1 { font-size: 2.25rem; }
@@ -1465,6 +1536,9 @@
     }
 
     @media (max-width: 420px) {
+      .top-bar { gap: 0.5rem; }
+      .top-bar-links { gap: 0.5rem 0.75rem; }
+      .top-bar-links a { font-size: 0.7rem; }
       .hero-left h1 { font-size: 1.85rem; letter-spacing: -0.01em; }
       .stat-value { font-size: 1.5rem; }
       .stat-card { padding: 0.85rem 0.5rem; }
@@ -1483,6 +1557,39 @@
   <div class="noise"></div>
   
   <div class="container">
+    <nav class="top-bar" aria-label="Project links">
+      <a class="top-bar-repo" href="https://github.com/verygoodplugins/activity-report" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.55 0-.27-.01-1-.02-1.96-3.2.7-3.87-1.54-3.87-1.54-.52-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.18-3.1-.12-.29-.51-1.46.11-3.04 0 0 .97-.31 3.18 1.18a11.05 11.05 0 0 1 5.79 0c2.21-1.49 3.18-1.18 3.18-1.18.62 1.58.23 2.75.11 3.04.74.81 1.18 1.84 1.18 3.1 0 4.42-2.69 5.39-5.25 5.68.41.36.78 1.07.78 2.16 0 1.56-.01 2.82-.01 3.2 0 .31.21.67.8.55C20.21 21.39 23.5 17.08 23.5 12 23.5 5.65 18.35.5 12 .5z"/>
+        </svg>
+        <span>View source</span>
+      </a>
+      <div class="top-bar-links">
+        <a href="https://verygoodplugins.com" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M2 12h20"/>
+            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+          </svg>
+          verygoodplugins.com
+        </a>
+        <a href="https://drunk.support" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M14 4h6l-2 7c-.5 2-2 4-5 4H9c-3 0-4.5-2-5-4L2 4h6"/>
+            <path d="M11 15v4"/>
+            <path d="M8 19h6"/>
+          </svg>
+          drunk.support
+        </a>
+        <a href="https://x.com/jjack_arturo" target="_blank" rel="noopener" aria-label="@jjack_arturo on X">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+          </svg>
+          @jjack_arturo
+        </a>
+      </div>
+    </nav>
+
     <!-- Hero Section -->
     <header class="hero">
       <div class="hero-content">
