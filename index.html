@@ -188,7 +188,8 @@
     }
 
     .hero-stats {
-      display: flex;
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
       gap: 1.5rem;
     }
 
@@ -1410,7 +1411,21 @@
     }
 
     /* Responsive */
+    @media (max-width: 1280px) {
+      .hero { padding: 2rem 0; }
+      .hero-content { gap: 2rem; }
+      .hero-left h1 { font-size: 3rem; }
+      .hero-stats { gap: 1rem; }
+      .stat-card { padding: 1.25rem 1.1rem; }
+      .stat-value { font-size: 2.1rem; }
+    }
+
     @media (max-width: 1024px) {
+      .hero-content { flex-wrap: wrap; }
+      .hero-left { width: 100%; }
+      .hero-stats { width: 100%; gap: 0.85rem; }
+      .stat-card { padding: 1.1rem 0.85rem; }
+      .stat-value { font-size: 2rem; }
       .weekly-grid.view-week {
         grid-template-columns: repeat(4, 1fr);
       }
@@ -1565,7 +1580,7 @@
         <span>View source</span>
       </a>
       <div class="top-bar-links">
-        <a href="https://verygoodplugins.com" target="_blank" rel="noopener">
+        <a href="https://verygoodplugins.com/?utm_source=activity-report&amp;utm_medium=referral&amp;utm_campaign=devpulse&amp;utm_content=top-bar" target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <circle cx="12" cy="12" r="10"/>
             <path d="M2 12h20"/>
@@ -1573,7 +1588,7 @@
           </svg>
           verygoodplugins.com
         </a>
-        <a href="https://drunk.support" target="_blank" rel="noopener">
+        <a href="https://drunk.support/?utm_source=activity-report&amp;utm_medium=referral&amp;utm_campaign=devpulse&amp;utm_content=top-bar" target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M14 4h6l-2 7c-.5 2-2 4-5 4H9c-3 0-4.5-2-5-4L2 4h6"/>
             <path d="M11 15v4"/>
@@ -1699,7 +1714,7 @@
         <span>verygoodplugins/activity-report</span>
       </a>
       <div class="footer-links">
-        <a href="https://verygoodplugins.com" target="_blank" rel="noopener noreferrer">
+        <a href="https://verygoodplugins.com/?utm_source=activity-report&amp;utm_medium=referral&amp;utm_campaign=devpulse&amp;utm_content=footer" target="_blank" rel="noopener noreferrer">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <circle cx="12" cy="12" r="10"/>
             <path d="M2 12h20"/>
@@ -1708,7 +1723,7 @@
           verygoodplugins.com
         </a>
         <span class="footer-divider" aria-hidden="true">·</span>
-        <a href="https://drunk.support" target="_blank" rel="noopener noreferrer">
+        <a href="https://drunk.support/?utm_source=activity-report&amp;utm_medium=referral&amp;utm_campaign=devpulse&amp;utm_content=footer" target="_blank" rel="noopener noreferrer">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M14 4h6l-2 7c-.5 2-2 4-5 4H9c-3 0-4.5-2-5-4L2 4h6"/>
             <path d="M11 15v4"/>
