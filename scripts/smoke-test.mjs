@@ -157,6 +157,81 @@ try {
   assert(data.diagnostics.scan.excludedRepos === 1, 'excludedRepos diagnostics incorrect');
   assert(data.diagnostics.prs.enabled === false, 'PR diagnostics should be disabled in no-prs mode');
 
+  const workEmail = 'work@example.com';
+  const repoWork = path.join(rootA, 'repo-work');
+  initRepo(repoWork, 'repo-work', workEmail);
+  const multiAuthorCache = path.join(tempDir, 'activity-data-multi-author.json');
+
+  run(
+    process.execPath,
+    [
+      generatorScript,
+      '--paths',
+      rootA,
+      '--hours',
+      '48',
+      '--author',
+      `${authorEmail},${workEmail}`,
+      '--exclude',
+      'skip-me',
+      '--no-prs',
+      '--cache-file',
+      multiAuthorCache,
+    ],
+    { cwd: tempDir }
+  );
+
+  const multiData = JSON.parse(fs.readFileSync(multiAuthorCache, 'utf-8'));
+  assert(multiData.commits.length === 2, `expected 2 commits from both author emails, got ${multiData.commits.length}`);
+  assert(multiData.repos['repo-one'], 'gmail-authored repo-one missing when filtering both emails');
+  assert(multiData.repos['repo-work'], 'second-email repo-work missing from multi-author generate');
+  assert(
+    String(multiData.diagnostics.authorEmail).includes(workEmail),
+    `diagnostics should list both author emails, got ${multiData.diagnostics.authorEmail}`
+  );
+
+  const defaultBranch = run('git', ['rev-parse', '--abbrev-ref', 'HEAD'], { cwd: repoOne }).stdout.trim();
+  run('git', ['checkout', '-b', 'agent/side-work'], { cwd: repoOne });
+  fs.appendFileSync(path.join(repoOne, 'README.md'), '\nside work\n');
+  run('git', ['add', 'README.md'], { cwd: repoOne });
+  const sideDate = new Date(Date.now() - 30 * 60 * 1000).toISOString();
+  run('git', ['commit', '-m', 'feat: side branch'], {
+    cwd: repoOne,
+    env: {
+      ...process.env,
+      GIT_AUTHOR_DATE: sideDate,
+      GIT_COMMITTER_DATE: sideDate,
+    },
+  });
+  run('git', ['checkout', defaultBranch], { cwd: repoOne });
+
+  const branchCache = path.join(tempDir, 'activity-data-branches.json');
+  run(
+    process.execPath,
+    [
+      generatorScript,
+      '--paths',
+      rootA,
+      '--hours',
+      '48',
+      '--author',
+      authorEmail,
+      '--exclude',
+      'skip-me',
+      '--no-prs',
+      '--cache-file',
+      branchCache,
+    ],
+    { cwd: tempDir }
+  );
+
+  const branchData = JSON.parse(fs.readFileSync(branchCache, 'utf-8'));
+  const repoOneCommits = branchData.commits.filter(c => c.repo === 'repo-one');
+  assert(
+    repoOneCommits.length === 2,
+    `expected commits from current branch and un-checked-out local branches, got ${repoOneCommits.length}`
+  );
+
   run(
     process.execPath,
     [

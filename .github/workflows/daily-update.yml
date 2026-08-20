@@ -13,7 +13,8 @@ on:
 #     SCAN_PATHS       - Comma-separated paths to scan (e.g. "~/Projects,~/code")
 #     EXCLUDE_REPOS    - Comma-separated repo name patterns to exclude (e.g. "archive,understanding-dana")
 #     GH_AUTHOR        - GitHub username for PR fetching (default: @me)
-#     GIT_EMAIL        - Email for git commits (default: activity-bot@users.noreply.github.com)
+#     AUTHOR_EMAILS    - Comma-separated git author emails to include
+#     GIT_EMAIL        - Email for the bot commit that pushes activity-data.json
 #     GIT_NAME         - Name for git commits (default: Activity Bot)
 #     SITE_CONFIG      - JSON for dashboard branding (optional, see site-config.json.example)
 #     CATEGORIES_CONFIG - JSON for repo grouping (optional, see categories.json.example)
@@ -28,6 +29,7 @@ jobs:
       REPORT_SCAN_PATHS: ${{ vars.SCAN_PATHS || '~/Projects,~/Local Sites' }}
       REPORT_EXCLUDE_REPOS: ${{ vars.EXCLUDE_REPOS || '' }}
       REPORT_GH_AUTHOR: ${{ vars.GH_AUTHOR || '@me' }}
+      REPORT_AUTHOR_EMAILS: ${{ vars.AUTHOR_EMAILS }}
     steps:
       - name: Clean runner state
         run: |
@@ -57,6 +59,7 @@ jobs:
         run: |
           EXTRA_ARGS=()
           [ -n "${REPORT_EXCLUDE_REPOS}" ] && EXTRA_ARGS+=("--exclude=${REPORT_EXCLUDE_REPOS}")
+          [ -n "${REPORT_AUTHOR_EMAILS}" ] && EXTRA_ARGS+=("--author=${REPORT_AUTHOR_EMAILS}")
           node generate-rich-report.mjs "--paths=${REPORT_SCAN_PATHS}" --gh-author="${REPORT_GH_AUTHOR}" "${EXTRA_ARGS[@]}"
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -105,6 +108,7 @@ jobs:
             git pull origin main
             EXTRA_ARGS=()
             [ -n "${REPORT_EXCLUDE_REPOS}" ] && EXTRA_ARGS+=("--exclude=${REPORT_EXCLUDE_REPOS}")
+            [ -n "${REPORT_AUTHOR_EMAILS}" ] && EXTRA_ARGS+=("--author=${REPORT_AUTHOR_EMAILS}")
             node generate-rich-report.mjs "--paths=${REPORT_SCAN_PATHS}" --gh-author="${REPORT_GH_AUTHOR}" "${EXTRA_ARGS[@]}"
             git add -f activity-data.json
             git diff --cached --quiet || git commit -m "chore: daily activity update"
@@ -117,7 +121,7 @@ jobs:
         if: always() && vars.CLOUDFLARE_DEPLOY == 'true'
         run: |
           mkdir -p _deploy
-          cp index.html activity-data.json _deploy/
+          cp index.html activity-data.json tz.js _deploy/
           [ -n "$SITE_CONFIG" ] && echo "$SITE_CONFIG" > _deploy/site-config.json || true
           [ -n "$CATEGORIES" ] && echo "$CATEGORIES" > _deploy/categories.json || true
         env:
