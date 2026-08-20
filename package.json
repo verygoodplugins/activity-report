@@ -7,7 +7,7 @@
     "generate": "node generate-rich-report.mjs",
     "generate:cached": "node generate-rich-report.mjs --cached",
     "start": "npx http-server -p 8080",
-    "test": "node scripts/smoke-test.mjs"
+    "test": "node scripts/smoke-test.mjs && node scripts/tz-test.mjs"
   },
   "repository": {
     "type": "git",

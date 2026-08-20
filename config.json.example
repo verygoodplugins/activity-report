@@ -1,6 +1,6 @@
 {
   "paths": ["~/Projects", "~/code"],
-  "author": "you@example.com",
+  "author": "you@example.com,work@example.com",
   "ghAuthor": "your-github-username",
   "exclude": ["node_modules", "vendor"],
   "hours": 168,

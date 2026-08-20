@@ -32,7 +32,7 @@ node generate-rich-report.mjs \
   --paths ~/Projects,~/code \    # Comma-separated scan roots
   --hours 48 \                   # Time window (default: 168 = 7 days)
   --max-depth 4 \                # Repo scan depth
-  --author you@example.com \     # Filter commits by email
+  --author you@example.com,work@example.com \  # Filter commits by email (comma-separated)
   --gh-author someuser \         # GitHub PR author filter
   --exclude "vendor,archive" \   # Exclude repos matching patterns
   --no-prs                       # Skip PR fetching (no gh CLI needed)
@@ -45,7 +45,7 @@ Create a `config.json` in the repo root for persistent settings (see [config.jso
 ```json
 {
   "paths": ["~/Projects", "~/code"],
-  "author": "you@example.com",
+  "author": "you@example.com,work@example.com",
   "ghAuthor": "your-github-username",
   "exclude": ["node_modules", "vendor"],
   "hours": 168
@@ -58,11 +58,11 @@ CLI flags override config.json values.
 
 These also work as alternatives to CLI flags:
 
-- `ACTIVITY_REPORT_AUTHOR_EMAIL` — commit author filter
+- `ACTIVITY_REPORT_AUTHOR_EMAIL` — commit author filter (comma-separated for multiple emails)
 - `ACTIVITY_REPORT_GH_AUTHOR` — GitHub PR author filter
 - `GH_TOKEN` — GitHub token for PR fetching
 
-If no author is specified, it falls back to your `git config user.email`.
+If no author is specified, it falls back to your `git config user.email`. Multiple emails are OR'd (`git log --author=a --author=b`).
 
 ### Categories (Optional)
 
@@ -120,8 +120,10 @@ For scanning local repos on your machine, use `.github/workflows/daily-update.ym
 2. Configure repository variables (Settings > Variables):
    - `SCAN_PATHS` — paths to scan (e.g. `~/Projects,~/code`)
    - `GH_AUTHOR` — your GitHub username
-   - `GIT_EMAIL` — email for automated commits
+   - `AUTHOR_EMAILS` — comma-separated git author emails to include in the report
+   - `GIT_EMAIL` — email for the bot commit that pushes `activity-data.json`
    - `GIT_NAME` — name for automated commits
+   - `SITE_CONFIG` — dashboard branding JSON (`title`, `tagline`, `accentColor`, `timezone`)
    - `CLOUDFLARE_DEPLOY` — set to `true` to enable Cloudflare deployment
    - `CLOUDFLARE_PROJECT` — Cloudflare Pages project name
 3. Add secrets: `CLOUDFLARE_API_TOKEN`, `CLOUDFLARE_ACCOUNT_ID`

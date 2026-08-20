@@ -38,7 +38,9 @@ function loadCategories(config) {
   if (fs.existsSync(catPath)) {
     try {
       const cats = JSON.parse(fs.readFileSync(catPath, "utf-8"));
-      console.log(`   Categories: loaded from categories.json (${Object.keys(cats).length} categories)`);
+      console.log(
+        `   Categories: loaded from categories.json (${Object.keys(cats).length} categories)`,
+      );
       return cats;
     } catch (e) {
       console.warn("Warning: could not parse categories.json:", e.message);
@@ -49,15 +51,22 @@ function loadCategories(config) {
   if (envCats) {
     try {
       const cats = JSON.parse(envCats);
-      console.log(`   Categories: loaded from CATEGORIES_CONFIG env (${Object.keys(cats).length} categories)`);
+      console.log(
+        `   Categories: loaded from CATEGORIES_CONFIG env (${Object.keys(cats).length} categories)`,
+      );
       return cats;
     } catch (e) {
-      console.warn("Warning: could not parse CATEGORIES_CONFIG env:", e.message);
+      console.warn(
+        "Warning: could not parse CATEGORIES_CONFIG env:",
+        e.message,
+      );
     }
   }
 
   if (config.categories && typeof config.categories === "object") {
-    console.log(`   Categories: loaded from config.json (${Object.keys(config.categories).length} categories)`);
+    console.log(
+      `   Categories: loaded from config.json (${Object.keys(config.categories).length} categories)`,
+    );
     return config.categories;
   }
 
@@ -76,7 +85,8 @@ function expandHome(inputPath) {
 function collapseHome(inputPath) {
   const home = os.homedir();
   if (inputPath === home) return "~";
-  if (inputPath.startsWith(home + path.sep)) return "~" + inputPath.slice(home.length);
+  if (inputPath.startsWith(home + path.sep))
+    return "~" + inputPath.slice(home.length);
   return inputPath;
 }
 
@@ -87,7 +97,7 @@ function readGitConfigValue(key) {
       encoding: "utf-8",
     }).trim();
     if (globalValue) return globalValue;
-    
+
     const localValue = execSync(`git config --get ${key}`, {
       encoding: "utf-8",
     }).trim();
@@ -221,14 +231,17 @@ async function main() {
   const writeCache = args.cacheWrite !== false;
   const includePrs = args.prs !== false;
   const ghAuthor =
-    args["gh-author"] || process.env.ACTIVITY_REPORT_GH_AUTHOR || config.ghAuthor || "@me";
+    args["gh-author"] ||
+    process.env.ACTIVITY_REPORT_GH_AUTHOR ||
+    config.ghAuthor ||
+    "@me";
   const prPerRepoLimit = parseNumber(
     firstDefined(
       args["pr-per-repo-limit"],
       process.env.ACTIVITY_REPORT_PR_PER_REPO_LIMIT,
-      config.prPerRepoLimit
+      config.prPerRepoLimit,
     ),
-    100
+    100,
   );
 
   // Build exclude patterns from --exclude flag or config.json
@@ -237,11 +250,7 @@ async function main() {
   const excludeList = excludeArg.length > 0 ? excludeArg : excludeConfig;
   EXCLUDE_PATTERNS = excludeList.map((p) => new RegExp(p, "i"));
 
-  const authorEmail =
-    args.author ||
-    process.env.ACTIVITY_REPORT_AUTHOR_EMAIL ||
-    config.author ||
-    readGitConfigValue("user.email");
+  const authorEmails = resolveAuthorEmails(args, config);
 
   const repoPathsFromArgs = splitCommaList(args.paths);
   const configPaths = config.paths || [];
@@ -259,7 +268,7 @@ async function main() {
 
   if (repoRootsResolved.length === 0) {
     console.warn(
-      "Warning: No scan paths found. Use --paths or create a config.json with a \"paths\" array."
+      'Warning: No scan paths found. Use --paths or create a config.json with a "paths" array.',
     );
   }
 
@@ -274,7 +283,7 @@ async function main() {
     console.log("Fetching fresh data...");
     data = await fetchData({
       hoursBack,
-      authorEmail,
+      authorEmails,
       configuredRepoRoots: repoRoots,
       repoRoots: repoRootsResolved,
       maxDepth,
@@ -301,9 +310,36 @@ async function main() {
   // generateHtml(data, { outputFile, hoursBack });
 }
 
+function resolveAuthorEmails(args, config) {
+  const fromArgs = splitCommaList(args.author);
+  if (fromArgs.length) return fromArgs;
+
+  const fromEnv = splitCommaList(process.env.ACTIVITY_REPORT_AUTHOR_EMAIL);
+  if (fromEnv.length) return fromEnv;
+
+  if (Array.isArray(config.authors) && config.authors.length) {
+    return config.authors.map((value) => String(value).trim()).filter(Boolean);
+  }
+  if (Array.isArray(config.author) && config.author.length) {
+    return config.author.map((value) => String(value).trim()).filter(Boolean);
+  }
+
+  const fromConfig = splitCommaList(config.author);
+  if (fromConfig.length) return fromConfig;
+
+  const gitEmail = readGitConfigValue("user.email");
+  return gitEmail ? [gitEmail] : [];
+}
+
+function authorLogFilter(authorEmails) {
+  return authorEmails
+    .map((email) => ` --author="${String(email).replace(/"/g, "")}"`)
+    .join("");
+}
+
 async function fetchData({
   hoursBack,
-  authorEmail,
+  authorEmails,
   configuredRepoRoots,
   repoRoots,
   maxDepth,
@@ -324,7 +360,8 @@ async function fetchData({
     repos: {},
     stats: { additions: 0, deletions: 0, files: 0, commits: 0, prs: 0 },
     diagnostics: {
-      authorEmail: authorEmail || null,
+      authorEmail: authorEmails.length ? authorEmails.join(",") : null,
+      authorEmails,
       ghAuthor: includePrs ? ghAuthor : null,
       includePrs,
       maxDepth,
@@ -355,6 +392,8 @@ async function fetchData({
     },
   };
 
+  const seenCommitHashes = new Set();
+
   // 1. Local Repos
   for (const basePath of repoRoots) {
     const reposUnderRoot = findGitReposUnder(basePath, maxDepth);
@@ -376,7 +415,7 @@ async function fetchData({
         `git -C "${repoPath}" config --get remote.origin.url`,
         {
           encoding: "utf-8",
-        }
+        },
       )?.trim();
 
       if (remoteRaw) {
@@ -395,10 +434,10 @@ async function fetchData({
         }
       }
 
-      const authorFilter = authorEmail ? ` --author="${authorEmail}"` : "";
+      const authorFilter = authorLogFilter(authorEmails);
       const log = safeExec(
-        `git -C "${repoPath}" log${authorFilter} --since="${sinceIso}" --pretty=format:"===COMMIT===%n%H%x1f%aI%x1f%s%x1f%b%x1f===STATS===" --numstat --no-merges 2>/dev/null`,
-        { encoding: "utf-8", maxBuffer: 20 * 1024 * 1024 }
+        `git -C "${repoPath}" log --all${authorFilter} --since="${sinceIso}" --pretty=format:"===COMMIT===%n%H%x1f%aI%x1f%s%x1f%b%x1f===STATS===" --numstat --no-merges 2>/dev/null`,
+        { encoding: "utf-8", maxBuffer: 20 * 1024 * 1024 },
       );
 
       if (!log?.trim()) continue;
@@ -415,10 +454,15 @@ async function fetchData({
 
         const parts = commitInfo.trim().split("\x1f");
         const [hash, dateStr, headline] = parts;
+        if (!hash || seenCommitHashes.has(hash)) continue;
+        seenCommitHashes.add(hash);
         // Body is everything between headline and ===STATS===, may contain newlines
         const body = (parts[3] || "").trim();
 
-        const statLines = (statsSection || "").trim().split("\n").filter(Boolean);
+        const statLines = (statsSection || "")
+          .trim()
+          .split("\n")
+          .filter(Boolean);
 
         let added = 0,
           deleted = 0;
@@ -498,7 +542,7 @@ async function fetchData({
         data.diagnostics.prs.repoQueries++;
         const search = safeExec(
           `gh search prs --author="${ghAuthor}" --created=">=${dateFilter}" --repo="${repoFull}" --limit ${prPerRepoLimit} --json number,repository,url,createdAt 2>/dev/null`,
-          { encoding: "utf-8" }
+          { encoding: "utf-8" },
         );
         if (!search) {
           data.diagnostics.prs.searchFailures++;
@@ -512,7 +556,8 @@ async function fetchData({
         }
 
         for (const pr of repoPrs) {
-          const key = pr?.url || `${pr?.repository?.nameWithOwner}#${pr?.number}`;
+          const key =
+            pr?.url || `${pr?.repository?.nameWithOwner}#${pr?.number}`;
           if (!key || seen.has(key)) continue;
           seen.add(key);
           prList.push(pr);
@@ -520,16 +565,18 @@ async function fetchData({
       }
 
       prList.sort(
-        (a, b) => new Date(b.createdAt || 0) - new Date(a.createdAt || 0)
+        (a, b) => new Date(b.createdAt || 0) - new Date(a.createdAt || 0),
       );
       data.diagnostics.prs.dedupedPullRequests = prList.length;
     } else {
       const search = safeExec(
         `gh search prs --author="${ghAuthor}" --created=">=${dateFilter}" --limit ${prPerRepoLimit} --json number,repository,url,createdAt 2>/dev/null`,
-        { encoding: "utf-8" }
+        { encoding: "utf-8" },
       );
       if (!search) {
-        console.error("ERROR: gh CLI not available or not authenticated. Set GH_TOKEN environment variable.");
+        console.error(
+          "ERROR: gh CLI not available or not authenticated. Set GH_TOKEN environment variable.",
+        );
         process.exit(1);
       }
       prList = JSON.parse(search);
@@ -542,7 +589,7 @@ async function fetchData({
         data.diagnostics.prs.detailLookups++;
         const detailRaw = safeExec(
           `gh pr view ${pr.number} --repo ${pr.repository.nameWithOwner} --json number,title,url,state,createdAt,additions,deletions,changedFiles,commits,baseRefName,headRefName,mergeable,reviews,labels,files,body`,
-          { encoding: "utf-8" }
+          { encoding: "utf-8" },
         );
         if (!detailRaw) {
           data.diagnostics.prs.detailFailures++;
@@ -728,8 +775,8 @@ function generateHtml(data, { outputFile, hoursBack }) {
     <div>
       <h1>Activity Report</h1>
       <div class="subtitle">Last ${hoursBack / 24} days • ${
-    data.stats.commits
-  } commits • ${data.stats.prs} PRs</div>
+        data.stats.commits
+      } commits • ${data.stats.prs} PRs</div>
     </div>
     <div class="stats-row">
       <div class="stat"><div class="stat-val">${
@@ -756,7 +803,7 @@ function generateHtml(data, { outputFile, hoursBack }) {
         <span class="repo-dot" style="background:${repoColors[name]}"></span>
         ${name} <span style="color:var(--muted)">${r.commits}</span>
       </a>
-    `
+    `,
       )
       .join("")}
   </div>
@@ -795,7 +842,7 @@ function generateHtml(data, { outputFile, hoursBack }) {
           <div style="color:var(--muted)">${pr.stats.files} files</div>
         </div>
       </div>
-    `
+    `,
       )
       .join("")}
   </div>
@@ -881,18 +928,18 @@ function renderTimeline(events, colors) {
         <div class="event-card">
           <div class="event-header">
             <span class="event-repo" style="color:${color}">${e.repo}${
-        e.prNumber ? ` #${e.prNumber}` : ""
-      }</span>
+              e.prNumber ? ` #${e.prNumber}` : ""
+            }</span>
             <div class="event-stats"><span class="added">+${
               e.stats?.added || 0
             }</span><span class="deleted">-${e.stats?.deleted || 0}</span></div>
           </div>
           <div class="event-msg">
             <a href="${commitUrl}" target="_blank">${
-        e.headline
-      }</a><a href="${commitUrl}" target="_blank" class="event-hash">${
-        e.shortHash
-      }</a>
+              e.headline
+            }</a><a href="${commitUrl}" target="_blank" class="event-hash">${
+              e.shortHash
+            }</a>
           </div>
           ${summaryHtml}
           ${detailedFilesHtml}
