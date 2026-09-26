@@ -57,15 +57,18 @@ jobs:
       - name: Generate report
         shell: bash
         run: |
-          # The Actions token can only see this repository. Private repos in
-          # other orgs fail the search, and those failures used to be swallowed,
-          # so the dashboard omitted them (autohub, AutoApp, autohub-tui, …).
-          # Drop both token vars so gh uses the runner user's `gh auth login`.
-          # If that login is missing, stop here. Generating anyway would
-          # commit an empty pull-request list over the previous report.
-          unset GH_TOKEN GITHUB_TOKEN
+          # GITHUB_TOKEN can only see this repository. Private repos in other
+          # orgs then fail the search, and those misses used to be swallowed.
+          # ACTIVITY_GH_TOKEN is a personal token that can read them. The
+          # runner's keyring login is not available to the service, so do not
+          # fall back to GITHUB_TOKEN — that publishes a public-only report.
+          if [ -z "${GH_TOKEN:-}" ]; then
+            echo "::error::ACTIVITY_GH_TOKEN is not set. Refusing to generate a report that would drop private-repo pull requests."
+            exit 1
+          fi
+          unset GITHUB_TOKEN
           if ! login="$(gh api user --jq .login)"; then
-            echo "::error::Runner gh auth is missing. Refusing to generate a report that would drop every pull request."
+            echo "::error::ACTIVITY_GH_TOKEN was rejected. Refusing to generate a report that would drop every pull request."
             exit 1
           fi
           echo "PR search authenticated as ${login}"
@@ -74,6 +77,7 @@ jobs:
           [ -n "${REPORT_AUTHOR_EMAILS}" ] && EXTRA_ARGS+=("--author=${REPORT_AUTHOR_EMAILS}")
           node generate-rich-report.mjs "--paths=${REPORT_SCAN_PATHS}" --gh-author="${REPORT_GH_AUTHOR}" "${EXTRA_ARGS[@]}"
         env:
+          GH_TOKEN: ${{ secrets.ACTIVITY_GH_TOKEN }}
           CATEGORIES_CONFIG: ${{ vars.CATEGORIES_CONFIG }}
 
       - name: Commit and push
@@ -117,9 +121,14 @@ jobs:
             git reset --soft HEAD~1
             git checkout -- .
             git pull origin main
-            unset GH_TOKEN GITHUB_TOKEN
+            export GH_TOKEN="${{ secrets.ACTIVITY_GH_TOKEN }}"
+            if [ -z "${GH_TOKEN:-}" ]; then
+              echo "::error::ACTIVITY_GH_TOKEN is not set. Refusing to regenerate a report that would drop private-repo pull requests."
+              exit 1
+            fi
+            unset GITHUB_TOKEN
             if ! login="$(gh api user --jq .login)"; then
-              echo "::error::Runner gh auth is missing. Refusing to regenerate a report that would drop every pull request."
+              echo "::error::ACTIVITY_GH_TOKEN was rejected. Refusing to regenerate a report that would drop every pull request."
               exit 1
             fi
             echo "PR search authenticated as ${login}"

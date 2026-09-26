@@ -127,7 +127,7 @@ For scanning local repos on your machine, use `.github/workflows/daily-update.ym
    - `CLOUDFLARE_DEPLOY` — set to `true` to enable Cloudflare deployment
    - `CLOUDFLARE_PROJECT` — Cloudflare Pages project name
 3. Add secrets: `CLOUDFLARE_API_TOKEN`, `CLOUDFLARE_ACCOUNT_ID`
-4. On the runner machine, `gh auth login` as an account that can read the private repos you want counted. The workflow does not use `GITHUB_TOKEN` for PR search — that token can only see this repository, so private repos in other orgs would be missing from the dashboard.
+4. Add secret `ACTIVITY_GH_TOKEN` — a GitHub token that can read the private repos you want counted. `GITHUB_TOKEN` can only see this repository, and the runner service cannot see a keyring `gh auth login`, so private-repo pull requests would be missing. The job refuses to publish if that secret is missing or rejected.
 
 ## How It Works
 
