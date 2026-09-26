@@ -602,6 +602,17 @@ async function fetchData({
       data.diagnostics.prs.dedupedPullRequests = prList.length;
     }
 
+    if (
+      data.diagnostics.prs.repoQueries > 0 &&
+      data.diagnostics.prs.searchFailures === data.diagnostics.prs.repoQueries
+    ) {
+      const failed = data.diagnostics.prs.failedRepos.join(", ");
+      console.error(
+        `ERROR: PR search failed for every repository (${failed}). Refusing to publish a report with no pull requests.`,
+      );
+      process.exit(1);
+    }
+
     for (const pr of prList) {
       try {
         data.diagnostics.prs.detailLookups++;

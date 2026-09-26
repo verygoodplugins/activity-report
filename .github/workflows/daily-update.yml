@@ -61,7 +61,14 @@ jobs:
           # other orgs fail the search, and those failures used to be swallowed,
           # so the dashboard omitted them (autohub, AutoApp, autohub-tui, …).
           # Drop both token vars so gh uses the runner user's `gh auth login`.
+          # If that login is missing, stop here. Generating anyway would
+          # commit an empty pull-request list over the previous report.
           unset GH_TOKEN GITHUB_TOKEN
+          if ! login="$(gh api user --jq .login)"; then
+            echo "::error::Runner gh auth is missing. Refusing to generate a report that would drop every pull request."
+            exit 1
+          fi
+          echo "PR search authenticated as ${login}"
           EXTRA_ARGS=()
           [ -n "${REPORT_EXCLUDE_REPOS}" ] && EXTRA_ARGS+=("--exclude=${REPORT_EXCLUDE_REPOS}")
           [ -n "${REPORT_AUTHOR_EMAILS}" ] && EXTRA_ARGS+=("--author=${REPORT_AUTHOR_EMAILS}")
@@ -111,6 +118,11 @@ jobs:
             git checkout -- .
             git pull origin main
             unset GH_TOKEN GITHUB_TOKEN
+            if ! login="$(gh api user --jq .login)"; then
+              echo "::error::Runner gh auth is missing. Refusing to regenerate a report that would drop every pull request."
+              exit 1
+            fi
+            echo "PR search authenticated as ${login}"
             EXTRA_ARGS=()
             [ -n "${REPORT_EXCLUDE_REPOS}" ] && EXTRA_ARGS+=("--exclude=${REPORT_EXCLUDE_REPOS}")
             [ -n "${REPORT_AUTHOR_EMAILS}" ] && EXTRA_ARGS+=("--author=${REPORT_AUTHOR_EMAILS}")
