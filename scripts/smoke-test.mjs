@@ -265,6 +265,45 @@ try {
   assert(prData.diagnostics.prs.dedupedPullRequests === 30, 'deduped PR count incorrect');
   assert(prData.diagnostics.prs.perRepoLimit === 50, 'per-repo PR limit diagnostics incorrect');
   assert(prData.diagnostics.prs.possiblyTruncatedRepos.length === 0, 'unexpected PR truncation warning');
+
+  const failingGh = `#!/usr/bin/env node
+process.stderr.write('auth failed\\n');
+process.exit(1);
+`;
+  fs.writeFileSync(path.join(fakeBin, 'gh'), failingGh);
+  fs.chmodSync(path.join(fakeBin, 'gh'), 0o755);
+  const failedCache = path.join(tempDir, 'activity-data-pr-auth-fail.json');
+  const failedRun = spawnSync(
+    process.execPath,
+    [
+      generatorScript,
+      '--paths',
+      `${rootA},${rootB}`,
+      '--hours',
+      '48',
+      '--author',
+      authorEmail,
+      '--gh-author',
+      'smoke-user',
+      '--cache-file',
+      failedCache,
+    ],
+    {
+      cwd: tempDir,
+      encoding: 'utf-8',
+      env: {
+        ...process.env,
+        PATH: `${fakeBin}${path.delimiter}${process.env.PATH}`,
+        GH_TOKEN: 'smoke-token',
+      },
+    }
+  );
+  assert(failedRun.status !== 0, 'generator should refuse to publish when every PR search fails');
+  assert(
+    String(failedRun.stderr || failedRun.stdout || '').includes('Refusing to publish'),
+    `expected a publish refusal, got stdout=${failedRun.stdout} stderr=${failedRun.stderr}`
+  );
+  assert(!fs.existsSync(failedCache), 'failed PR search must not write a report');
 } finally {
   fs.rmSync(tempDir, { recursive: true, force: true });
 }
