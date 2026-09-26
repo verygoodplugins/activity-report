@@ -241,7 +241,9 @@ async function main() {
       process.env.ACTIVITY_REPORT_PR_PER_REPO_LIMIT,
       config.prPerRepoLimit,
     ),
-    100,
+    // GitHub search returns at most 1000 matches. Newest-first keeps a
+    // truncated repo's recent PRs, which is what the week and month views use.
+    1000,
   );
 
   // Build exclude patterns from --exclude flag or config.json
@@ -387,6 +389,7 @@ async function fetchData({
         detailLookups: 0,
         detailFailures: 0,
         searchFailures: 0,
+        failedRepos: [],
         possiblyTruncatedRepos: [],
       },
     },
@@ -534,22 +537,38 @@ async function fetchData({
 
     let prList = [];
 
+    const searchPullRequests = (selector) => {
+      const command = `gh search prs ${selector} --sort created --order desc --limit ${prPerRepoLimit} --json number,repository,url,createdAt`;
+      try {
+        return { ok: true, stdout: execSync(command, { encoding: "utf-8" }) };
+      } catch (error) {
+        const detail = String(error.stderr || error.message || "")
+          .trim()
+          .split("\n")[0]
+          .slice(0, 240);
+        return { ok: false, detail };
+      }
+    };
+
     if (reposWithGitHubRemote.length > 0) {
       const seen = new Set();
 
       for (const repo of reposWithGitHubRemote) {
         const repoFull = `${repo.owner}/${repo.repoSlug}`;
         data.diagnostics.prs.repoQueries++;
-        const search = safeExec(
-          `gh search prs --author="${ghAuthor}" --created=">=${dateFilter}" --repo="${repoFull}" --limit ${prPerRepoLimit} --json number,repository,url,createdAt 2>/dev/null`,
-          { encoding: "utf-8" },
+        const search = searchPullRequests(
+          `--author="${ghAuthor}" --created=">=${dateFilter}" --repo="${repoFull}"`,
         );
-        if (!search) {
+        if (!search.ok) {
           data.diagnostics.prs.searchFailures++;
+          data.diagnostics.prs.failedRepos.push(repoFull);
+          console.warn(
+            `   PR search failed for ${repoFull}: ${search.detail || "gh search failed"}`,
+          );
           continue;
         }
 
-        const repoPrs = JSON.parse(search);
+        const repoPrs = JSON.parse(search.stdout);
         data.diagnostics.prs.candidatePullRequests += repoPrs.length;
         if (repoPrs.length === prPerRepoLimit) {
           data.diagnostics.prs.possiblyTruncatedRepos.push(repoFull);
@@ -569,17 +588,16 @@ async function fetchData({
       );
       data.diagnostics.prs.dedupedPullRequests = prList.length;
     } else {
-      const search = safeExec(
-        `gh search prs --author="${ghAuthor}" --created=">=${dateFilter}" --limit ${prPerRepoLimit} --json number,repository,url,createdAt 2>/dev/null`,
-        { encoding: "utf-8" },
+      const search = searchPullRequests(
+        `--author="${ghAuthor}" --created=">=${dateFilter}"`,
       );
-      if (!search) {
+      if (!search.ok) {
         console.error(
-          "ERROR: gh CLI not available or not authenticated. Set GH_TOKEN environment variable.",
+          `ERROR: gh CLI not available or not authenticated. ${search.detail || "Set GH_TOKEN or run gh auth login."}`,
         );
         process.exit(1);
       }
-      prList = JSON.parse(search);
+      prList = JSON.parse(search.stdout);
       data.diagnostics.prs.candidatePullRequests = prList.length;
       data.diagnostics.prs.dedupedPullRequests = prList.length;
     }

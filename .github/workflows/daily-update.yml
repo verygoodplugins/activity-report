@@ -57,12 +57,16 @@ jobs:
       - name: Generate report
         shell: bash
         run: |
+          # The Actions token can only see this repository. Private repos in
+          # other orgs fail the search, and those failures used to be swallowed,
+          # so the dashboard omitted them (autohub, AutoApp, autohub-tui, …).
+          # Drop both token vars so gh uses the runner user's `gh auth login`.
+          unset GH_TOKEN GITHUB_TOKEN
           EXTRA_ARGS=()
           [ -n "${REPORT_EXCLUDE_REPOS}" ] && EXTRA_ARGS+=("--exclude=${REPORT_EXCLUDE_REPOS}")
           [ -n "${REPORT_AUTHOR_EMAILS}" ] && EXTRA_ARGS+=("--author=${REPORT_AUTHOR_EMAILS}")
           node generate-rich-report.mjs "--paths=${REPORT_SCAN_PATHS}" --gh-author="${REPORT_GH_AUTHOR}" "${EXTRA_ARGS[@]}"
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           CATEGORIES_CONFIG: ${{ vars.CATEGORIES_CONFIG }}
 
       - name: Commit and push
@@ -106,6 +110,7 @@ jobs:
             git reset --soft HEAD~1
             git checkout -- .
             git pull origin main
+            unset GH_TOKEN GITHUB_TOKEN
             EXTRA_ARGS=()
             [ -n "${REPORT_EXCLUDE_REPOS}" ] && EXTRA_ARGS+=("--exclude=${REPORT_EXCLUDE_REPOS}")
             [ -n "${REPORT_AUTHOR_EMAILS}" ] && EXTRA_ARGS+=("--author=${REPORT_AUTHOR_EMAILS}")

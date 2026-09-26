@@ -1891,7 +1891,9 @@
       if ((prs.possiblyTruncatedRepos || []).length > 0) {
         warnings.push(`PR search hit the per-repo limit for: ${prs.possiblyTruncatedRepos.join(', ')}`);
       }
-      if ((prs.searchFailures || 0) > 0) {
+      if ((prs.failedRepos || []).length > 0) {
+        warnings.push(`PR search failed for: ${prs.failedRepos.join(', ')}`);
+      } else if ((prs.searchFailures || 0) > 0) {
         warnings.push(`PR search failed for ${prs.searchFailures} repo query${prs.searchFailures === 1 ? '' : 'ies'}.`);
       }
       if ((prs.detailFailures || 0) > 0) {
