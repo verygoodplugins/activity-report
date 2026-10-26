@@ -33,7 +33,7 @@ node generate-rich-report.mjs \
   --hours 48 \                   # Time window (default: 168 = 7 days)
   --max-depth 4 \                # Repo scan depth
   --author you@example.com,work@example.com \  # Filter commits by email (comma-separated)
-  --gh-author someuser \         # GitHub PR author filter
+  --gh-author someuser,app/your-bot \  # GitHub PR authors (comma-separated)
   --exclude "vendor,archive" \   # Exclude repos matching patterns
   --no-prs                       # Skip PR fetching (no gh CLI needed)
 ```
@@ -46,7 +46,7 @@ Create a `config.json` in the repo root for persistent settings (see [config.jso
 {
   "paths": ["~/Projects", "~/code"],
   "author": "you@example.com,work@example.com",
-  "ghAuthor": "your-github-username",
+  "ghAuthor": "your-github-username,app/your-bot",
   "exclude": ["node_modules", "vendor"],
   "hours": 168
 }
@@ -59,7 +59,7 @@ CLI flags override config.json values.
 These also work as alternatives to CLI flags:
 
 - `ACTIVITY_REPORT_AUTHOR_EMAIL` — commit author filter (comma-separated for multiple emails)
-- `ACTIVITY_REPORT_GH_AUTHOR` — GitHub PR author filter
+- `ACTIVITY_REPORT_GH_AUTHOR` — GitHub PR authors, comma-separated. Use `app/<bot>` for a GitHub App.
 - `GH_TOKEN` — GitHub token for PR fetching
 
 If no author is specified, it falls back to your `git config user.email`. Multiple emails are OR'd (`git log --author=a --author=b`).
@@ -91,7 +91,7 @@ If you want PRs included in the report:
 2. Authenticate: `gh auth login` (or set `GH_TOKEN`)
 3. Run without `--no-prs`
 
-By default it searches PRs authored by `@me`. Override with `--gh-author yourname`.
+By default it searches PRs authored by `@me`. Override with `--gh-author yourname,app/your-bot`. Git author emails are matched literally, including GitHub App addresses such as `123+name[bot]@users.noreply.github.com`.
 
 ## Hosting Options
 

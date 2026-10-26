@@ -12,8 +12,8 @@ on:
 #   Variables (vars):
 #     SCAN_PATHS       - Comma-separated paths to scan (e.g. "~/Projects,~/code")
 #     EXCLUDE_REPOS    - Comma-separated repo name patterns to exclude (e.g. "archive,understanding-dana")
-#     GH_AUTHOR        - GitHub username for PR fetching (default: @me)
-#     AUTHOR_EMAILS    - Comma-separated git author emails to include
+#     GH_AUTHOR        - Comma-separated GitHub logins for PR fetching (default: @me). App bots use app/<name>.
+#     AUTHOR_EMAILS    - Comma-separated git author emails to include. App bots use ID+name[bot]@users.noreply.github.com.
 #     GIT_EMAIL        - Email for the bot commit that pushes activity-data.json
 #     GIT_NAME         - Name for git commits (default: Activity Bot)
 #     SITE_CONFIG      - JSON for dashboard branding (optional, see site-config.json.example)

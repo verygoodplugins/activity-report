@@ -230,11 +230,7 @@ async function main() {
   const useCache = Boolean(args.cached);
   const writeCache = args.cacheWrite !== false;
   const includePrs = args.prs !== false;
-  const ghAuthor =
-    args["gh-author"] ||
-    process.env.ACTIVITY_REPORT_GH_AUTHOR ||
-    config.ghAuthor ||
-    "@me";
+  const ghAuthors = resolveGhAuthors(args, config);
   const prPerRepoLimit = parseNumber(
     firstDefined(
       args["pr-per-repo-limit"],
@@ -290,7 +286,7 @@ async function main() {
       repoRoots: repoRootsResolved,
       maxDepth,
       includePrs,
-      ghAuthor,
+      ghAuthors,
       prPerRepoLimit,
       excludePatterns: excludeList,
     });
@@ -333,9 +329,41 @@ function resolveAuthorEmails(args, config) {
   return gitEmail ? [gitEmail] : [];
 }
 
+function resolveGhAuthors(args, config) {
+  const fromArgs = splitCommaList(args["gh-author"]);
+  if (fromArgs.length) return fromArgs;
+
+  const fromEnv = splitCommaList(process.env.ACTIVITY_REPORT_GH_AUTHOR);
+  if (fromEnv.length) return fromEnv;
+
+  if (Array.isArray(config.ghAuthors) && config.ghAuthors.length) {
+    return config.ghAuthors
+      .map((value) => String(value).trim())
+      .filter(Boolean);
+  }
+  if (Array.isArray(config.ghAuthor) && config.ghAuthor.length) {
+    return config.ghAuthor.map((value) => String(value).trim()).filter(Boolean);
+  }
+
+  const fromConfig = splitCommaList(config.ghAuthor);
+  if (fromConfig.length) return fromConfig;
+
+  return ["@me"];
+}
+
+// git log --author is a basic regular expression. A GitHub App email such as
+// 123+name[bot]@users.noreply.github.com will not match unless the brackets
+// are escaped. In BRE, "+" is already literal, and escaping it makes it a
+// quantifier, so leave it alone.
+function escapeGitAuthorPattern(value) {
+  return String(value)
+    .replace(/"/g, "")
+    .replace(/[.[\]*^$\\]/g, "\\$&");
+}
+
 function authorLogFilter(authorEmails) {
   return authorEmails
-    .map((email) => ` --author="${String(email).replace(/"/g, "")}"`)
+    .map((email) => ` --author="${escapeGitAuthorPattern(email)}"`)
     .join("");
 }
 
@@ -346,7 +374,7 @@ async function fetchData({
   repoRoots,
   maxDepth,
   includePrs,
-  ghAuthor,
+  ghAuthors,
   prPerRepoLimit,
   excludePatterns,
 }) {
@@ -364,7 +392,8 @@ async function fetchData({
     diagnostics: {
       authorEmail: authorEmails.length ? authorEmails.join(",") : null,
       authorEmails,
-      ghAuthor: includePrs ? ghAuthor : null,
+      ghAuthor: includePrs ? ghAuthors.join(",") : null,
+      ghAuthors: includePrs ? ghAuthors : [],
       includePrs,
       maxDepth,
       excludePatterns,
@@ -539,14 +568,43 @@ async function fetchData({
 
     const searchPullRequests = (selector) => {
       const command = `gh search prs ${selector} --sort created --order desc --limit ${prPerRepoLimit} --json number,repository,url,createdAt`;
-      try {
-        return { ok: true, stdout: execSync(command, { encoding: "utf-8" }) };
-      } catch (error) {
-        const detail = String(error.stderr || error.message || "")
-          .trim()
-          .split("\n")[0]
-          .slice(0, 240);
-        return { ok: false, detail };
+      for (let attempt = 1; attempt <= 4; attempt++) {
+        try {
+          return {
+            ok: true,
+            stdout: execSync(command, {
+              encoding: "utf-8",
+              maxBuffer: 20 * 1024 * 1024,
+            }),
+          };
+        } catch (error) {
+          const raw = String(error.stderr || error.message || "");
+          const detail = raw.trim().split("\n")[0].slice(0, 240);
+          if (/rate limit/i.test(raw) && attempt < 4) {
+            console.warn(
+              `   GitHub search rate limit hit, waiting 65s (attempt ${attempt})`,
+            );
+            execSync("sleep 65");
+            continue;
+          }
+          return { ok: false, detail };
+        }
+      }
+      return { ok: false, detail: "GitHub search failed" };
+    };
+
+    const quoteSearchValue = (value) => String(value).replace(/"/g, "");
+    // gh requires OR/AND as separate argv tokens, not one quoted string.
+    const authorQuery = ghAuthors
+      .map((author) => `author:${quoteSearchValue(author)}`)
+      .join(" OR ");
+    const addPullRequests = (repoPrs, seen) => {
+      data.diagnostics.prs.candidatePullRequests += repoPrs.length;
+      for (const pr of repoPrs) {
+        const key = pr?.url || `${pr?.repository?.nameWithOwner}#${pr?.number}`;
+        if (!key || seen.has(key)) continue;
+        seen.add(key);
+        prList.push(pr);
       }
     };
 
@@ -557,7 +615,7 @@ async function fetchData({
         const repoFull = `${repo.owner}/${repo.repoSlug}`;
         data.diagnostics.prs.repoQueries++;
         const search = searchPullRequests(
-          `--author="${ghAuthor}" --created=">=${dateFilter}" --repo="${repoFull}"`,
+          `--created=">=${dateFilter}" --repo="${repoFull}" ${authorQuery}`,
         );
         if (!search.ok) {
           data.diagnostics.prs.searchFailures++;
@@ -569,18 +627,10 @@ async function fetchData({
         }
 
         const repoPrs = JSON.parse(search.stdout);
-        data.diagnostics.prs.candidatePullRequests += repoPrs.length;
         if (repoPrs.length === prPerRepoLimit) {
           data.diagnostics.prs.possiblyTruncatedRepos.push(repoFull);
         }
-
-        for (const pr of repoPrs) {
-          const key =
-            pr?.url || `${pr?.repository?.nameWithOwner}#${pr?.number}`;
-          if (!key || seen.has(key)) continue;
-          seen.add(key);
-          prList.push(pr);
-        }
+        addPullRequests(repoPrs, seen);
       }
 
       prList.sort(
@@ -588,8 +638,9 @@ async function fetchData({
       );
       data.diagnostics.prs.dedupedPullRequests = prList.length;
     } else {
+      data.diagnostics.prs.repoQueries++;
       const search = searchPullRequests(
-        `--author="${ghAuthor}" --created=">=${dateFilter}"`,
+        `--created=">=${dateFilter}" ${authorQuery}`,
       );
       if (!search.ok) {
         console.error(
@@ -597,8 +648,7 @@ async function fetchData({
         );
         process.exit(1);
       }
-      prList = JSON.parse(search.stdout);
-      data.diagnostics.prs.candidatePullRequests = prList.length;
+      addPullRequests(JSON.parse(search.stdout), new Set());
       data.diagnostics.prs.dedupedPullRequests = prList.length;
     }
 

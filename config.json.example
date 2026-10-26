@@ -1,7 +1,7 @@
 {
   "paths": ["~/Projects", "~/code"],
   "author": "you@example.com,work@example.com",
-  "ghAuthor": "your-github-username",
+  "ghAuthor": "your-github-username,app/your-bot",
   "exclude": ["node_modules", "vendor"],
   "hours": 168,
   "maxDepth": 4,

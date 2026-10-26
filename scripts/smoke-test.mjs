@@ -58,6 +58,11 @@ const getArgValue = (flag) => {
 };
 
 if (args[0] === 'search' && args[1] === 'prs') {
+  const joined = args.join(' ');
+  if (!joined.includes('author:smoke-user') || !joined.includes('author:smoke-bot')) {
+    process.stderr.write('expected one search for every configured author\\n');
+    process.exit(1);
+  }
   const repoFull = getArgValue('--repo');
   const limit = Number(getArgValue('--limit') || '0');
   const repoName = repoFull.split('/')[1];
@@ -190,6 +195,48 @@ try {
     `diagnostics should list both author emails, got ${multiData.diagnostics.authorEmail}`
   );
 
+  const botEmail = '12345+smoke-bot[bot]@users.noreply.github.com';
+  const repoBot = path.join(rootA, 'repo-bot');
+  initRepo(repoBot, 'repo-bot', 'stranger@example.com');
+  fs.appendFileSync(path.join(repoBot, 'README.md'), '\nbot work\n');
+  run('git', ['add', 'README.md'], { cwd: repoBot });
+  const botDate = new Date(Date.now() - 20 * 60 * 1000).toISOString();
+  run('git', ['commit', '-m', 'feat: bot work'], {
+    cwd: repoBot,
+    env: {
+      ...process.env,
+      GIT_AUTHOR_NAME: 'smoke-bot[bot]',
+      GIT_AUTHOR_EMAIL: botEmail,
+      GIT_COMMITTER_NAME: 'smoke-bot[bot]',
+      GIT_COMMITTER_EMAIL: botEmail,
+      GIT_AUTHOR_DATE: botDate,
+      GIT_COMMITTER_DATE: botDate,
+    },
+  });
+  const botCache = path.join(tempDir, 'activity-data-bot-author.json');
+  run(
+    process.execPath,
+    [
+      generatorScript,
+      '--paths',
+      rootA,
+      '--hours',
+      '48',
+      '--author',
+      botEmail,
+      '--exclude',
+      'skip-me',
+      '--no-prs',
+      '--cache-file',
+      botCache,
+    ],
+    { cwd: tempDir }
+  );
+  const botData = JSON.parse(fs.readFileSync(botCache, 'utf-8'));
+  assert(botData.commits.length === 1, `expected the GitHub App bot commit only, got ${botData.commits.length}`);
+  assert(botData.commits[0].repo === 'repo-bot', 'bot commit came from the wrong repo');
+  assert(botData.commits[0].headline === 'feat: bot work', `unexpected bot headline ${botData.commits[0].headline}`);
+
   const defaultBranch = run('git', ['rev-parse', '--abbrev-ref', 'HEAD'], { cwd: repoOne }).stdout.trim();
   run('git', ['checkout', '-b', 'agent/side-work'], { cwd: repoOne });
   fs.appendFileSync(path.join(repoOne, 'README.md'), '\nside work\n');
@@ -243,7 +290,7 @@ try {
       '--author',
       authorEmail,
       '--gh-author',
-      'smoke-user',
+      'smoke-user,smoke-bot',
       '--pr-per-repo-limit',
       '50',
       '--cache-file',
@@ -262,6 +309,7 @@ try {
   const prData = JSON.parse(fs.readFileSync(prCacheFile, 'utf-8'));
   assert(prData.prs.length === 30, `expected 30 PRs without a global cap, got ${prData.prs.length}`);
   assert(prData.diagnostics.prs.repoQueries === 3, `expected 3 repo queries, got ${prData.diagnostics.prs.repoQueries}`);
+  assert(prData.diagnostics.ghAuthor === 'smoke-user,smoke-bot', `expected both PR authors, got ${prData.diagnostics.ghAuthor}`);
   assert(prData.diagnostics.prs.dedupedPullRequests === 30, 'deduped PR count incorrect');
   assert(prData.diagnostics.prs.perRepoLimit === 50, 'per-repo PR limit diagnostics incorrect');
   assert(prData.diagnostics.prs.possiblyTruncatedRepos.length === 0, 'unexpected PR truncation warning');
