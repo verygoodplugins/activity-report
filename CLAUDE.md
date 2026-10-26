@@ -30,7 +30,7 @@ node generate-rich-report.mjs \
   --hours 48 \                   # Time window (default: 168 = 7 days)
   --max-depth 4 \                # Repo scan depth
   --author you@example.com,work@example.com \ # Filter commits by email (comma-separated)
-  --gh-author someuser \         # GitHub PR author filter
+  --gh-author someuser,app/your-bot \ # GitHub PR authors (comma-separated)
   --exclude "vendor,archive" \   # Exclude repos matching patterns
   --no-prs                       # Skip PR fetching (no gh CLI needed)
 ```
